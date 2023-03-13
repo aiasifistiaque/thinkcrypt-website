@@ -1,0 +1,25 @@
+{
+	"name": "think",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@chakra-ui/react": "^2.4.4",
+		"@emotion/react": "^11.10.5",
+		"@emotion/styled": "^11.10.5",
+		"framer-motion": "^7.10.2",
+		"next": "12.3.0",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-icons": "^4.7.1"
+	},
+	"devDependencies": {
+		"eslint": "8.5.0",
+		"eslint-config-next": "12.0.7"
+	}
+}

@@ -1,0 +1,14 @@
+@import '../../../styles/imports';
+
+.container {
+	display: flex;
+	margin: 24px 0;
+	@include desktop {
+		margin: 64px 0;
+	}
+	img {
+		width: 100vw;
+		height: auto;
+		object-fit: contain;
+	}
+}

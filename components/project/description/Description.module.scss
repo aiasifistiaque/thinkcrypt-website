@@ -1,0 +1,68 @@
+@import '../../../styles/imports';
+
+%sec {
+	margin: 32px 0;
+	@include desktop {
+		margin: 64px 0;
+	}
+	h6 {
+		margin-bottom: 0.25rem;
+		font-size: 1.5rem;
+	}
+	p {
+		letter-spacing: 0.5px;
+		line-height: 2;
+	}
+}
+
+.container {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	max-width: 100vw;
+	box-sizing: border-box;
+	margin: 32px 24px;
+	@include desktop {
+		margin: 64px 128px;
+	}
+	.sections {
+		display: flex;
+		flex-direction: column;
+		@include desktop {
+			flex-direction: row;
+		}
+		.sectionOne {
+			flex: 1;
+		}
+		.sectionTwo {
+			flex: 2;
+		}
+	}
+	.section {
+		@extend %sec;
+		p {
+			margin-bottom: 0.25rem;
+		}
+	}
+	.sectionBig {
+		@extend %sec;
+		p {
+			margin-bottom: 0.75rem;
+		}
+	}
+	.bottomSection {
+		@extend %sec;
+
+		margin: 16px 0;
+		@include desktop {
+			margin: 16px 0;
+		}
+		h6 {
+			margin-bottom: 0.25rem;
+			font-size: 1.5rem;
+		}
+		p {
+			margin-bottom: 0.75rem;
+		}
+	}
+}

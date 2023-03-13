@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700,800,800i,900i&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+.container {
+  display: flex;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  padding: 24px;
+  flex-direction: column;
+}
+@media (min-width: 1008px) {
+  .container {
+    padding: 128px;
+  }
+}
+.container h4 {
+  font-weight: 800;
+}/*# sourceMappingURL=PortfolioContainer.module.css.map */

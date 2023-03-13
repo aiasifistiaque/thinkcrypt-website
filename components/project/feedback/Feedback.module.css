@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700,800,800i,900i&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
+.container {
+  padding: 128px 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.container p {
+  margin: 1rem 0;
+}
+@media (min-width: 1008px) {
+  .container {
+    padding: 128px 128px;
+  }
+  .container p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 50vw;
+  }
+}
+.container .user {
+  display: flex;
+  align-items: center;
+  margin: 32px 0;
+}
+.container .user img {
+  height: 60px;
+  width: 60px;
+  border-radius: 999px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.container .user .text {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  letter-spacing: 0.5px;
+}
+.container .user .text h6 {
+  line-height: 0;
+  margin: 8px 0;
+  color: #7dbcf3;
+}
+.container .user .text p {
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=Feedback.module.css.map */

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700,800,800i,900i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+$color-primary: #7dbcf3;
+$color-secondary: #b91646;
+$color-heading: #535353;
+$color-border: rgba(#005bff, 0.1);
+$background-color: #f7f7f7;
+$color-danger: #ff3152;
+$shadow-primary: 0 22px 40px rgba(#005bff, 0.12);
+$color-success: #00ff99;
+$color-black: black;
+$container-radius: 10px;
+
+@import './utilities/mixins';
+@import './utilities/partials';

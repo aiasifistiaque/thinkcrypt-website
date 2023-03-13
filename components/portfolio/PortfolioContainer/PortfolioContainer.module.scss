@@ -1,0 +1,15 @@
+@import '../../../styles/imports';
+
+.container {
+	display: flex;
+	background-color: whitesmoke;
+	min-height: 100vh;
+	padding: 24px;
+	flex-direction: column;
+	@include desktop {
+		padding: 128px;
+	}
+	h4 {
+		font-weight: 800;
+	}
+}
