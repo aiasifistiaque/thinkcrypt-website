@@ -64,7 +64,7 @@ const Project = ({ item }) => {
 	return (
 		<Link href={item.href} isExternal _hover={{ textDecoration: 'none' }}>
 			<Flex cursor='pointer' flex={1}>
-				<Background bg={`url(${item.src}.svg)`}>
+				<Background bg={`url(${item.src})`}>
 					<Overlay>
 						<TextBox>
 							<TextOverlay p={3} spacing={0.5}>
