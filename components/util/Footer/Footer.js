@@ -47,8 +47,8 @@ const Footer = () => {
 						<Heading size='md'>Contact Us</Heading>
 						<Stack spacing={0}>
 							<Text>thinkcrypt.io</Text>
-							<Text>House 88, Road 17/A, Block E</Text>
-							<Text>Banani</Text>
+							<Text>Flat 5B, House 88</Text>
+							<Text>Road 17/A, Block E, Banani</Text>
 							<Text>Dhaka 1213, Bangladesh</Text>
 						</Stack>
 
