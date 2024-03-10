@@ -47,9 +47,9 @@ const Footer = () => {
 						<Heading size='md'>Contact Us</Heading>
 						<Stack spacing={0}>
 							<Text>thinkcrypt.io</Text>
-							<Text>House 42, Road 6,</Text>
-							<Text>Mohammadia Housing Soceity, Mohammadpur</Text>
-							<Text>Dhaka 1207, Bangladesh</Text>
+							<Text>House 88, Road 17/A, Block E</Text>
+							<Text>Banani</Text>
+							<Text>Dhaka 1213, Bangladesh</Text>
 						</Stack>
 
 						<Stack spacing={0}>
@@ -66,7 +66,7 @@ const Footer = () => {
 			</Container>
 			<Center p='4px 16px'>
 				<Text textAlign='center' color='gray.600' fontSize={12}>
-					{`Copyright ©2023`} | thinkcrypt.io | ALL RIGHTS RESERVED
+					{`Copyright ©2024`} | thinkcrypt.io | ALL RIGHTS RESERVED
 				</Text>
 			</Center>
 		</Stack>
