@@ -86,6 +86,7 @@ function TeamPage() {
 				<SectionHeadingWithoutMaxH
 					heading='MEET THE CREATORS OF TEAM THINKCRYPT '
 					subHeading={'Our Team'}
+					pt={{ base: "60px", md: 4 }}
 				>
 					Get to know the faces behind the innovation and learn about the
 					collaborative spirit that fuels our mission to create cutting-edge

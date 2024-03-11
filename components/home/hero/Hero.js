@@ -1,8 +1,32 @@
 import React from 'react';
-import { Heading, Flex, Box } from '@chakra-ui/react';
+import { Heading, Flex, Box, Center, Text as BText } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { colors, breakpoints } from '../../lib/constants';
+import Link from 'next/link';
 
+const ThinkButton = styled(Center)`
+	cursor: pointer;
+	margin: 32px 0;
+	height: 50px;
+	width: 220px;
+	background-color: ${colors.charcole};
+	transition: 0.2s;
+	&:hover {
+		@media (min-width: ${breakpoints.desktop}) {
+			background-color: ${colors.charcole};
+		}
+	}
+	&:active {
+		background-color: ${colors.primaryLight};
+	}
+`;
+const ButtonText = styled(BText)`
+	line-height: 0;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 0.75px;
+	font-size: 1rem;
+`;
 const Container = styled(Flex)`
 	flex: 1;
 	background-image: url('/hero.jpeg');
@@ -58,6 +82,11 @@ const Hero = () => {
 					strategy, through building a prototype and testing it with users,
 					right to the creation of the product itself.
 				</Text>
+				<Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
+					<ThinkButton>
+						<ButtonText>Get A Quote</ButtonText>
+					</ThinkButton>
+				</Link>
 			</Overlay>
 		</Container>
 	);
