@@ -96,7 +96,9 @@ function TeamPage() {
 					templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
 					gap={{ base: 4, md: 8 }}
 					// gap={4}
-					p={{ base: 2, md: 4 }}
+					px={{ base: 2, md: 4 }}
+					pt={{ base: 2, md: 4 }}
+					pb={'90px'}
 				>
 					{teamMemebers.map((member, i) => (
 						<EachTeamMember key={i} {...member} />

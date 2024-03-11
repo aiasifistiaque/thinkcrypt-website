@@ -15,7 +15,6 @@ const P = styled(Text)`
 	@media (min-width: ${breakpoints.desktop}) {
 		font-size: 1.2rem;
 		line-height: 1.6;
-
 		max-width: 50vw;
 	}
 `;
