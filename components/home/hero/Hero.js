@@ -9,11 +9,11 @@ const ThinkButton = styled(Center)`
 	margin: 32px 0;
 	height: 50px;
 	width: 220px;
-	background-color: ${colors.charcole};
+	background-color: ${colors.primary};
 	transition: 0.2s;
 	&:hover {
 		@media (min-width: ${breakpoints.desktop}) {
-			background-color: ${colors.charcole};
+			background-color: ${colors.primary};
 		}
 	}
 	&:active {

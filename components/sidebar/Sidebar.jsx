@@ -25,10 +25,10 @@ const menu = [
 		title: 'Our Team',
 		href: '/team',
 	},
-	{
-		title: 'Projects',
-		href: '/project',
-	},
+	// {
+	// 	title: 'Projects',
+	// 	href: '/project',
+	// },
 	{
 		title: 'Portfolio',
 		href: '/portfolio',
