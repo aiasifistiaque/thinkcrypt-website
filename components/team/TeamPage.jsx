@@ -31,7 +31,7 @@ const teamMemebers = [
 		designation: 'Software Engineer',
 	},
 	{
-		img: '/team/Mubin.jpg',
+		img: '/team/mubin.png',
 		name: 'Kazi Ehsanul Mubin',
 		designation: 'Software Engineer',
 	},

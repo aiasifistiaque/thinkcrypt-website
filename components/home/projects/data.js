@@ -8,7 +8,7 @@ const data = [
 		href: 'https://bazar365.com',
 	},
 	{
-		src: '/portfolio/samc-emr.png',
+		src: '/portfolio/samc-emr.jpg',
 		name: 'SAMC Bangladesh EMR System',
 		type: 'Electronic Medical Reporting System',
 		href: 'https://samc-hospital-doctor-room.vercel.app/',
