@@ -41,7 +41,7 @@ const ButtonText = styled(BText)`
 	font-size: 1rem;
 `;
 
-const SectionHeading = ({
+const SectionHeadingWithoutMaxH = ({
 	subHeading,
 	heading,
 	children,
@@ -97,4 +97,4 @@ const SectionHeading = ({
 	);
 };
 
-export default SectionHeading;
+export default SectionHeadingWithoutMaxH;

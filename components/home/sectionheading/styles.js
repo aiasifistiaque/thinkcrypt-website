@@ -5,7 +5,6 @@ import { breakpoints } from '../../lib/constants';
 /**Containers */
 
 const Container = styled(Flex)`
-	min-height: 50vh;
 	flex-direction: column;
 	margin: 24px;
 	letter-spacing: 0.5px;

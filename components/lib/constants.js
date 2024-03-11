@@ -7,6 +7,7 @@ export const links = {
 
 export const colors = {
 	primary: '#7dbcf3',
+	charcole: '#2d2d2d',
 	primaryDark: `#4ea4ef`,
 	primaryLight: `#acd4f7`,
 };
