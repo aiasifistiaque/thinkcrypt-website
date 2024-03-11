@@ -9,7 +9,7 @@ import { breakpoints, colors, links } from '../../lib/constants';
 const Divider = styled(Flex)`
 	height: 10px;
 	width: 80px;
-	background-color: ${colors.primary};
+	background-color: ${colors.charcole};
 	margin: 1rem 0 1.5rem 0;
 	@media (min-width: ${breakpoints.desktop}) {
 		margin-bottom: 2rem;
@@ -21,11 +21,11 @@ const ThinkButton = styled(Center)`
 	margin: 32px 0;
 	height: 50px;
 	width: 220px;
-	background-color: ${colors.primary};
+	background-color: ${colors.charcole};
 	transition: 0.2s;
 	&:hover {
 		@media (min-width: ${breakpoints.desktop}) {
-			background-color: ${colors.primaryDark};
+			background-color: ${colors.charcole};
 		}
 	}
 	&:active {

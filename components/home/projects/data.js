@@ -57,7 +57,7 @@ const data = [
 		href: 'https://dignityinternationalagency.com',
 	},
 	{
-		src: '/portfolio/home/livefresh.svg',
+		src: '/portfolio/home/livefresh.png',
 		name: 'Live Fresh',
 		type: 'E-commerce WebApp',
 		href: 'https://livefreshbd.com/',

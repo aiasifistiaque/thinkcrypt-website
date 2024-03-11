@@ -3,6 +3,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Flex, Image } from '@chakra-ui/react';
 import { breakpoints } from '../../lib/constants';
+import Sidebar from '../../sidebar/Sidebar.jsx';
 
 const Container = styled(Flex)`
 	height: 4rem;
@@ -10,6 +11,7 @@ const Container = styled(Flex)`
 	padding: 0 1.5rem;
 	color: white;
 	position: fixed;
+	justify-content: space-between;
 	width: 100%;
 	backdrop-filter: blur(5px);
 	@media (min-width: ${breakpoints.desktop}) {
@@ -30,6 +32,7 @@ const Header = () => {
 			<Link href='/'>
 				<Logo src='/header.png' alt='thinkcrypt.io' />
 			</Link>
+			<Sidebar />
 		</Container>
 	);
 };

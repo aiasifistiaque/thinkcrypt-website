@@ -4,6 +4,7 @@ import { Stack, Grid } from '@chakra-ui/react';
 import SectionHeading from '../home/sectionheading/SectionHeading.js';
 import EachTeamMember from './EachTeamMember.jsx';
 import SectionHeadingWithoutMaxH from '../home/sectionheading/SectionHeading.js';
+import { Container } from '../home/sectionheading/styles.js';
 const teamMemebers = [
 	{
 		img: '/team/amiyo-vai.jpg',
@@ -50,15 +51,16 @@ const teamMemebers = [
 		name: 'Md Aminul Haque',
 		designation: 'Junior Software Engineer',
 	},
-	{
-		img: '/team/Susan.jpg',
-		name: 'Susan Jannat',
-		designation: 'Junior UI/UX Designer ',
-	},
+
 	{
 		img: '/team/Arefin.jpg',
 		name: 'Kazi Samsul Arefin',
 		designation: 'Junior Software Engineer',
+	},
+	{
+		img: '/team/Susan.jpg',
+		name: 'Susan Jannat',
+		designation: 'Junior UI/UX Designer ',
 	},
 	{
 		img: '/team/Turzo.jpg',
@@ -85,25 +87,27 @@ function TeamPage() {
 					heading='MEET THE CREATORS OF TEAM THINKCRYPT '
 					subHeading={'Our Team'}
 				>
-					Digital artisans transforming code into captivating user experiences.
-					We blend technical mastery with creative vision, crafting each project
-					to redefine the digital landscape. Join us as we shape the future of
-					technology, one innovation at a time.
+					Get to know the faces behind the innovation and learn about the
+					collaborative spirit that fuels our mission to create cutting-edge
+					solutions that empower individuals and businesses to safeguard their
+					digital assets with confidence.
 				</SectionHeadingWithoutMaxH>
-				<Grid
-					w='full'
-					align-items='center'
-					templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
-					gap={{ base: 4, md: 8 }}
-					// gap={4}
-					px={{ base: 2, md: 4 }}
-					pt={{ base: 2, md: 4 }}
-					pb={'90px'}
-				>
-					{teamMemebers.map((member, i) => (
-						<EachTeamMember key={i} {...member} />
-					))}
-				</Grid>
+				<Container>
+					<Grid
+						w='full'
+						align-items='center'
+						templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
+						gap={{ base: 4, md: 8 }}
+						// gap={4}
+						px={{ base: 2, md: 4 }}
+						pt={{ base: 2, md: 4 }}
+						pb={'90px'}
+					>
+						{teamMemebers.map((member, i) => (
+							<EachTeamMember key={i} {...member} />
+						))}
+					</Grid>
+				</Container>
 			</Stack>
 		</Page>
 	);

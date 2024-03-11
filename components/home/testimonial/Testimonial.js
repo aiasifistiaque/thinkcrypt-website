@@ -7,7 +7,7 @@ const Container = styled(Center)`
 	padding: 128px 24px;
 	display: flex;
 	flex-direction: column;
-	background-color: ${colors.primary};
+	background-color: ${colors.charcole};
 	text-align: center;
 `;
 
@@ -23,8 +23,10 @@ const Testimonial = () => {
 	return (
 		<Container>
 			<Stack spacing={4} mb={4}>
-				<Heading size='xl'>What our clients are saying about us</Heading>
-				<P>
+				<Heading size='xl' color={'white'}>
+					What our clients are saying about us
+				</Heading>
+				<P color={'white'}>
 					I am really thankful to the thinkcrypt team for making this amazing
 					website and app for our business. Thinkcrypt has fulfilled all of our
 					demands and queries. They have a very strong team of developers. We
@@ -42,8 +44,8 @@ const Testimonial = () => {
 					borderRadius='full'
 				/>
 				<Stack align='start' spacing={0}>
-					<P>Shahbaz Amin Bhuiyan</P>
-					<Heading size='sm' color='white'>
+					<P color={'white'}>Shahbaz Amin Bhuiyan</P>
+					<Heading size='sm' color='#d63384'>
 						Vincent{`'`}s Sphere
 					</Heading>
 				</Stack>
