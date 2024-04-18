@@ -27,12 +27,8 @@ const ServicesNew = () => {
 			mt='60px'
 			borderTop='1px solid #DEDEE0'
 			borderBottom='1px solid #DEDEE0'
-      >
-			<Column
-				w='full'
-				mx='auto'
-        maxW={layout.MAX_W}
-			>
+		>
+			<Column w='full' mx='auto' maxW={layout.MAX_W}>
 				{/* FOR SMALL SCREEN */}
 				<Column display={{ base: 'flex', md: 'none' }}>
 					<Grid
@@ -62,7 +58,7 @@ const ServicesNew = () => {
 									<h2>
 										<AccordionButton>
 											<Box as='span' flex='1' textAlign='left' py={3}>
-												<Text fontSize='18px' fontFamily={fonts.heading}>
+												<Text fontSize='18px' fontWeight={600} fontFamily={fonts.heading}>
 													{item.title}
 												</Text>
 											</Box>
@@ -92,7 +88,11 @@ const ServicesNew = () => {
 						</CustomImage>
 						<Grid templateRows='1fr 1fr' w='full'>
 							<Flex w='full' p={8}>
-								<Text fontSize='48px' fontFamily={fonts.heading}>
+								<Text
+									fontSize='48px'
+									fontFamily={fonts.heading}
+									fontWeight='600'
+								>
 									Our Services
 								</Text>
 							</Flex>
