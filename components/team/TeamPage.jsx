@@ -13,7 +13,7 @@ const teamMemebers = [
 	},
 	{
 		img: '/team/anik-vaiya.jpg',
-		name: 'Anik Hossain',
+		name: 'Asif Hossain Anik',
 		designation: 'Co-founder and COO',
 	},
 	{
