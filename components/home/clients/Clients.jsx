@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, Image, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { breakpoints, layout } from "../../lib/constants";
+import { breakpoints, fonts, layout } from "../../lib/constants";
 import { partnerLogos } from "../../../data/data";
 import styled from "@emotion/styled";
 
@@ -59,15 +59,15 @@ const Clients = () => {
 								<Text
 									fontSize={{ base: '1.5rem', md: '3rem' }}
 									fontWeight={700}
-									fontFamily={'DM Sans'}
+									fontFamily={fonts.heading}
 									color='textDarkGray.light'
 								>
 									Trusted By The Best
 								</Text>
 								<Text
 									fontSize={{ base: '1rem', md: '1.5rem' }}
-									fontWeight={500}
-									fontFamily={'DM Sans'}
+									fontWeight={400}
+									fontFamily={fonts.body}
 									color='textDarkGray.light'
 								>
 									Companies ranging from early-stage startups to Fortune 500
