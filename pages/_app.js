@@ -4,7 +4,7 @@ import * as fbq from '../lib/fpixel';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Script from 'next/script';
-
+import { gtag } from '../lib/googleAnalytics.js';
 const colors = {
 	pink: { 200: '#FB2E7E' },
 	facebook: { 200: '#1B74E4' },
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<ChakraProvider theme={theme}>
 			<Script
-				src='https://www.googletagmanager.com/gtag/js?id=G-QY7RELS504'
+				src={`https://www.googletagmanager.com/gtag/js?id=${gtag}`}
 				strategy='afterInteractive'
 			/>
 			<Script id='google-analytics' strategy='afterInteractive'>
@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', 'G-QY7RELS504');
+          gtag('config', '${gtag}');
         `}
 			</Script>
 			<Script
