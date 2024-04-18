@@ -20,7 +20,13 @@ const SidebarRightPart = ({ onClose }) => {
 
 	return (
 		<Column flex={1}>
-			<Flex borderBottom='1px solid' h='4rem' px='1.5rem' justify='flex-end' alignItems='center'>
+			<Flex
+				borderBottom='1px solid'
+				h='4rem'
+				px='1.5rem'
+				justify='flex-end'
+				alignItems='center'
+			>
 				<Flex
 					onClick={onClose}
 					borderLeft='1px solid #DEDEE0'
@@ -28,7 +34,8 @@ const SidebarRightPart = ({ onClose }) => {
 					justify='flex-end'
 					alignItems='center'
 					h='full'
-					cursor='pointer'>
+					cursor='pointer'
+				>
 					<CgCloseO size='2.25rem' />
 				</Flex>
 			</Flex>
@@ -38,18 +45,31 @@ const SidebarRightPart = ({ onClose }) => {
 					<SpringValue pos='Y'>{y}</SpringValue>
 				</Column>
 			</Flex>
-			<Flex borderTop='1px solid' flex={4} px='2rem' py='2rem' justify='flex-end'>
+			<Flex
+				borderTop='1px solid'
+				flex={4}
+				px='2rem'
+				py='2rem'
+				justify='flex-end'
+			>
 				<Column gap='8rem' alignItems='flex-end' justify='space-between'>
-					{/* <Link href='/contact-us'>
+					<Link href='https://docs.google.com/forms/d/e/1FAIpQLSeu0GxkeIBfjuAXlPALET-5S1Dxs6JASbV2CSjv2Yv4YA1vZQ/viewform?usp=sf_link'>
 						<LinkButton label='CONTACT US' />
-					</Link> */}
+					</Link>
 					<Flex></Flex>
 					<Column gap={8} alignItems='flex-end'>
-						<Text fontSize={{ md: '6rem', lg: '7rem' }} fontFamily='Roboto Flex' lineHeight='6rem'>
+						<Text
+							fontSize={{ md: '6rem', lg: '7rem' }}
+							fontFamily='Roboto Flex'
+							lineHeight='6rem'
+						>
 							01
 						</Text>
 						<Flex gap={8}>
-							<Link href='https://www.linkedin.com/company/thinkcrypt-io/' target='_blank'>
+							<Link
+								href='https://www.linkedin.com/company/thinkcrypt-io/'
+								target='_blank'
+							>
 								<LinkButton label='LINKEDIN' />
 							</Link>
 							<Link href='https://www.facebook.com/thinkcrypt/' target='_blank'>

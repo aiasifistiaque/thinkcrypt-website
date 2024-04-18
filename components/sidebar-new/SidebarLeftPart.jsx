@@ -56,18 +56,18 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 							<SidebarNavItem id='04' name='Blog' />
 						</Link> */}
 					</Column>
-					{/* <Hide above='md'>
+					<Hide above='md'>
 						<Column gap={8} alignItems='flex-end'>
 							<Text fontSize='5rem' fontFamily='Roboto Flex' lineHeight='5rem'>
-								01
+								00
 							</Text>
 							<Flex gap={8}>
-								<Link href='/contact-us'>
+								<Link href='https://docs.google.com/forms/d/e/1FAIpQLSeu0GxkeIBfjuAXlPALET-5S1Dxs6JASbV2CSjv2Yv4YA1vZQ/viewform?usp=sf_link'>
 									<LinkButton label='CONTACT US' />
 								</Link>
 							</Flex>
 						</Column>
-					</Hide> */}
+					</Hide>
 				</Column>
 			</Flex>
 			<Flex
