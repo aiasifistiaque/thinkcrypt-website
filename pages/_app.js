@@ -4,7 +4,8 @@ import * as fbq from '../lib/fpixel';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Script from 'next/script';
-import { gtag } from '../lib/googleAnalytics.js';import { Provider } from 'react-redux';
+import { gtag } from '../lib/googleAnalytics.js';
+import { Provider } from 'react-redux';
 import { store } from '../store';
 
 const colors = {
@@ -30,6 +31,10 @@ function MyApp({ Component, pageProps }) {
 
 		const handleRouteChange = () => {
 			fbq.pageview();
+			window?.gtag &&
+				window.gtag('config', gtag, {
+					page_path: url,
+				});
 		};
 
 		router.events.on('routeChangeComplete', handleRouteChange);
@@ -37,6 +42,22 @@ function MyApp({ Component, pageProps }) {
 			router.events.off('routeChangeComplete', handleRouteChange);
 		};
 	}, [router.events]);
+
+	// useEffect(() => {
+	// 	const handleRouteChange = (url) => {
+	// 		window?.gtag &&
+	// 			window.gtag('config', gt.GA_TRACKING_ID, {
+	// 				page_path: url,
+	// 			});
+	// 	};
+	// 	// const handleRouteChange = url => {
+	// 	// 	gtag.pageview(url);
+	// 	// };
+	// 	router.events.on('routeChangeComplete', handleRouteChange);
+	// 	return () => {
+	// 		router.events.off('routeChangeComplete', handleRouteChange);
+	// 	};
+	// }, [router.events]);
 	return (
 		<Provider store={store}>
 			<ChakraProvider theme={theme}>
