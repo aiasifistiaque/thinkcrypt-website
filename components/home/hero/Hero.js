@@ -29,9 +29,12 @@ const ButtonText = styled(BText)`
 `;
 const Container = styled(Flex)`
 	flex: 1;
-	background-image: url('/hero.jpeg');
+	background-image: url('/home/main-hero section.svg');
 	background-position: center center;
 	background-size: cover;
+	@media (max-width: ${breakpoints.tab}) {
+		background-image: url('/home/phone hero section.svg');
+	}
 `;
 
 const Overlay = styled(Flex)`
@@ -41,8 +44,8 @@ const Overlay = styled(Flex)`
 	justify-content: center;
 	flex: 1;
 	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.4);
-	color: white;
+	// background-color: rgba(0, 0, 0, 0.4);
+	// color: white;
 	@media (min-width: ${breakpoints.desktop}) {
 		padding: 0 128px;
 	}
