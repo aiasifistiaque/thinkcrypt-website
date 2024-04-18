@@ -9,6 +9,7 @@ import Testimonial from './testimonial/Testimonial';
 import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import ServicesNew from './services/ServicesNew';
+import Clients from './clients/Clients';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -40,6 +41,7 @@ const Homepage = () => {
 				</SectionHeading> */}
 				{/* <Services /> */}
 				<ServicesNew />
+				<Clients />
 				<Testimonial />
 				<SectionHeading
 					heading='Let’s design your next project'
