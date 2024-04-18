@@ -2,6 +2,12 @@
 
 const data = [
 	{
+		src: '/projects/shohoz.png',
+		name: 'Shohoz Air',
+		type: 'Air ticketing System',
+		href: 'https://air.shohoz.com/',
+	},
+	{
 		src: '/projects/bazar.svg',
 		name: 'Bazar365',
 		type: 'E-Commerce',
@@ -20,22 +26,16 @@ const data = [
 		href: 'https://livefreshbd.com/',
 	},
 	{
+		src: '/projects/oho.svg',
+		name: 'Oho ',
+		type: 'iOs App',
+		href: 'https://www.ohodating.com/',
+	},
+	{
 		src: '/projects/samc.svg',
 		name: 'SAMC Bangladesh EMR System',
 		type: 'Electronic Medical Reporting System',
 		href: 'https://samc-hospital-doctor-room.vercel.app/',
-	},
-	{
-		src: '/portfolio/home/dignity.svg',
-		name: 'Dignity International',
-		type: 'Business Website',
-		href: 'https://dignityinternationalagency.com',
-	},
-	{
-		src: '/projects/deshi-diary.svg',
-		name: 'Deshi Diary',
-		type: 'Social Business Rating Platform',
-		href: 'https://deshidiary.com',
 	},
 	{
 		src: '/projects/arewa.svg',
@@ -44,36 +44,10 @@ const data = [
 		href: 'https://arewabooks.com',
 	},
 	{
-		src: '/portfolio/home/netsooon.svg',
-		name: 'Netsooon',
-		type: 'Social Media',
-		href: 'https://netsooon.vercel.app',
-	},
-	{
-		src: '/portfolio/home/checklist.svg',
-		name: 'Checkliiiist',
-		type: 'Inventory Management Solution',
-		href: 'https://checkliiist.com',
-	},
-	{
-		src: '/portfolio/home/samc.svg',
-		name: 'SAMC Bangladesh',
-		type: 'Non-profil Organization',
-		href: 'https://samcbangladesh.org',
-	},
-
-	{
-		src: '/portfolio/home/gshop.svg',
-		name: 'Grocery Shop',
-		type: 'E-commerce webapp',
-		href: 'https://gshop-psi.vercel.app/',
-	},
-
-	{
-		src: '/projects/logo.svg',
-		name: 'Marketrol',
-		type: 'Facebook Marketing Solution',
-		href: 'https://marketrol.vercel.app',
+		src: '/projects/deshi-diary.svg',
+		name: 'Deshi Diary',
+		type: 'Social Business Rating Platform',
+		href: 'https://deshidiary.com',
 	},
 ];
 

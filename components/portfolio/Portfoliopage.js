@@ -74,6 +74,12 @@ const data = [
 
 const data2 = [
 	{
+		src: '/projects/shohoz.png',
+		name: 'Shohoz Air',
+		type: 'Air ticketing System',
+		href: 'https://air.shohoz.com/',
+	},
+	{
 		src: '/projects/deshi-diary.svg',
 		name: 'Deshi Diary',
 		type: 'Business Listing Web app',

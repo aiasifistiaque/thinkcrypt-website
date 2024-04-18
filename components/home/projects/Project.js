@@ -8,9 +8,9 @@ const radius = '4px';
 const Background = styled(Flex)`
 	flex: 1;
 	background-position: top center;
-	background-size: contain;
+	background-size: cover;
 	width: 100%;
-	min-height: 238px;
+	height: 200px;
 	background-repeat: no-repeat;
 	box-shadow: ${boxShadow};
 	transition: 0.3s;

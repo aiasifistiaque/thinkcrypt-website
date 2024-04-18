@@ -13,7 +13,7 @@ const Container = styled(Stack)`
 `;
 
 const Section = styled(Grid)`
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 0.5rem;
 	@media (min-width: ${breakpoints.tab}) {
 		grid-template-columns: 1fr 1fr;
