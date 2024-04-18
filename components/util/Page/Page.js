@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import styled from '@emotion/styled';
+import { CgMenuRound } from 'react-icons/cg';
 
 const Container = styled('main')`
 	display: flex;
@@ -21,7 +22,8 @@ const Page = ({ children, title }) => {
 
 				<meta
 					name='description'
-					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'></meta>
+					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
+				></meta>
 				<meta property='og:title' content='thinkcrypt.io' key='ogtitle' />
 				<meta
 					property='og:description'
@@ -36,7 +38,9 @@ const Page = ({ children, title }) => {
 					key='ogsitename'
 				/>
 			</Head>
-			<Header />
+			<Header
+				
+			/>
 			<Container>{children}</Container>
 			<Footer />
 		</>

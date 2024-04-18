@@ -3,7 +3,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Flex, Image } from '@chakra-ui/react';
 import { breakpoints } from '../../lib/constants';
-import Sidebar from '../../sidebar/Sidebar.jsx';
+import Sidebar from '../../sidebar-new/SidebarDrawer';
+import { CgMenuRound } from 'react-icons/cg';
 
 const Container = styled(Flex)`
 	height: 4rem;
@@ -32,7 +33,9 @@ const Header = () => {
 			<Link href='/'>
 				<Logo src='/header.png' alt='thinkcrypt.io' />
 			</Link>
-			<Sidebar />
+			<Sidebar
+				button={<CgMenuRound size='1.75rem' color='#fff' cursor='pointer' />}
+			/>
 		</Container>
 	);
 };
