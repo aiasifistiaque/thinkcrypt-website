@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from '@emotion/styled';
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import { breakpoints } from '../../lib/constants';
 import Sidebar from '../../sidebar-new/SidebarDrawer';
 import { CgMenuRound } from 'react-icons/cg';
-
+import moment from 'moment-timezone';
 const Container = styled(Flex)`
 	height: 4rem;
 	align-items: center;
@@ -33,9 +33,22 @@ const Header = () => {
 			<Link href='/'>
 				<Logo src='/header.png' alt='thinkcrypt.io' />
 			</Link>
-			<Sidebar
-				button={<CgMenuRound size='1.75rem' color='#525252' cursor='pointer' />}
-			/>
+			<Flex gap={6} align={'center'}>
+				<Text
+					fontSize='1rem'
+					fontWeight='600'
+					color='#525252'
+					lineHeight='1.25rem'
+					maxW={{ base: '100px', md: 'full' }}
+				>
+					{moment().tz('Asia/Dhaka').format('HH:mm [GMT]')}
+				</Text>
+				<Sidebar
+					button={
+						<CgMenuRound size='1.75rem' color='#525252' cursor='pointer' />
+					}
+				/>
+			</Flex>
 		</Container>
 	);
 };
