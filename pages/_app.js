@@ -4,7 +4,7 @@ import * as fbq from '../lib/fpixel';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Script from 'next/script';
-import { Provider } from 'react-redux';
+import { gtag } from '../lib/googleAnalytics.js';import { Provider } from 'react-redux';
 import { store } from '../store';
 
 const colors = {
@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
 		<Provider store={store}>
 			<ChakraProvider theme={theme}>
 				<Script
-					src='https://www.googletagmanager.com/gtag/js?id=G-QY7RELS504'
+					src={`https://www.googletagmanager.com/gtag/js?id=${gtag}`}
 					strategy='afterInteractive'
 				/>
 				<Script id='google-analytics' strategy='afterInteractive'>
@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', 'G-QY7RELS504');
+          gtag('config', '${gtag}');
         `}
 				</Script>
 				<Script

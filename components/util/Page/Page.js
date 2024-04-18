@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import styled from '@emotion/styled';
 import { CgMenuRound } from 'react-icons/cg';
+import CircleFollow from '../CircleFollow';
 
 const Container = styled('main')`
 	display: flex;
@@ -38,9 +39,8 @@ const Page = ({ children, title }) => {
 					key='ogsitename'
 				/>
 			</Head>
-			<Header
-				
-			/>
+			<CircleFollow />
+			<Header />
 			<Container>{children}</Container>
 			<Footer />
 		</>
