@@ -4,6 +4,8 @@ import * as fbq from '../lib/fpixel';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Script from 'next/script';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 const colors = {
 	pink: { 200: '#FB2E7E' },
@@ -36,25 +38,26 @@ function MyApp({ Component, pageProps }) {
 		};
 	}, [router.events]);
 	return (
-		<ChakraProvider theme={theme}>
-			<Script
-				src='https://www.googletagmanager.com/gtag/js?id=G-QY7RELS504'
-				strategy='afterInteractive'
-			/>
-			<Script id='google-analytics' strategy='afterInteractive'>
-				{`
+		<Provider store={store}>
+			<ChakraProvider theme={theme}>
+				<Script
+					src='https://www.googletagmanager.com/gtag/js?id=G-QY7RELS504'
+					strategy='afterInteractive'
+				/>
+				<Script id='google-analytics' strategy='afterInteractive'>
+					{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-QY7RELS504');
         `}
-			</Script>
-			<Script
-				id='fb-pixel'
-				strategy='afterInteractive'
-				dangerouslySetInnerHTML={{
-					__html: `
+				</Script>
+				<Script
+					id='fb-pixel'
+					strategy='afterInteractive'
+					dangerouslySetInnerHTML={{
+						__html: `
 		!function(f,b,e,v,n,t,s)
 		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -65,10 +68,11 @@ function MyApp({ Component, pageProps }) {
 		'https://connect.facebook.net/en_US/fbevents.js');
 		fbq('init', ${fbq.FB_PIXEL_ID});
 		`,
-				}}
-			/>
-			<Component {...pageProps} />
-		</ChakraProvider>
+					}}
+				/>
+				<Component {...pageProps} />
+			</ChakraProvider>
+		</Provider>
 	);
 }
 
