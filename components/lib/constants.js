@@ -22,3 +22,14 @@ export const breakpoints = {
 	laptop: '850px',
 	xLarge: '1200px',
 };
+
+
+export const fonts = {
+	heading: 'Bebas Neue, sans-serif',
+	body: 'Apercu',
+};
+
+export const layout = {
+	MAX_W: '1640px',
+	NAV_HEIGHT: '64px',
+};

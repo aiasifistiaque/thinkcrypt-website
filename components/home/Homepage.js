@@ -8,6 +8,7 @@ import Testimonial from './testimonial/Testimonial';
 
 import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import ServicesNew from './services/ServicesNew';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -30,14 +31,15 @@ const Homepage = () => {
 					researched, planned, tested and designed to work and look flawlessly.
 				</SectionHeading>
 				<Projects />
-				<SectionHeading
+				{/* <SectionHeading
 					heading='A symphony of look and function'
 					subHeading='Our Services'>
 					Our designs must not only look beautiful, but they must also function
 					beautifully. A great design not only entices you to touch, but it must
 					be intuitive and simple to understand.
-				</SectionHeading>
-				<Services />
+				</SectionHeading> */}
+				{/* <Services /> */}
+				<ServicesNew />
 				<Testimonial />
 				<SectionHeading
 					heading='Let’s design your next project'
