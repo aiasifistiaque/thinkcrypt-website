@@ -2,16 +2,46 @@
 
 const data = [
 	{
-		src: '/portfolio/bazar365.png',
+		src: '/projects/bazar.svg',
 		name: 'Bazar365',
 		type: 'E-Commerce',
 		href: 'https://bazar365.com',
 	},
 	{
-		src: '/portfolio/samc-emr.jpg',
+		src: '/projects/vincent.svg',
+		name: `Vincent's Sphere`,
+		type: 'E-Commerce Web App',
+		href: 'https://vincentsphere.com',
+	},
+	{
+		src: '/projects/livefresh.svg',
+		name: 'Live Fresh',
+		type: 'E-commerce WebApp',
+		href: 'https://livefreshbd.com/',
+	},
+	{
+		src: '/projects/samc.svg',
 		name: 'SAMC Bangladesh EMR System',
 		type: 'Electronic Medical Reporting System',
 		href: 'https://samc-hospital-doctor-room.vercel.app/',
+	},
+	{
+		src: '/portfolio/home/dignity.svg',
+		name: 'Dignity International',
+		type: 'Business Website',
+		href: 'https://dignityinternationalagency.com',
+	},
+	{
+		src: '/projects/deshi-diary.svg',
+		name: 'Deshi Diary',
+		type: 'Social Business Rating Platform',
+		href: 'https://deshidiary.com',
+	},
+	{
+		src: '/projects/arewa.svg',
+		name: 'ArewaBooks WebApp',
+		type: 'Social Readers Network',
+		href: 'https://arewabooks.com',
 	},
 	{
 		src: '/portfolio/home/netsooon.svg',
@@ -33,46 +63,17 @@ const data = [
 	},
 
 	{
-		src: '/portfolio/home/arewa.svg',
-		name: 'ArewaBooks WebApp',
-		type: 'Social Readers Network',
-		href: 'https://arewabooks.com',
-	},
-	{
-		src: '/portfolio/home/vincent.svg',
-		name: `Vincent's Sphere`,
-		type: 'E-Commerce Web App',
-		href: 'https://vincentsphere.com',
-	},
-	{
 		src: '/portfolio/home/gshop.svg',
 		name: 'Grocery Shop',
 		type: 'E-commerce webapp',
 		href: 'https://gshop-psi.vercel.app/',
 	},
+
 	{
-		src: '/portfolio/home/dignity.svg',
-		name: 'Dignity International',
-		type: 'Business Website',
-		href: 'https://dignityinternationalagency.com',
-	},
-	{
-		src: '/portfolio/home/livefresh.png',
-		name: 'Live Fresh',
-		type: 'E-commerce WebApp',
-		href: 'https://livefreshbd.com/',
-	},
-	{
-		src: '/portfolio/home/marketrol.svg',
+		src: '/projects/logo.svg',
 		name: 'Marketrol',
 		type: 'Facebook Marketing Solution',
 		href: 'https://marketrol.vercel.app',
-	},
-	{
-		src: '/portfolio/home/deshidiary.svg',
-		name: 'Deshi Diary',
-		type: 'Social Business Rating Platform',
-		href: 'https://deshidiary.com',
 	},
 ];
 

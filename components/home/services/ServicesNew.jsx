@@ -24,7 +24,7 @@ const ServicesNew = () => {
 
   return (
 		<Column
-			// mt='60px'
+			mt='60px'
 			borderTop='1px solid #DEDEE0'
 			borderBottom='1px solid #DEDEE0'
       >

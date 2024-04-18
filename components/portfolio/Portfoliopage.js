@@ -8,15 +8,27 @@ import { breakpoints } from '../lib/constants';
 
 const data = [
 	{
-		src: '/portfolio/live-fresh.svg',
+		src: '/projects/livefresh.svg',
 		name: 'Live Fresh',
 		type: 'e-commerce',
 		href: 'https://livefreshbd.com/',
 	},
 	{
+		src: '/projects/bazar.svg',
+		name: 'Bazar365',
+		type: 'E-Commerce',
+		href: 'https://bazar365.com',
+	},
+	{
+		src: '/projects/challent.svg',
+		name: 'Challent',
+		type: 'Management web app',
+		href: 'https://challent.vercel.app/',
+	},
+	{
 		src: '/portfolio/netsooon.svg',
 		name: 'Netsooon',
-		type: 'Social Media Webapp',
+		type: 'Social Media Web app',
 		href: 'https://netsooon.vercel.app/',
 	},
 	{
@@ -27,13 +39,13 @@ const data = [
 	},
 
 	{
-		src: '/portfolio/home/6.jpg',
+		src: '/projects/arewa.svg',
 		name: 'Arewa Books',
 		type: 'Web App',
 		href: 'https://arewabooks.com',
 	},
 	{
-		src: '/portfolio/home/1.jpg',
+		src: '/projects/samc.svg',
 		name: 'SAMC Bangladesh',
 		type: 'Web App',
 		href: 'https://samcbangladesh.org',
@@ -62,16 +74,34 @@ const data = [
 
 const data2 = [
 	{
-		src: '/portfolio/deshi-diary.svg',
+		src: '/projects/deshi-diary.svg',
 		name: 'Deshi Diary',
 		type: 'Business Listing Web app',
 		href: 'https://deshidiary.vercel.app/',
 	},
 	{
-		src: '/portfolio/vincent-sphere.svg',
+		src: '/projects/vincent.svg',
 		name: `Vincent's Sphere`,
 		type: 'E-Commerce Web App',
 		href: 'https://vincentsphere.com',
+	},
+	{
+		src: '/projects/oho.svg',
+		name: 'Oho ',
+		type: 'iOs App',
+		href: 'https://www.ohodating.com/',
+	},
+	{
+		src: '/projects/identrix.svg',
+		name: 'Identrix',
+		type: 'Startup',
+		href: '',
+	},
+	{
+		src: '/projects/logo.svg',
+		name: 'Marketrol',
+		type: 'Facebook Marketing Solution',
+		href: 'https://marketrol.vercel.app',
 	},
 	{
 		src: '/portfolio/home/8.jpg',
@@ -79,6 +109,7 @@ const data2 = [
 		type: 'Ecommerce webapp',
 		href: 'https://gshop-psi.vercel.app/',
 	},
+
 	{
 		src: '/portfolio/home/7.jpg',
 		name: 'Dignity International Agency',
