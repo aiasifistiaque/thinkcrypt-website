@@ -47,7 +47,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 							<SidebarNavItem id='02' name='Portfolio' />
 						</Link>
 						<Link href='/team'>
-							<SidebarNavItem id='02' name='Team' />
+							<SidebarNavItem id='03' name='Team' />
 						</Link>
 						{/* <Link href='/about'>
 							<SidebarNavItem id='03' name='About' />

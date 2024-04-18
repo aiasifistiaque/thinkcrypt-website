@@ -34,7 +34,7 @@ const Header = () => {
 				<Logo src='/header.png' alt='thinkcrypt.io' />
 			</Link>
 			<Sidebar
-				button={<CgMenuRound size='1.75rem' color='#fff' cursor='pointer' />}
+				button={<CgMenuRound size='1.75rem' color='#525252' cursor='pointer' />}
 			/>
 		</Container>
 	);
