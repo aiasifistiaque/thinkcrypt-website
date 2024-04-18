@@ -49,7 +49,7 @@ const Overlay = styled(Flex)`
 `;
 
 const Title = styled(Heading)`
-	font-weight: 300;
+	font-weight: 800;
 	line-height: 1.2;
 `;
 
@@ -71,7 +71,7 @@ const Hero = () => {
 	return (
 		<Container>
 			<Overlay>
-				<Title size='3xl'>
+				<Title size='3xl' fontWeight={800}>
 					We Build
 					<br /> Digital Experience
 				</Title>
