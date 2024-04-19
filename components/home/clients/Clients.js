@@ -9,22 +9,20 @@ const Container = styled(Stack)`
 	padding: 24px 0;
 	@media (min-width: ${breakpoints.desktop}) {
 		padding: 32px 0;
-		borderBottom: ${styles.border.light};
+		borderbottom: ${styles.border.light};
 	}
 `;
 
-const BORDER=styles.border.light;
+const BORDER = styles.border.light;
 
 const EachItem = ({ children, ...props }) => {
 	return (
 		<Center
 			flex={1}
 			bg='white'
-			h={{ base: '100px', md: '130px' }}>
-			<Box
-				p={{ base: 8, md: 16 }}>
+			h={{ base: '180px', md: '130px' }}>
+			<Box p={{ base: 8, md: 16 }}>
 				<Image
-					
 					w='full'
 					h='auto'
 					objectFit='contain'
@@ -38,7 +36,9 @@ const EachItem = ({ children, ...props }) => {
 
 const Clients = () => {
 	return (
-		<Container spacing={0} my='94px'>
+		<Container
+			spacing={0}
+			my='94px'>
 			<Flex>
 				<Flex
 					w='full'
@@ -46,18 +46,13 @@ const Clients = () => {
 					mx='auto'
 					borderTop={BORDER}
 					borderBottom={BORDER}
-					px='128px'
-					>
+					px={{ md: '128px' }}>
 					<Flex
 						flex={1}
-						// ml={{ base: 0, md: 20 }}
 						flexDir='column'
-						borderLeft={{ base: 'none', md: BORDER }}
+						borderLeft={{ base: BORDER, md: BORDER }}
 						borderRight={BORDER}>
-						<Flex
-							flex={1}
-							justify='center'
-							align='center'
+						<Center
 							px={{ base: 4, md: 8, lg: 16 }}
 							py={{ base: 4, md: 8, lg: 8 }}
 							borderBottom={BORDER}>
@@ -75,7 +70,7 @@ const Clients = () => {
 								</Text>
 								<Text
 									fontSize={{ base: '1rem', md: '1.5rem' }}
-									fontWeight={ 400 }
+									fontWeight={400}
 									letterSpacing='-.5px'
 									lineHeight='1.5'
 									fontFamily={fonts.body}
@@ -84,7 +79,7 @@ const Clients = () => {
 We provide services to a wide array of companies, including startups, small and medium-sized enterprises (SMEs), and large corporations, offering tailored solutions that drive innovative growth and transformative results. Our partnerships span various industries and sectors, enabling us to deliver impactful, customized solutions that propel businesses forward in their respective markets.`}
 								</Text>
 							</Stack>
-						</Flex>
+						</Center>
 						<Grid
 							flex={1}
 							templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}

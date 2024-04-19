@@ -8,6 +8,7 @@ import { gtag } from '../lib/googleAnalytics.js';
 import { Provider } from 'react-redux';
 import { store } from '../store';
 import { colors as clrs } from '../theme/colors.theme.js';
+import '../locomotive-scroll.css';
 
 const colors = {
 	pink: { 200: '#FB2E7E' },

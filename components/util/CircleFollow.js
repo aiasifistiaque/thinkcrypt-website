@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Hide } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
 import { motion } from 'framer-motion';
@@ -10,7 +10,7 @@ const CIRCLE_SIZE = '36px';
 const CIRCLE_COLOR = 'rgba(11, 197, 234, 0.3)';
 const CIRCLE_BLUR = '1.2px';
 const POINTER_DISTANCE = 21;
-const POINTER_SPEED = 0.12;
+const POINTER_SPEED = 0.1;
 
 const CircleFollow = () => {
 	const { size, invert, contrast, hue } = useAppSelector(state => state.cursor);
@@ -50,28 +50,32 @@ const CircleFollow = () => {
 	}, [targetPosition]);
 
 	return (
-		<Box
-			as={motion.div}
-			animate={{
-				width: size,
-				height: size,
-				backgroundColor: CIRCLE_COLOR,
-				backdropFilter: `blur(${CIRCLE_BLUR}) hue-rotate(${hue}) contrast(${contrast}) invert(${invert}) saturate(0)`,
-			}}
-			transition={{
-				duration: '0.5s',
-				delay: '2s',
-				ease: 'easeInOut',
-				type: 'spring',
-				stiffness: '100',
-			}}
-			borderRadius='full'
-			position='fixed'
-			zIndex={9999}
-			left={position.x - POINTER_DISTANCE}
-			top={position.y - POINTER_DISTANCE}
-			pointerEvents='none' // This line allows clicks to pass through the circle
-		/>
+		<Hide below='md'>
+			<Box
+				backgroundBlendMode='difference'
+				as={motion.div}
+				animate={{
+					width: size,
+					height: size,
+					backgroundColor: CIRCLE_COLOR,
+					backdropFilter: `blur(${CIRCLE_BLUR}) hue-rotate(${hue}) contrast(${contrast}) invert(${invert}) saturate(0)`,
+				}}
+				transition={{
+					duration: '2s',
+					delay: '3s',
+					ease: 'easeInOut',
+					type: 'spring',
+					stiffness: 300,
+					damping: '300',
+				}}
+				borderRadius='full'
+				position='fixed'
+				zIndex={9999}
+				left={position.x - POINTER_DISTANCE}
+				top={position.y - POINTER_DISTANCE}
+				pointerEvents='none' // This line allows clicks to pass through the circle
+			/>
+		</Hide>
 	);
 };
 

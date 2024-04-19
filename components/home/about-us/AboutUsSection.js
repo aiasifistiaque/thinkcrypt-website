@@ -14,8 +14,7 @@ const AboutUsSection = ({}) => {
 		<Flex
 			w='full'
 			borderTop={'1px solid #DEDEE0'}
-			borderBottom={'1px solid #DEDEE0'}
-		>
+			borderBottom={'1px solid #DEDEE0'}>
 			<Flex
 				direction='column'
 				// justify='space-between'
@@ -25,36 +24,38 @@ const AboutUsSection = ({}) => {
 				pb={{ base: '5rem', md: '12rem' }}
 				px={{ base: padding.baseBody, lg: padding.lgBody }}
 				mx='auto'
-				maxW={layout.MAX_W}
-			>
-				<Flex w='full' justify='space-between'>
+				maxW={layout.MAX_W}>
+				<Flex
+					w='full'
+					justify='space-between'>
 					<Text fontFamily={fonts.body}>01</Text>
-					<RobotoText fontSize={'0.875rem'} fontFamily={fonts.heading}>
+					<RobotoText
+						fontSize={'0.875rem'}
+						fontFamily={fonts.heading}>
 						OUR VISION
 					</RobotoText>
 				</Flex>
 				<Flex
 					w='full'
 					gap={{ base: 7, md: 0 }}
-					flexDir={{ base: 'column', md: 'row' }}
-				>
-					<Column gap={5} flex={5}>
+					flexDir={{ base: 'column', md: 'row' }}>
+					<Column
+						gap={5}
+						flex={5}>
 						<Heading
 							fontFamily={fonts.heading}
 							fontSize={{ base: '2rem', md: '2rem' }}
 							fontWeight='400'
-							color='textColor.light'
-						>
+							color='textColor.light'>
 							WHO WE ARE
 						</Heading>
 						<RobotoText
 							fontFamily={fonts.body}
-							fontSize={ { base: '1rem', lg: '2.25rem' } }
+							fontSize={{ base: '1.4rem', lg: '2.25rem' }}
 							maxW={{ base: '100%', lg: '75%' }}
 							color='black.800'
-							letterSpacing='-2px'
-							lineHeight='1.2'
-						>
+							letterSpacing={{ base: '-1.3px', md: '-2px' }}
+							lineHeight={{ base: '1.5', md: '1.2' }}>
 							{AboutUs.ABOUT_DESCRIPTION}
 						</RobotoText>
 					</Column>

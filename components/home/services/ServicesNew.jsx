@@ -171,7 +171,7 @@ const ServicesNew = () => {
 								px={4}
 								py={6}
 								gap={5}
-								bgColor='#ffffff'
+								bgColor='white'
 								h='230px'
 								onMouseEnter={() => setHoveredIndex(index)}
 								onMouseLeave={() => setHoveredIndex(0)}

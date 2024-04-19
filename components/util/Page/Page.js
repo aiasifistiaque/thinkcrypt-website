@@ -6,6 +6,10 @@ import styled from '@emotion/styled';
 import { CgMenuRound } from 'react-icons/cg';
 import CircleFollow from '../CircleFollow';
 
+import dynamic from 'next/dynamic';
+
+const Scroll = dynamic(() => import('../../scroll/Scroll'));
+
 const Container = styled('main')`
 	display: flex;
 	max-width: 100vw;
@@ -18,21 +22,34 @@ const Page = ({ children, title }) => {
 		<>
 			<Head>
 				<title>{title || 'thinkcrypt.io'}</title>
-				<meta property='title' content='thinkcrypt.io' />
-				<link rel='icon' href='/favicon.ico' />
+				<meta
+					property='title'
+					content='thinkcrypt.io'
+				/>
+				<link
+					rel='icon'
+					href='/favicon.ico'
+				/>
 
 				<meta
 					name='description'
-					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
-				></meta>
-				<meta property='og:title' content='thinkcrypt.io' key='ogtitle' />
+					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'></meta>
+				<meta
+					property='og:title'
+					content='thinkcrypt.io'
+					key='ogtitle'
+				/>
 				<meta
 					property='og:description'
 					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
 					key='ogdesc'
 				/>
 
-				<meta property='og:image' content='/hero.jpeg' key='ogimage' />
+				<meta
+					property='og:image'
+					content='/hero.jpeg'
+					key='ogimage'
+				/>
 				<meta
 					property='og:site_name'
 					content={'thinkcrypt.io'}
@@ -41,7 +58,9 @@ const Page = ({ children, title }) => {
 			</Head>
 			<CircleFollow />
 			<Header />
-			<Container>{children}</Container>
+			<Scroll>
+				<Container>{children}</Container>
+			</Scroll>
 			<Footer />
 		</>
 	);

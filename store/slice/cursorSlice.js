@@ -7,13 +7,13 @@ const cursorSlice = createSlice({
 	initialState,
 	reducers: {
 		onHover(state) {
-			state.size = '42px';
+			state.size = '32px';
 			state.invert = '100%';
 			state.contrast = '150%';
 			state.hue = '180deg';
 		},
 		unHover(state) {
-			state.size = '32px';
+			state.size = '24px';
 			state.invert = '0%';
 			state.contrast = '100%';
 			state.hue = '0';

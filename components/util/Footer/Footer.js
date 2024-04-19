@@ -24,6 +24,13 @@ const Sections = styled(Flex)`
 	}
 `;
 
+const FooterText = styled(Text)`
+	font-size: 0.8rem;
+	font-family: Montserrat;
+	letter-spacing: 2%;
+	line-height: 1.3rem;
+`;
+
 const Footer = () => {
 	const Section = ({ data }) => {
 		return (
@@ -31,7 +38,9 @@ const Footer = () => {
 				<Heading size='sm'>{data.heading}</Heading>
 				<Stack spacing={2}>
 					{data.items.map((item, i) => (
-						<Link key={i} href={item.href}>
+						<Link
+							key={i}
+							href={item.href}>
 							{item.name}
 						</Link>
 					))}
@@ -39,6 +48,7 @@ const Footer = () => {
 			</Stack>
 		);
 	};
+
 	return (
 		<Stack bg='#f2f2f2'>
 			<Container>
@@ -46,26 +56,34 @@ const Footer = () => {
 					<Stack>
 						<Heading size='md'>Contact Us</Heading>
 						<Stack spacing={0}>
-							<Text>thinkcrypt.io</Text>
-							<Text>Flat 5B, House 88</Text>
-							<Text>Road 17/A, Block E, Banani</Text>
-							<Text>Dhaka 1213, Bangladesh</Text>
+							<FooterText>thinkcrypt.io</FooterText>
+							<FooterText>Flat 5B, House 88</FooterText>
+							<FooterText>Road 17/A, Block E, Banani</FooterText>
+							<FooterText>Dhaka 1213, Bangladesh</FooterText>
 						</Stack>
 
 						<Stack spacing={0}>
-							<Text>Tel: (+88) 01828398225, 01799399555</Text>
-							<Text>Email: info@thinkcrypt.io</Text>
+							<FooterText>Tel: (+88) 01828398225, 01799399555</FooterText>
+							<FooterText>Email: info@thinkcrypt.io</FooterText>
 						</Stack>
 					</Stack>
-					<Flex wrap='wrap' gap='5rem'>
+					<Flex
+						wrap='wrap'
+						gap='5rem'>
 						{footerData.map((item, i) => (
-							<Section data={item} key={i} />
+							<Section
+								data={item}
+								key={i}
+							/>
 						))}
 					</Flex>
 				</Sections>
 			</Container>
 			<Center p='4px 16px'>
-				<Text textAlign='center' color='gray.600' fontSize={12}>
+				<Text
+					textAlign='center'
+					color='gray.600'
+					fontSize={12}>
 					{`Copyright ©2024`} | thinkcrypt.io | ALL RIGHTS RESERVED
 				</Text>
 			</Center>
