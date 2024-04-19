@@ -9,7 +9,7 @@ const ThinkButton = styled(Center)`
 	margin: 32px 0;
 	height: 50px;
 	width: 220px;
-	background-color: ${colors.primary};
+	background-color: #060508;
 	transition: 0.2s;
 	&:hover {
 		@media (min-width: ${breakpoints.desktop}) {
@@ -63,7 +63,7 @@ const Text = styled(Heading)`
 `;
 
 const Divider = styled(Box)`
-	background-color: ${colors.primary};
+	background-color: #060508;
 	height: 0.5rem;
 	width: 207px;
 	margin-top: 16px;
@@ -74,16 +74,19 @@ const Hero = () => {
 	return (
 		<Container>
 			<Overlay>
-				<Title size='3xl' fontWeight={800}>
+				<Title
+					size='3xl'
+					fontWeight={800}>
 					We Build
 					<br /> Digital Experience
 				</Title>
 				<Divider />
-				<Text size='md'>
-					At thinkcrypt.io, we offer a complete range of services that build up
-					business value, from the initial idea and formulation of product
-					strategy, through building a prototype and testing it with users,
-					right to the creation of the product itself.
+				<Text
+					size='md'
+					letterSpacing='1px'>
+					{`We transform your ideas into market-leading software solutions. From strategic inception
+					to user-tested prototypes and final product creation, we're your partner in delivering
+					exceptional value and transformative results.`}
 				</Text>
 				<Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
 					<ThinkButton>

@@ -1,6 +1,10 @@
 import { background } from '@chakra-ui/react';
 
 export const colors = {
+	black: {
+		800: '#060508',
+		border: '#3d3c3d',
+	},
 	background: {
 		light: 'whitesmoke',
 		dark: 'whitesmoke',
@@ -48,6 +52,7 @@ export const colors = {
 		dark: '#424242',
 	},
 	text: {
+		200: '#fefefe',
 		500: '#4a4a4a',
 	},
 	footerBg: {

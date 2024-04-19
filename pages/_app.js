@@ -7,11 +7,13 @@ import Script from 'next/script';
 import { gtag } from '../lib/googleAnalytics.js';
 import { Provider } from 'react-redux';
 import { store } from '../store';
+import { colors as clrs } from '../theme/colors.theme.js';
 
 const colors = {
 	pink: { 200: '#FB2E7E' },
 	facebook: { 200: '#1B74E4' },
 	gray: { 200: '#7A86A1' },
+	...clrs,
 };
 
 const components = {
@@ -29,7 +31,7 @@ function MyApp({ Component, pageProps }) {
 		//# This pageview only triggers the first time (it's important for Pixel to have real information)
 		fbq.pageview();
 
-		const handleRouteChange = (url) => {
+		const handleRouteChange = url => {
 			fbq.pageview();
 			window?.gtag &&
 				window.gtag('config', gtag, {
@@ -65,7 +67,9 @@ function MyApp({ Component, pageProps }) {
 					src={`https://www.googletagmanager.com/gtag/js?id=${gtag}`}
 					strategy='afterInteractive'
 				/>
-				<Script id='google-analytics' strategy='afterInteractive'>
+				<Script
+					id='google-analytics'
+					strategy='afterInteractive'>
 					{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}

@@ -49,7 +49,11 @@ const AboutUsSection = ({}) => {
 						</Heading>
 						<RobotoText
 							fontFamily={fonts.body}
-							fontSize={{ base: '1rem', lg: '2.25rem' }}
+							fontSize={ { base: '1rem', lg: '2.25rem' } }
+							maxW={{ base: '100%', lg: '75%' }}
+							color='black.800'
+							letterSpacing='-2px'
+							lineHeight='1.2'
 						>
 							{AboutUs.ABOUT_DESCRIPTION}
 						</RobotoText>

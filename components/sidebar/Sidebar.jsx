@@ -25,10 +25,7 @@ const menu = [
 		title: 'Our Team',
 		href: '/team',
 	},
-	// {
-	// 	title: 'Projects',
-	// 	href: '/project',
-	// },
+
 	{
 		title: 'Portfolio',
 		href: '/portfolio',
@@ -36,14 +33,8 @@ const menu = [
 ];
 const EachMenuItem = ({ href, children }) => {
 	return (
-		<Link href={href}>
-			<Text
-				fontSize={'2rem'}
-				color={colors.charcole}
-				fontWeight={600}
-				fontFamily={'Poppins'}
-				cursor={'pointer'}
-			>
+		<Link href={href} cursor={'pointer'}>
+			<Text fontSize={'2rem'} color={colors.charcole} fontWeight={600} fontFamily={'Poppins'}>
 				{children}
 			</Text>
 		</Link>
@@ -57,12 +48,7 @@ const Sidebar = () => {
 			<Button colorScheme='ghost' onClick={onOpen}>
 				<GiHamburgerMenu size={24} color={colors.charcole} />
 			</Button>
-			<Drawer
-				isOpen={isOpen}
-				placement='right'
-				onClose={onClose}
-				// finalFocusRef={btnRef}
-			>
+			<Drawer isOpen={isOpen} placement='right' onClose={onClose}>
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerCloseButton scale={2} />

@@ -7,16 +7,18 @@ const SidebarNavItem = ({ id, name, ...props }) => {
 	return (
 		<Flex
 			gap={{ base: 2, lg: 3 }}
-			fontWeight='400'
 			fontFamily='Roboto Flex'
 			w='full'
 			borderBottom={{ base: '1px solid', md: 'none' }}
 			{...props}
 		>
 			<Text
+				fontWeight='200'
+				color='text.200'
 				display={{ base: 'none', md: 'block' }}
-				fontSize={{ base: '1rem', lg: '2rem' }}
-				lineHeight={{ base: '1rem', lg: '2rem' }}
+				fontSize={{ base: '.9rem', lg: '1rem' }}
+				lineHeight={ { base: '1rem', lg: '2rem' } }
+				letterSpacing={'2px'}
 			>
 				{id}
 			</Text>
@@ -27,12 +29,10 @@ const SidebarNavItem = ({ id, name, ...props }) => {
 				alignItems='center'
 			>
 				<Text
+					fontWeight='200'
+					color='text.200'
 					fontSize={{ base: '4rem', md: '4rem', lg: '6rem' }}
 					lineHeight={{ base: '4rem', md: '4rem', lg: '6rem' }}
-					transition='transform 0.5s ease-in-out'
-					_hover={{
-						transform: 'scale(1.1)',
-					}}
 				>
 					{name}
 				</Text>

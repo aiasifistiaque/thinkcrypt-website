@@ -6,14 +6,16 @@ import { CgCloseO } from 'react-icons/cg';
 import Link from 'next/link';
 import RobotoText from '../util/text/RobotoText';
 import usePointerPosition from '../../hooks/usePointerPosition';
+import { styles } from '../../theme/styles';
 
 
+const border = styles.border.dark;
 
 const SidebarRightPart = ({ onClose }) => {
 	const { x, y } = usePointerPosition();
 
 	const SpringValue = ({ children, pos }) => (
-		<RobotoText fontSize='14px' fontWeight='400' letterSpacing='2px'>
+		<RobotoText fontSize='14px' fontWeight='400' letterSpacing='2px' color='white'>
 			{`${pos}: ${children}`}
 		</RobotoText>
 	);
@@ -21,7 +23,7 @@ const SidebarRightPart = ({ onClose }) => {
 	return (
 		<Column flex={1}>
 			<Flex
-				borderBottom='1px solid'
+				borderBottom={border}
 				h='4rem'
 				px='1.5rem'
 				justify='flex-end'
@@ -29,7 +31,7 @@ const SidebarRightPart = ({ onClose }) => {
 			>
 				<Flex
 					onClick={onClose}
-					borderLeft='1px solid #DEDEE0'
+					borderLeft={border}
 					minW='7rem'
 					justify='flex-end'
 					alignItems='center'
@@ -46,7 +48,7 @@ const SidebarRightPart = ({ onClose }) => {
 				</Column>
 			</Flex>
 			<Flex
-				borderTop='1px solid'
+				borderTop={border}
 				flex={4}
 				px='2rem'
 				py='2rem'
@@ -60,8 +62,10 @@ const SidebarRightPart = ({ onClose }) => {
 					<Column gap={8} alignItems='flex-end'>
 						<Text
 							fontSize={{ md: '6rem', lg: '7rem' }}
-							fontFamily='Roboto Flex'
+							fontFamily='Roboto'
+							color='text.200'
 							lineHeight='6rem'
+							fontWeight='200'
 						>
 							01
 						</Text>

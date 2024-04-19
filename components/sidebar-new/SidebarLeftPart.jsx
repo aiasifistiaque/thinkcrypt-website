@@ -5,14 +5,15 @@ import SidebarNavItem from '../sections/sidebar/SidebarNavItem';
 import { CgCloseO } from 'react-icons/cg';
 import LinkButton from '../util/buttons/LinkButton';
 import Link from 'next/link';
+import { styles } from '../../theme/styles';
 
-
+const BORDER = styles.border.dark;
 
 const SidebarLeftPart = ({ onClose, ...props }) => {
 	return (
-		<Column flex={2} borderRight='1px solid' {...props}>
+		<Column flex={2} borderRight={BORDER} {...props}>
 			<Flex
-				borderBottom='1px solid'
+				borderBottom={BORDER}
 				h='4rem'
 				justify='flex-end'
 				alignItems='center'
@@ -21,7 +22,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				<Flex
 					display={{ base: 'flex', md: 'none' }}
 					onClick={onClose}
-					borderLeft='1px solid #DEDEE0'
+					borderLeft={BORDER}
 					minW='7rem'
 					justify='flex-end'
 					alignItems='center'
@@ -49,16 +50,10 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 						<Link href='/team'>
 							<SidebarNavItem id='03' name='Team' />
 						</Link>
-						{/* <Link href='/about'>
-							<SidebarNavItem id='03' name='About' />
-						</Link> */}
-						{/* <Link href='/blog'>
-							<SidebarNavItem id='04' name='Blog' />
-						</Link> */}
 					</Column>
 					<Hide above='md'>
 						<Column gap={8} alignItems='flex-end'>
-							<Text fontSize='5rem' fontFamily='Roboto Flex' lineHeight='5rem'>
+							<Text fontSize='5rem' lineHeight='5rem' color='text.200'>
 								00
 							</Text>
 							<Flex gap={8}>
@@ -72,7 +67,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 			</Flex>
 			<Flex
 				display={{ base: 'none', md: 'flex' }}
-				borderTop={{ md: '1px solid' }}
+				borderTop={{ md: BORDER }}
 				h='4rem'
 			></Flex>
 		</Column>

@@ -31,21 +31,29 @@ const Header = () => {
 	return (
 		<Container>
 			<Link href='/'>
-				<Logo src='/header.png' alt='thinkcrypt.io' />
+				<Logo
+					src='/header.png'
+					alt='thinkcrypt.io'
+				/>
 			</Link>
-			<Flex gap={6} align={'center'}>
+			<Flex
+				gap={6}
+				align={'center'}>
 				<Text
-					fontSize='1rem'
-					fontWeight='600'
-					color='#525252'
+					fontSize='.9rem'
+					fontWeight='400'
+					color='black.800'
 					lineHeight='1.25rem'
-					maxW={{ base: '100px', md: 'full' }}
-				>
+					maxW={{ base: '100px', md: 'full' }}>
 					{moment().tz('Asia/Dhaka').format('HH:mm [GMT]')}
 				</Text>
 				<Sidebar
 					button={
-						<CgMenuRound size='1.75rem' color='#525252' cursor='pointer' />
+						<CgMenuRound
+							size='1.75rem'
+							color='black.800'
+							cursor='pointer'
+						/>
 					}
 				/>
 			</Flex>

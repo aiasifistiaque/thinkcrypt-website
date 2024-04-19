@@ -7,10 +7,14 @@ const LinkButton = ({ label, ...props }) => {
 	return (
 		<Button
 			variant='link'
-			fontFamily={fonts.body}
-			textDecoration={'underline'}
-			color='black'
-			fontWeight='400'
+			fontFamily={ fonts.body }
+			borderBottom='.5px solid'
+			borderBottomColor='text.200'
+			color='text.200'
+			borderRadius='none'
+			fontWeight='200'
+			fontSize='.7rem'
+			letterSpacing={'2px'}
 			{...props}
 		>
 			{label}
