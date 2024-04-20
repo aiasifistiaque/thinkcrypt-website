@@ -74,6 +74,7 @@ const Hero = () => {
 					flex='4'
 					pt='128px'>
 					<Flex
+						maxW='100vw'
 						px='24px'
 						flexDir='column'
 						justify='center'>

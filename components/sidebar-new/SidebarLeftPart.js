@@ -23,17 +23,6 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				<Show below='md'>
 					<CloseButton onClick={onClose} />
 				</Show>
-				{/* <Flex
-					display={{ base: 'flex', md: 'none' }}
-					onClick={onClose}
-					borderLeft={BORDER}
-					minW='7rem'
-					justify='flex-end'
-					alignItems='center'
-					h='full'
-					cursor='pointer'>
-					<CgCloseO size='2.25rem' />
-				</Flex> */}
 			</Flex>
 			<Flex
 				flex={1}
@@ -47,24 +36,23 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 					<Column
 						gap={6}
 						w='full'>
-						<Link href='/'>
-							<SidebarNavItem
-								id='01'
-								name='Home'
-							/>
-						</Link>
-						<Link href='/portfolio'>
-							<SidebarNavItem
-								id='02'
-								name='Portfolio'
-							/>
-						</Link>
-						<Link href='/team'>
-							<SidebarNavItem
-								id='03'
-								name='Team'
-							/>
-						</Link>
+						<SidebarNavItem
+							href='/'
+							id='01'
+							name='Home'
+						/>
+
+						<SidebarNavItem
+							href='/portfolio'
+							id='02'
+							name='Portfolio'
+						/>
+
+						<SidebarNavItem
+							href='/team'
+							id='03'
+							name='Team'
+						/>
 					</Column>
 					<Hide above='md'>
 						<Column

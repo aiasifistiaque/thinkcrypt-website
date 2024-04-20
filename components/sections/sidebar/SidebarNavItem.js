@@ -1,8 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import { styles } from '../../../theme/styles';
+import Link from 'next/link';
 
-const SidebarNavItem = ({ id, name, ...props }) => {
+const SidebarNavItem = ({ id, name, href, ...props }) => {
 	const idText = (
 		<Text
 			fontWeight='300'
@@ -25,7 +26,10 @@ const SidebarNavItem = ({ id, name, ...props }) => {
 			borderColor={styles.border.dark}
 			{...props}>
 			{idText}
+
 			<Flex
+				as={Link}
+				href={href}
 				w='full'
 				gap={2}
 				align='flex-start'

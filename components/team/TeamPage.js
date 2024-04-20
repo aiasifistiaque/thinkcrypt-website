@@ -1,7 +1,6 @@
 import React from 'react';
 import Page from '../util/Page/Page.js';
 import { Stack, Grid, Flex } from '@chakra-ui/react';
-import SectionHeading from '../home/sectionheading/SectionHeading.js';
 import EachTeamMember from './EachTeamMember';
 import SectionHeadingWithoutMaxH from '../home/sectionheading/SectionHeading.js';
 import { Container } from '../home/sectionheading/styles.js';
@@ -48,7 +47,7 @@ const teamMemebers = [
 		designation: 'Junior Executive, Marketing',
 	},
 	{
-		img: '/team/Md-Aminul-Haque.jpeg',
+		img: '/team/Md-Aminul-Haque.jpg',
 		name: 'Md Aminul Haque',
 		designation: 'Junior Software Engineer',
 	},
@@ -109,7 +108,9 @@ function TeamPage() {
 							{teamMemebers.map((member, i) => (
 								<EachTeamMember
 									key={i}
-									{...member}
+									img={member?.img}
+									name={member?.name}
+									designation={member?.designation}
 								/>
 							))}
 						</Grid>

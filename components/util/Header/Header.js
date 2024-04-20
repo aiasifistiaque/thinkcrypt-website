@@ -28,7 +28,9 @@ const Header = () => {
 	return (
 		<Container mixBlendMode='difference'>
 			<ScrollYProgtess />
-			<Link href='/'>
+			<Link
+				href='/'
+				style={{ cursor: 'pointer' }}>
 				<Logo />
 			</Link>
 			<Flex
