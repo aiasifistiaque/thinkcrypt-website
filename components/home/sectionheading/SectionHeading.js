@@ -5,6 +5,7 @@ import { Title, Subtitle, Text, Container, Row, Right, Left } from './styles';
 import { Flex, Text as BText, Center, Link as CLink } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints, colors, links } from '../../lib/constants';
+import { styles } from '../../../theme/styles';
 
 const Divider = styled(Flex)`
 	height: 10px;
@@ -29,7 +30,7 @@ const ThinkButton = styled(Center)`
 		}
 	}
 	&:active {
-		background-color: ${colors.primaryLight};
+		background-color: black.800;
 	}
 `;
 
@@ -41,30 +42,31 @@ const ButtonText = styled(BText)`
 	font-size: 1rem;
 `;
 
-const SectionHeading = ({
-	subHeading,
-	heading,
-	children,
-	btnText,
-	href,
-	to,
-	F,
-	...props
-}) => {
+const BORDER = styles.border.light;
+
+const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, ...props }) => {
 	const top = (
-		<>
+		<Flex
+			w='100%'
+			flexDir={{ base: 'column', md: 'row' }}
+			pt={{ base: '16px', md: '0' }}>
 			<Left>
-				<Subtitle>{subHeading}</Subtitle>
+				<Subtitle fontFamily='Bebas Neue'> {subHeading}</Subtitle>
 			</Left>
-			<Right>
+			<Right
+				borderBottom={BORDER}
+				borderLeft={{ base: 'none', md: BORDER }}
+				pl={{ base: '0px', md: '24px' }}>
 				<Title>{heading}</Title>
 				<Divider />
 			</Right>
-		</>
+		</Flex>
 	);
 
 	const cotactButtom = (
-		<CLink isExternal href={links.contact}>
+		<CLink
+			isExternal
+			href={links.contact}>
 			<ThinkButton>
 				<ButtonText>{btnText}</ButtonText>
 			</ThinkButton>
@@ -82,18 +84,35 @@ const SectionHeading = ({
 	const bottom = (
 		<>
 			<Left />
-			<Right>
-				<Text>{children}</Text>
+			<Right
+				pt='24px'
+				borderLeft={{ base: 'none', md: BORDER }}>
+				<Text pr='24px'>{children}</Text>
 				{to ? cotactButtom : btn}
 			</Right>
 		</>
 	);
 
 	return (
-		<Container {...props}>
-			<Row>{top}</Row>
-			<Row>{bottom}</Row>
-		</Container>
+		<Flex
+			mt='24px'
+			w='100%'
+			pb='64px'
+			borderBottom={BORDER}>
+			<Flex
+				px='24px'
+				border={BORDER}
+				{...props}>
+				<Flex
+					flexDir='column'
+					borderRight={BORDER}
+					borderLeft={BORDER}
+					pl='24px'>
+					<Row>{top}</Row>
+					<Row>{bottom}</Row>
+				</Flex>
+			</Flex>
+		</Flex>
 	);
 };
 

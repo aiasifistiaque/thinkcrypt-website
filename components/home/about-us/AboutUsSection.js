@@ -8,20 +8,22 @@ import { fonts, layout } from '../../lib/constants';
 import RobotoText from '../../util/text/RobotoText';
 import Column from '../../util/Column';
 import { AboutUs, padding } from '../../../lib/constants';
+import { styles } from '../../../theme/styles';
 
+const BORDER = styles.border.light;
 const AboutUsSection = ({}) => {
 	return (
 		<Flex
 			w='full'
-			borderTop={'1px solid #DEDEE0'}
-			borderBottom={'1px solid #DEDEE0'}>
+			borderTop={BORDER}
+			borderBottom={BORDER}>
 			<Flex
 				direction='column'
 				// justify='space-between'
 				// minH={{ base: "auto", lg: "720px" }}
 				gap={{ base: 8, md: 16 }}
 				pt='5rem'
-				pb={{ base: '5rem', md: '12rem' }}
+				pb={{ base: '4rem', md: '4rem' }}
 				px={{ base: padding.baseBody, lg: padding.lgBody }}
 				mx='auto'
 				maxW={layout.MAX_W}>

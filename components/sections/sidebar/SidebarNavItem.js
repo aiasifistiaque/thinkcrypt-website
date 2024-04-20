@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
+import { styles } from '../../../theme/styles';
 
 const SidebarNavItem = ({ id, name, ...props }) => {
 	const idText = (
@@ -20,6 +21,8 @@ const SidebarNavItem = ({ id, name, ...props }) => {
 			fontFamily='Suisse'
 			w='full'
 			borderBottom={{ base: '1px solid', md: 'none' }}
+			pb='6px'
+			borderColor={styles.border.dark}
 			{...props}>
 			{idText}
 			<Flex
@@ -35,6 +38,7 @@ const SidebarNavItem = ({ id, name, ...props }) => {
 					{name}
 				</Text>
 				<Text
+					color={'text.300'}
 					display={{ base: 'block', md: 'none' }}
 					fontSize='2.5rem'
 					lineHeight='2.5rem'>

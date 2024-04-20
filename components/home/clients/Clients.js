@@ -38,7 +38,7 @@ const Clients = () => {
 	return (
 		<Container
 			spacing={0}
-			my='94px'>
+			my='24px'>
 			<Flex>
 				<Flex
 					w='full'
@@ -46,7 +46,8 @@ const Clients = () => {
 					mx='auto'
 					borderTop={BORDER}
 					borderBottom={BORDER}
-					px={{ md: '128px' }}>
+					pl={{ md: '128px' }}
+					pr='24px'>
 					<Flex
 						flex={1}
 						flexDir='column'

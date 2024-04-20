@@ -4,13 +4,12 @@ import LinkButton from '../util/buttons/LinkButton';
 import { Center, Flex, Text } from '@chakra-ui/react';
 import { TfiClose } from 'react-icons/tfi';
 import Link from 'next/link';
-import RobotoText from '../util/text/RobotoText';
 import { styles } from '../../theme/styles';
 import ScrollValue from './ScrollValue';
 
 const border = styles.border.dark;
 
-const CloseButton = ({ align, ...props }) => {
+export const CloseButton = ({ align, ...props }) => {
 	return (
 		<Flex
 			borderBottom={border}

@@ -5,6 +5,7 @@ import PortfolioItem from './PortfolioItem/PortfolioItem';
 import { Heading, Stack, Flex, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints } from '../lib/constants';
+import { styles } from '../../theme/styles';
 
 const data = [
 	{
@@ -150,39 +151,65 @@ const Row = styled(Grid)`
 `;
 
 const PortfolioContainer = styled(Flex)`
-	background-color: whitesmoke;
 	min-height: 100vh;
-	padding: 24px;
 	flex-direction: column;
-
-	@media (min-width: ${breakpoints.desktop}) {
-		padding: 128px;
-	}
 `;
+
+const BORDER = styles.border.light;
 
 const Portfoliopage = () => {
 	return (
 		<Page>
-			<Stack spacing={4}>
-				<SectionHeading heading='All of Our Work' subHeading='Our Projects'>
-					We{`'`}re passionate about design, innovation, brilliant ideas and the
-					execution that brings it all together in one beautiful experience. If
-					you are too, call or send us an email to get started.
+			<Stack
+				spacing={4}
+				pt='48px'>
+				<SectionHeading
+					heading='All of Our Work'
+					subHeading='Our Projects'>
+					We{`'`}re passionate about design, innovation, brilliant ideas and the execution that
+					brings it all together in one beautiful experience. If you are too, call or send us an
+					email to get started.
 				</SectionHeading>
 				<PortfolioContainer>
-					<Heading size='xl'>Our Work</Heading>
-					<Row>
-						<Stack spacing={10}>
+					<Flex
+						pt='16px'
+						px='32px'
+						borderLeft={BORDER}
+						borderRight={BORDER}>
+						<Heading
+							fontFamily='Suisse'
+							size='xl'>
+							Our Work
+						</Heading>
+					</Flex>
+					<Flex
+						mt='24px'
+						px='24px'
+						border={BORDER}>
+						<Flex
+							flexDir='column'
+							gap={4}
+							borderLeft={BORDER}>
 							{data.map((item, i) => (
-								<PortfolioItem item={item} key={i} href='/project' />
+								<PortfolioItem
+									item={item}
+									key={i}
+									href='/project'
+								/>
 							))}
-						</Stack>
-						<Stack spacing={10}>
+						</Flex>
+						<Flex
+							flexDir='column'
+							gap={4}>
 							{data2.map((item, i) => (
-								<PortfolioItem item={item} key={i} href='/project' />
+								<PortfolioItem
+									item={item}
+									key={i}
+									href='/project'
+								/>
 							))}
-						</Stack>
-					</Row>
+						</Flex>
+					</Flex>
 				</PortfolioContainer>
 			</Stack>
 		</Page>

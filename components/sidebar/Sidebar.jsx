@@ -15,6 +15,7 @@ import {
 	Stack,
 } from '@chakra-ui/react';
 import Link from 'next/link';
+import { CloseButton } from '../sidebar-new/SidebarRightPart.js';
 
 const menu = [
 	{
@@ -46,7 +47,7 @@ const Sidebar = () => {
 	return (
 		<>
 			<Button colorScheme='ghost' onClick={onOpen}>
-				<GiHamburgerMenu size={24} color={colors.charcole} />
+				<CloseButton/>
 			</Button>
 			<Drawer isOpen={isOpen} placement='right' onClose={onClose}>
 				<DrawerOverlay />

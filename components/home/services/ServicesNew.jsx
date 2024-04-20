@@ -91,7 +91,7 @@ const ServicesNew = () => {
 						</CustomImage>
 					</Grid>
 
-					<Column ml={8}>
+					<Column ml={6}>
 						<Accordion
 							defaultIndex={[0]}
 							borderLeft={BORDER}>

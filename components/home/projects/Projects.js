@@ -1,37 +1,58 @@
 import React from 'react';
 import data from './data.js';
-import { Grid, Stack } from '@chakra-ui/react';
+import { Accordion, Flex, Grid, Show, Stack } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints } from '../../lib/constants';
 import Project from './Project.js';
-
-const Container = styled(Stack)`
-	margin: 24px 0;
-	@media (min-width: ${breakpoints.desktop}) {
-		margin: 32px 128px;
-	}
-`;
+import { styles } from '../../../theme/styles.js';
+import ProjectSmall from './ProjectSmall.js';
 
 const Section = styled(Grid)`
-	grid-template-columns: 1fr 1fr;
-	gap: 0.5rem;
+	grid-template-columns: 1fr;
+
 	@media (min-width: ${breakpoints.tab}) {
 		grid-template-columns: 1fr 1fr;
 	}
-	@media (min-width: ${breakpoints.desktop}) {
-		gap: 1rem;
-	}
 `;
+
+const BORDER = styles.border.light;
 
 const Projects = () => {
 	return (
-		<Container spacing={0}>
-			<Section>
-				{data.map((item, i) => (
-					<Project item={item} key={i} />
-				))}
+		<Flex
+			borderBottom={BORDER}
+			px='24px'
+			pl={{ base: '0px', md: '128px' }}
+			w='100%'>
+			<Section
+				w='100%'
+				borderLeft={BORDER}
+				borderRight={BORDER}>
+				<Show above='md'>
+					{data.map((item, i) => (
+						<>
+							<Project
+								index={i}
+								item={item}
+								key={i}
+							/>
+						</>
+					))}
+				</Show>
+
+				<Show below='md'>
+					<Accordion defaultIndex={[0]}>
+						{data.map((item, i) => (
+							<ProjectSmall
+								index={i}
+								item={item}
+								key={i}
+							/>
+						))}
+					</Accordion>
+				</Show>
 			</Section>
-		</Container>
+		</Flex>
 	);
 };
 

@@ -6,6 +6,7 @@ import { CgCloseO } from 'react-icons/cg';
 import LinkButton from '../util/buttons/LinkButton';
 import Link from 'next/link';
 import { styles } from '../../theme/styles';
+import { CloseButton } from './SidebarRightPart';
 
 const BORDER = styles.border.dark;
 
@@ -19,9 +20,9 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				borderBottom={BORDER}
 				h='4rem'
 				justify='flex-end'
-				alignItems='center'
-				px='1.5rem'>
-				<Flex
+				alignItems='center'>
+				<CloseButton onClick={onClose} />
+				{/* <Flex
 					display={{ base: 'flex', md: 'none' }}
 					onClick={onClose}
 					borderLeft={BORDER}
@@ -31,7 +32,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 					h='full'
 					cursor='pointer'>
 					<CgCloseO size='2.25rem' />
-				</Flex>
+				</Flex> */}
 			</Flex>
 			<Flex
 				flex={1}
@@ -84,9 +85,20 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				</Column>
 			</Flex>
 			<Flex
+				align='center'
+				px='24px'
+				fontSize='6px'
+				fontWeight='300'
+				letterSpacing='2px'
 				display={{ base: 'none', md: 'flex' }}
 				borderTop={{ md: BORDER }}
-				h='4rem'></Flex>
+				h='4rem'>
+				<Text
+					fontSize='10px'
+					color='text.300'>
+					We Build Digital Experience
+				</Text>
+			</Flex>
 		</Column>
 	);
 };

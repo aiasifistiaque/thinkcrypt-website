@@ -1,10 +1,11 @@
 import React from 'react';
 import Page from '../util/Page/Page.js';
-import { Stack, Grid } from '@chakra-ui/react';
+import { Stack, Grid, Flex } from '@chakra-ui/react';
 import SectionHeading from '../home/sectionheading/SectionHeading.js';
-import EachTeamMember from './EachTeamMember.jsx';
+import EachTeamMember from './EachTeamMember';
 import SectionHeadingWithoutMaxH from '../home/sectionheading/SectionHeading.js';
 import { Container } from '../home/sectionheading/styles.js';
+import { styles } from '../../theme/styles.js';
 const teamMemebers = [
 	{
 		img: '/team/amiyo-vai.jpg',
@@ -79,35 +80,40 @@ const teamMemebers = [
 	},
 ];
 
+const BORDER = styles.border.light;
+
 function TeamPage() {
 	return (
 		<Page>
-			<Stack spacing={0} w='full'>
+			<Stack
+				spacing={0}
+				w='full'
+				mt='42px'>
 				<SectionHeadingWithoutMaxH
 					heading='MEET THE CREATORS OF TEAM THINKCRYPT '
 					subHeading={'Our Team'}
-					pt={{ base: "60px", md: 4 }}
-				>
-					Get to know the faces behind the innovation and learn about the
-					collaborative spirit that fuels our mission to create cutting-edge
-					solutions that empower individuals and businesses to safeguard their
-					digital assets with confidence.
+					pt={{ base: 2, md: 4 }}>
+					Get to know the faces behind the innovation and learn about the collaborative spirit that
+					fuels our mission to create cutting-edge solutions that empower individuals and businesses
+					to safeguard their digital assets with confidence.
 				</SectionHeadingWithoutMaxH>
-				<Container>
-					<Grid
-						w='full'
-						align-items='center'
-						templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
-						gap={{ base: 4, md: 8 }}
-						// gap={4}
-						px={{ base: 2, md: 4 }}
-						pt={{ base: 2, md: 4 }}
-						pb={'90px'}
-					>
-						{teamMemebers.map((member, i) => (
-							<EachTeamMember key={i} {...member} />
-						))}
-					</Grid>
+				<Container
+					pl={{ base: '24px', md: '128px' }}
+					pr='24px'>
+					<Flex borderLeft={BORDER}>
+						<Grid
+							pb='64px'
+							w='full'
+							align-items='center'
+							templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr ' }}>
+							{teamMemebers.map((member, i) => (
+								<EachTeamMember
+									key={i}
+									{...member}
+								/>
+							))}
+						</Grid>
+					</Flex>
 				</Container>
 			</Stack>
 		</Page>

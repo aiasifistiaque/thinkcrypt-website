@@ -2,16 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Flex, Heading, Image, Link, Stack, Text } from '@chakra-ui/react';
 import { breakpoints } from '../../lib/constants';
+import { styles } from '../../../theme/styles';
 
 const Container = styled(Flex)`
 	flex: 1;
 	cursor: pointer;
-	background-color: white;
-	box-shadow: 2px 2px 10px rgba(153, 140, 140, 0.2);
-	border-radius: 8px;
-	//padding: 0.5rem;
+
 	flex-direction: column;
-	gap: 0;
 `;
 
 const ImageBox = styled(Image)`
@@ -20,7 +17,6 @@ const ImageBox = styled(Image)`
 		height: 300px;
 		object-fit: contain;
 		border-radius: inherit;
-		background-color: whitesmoke;
 
 		@media (min-width: ${breakpoints.desktop}) {
 			width: 500px;
@@ -30,17 +26,38 @@ const ImageBox = styled(Image)`
 	}
 `;
 
+const BORDER = styles.border.light;
 const PortfolioItem = ({ item, href }) => {
 	return (
-		<Link isExternal href={item.href}>
-			<Container>
-				<ImageBox src={`${item.src}`} alt={item.name} borderTopRadius='.5rem' />
-				<Stack p={'1.5rem 1rem'}>
-					<Text fontSize={24} fontWeight='600'>
+		<Link
+			isExternal
+			href={item.href}>
+			<Container border={BORDER}>
+				<ImageBox
+					p={{ base: '12px', md: '24px' }}
+					src={`${item.src}`}
+					alt={item.name}
+				/>
+				<Flex
+					mt='12px'
+					flexDir='column'
+					p={{ base: '12px', md: '24px' }}
+					gap={2}
+					borderTop={BORDER}>
+					<Text
+						lineHeight={1.2}
+						noOfLines={2}
+						fontFamily='Bebas Neue'
+						fontSize={32}
+						fontWeight='600'>
 						{item.name}
 					</Text>
-					<Text>{item.type}</Text>
-				</Stack>
+					<Text
+						fontFamily='Bebas Neue'
+						fontSize='24px'>
+						{item.type}
+					</Text>
+				</Flex>
 			</Container>
 		</Link>
 	);

@@ -15,8 +15,7 @@ import AboutUsSection from './about-us/AboutUsSection';
 const Container = styled(Flex)`
 	flex: 1;
 	flex-direction: column;
-	max-width: 100vw;
-	box-sizing: border-box;
+	width: 100%;
 `;
 
 const Homepage = () => {
@@ -27,12 +26,14 @@ const Homepage = () => {
 				<AboutUsSection />
 				<ServicesNew />
 				<SectionHeading
-					heading='Meticulously Designed'
-					subHeading='Featured Web Projects'
+					heading='Featured Projects'
+					subHeading='Meticulously Designed Projects'
 					btnText='View Our Portfolio'
 					href='/portfolio'>
-					We take pride in all of our designs. Everything is meticulously researched, planned,
-					tested and designed to work and look flawlessly.
+					Discover our portfolio: From innovative apps to robust enterprise solutions, each project
+					highlights our dedication to excellence. Explore case studies that demonstrate our
+					approach to overcoming challenges and surpassing expectations. Join us in shaping the
+					future with impactful software.
 				</SectionHeading>
 				<Projects />
 				{/* <SectionHeading
