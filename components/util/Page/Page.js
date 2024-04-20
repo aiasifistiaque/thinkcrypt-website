@@ -7,6 +7,7 @@ import { CgMenuRound } from 'react-icons/cg';
 import CircleFollow from '../CircleFollow';
 
 import dynamic from 'next/dynamic';
+import ScrollYProgtess from './ScrollProgress';
 
 const Scroll = dynamic(() => import('../../scroll/Scroll'));
 
@@ -58,6 +59,7 @@ const Page = ({ children, title }) => {
 			</Head>
 			<CircleFollow />
 			<Header />
+
 			<Scroll>
 				<Container>{children}</Container>
 			</Scroll>

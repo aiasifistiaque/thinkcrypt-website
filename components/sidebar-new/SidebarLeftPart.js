@@ -1,8 +1,7 @@
 import React from 'react';
 import Column from '../util/Column';
-import { Flex, Hide, Text } from '@chakra-ui/react';
+import { Flex, Hide, Show, Text } from '@chakra-ui/react';
 import SidebarNavItem from '../sections/sidebar/SidebarNavItem';
-import { CgCloseO } from 'react-icons/cg';
 import LinkButton from '../util/buttons/LinkButton';
 import Link from 'next/link';
 import { styles } from '../../theme/styles';
@@ -21,7 +20,9 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				h='4rem'
 				justify='flex-end'
 				alignItems='center'>
-				<CloseButton onClick={onClose} />
+				<Show below='md'>
+					<CloseButton onClick={onClose} />
+				</Show>
 				{/* <Flex
 					display={{ base: 'flex', md: 'none' }}
 					onClick={onClose}

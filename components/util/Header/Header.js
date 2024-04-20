@@ -7,6 +7,7 @@ import Sidebar from '../../sidebar-new/SidebarDrawer';
 import { LiaEqualsSolid } from 'react-icons/lia';
 import Logo from './Logo';
 import Time from './Time';
+import ScrollYProgtess from '../Page/ScrollProgress';
 
 const Container = styled(Flex)`
 	zindex: 9999;
@@ -26,6 +27,7 @@ const Container = styled(Flex)`
 const Header = () => {
 	return (
 		<Container mixBlendMode='difference'>
+			<ScrollYProgtess />
 			<Link href='/'>
 				<Logo />
 			</Link>

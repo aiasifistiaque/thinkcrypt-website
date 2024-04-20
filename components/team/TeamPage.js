@@ -18,14 +18,14 @@ const teamMemebers = [
 		designation: 'Co-founder and COO',
 	},
 	{
-		img: '/team/Manazir-vai.jpg',
+		img: '/team/Manazir-vai.jpeg',
 		name: 'Manazir Irteza Rashid',
 		designation: 'Head of Sales & Marketing',
 	},
 	{
-		img: '/team/Nurain.jpg',
+		img: '/team/Nurain.jpeg',
 		name: 'Sumratul Nurain',
-		designation: 'Chief Human Resource & Administration Officer',
+		designation: 'HR & Administration Officer',
 	},
 	{
 		img: '/team/ashikuzzaman-abir.png',
@@ -48,7 +48,7 @@ const teamMemebers = [
 		designation: 'Junior Executive, Marketing',
 	},
 	{
-		img: '/team/Md-Aminul-Haque.jpg',
+		img: '/team/Md-Aminul-Haque.jpeg',
 		name: 'Md Aminul Haque',
 		designation: 'Junior Software Engineer',
 	},
