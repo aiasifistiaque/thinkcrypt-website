@@ -71,9 +71,9 @@ const Clients = () => {
 								<Text
 									fontSize={{ base: '1rem', md: '1.5rem' }}
 									fontWeight={400}
-									letterSpacing='-.5px'
+									letterSpacing='-.2px'
 									lineHeight='1.5'
-									fontFamily={fonts.body}
+									fontFamily='Suisse'
 									color='black.800'>
 									{`
 We provide services to a wide array of companies, including startups, small and medium-sized enterprises (SMEs), and large corporations, offering tailored solutions that drive innovative growth and transformative results. Our partnerships span various industries and sectors, enabling us to deliver impactful, customized solutions that propel businesses forward in their respective markets.`}

@@ -11,14 +11,16 @@ const BORDER = styles.border.dark;
 
 const SidebarLeftPart = ({ onClose, ...props }) => {
 	return (
-		<Column flex={2} borderRight={BORDER} {...props}>
+		<Column
+			flex={2}
+			borderRight={BORDER}
+			{...props}>
 			<Flex
 				borderBottom={BORDER}
 				h='4rem'
 				justify='flex-end'
 				alignItems='center'
-				px='1.5rem'
-			>
+				px='1.5rem'>
 				<Flex
 					display={{ base: 'flex', md: 'none' }}
 					onClick={onClose}
@@ -27,8 +29,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 					justify='flex-end'
 					alignItems='center'
 					h='full'
-					cursor='pointer'
-				>
+					cursor='pointer'>
 					<CgCloseO size='2.25rem' />
 				</Flex>
 			</Flex>
@@ -37,23 +38,40 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				px={{ base: '1rem', md: '2.5rem' }}
 				py={'3rem'}
 				alignItems={{ md: 'center' }}
-				w='full'
-			>
-				<Column justify={{ base: 'space-between', md: 'center' }} w='full'>
-					<Column gap={6} w='full'>
+				w='full'>
+				<Column
+					justify={{ base: 'space-between', md: 'center' }}
+					w='full'>
+					<Column
+						gap={6}
+						w='full'>
 						<Link href='/'>
-							<SidebarNavItem id='01' name='Home' />
+							<SidebarNavItem
+								id='01'
+								name='Home'
+							/>
 						</Link>
 						<Link href='/portfolio'>
-							<SidebarNavItem id='02' name='Portfolio' />
+							<SidebarNavItem
+								id='02'
+								name='Portfolio'
+							/>
 						</Link>
 						<Link href='/team'>
-							<SidebarNavItem id='03' name='Team' />
+							<SidebarNavItem
+								id='03'
+								name='Team'
+							/>
 						</Link>
 					</Column>
 					<Hide above='md'>
-						<Column gap={8} alignItems='flex-end'>
-							<Text fontSize='5rem' lineHeight='5rem' color='text.200'>
+						<Column
+							gap={8}
+							alignItems='flex-end'>
+							<Text
+								fontSize='5rem'
+								lineHeight='5rem'
+								color='text.200'>
 								00
 							</Text>
 							<Flex gap={8}>
@@ -68,8 +86,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 			<Flex
 				display={{ base: 'none', md: 'flex' }}
 				borderTop={{ md: BORDER }}
-				h='4rem'
-			></Flex>
+				h='4rem'></Flex>
 		</Column>
 	);
 };

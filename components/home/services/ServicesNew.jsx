@@ -116,7 +116,7 @@ const ServicesNew = () => {
 									<AccordionPanel pb={4}>
 										<Text
 											fontSize='14px'
-											fontFamily={fonts.body}>
+											fontFamily='Suisse'>
 											{item.subTitle}
 										</Text>
 									</AccordionPanel>
@@ -190,9 +190,9 @@ const ServicesNew = () => {
 									{item.title}
 								</Text>
 								<Text
-									fontSize='18px'
+									fontFamily='Suisse'
+									fontSize='16px'
 									fontWeight='400'
-									fontFamily={fonts.body}
 									overflow='hidden'>
 									{item.subTitle}
 								</Text>

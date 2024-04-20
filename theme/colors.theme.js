@@ -53,6 +53,7 @@ export const colors = {
 	},
 	text: {
 		200: '#fefefe',
+		300: '#c8c8c8',
 		500: '#4a4a4a',
 	},
 	footerBg: {

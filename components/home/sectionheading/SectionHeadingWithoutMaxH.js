@@ -64,7 +64,9 @@ const SectionHeadingWithoutMaxH = ({
 	);
 
 	const cotactButtom = (
-		<CLink isExternal href={links.contact}>
+		<CLink
+			isExternal
+			href={links.contact}>
 			<ThinkButton>
 				<ButtonText>{btnText}</ButtonText>
 			</ThinkButton>
