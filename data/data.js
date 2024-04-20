@@ -4,9 +4,9 @@ export const howWeWorkPic2 = '/images/howWeWork2.jpg';
 export const howWeWork = [
 	{
 		id: '1',
-		title: '01 UI/UX Solution',
+		title: '03 Website Design',
 		subTitle:
-			'Our experienced team can handle every problem with your apps and delivery them with smart solutions. We assist so you can excel. We are the one-stop platform for your every digital query.',
+			'Our website designs are contemporary with a modern outlook which will seize your customers’ attention. It will help you convey your message and of course, sell more. We worry about the maintenance of your website so you don’t have to. ',
 	},
 	{
 		id: '2',
@@ -16,22 +16,24 @@ export const howWeWork = [
 	},
 	{
 		id: '3',
-		title: '03 Website Design',
-		subTitle:
-			'Our website designs are contemporary with a modern outlook which will seize your customers’ attention. It will help you convey your message and of course, sell more. We worry about the maintenance of your website so you don’t have to. ',
-	},
-	{
-		id: '4',
-		title: '04 Content Solution',
-		subTitle:
-			'We also provide you with regular content writing for your business. Build the perfect brand which reveals your unmatched personality. Put your thoughts into carefully curated words with the help of our team’s expertise.',
-	},
-	{
-		id: '5',
 		title: '05 Prototyping for Startups',
 		subTitle:
 			'For startups, we have special packages where we build and test your desired digital products. You give us the brief and we assist you through your prototypes. Simply and efficiently',
 	},
+	{
+		id: '4',
+		title: '01 UI/UX Solution',
+		subTitle:
+			'Our experienced team can handle every problem with your apps and delivery them with smart solutions. We assist so you can excel. We are the one-stop platform for your every digital query.',
+	},
+
+	{
+		id: '5',
+		title: '04 Content Solution',
+		subTitle:
+			'We also provide you with regular content writing for your business. Build the perfect brand which reveals your unmatched personality. Put your thoughts into carefully curated words with the help of our team’s expertise.',
+	},
+
 	{
 		id: '6',
 		title: '06 Traditional Design',
