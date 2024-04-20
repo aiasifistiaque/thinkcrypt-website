@@ -173,16 +173,18 @@ const ServicesNew = () => {
 								gap={5}
 								bgColor='white'
 								h='230px'
-								onMouseEnter={() => setHoveredIndex(index)}
-								onMouseLeave={() => setHoveredIndex(0)}
+								transition='all 0.3s'
+								// onMouseEnter={() => setHoveredIndex(index)}
+								// onMouseLeave={() => setHoveredIndex(0)}
 								gridColumn={
-									index === hoveredIndex
+									index === 0
 										? 'span 2'
 										: index === 4 && hoveredIndex === 3
 										? '3'
 										: 'auto'
 								}
-								gridRow={index === 4 && hoveredIndex === 3 ? '1' : 'auto'}>
+								gridRow={ index === 4 && hoveredIndex === 3 ? '1' : 'auto' }
+							>
 								<Text
 									fontSize='24px'
 									fontWeight='400'
