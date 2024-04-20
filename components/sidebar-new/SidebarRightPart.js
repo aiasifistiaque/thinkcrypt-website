@@ -5,19 +5,19 @@ import { Center, Flex, Text } from '@chakra-ui/react';
 import { TfiClose } from 'react-icons/tfi';
 import Link from 'next/link';
 import RobotoText from '../util/text/RobotoText';
-import usePointerPosition from '../../hooks/usePointerPosition';
 import { styles } from '../../theme/styles';
+import ScrollValue from './ScrollValue';
 
 const border = styles.border.dark;
 
-const CloseButton = ({ ...props }) => {
+const CloseButton = ({ align, ...props }) => {
 	return (
 		<Flex
 			borderBottom={border}
 			h='4rem'
 			px='1.5rem'
 			justify='flex-end'
-			alignItems='center'>
+			alignItems={align || 'center'}>
 			<Flex
 				borderLeft={border}
 				minW='7rem'
@@ -39,37 +39,13 @@ const CloseButton = ({ ...props }) => {
 };
 
 const SidebarRightPart = ({ onClose }) => {
-	const { x, y } = usePointerPosition();
-
-	const SpringValue = ({ children, pos }) => (
-		<RobotoText
-			fontFamily='Suisse'
-			fontSize='12px'
-			fontWeight='300'
-			letterSpacing='4px'
-			lineHeight='1.2'
-			color='white'>
-			{`${pos}. ${children}`}
-		</RobotoText>
-	);
-
 	return (
 		<Column
 			flex={1}
 			fontFamily='Suisse'>
 			<CloseButton onClick={onClose} />
 
-			<Flex
-				flex={1}
-				justify='flex-end'
-				align='center'
-				px='1.5rem'
-				py='2rem'>
-				<Column>
-					<SpringValue pos='X'>{x}</SpringValue>
-					<SpringValue pos='Y'>{y}</SpringValue>
-				</Column>
-			</Flex>
+			<ScrollValue />
 			<Flex
 				borderTop={border}
 				flex={4}
