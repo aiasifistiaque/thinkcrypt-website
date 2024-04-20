@@ -35,7 +35,7 @@ const data = [
 		src: '/projects/samc.svg',
 		name: 'SAMC Bangladesh EMR System',
 		type: 'Electronic Medical Reporting System',
-		href: 'https://samc-hospital-doctor-room.vercel.app/',
+		href: 'https://samcbangladesh.org/',
 	},
 	{
 		src: '/projects/arewa.svg',
@@ -47,7 +47,7 @@ const data = [
 		src: '/projects/deshi-diary.svg',
 		name: 'Deshi Diary',
 		type: 'Social Business Rating Platform',
-		href: 'https://deshidiary.com',
+		href: 'https://deshidiary.vercel.app/',
 	},
 ];
 
