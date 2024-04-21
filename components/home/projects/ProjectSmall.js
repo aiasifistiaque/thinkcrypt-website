@@ -78,7 +78,7 @@ const ProjectSmall = ({ item, index }) => {
 						<Text
 							noOfLines={1}
 							lineHeight='1.4'
-							fontSize='2rem'
+							fontSize='1.6rem'
 							fontFamily='Bebas Neue'>
 							{item?.name}: {item?.type}
 						</Text>

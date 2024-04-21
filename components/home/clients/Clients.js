@@ -17,11 +17,11 @@ const BORDER = styles.border.light;
 
 const EachItem = ({ children, ...props }) => {
 	return (
-		<Center flex={1} bg='white' h={{ base: '180px', md: '130px' }}>
-			<Box p={{ base: 2, md: 16 }}>
+		<Center flex={1} bg='white' h={{ base: '140px', md: '200px' }}>
+			<Box p={{ base: 2, md: 24 }}>
 				<Image
-					w='full'
-					h='auto'
+					w='auto'
+					h={{base: '64px', md: '84px'}}
 					objectFit='contain'
 					src={children}
 					alt='logo'
@@ -40,7 +40,7 @@ const Clients = () => {
 			borderTop={BORDER}
 			borderBottom={BORDER}
 			px='24px'
-			pl={{ base: '0px', md: '128px' }}
+			pl={{ base: '24px', md: '128px' }}
 			my='60px'
 		>
 			<Flex
