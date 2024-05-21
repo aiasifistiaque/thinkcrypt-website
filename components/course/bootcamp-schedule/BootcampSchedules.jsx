@@ -9,6 +9,7 @@ const BootcampSchedules = ({ bootcampSchedule }) => {
 				return (
 					<EachSchedule
 						key={index}
+						isLast={index === bootcampSchedule.schedules.length - 1}
 						scheduleID={index + 1}
 						schedule={schedule}
 					/>

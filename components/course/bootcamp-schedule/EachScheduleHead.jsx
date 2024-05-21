@@ -16,7 +16,9 @@ const EachScheduleHead = ({ schedule, scheduleId }) => {
 				align={'center'}
 				borderRight={BORDERDARK}
 			>
-				<SuisseText color={'white'}>{schedule.id}</SuisseText>
+				<SuisseText fontSize={'2rem'} color={'white'}>
+					{schedule.id}
+				</SuisseText>
 			</Flex>
 			<Stack
 				flex={1}
