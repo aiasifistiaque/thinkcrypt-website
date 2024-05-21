@@ -1,16 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url('https://fonts.cdnfonts.com/css/segoe-ui-4');
+
+@font-face {
+	font-family: 'Apercu';
+	src: url('/fonts/apercu/Apercu_Regular.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Suisse';
+	src: url('/fonts/sussie/SuisseIntl-Light.otf') format('opentype');
+	font-weight: 300;
+}
+@font-face {
+	font-family: 'Suisse';
+	src: url('/fonts/sussie/SuisseIntl-Regular.otf') format('opentype');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Suisse';
+	src: url('/fonts/sussie/SuisseIntl-Medium.otf') format('opentype');
+	font-weight: 500;
+}
+@font-face {
+	font-family: 'Suisse';
+	src: url('/fonts/sussie/SuisseIntl-SemiBold.otf') format('opentype');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'Suisse';
+	src: url('/fonts/sussie/SuisseIntl-Bold.otf') format('opentype');
+	font-weight: 700;
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
