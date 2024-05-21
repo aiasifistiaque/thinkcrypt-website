@@ -6,6 +6,8 @@ import CourseHeroSection from '../heros-section/CourseHeroSection.jsx';
 import Column from '../../util/Column.jsx';
 import AboutProgram from '../about-program/AboutProgram.jsx';
 import BecomeInstructor from '../become-instructor/BecomeInstructor.jsx';
+import Technology from '../tools & technology/Technology.jsx';
+import Learnings from '../learnings/Learnings.jsx';
 
 const SingleCoursePage = () => {
 	return (
@@ -14,6 +16,8 @@ const SingleCoursePage = () => {
 				<CourseHeroSection data={courseData} />
 				<AboutProgram data={courseData?.aboutProgram} />
 				<BecomeInstructor />
+        <Learnings data={courseData?.learnings} />
+				<Technology data={courseData?.techStack} />
 				<BootcampScheduleSection
 					bootcampSchedule={courseData.bootcampSchedule}
 				/>
