@@ -29,7 +29,9 @@ const EachScheduleHead = ({ schedule, scheduleId }) => {
 				border={BORDER}
 			>
 				<HeaderText fontSize={'1.25rem'}>{schedule.title}</HeaderText>
-				<SuisseText fontSize={'.75rem'}>{schedule.subline}</SuisseText>
+				<SuisseText fontSize={'.75rem'} color={'#888888'}>
+					{schedule.subline}
+				</SuisseText>
 			</Stack>
 		</Flex>
 	);
