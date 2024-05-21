@@ -13,7 +13,7 @@ const BootcampScheduleHeader = ({ bootcampSchedule }) => {
 			borderBottom={BORDER}
 		>
 			<HeaderText>BOOTCAMP SCHEDULE</HeaderText>
-			<SuisseText>{bootcampSchedule.description}</SuisseText>
+			<SuisseText>{bootcampSchedule?.description}</SuisseText>
 		</Stack>
 	);
 };
