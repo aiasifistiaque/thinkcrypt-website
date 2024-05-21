@@ -6,11 +6,11 @@ import Header from '../../util/Header/Header';
 import Scroll from '../../scroll/Scroll';
 import PageLayout from '../../util/Page/PageLayout';
 import BootcampScheduleSection from '../bootcamp-schedule/BootcampScheduleSection.jsx';
-
+import { courseData } from '../../../lib/courseData.js';
 const SingleCoursePage = () => {
 	return (
 		<PageLayout>
-			<BootcampScheduleSection />
+			<BootcampScheduleSection bootcampSchedule={courseData.bootcampSchedule} />
 		</PageLayout>
 	);
 };

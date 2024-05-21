@@ -1,18 +1,17 @@
 // import useCustomColors from '@/hooks/useCustomColors';
 
 import { Text, TextProps } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import React from 'react';
 import { fonts } from '../../../lib/constants';
 import useCustomColors from '../../../hooks/useCustomColors.jsx';
 
-const HeaderText = ({ children, ...props }) => {
+const SuisseText = ({ children, ...props }) => {
 	const { textColor } = useCustomColors();
 	return (
 		<Text
-			fontFamily={fonts.heading}
+			fontFamily={fonts.Suisse}
 			color={textColor}
-			fontSize={{ base: '1.5rem', md: '3rem' }}
-			lineHeight='normal'
+			fontSize={{ base: '0.825rem', md: '1rem', lg: '1.5rem' }}
 			{...props}
 		>
 			{children && children}
@@ -20,4 +19,4 @@ const HeaderText = ({ children, ...props }) => {
 	);
 };
 
-export default HeaderText;
+export default SuisseText;

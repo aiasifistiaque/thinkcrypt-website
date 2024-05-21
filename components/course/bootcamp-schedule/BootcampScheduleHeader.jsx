@@ -1,13 +1,13 @@
-import { Stack } from '@chakra-ui/react'
-import React from 'react'
+import { Stack } from '@chakra-ui/react';
+import React from 'react';
+import HeaderText from '../../util/dynamic-text/HeaderText.jsx';
 
-const BootcampScheduleHeader = () => {
-  return (
-    <Stack w="full">
-      
+const BootcampScheduleHeader = ({ bootcampSchedule }) => {
+	return (
+		<Stack w='full'>
+			<HeaderText>{bootcampSchedule.title}</HeaderText>
+		</Stack>
+	);
+};
 
-    </Stack>
-  )
-}
-
-export default BootcampScheduleHeader
+export default BootcampScheduleHeader;
