@@ -1,10 +1,11 @@
 'use client';
-import SingleCoursePage from '@/components/academy-courses/SingleCoursePage';
+
 import React from 'react';
+import SingleCoursePage from '../components/course/page/SingleCoursePage';
 
 const course = ({ params }) => {
 	const { id } = params;
-	return <SingleCoursePage id={id} />;
+	return <SingleCoursePage />;
 };
 
 export default course;
