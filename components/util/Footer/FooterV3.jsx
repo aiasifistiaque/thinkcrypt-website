@@ -107,14 +107,18 @@ const FooterV3 = ({ variant = 'dark', ...props }) => {
 	);
 
 	const bottom = (
-		<Column gap={{ base: 3, lg: 4 }} py={{ base: 10, lg: 15 }}>
+		<Column gap={{ base: 3, lg: 4 }} py={{ base: 10, lg: 15 }} h='full' 
+		justify={{ base: 'space-around', lg: 'space-between' }}
+		>
 			<GrayText color={colors.texts}>HAVE A PROJECT IN MIND?</GrayText>
-			<Text
-				align={{ base: 'center', lg: 'start' }}
-				fontSize={{ base: '64px', lg: '190px' }}
-				color={colors.letsTalk}
-				fontWeight='600'
-			>{`LET'S TALK`}</Text>
+			<Flex>
+				<Text
+					align={{ base: 'center', lg: 'start' }}
+					fontSize={{ base: '64px', lg: '190px' }}
+					color={colors.letsTalk}
+					fontWeight='600'
+				>{`LET'S TALK`}</Text>
+			</Flex>
 			<Flex
 				flexDirection={{ base: 'column', lg: 'row' }}
 				justifyContent='space-between'
@@ -166,10 +170,11 @@ const FooterV3 = ({ variant = 'dark', ...props }) => {
 				pb={{ base: '36px', md: '64px' }}
 				maxW={layout.MAX_W}
 				mx='auto'
-				px='16px'
+				px={{ base: 4, lg: 6 }}
+				minH={'724px'}
 				{...props}
 			>
-				{/* {top} */}
+				{top}
 				{bottom}
 			</Stack>
 		</Flex>
