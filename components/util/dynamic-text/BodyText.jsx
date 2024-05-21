@@ -1,8 +1,7 @@
-import useCustomColors from '@/hooks/useCustomColors';
-
 import { Text, TextProps } from '@chakra-ui/react';
 import React from 'react';
 import { fonts } from '../../../lib/constants';
+import useCustomColors from '../../../hooks/useCustomColors';
 
 
 const BodyText= ({ children, ...props }) => {
