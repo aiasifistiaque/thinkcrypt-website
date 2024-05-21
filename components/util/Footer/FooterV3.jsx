@@ -1,22 +1,30 @@
 import { Button, Flex, Icon, Stack, StackProps, Text } from '@chakra-ui/react';
 import React from 'react';
 import { IoMdArrowRoundUp } from 'react-icons/io';
-import RoundedButton from '../../util/buttons/rounded-button/RoundedButton';
 import GrayText from '../text/GrayText';
 import useCustomColors from '../../../hooks/useCustomColors';
+import RoundedButton from '../buttons/rounded-button/RoundedButton';
 import { layout } from '../../../lib/constants';
+import Column from '../Column';
 
 /**
  * @description New Version of Footer Created by Mubin on 31 March 2024
  */
 
+const FooterV3 = ({ variant = 'dark', ...props }) => {
+	// api
 
-
-const FooterV3= ({ variant = 'dark', ...props }) => {
-
+	// hooks
 	const { textGray } = useCustomColors();
 
-	const getBgColor = (variant) => {
+	// states
+
+	// variables
+
+	// styles
+
+	// functions
+	const getBgColor = variant => {
 		switch (variant) {
 			case 'light':
 				return {
@@ -69,6 +77,9 @@ const FooterV3= ({ variant = 'dark', ...props }) => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
+	// effects
+
+	// components
 	const top = (
 		<Flex flex={1} justify='space-between' alignItems='center'>
 			<GrayText color={colors.texts}>{`@2024`}</GrayText>
@@ -96,7 +107,7 @@ const FooterV3= ({ variant = 'dark', ...props }) => {
 	);
 
 	const bottom = (
-		<Stack gap={{ base: 3, lg: 4 }} py={{ base: 10, lg: 15 }}>
+		<Column gap={{ base: 3, lg: 4 }} py={{ base: 10, lg: 15 }}>
 			<GrayText color={colors.texts}>HAVE A PROJECT IN MIND?</GrayText>
 			<Text
 				align={{ base: 'center', lg: 'start' }}
@@ -109,14 +120,30 @@ const FooterV3= ({ variant = 'dark', ...props }) => {
 				justifyContent='space-between'
 				gap={{ base: 3, lg: 4 }}
 			>
-				<Flex gap={3} justify={{ base: 'space-between', lg: 'flex-start' }} align='center'>
-					<RoundedButton color={colors.buttonColor} borderColor={borderColor} bg={colors.buttonBg}>
+				<Flex
+					gap={3}
+					justify={{ base: 'space-between', lg: 'flex-start' }}
+					align='center'
+				>
+					<RoundedButton
+						color={colors.buttonColor}
+						borderColor={borderColor}
+						bg={colors.buttonBg}
+					>
 						GITHUB
 					</RoundedButton>
-					<RoundedButton color={colors.buttonColor} borderColor={borderColor} bg={colors.buttonBg}>
+					<RoundedButton
+						color={colors.buttonColor}
+						borderColor={borderColor}
+						bg={colors.buttonBg}
+					>
 						TWITTER
 					</RoundedButton>
-					<RoundedButton color={colors.buttonColor} borderColor={borderColor} bg={colors.buttonBg}>
+					<RoundedButton
+						color={colors.buttonColor}
+						borderColor={borderColor}
+						bg={colors.buttonBg}
+					>
 						LINKEDIN
 					</RoundedButton>
 				</Flex>
@@ -128,7 +155,7 @@ const FooterV3= ({ variant = 'dark', ...props }) => {
 					</GrayText>
 				</Flex> */}
 			</Flex>
-		</Stack>
+		</Column>
 	);
 
 	return (
@@ -142,7 +169,7 @@ const FooterV3= ({ variant = 'dark', ...props }) => {
 				px='16px'
 				{...props}
 			>
-				{top}
+				{/* {top} */}
 				{bottom}
 			</Stack>
 		</Flex>
