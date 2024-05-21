@@ -8,12 +8,14 @@ import AboutProgram from '../about-program/AboutProgram.jsx';
 import BecomeInstructor from '../become-instructor/BecomeInstructor.jsx';
 import Technology from '../tools & technology/Technology.jsx';
 import Learnings from '../learnings/Learnings.jsx';
+import BootcampDetailsSection from '../bootcamp-details/BootcampDetailsSection.jsx';
 
 const SingleCoursePage = () => {
 	return (
 		<PageLayout>
 			<Column gap={{ base: 10, lg: '4rem' }} w='full'>
 				<CourseHeroSection data={courseData} />
+				<BootcampDetailsSection bootcampDetails={courseData.bootcampDetails} />
 				<AboutProgram data={courseData?.aboutProgram} />
 				<BecomeInstructor />
         <Learnings data={courseData?.learnings} />

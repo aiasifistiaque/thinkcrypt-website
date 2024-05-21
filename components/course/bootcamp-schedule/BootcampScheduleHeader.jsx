@@ -9,7 +9,8 @@ const BootcampScheduleHeader = ({ bootcampSchedule }) => {
 		<Stack
 			w='full'
 			px={{ base: '16px', md: '10px' }}
-			py={{ base: 2, md: 2 }}
+			py={{ base: 2, md: 8 }}
+			spacing={0}
 			borderBottom={BORDER}
 		>
 			<HeaderText>BOOTCAMP SCHEDULE</HeaderText>

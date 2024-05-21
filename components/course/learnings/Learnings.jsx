@@ -17,6 +17,7 @@ const Learnings = ({ data }) => {
 					border={BORDER}
 					py={{ base: '45px', md: '55px' }}
 					px={{ base: '7px', md: '14px' }}
+          justify='center'
 				>
 					<HeaderText
 						fontSize={{ base: '1.5rem', md: '2rem' }}
