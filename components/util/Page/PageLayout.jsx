@@ -1,56 +1,84 @@
-import React from 'react';
+
+
+
+
+import { Flex } from '@chakra-ui/react';
 import Head from 'next/head';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import styled from '@emotion/styled';
-import { CgMenuRound } from 'react-icons/cg';
-import CircleFollow from '../CircleFollow';
-
-import dynamic from 'next/dynamic';
-import ScrollYProgtess from './ScrollProgress';
+import React, { FC, ReactNode } from 'react';
 import FooterV3 from '../Footer/FooterV3';
+import Header from '../Header/Header';
+import ScrollYProgtess from './ScrollProgress';
+import CircleFollow from '../CircleFollow';
+import { layout } from '../../../lib/constants';
 
-const Scroll = dynamic(() => import('../../scroll/Scroll'));
+const Container = ({ children, bgColor }) => {
+	return (
+		<Flex
+			as='main'
+			bg={bgColor || 'bgColor.light'}
+			pt={layout.NAV_HEIGHT}
+			maxW='100vw'
+			minH='100vh'
+			flex={1}
+		>
+			{children}
+		</Flex>
+	);
+};
 
-const Container = styled('main')`
-	display: flex;
-	max-width: 100vw;
-	min-height: 100vh;
-	flex: 1;
-`;
-const PageLayout = ({ children, title }) => {
+const PageLayout = ({ footerVariant, children, title, bgColor }) => {
+	// api
+
+	// hooks
+
+	// states
+
+	// variables
+
+	// styles
+
+	// functions
+
+	// effects
+
+	// components
+	const head = (
+		<Head>
+			<title>{title || 'thinkcrypt.io'}</title>
+			<meta property='title' content='thinkcrypt.io' />
+			<link rel='icon' href='/favicon.ico' />
+
+			<meta
+				name='description'
+				content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
+			></meta>
+			<meta property='og:title' content='thinkcrypt.io' key='ogtitle' />
+			<meta
+				property='og:description'
+				content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
+				key='ogdesc'
+			/>
+
+			<meta property='og:image' content='/hero.jpeg' key='ogimage' />
+			<meta
+				property='og:site_name'
+				content={'thinkcrypt.io'}
+				key='ogsitename'
+			/>
+		</Head>
+	);
+
 	return (
 		<>
-			<Head>
-				<title>{title || 'thinkcrypt.io'}</title>
-				<meta property='title' content='thinkcrypt.io' />
-				<link rel='icon' href='/favicon.ico' />
-
-				<meta
-					name='description'
-					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
-				></meta>
-				<meta property='og:title' content='thinkcrypt.io' key='ogtitle' />
-				<meta
-					property='og:description'
-					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
-					key='ogdesc'
-				/>
-
-				<meta property='og:image' content='/hero.jpeg' key='ogimage' />
-				<meta
-					property='og:site_name'
-					content={'thinkcrypt.io'}
-					key='ogsitename'
-				/>
-			</Head>
+			{head}
 			<CircleFollow />
-			<Header />
 
-			<Scroll>
-				<Container>{children}</Container>
-			</Scroll>
-			<FooterV3 />
+			<Header />
+			<ScrollYProgtess />
+			<Container bgColor={bgColor}>{children && children}</Container>
+			{/* <Footer /> */}
+			{/* <FooterNew /> */}
+			<FooterV3 variant={footerVariant} />
 		</>
 	);
 };
