@@ -11,6 +11,7 @@ const BodyText= ({ children, ...props }) => {
 			fontFamily={fonts.body}
 			color={textColor}
 			fontSize={{ base: '0.825rem', md: '1rem', lg: '1.5rem' }}
+			fontWeight={'400'}
 			{...props}
 		>
 			{children && children}
