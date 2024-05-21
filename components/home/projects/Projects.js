@@ -22,7 +22,7 @@ const Projects = () => {
 		<Flex
 			borderBottom={BORDER}
 			px='24px'
-			pl={{ base: '0px', md: '128px' }}
+			pl={{ base: '24px', md: '128px' }}
 			w='100%'>
 			<Section
 				w='100%'

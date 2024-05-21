@@ -27,18 +27,17 @@ const data = [
 		href: 'https://challent.vercel.app/',
 	},
 	{
-		src: '/portfolio/netsooon.svg',
+		src: '/projects/netsoon-new.png',
 		name: 'Netsooon',
 		type: 'Social Media Web app',
 		href: 'https://netsooon.vercel.app/',
 	},
 	{
-		src: '/portfolio/checkliiist.jpg',
+		src: '/projects/checklist-new.png',
 		name: 'Checkliiist Inventory Management system',
 		type: 'Inventory Management Saas',
 		href: 'https://checkliiist.com',
 	},
-
 	{
 		src: '/projects/arewa.svg',
 		name: 'Arewa Books',
@@ -52,30 +51,22 @@ const data = [
 		href: 'https://samcbangladesh.org',
 	},
 	{
+		src: '/projects/weather-new.png',
+		name: 'Weather App',
+		type: 'iOs & Android App',
+		href: 'https://github.com/aiasifistiaque/weatherapp',
+	},
+	{
 		src: '/portfolio/home/ui.jpg',
 		name: 'UI/UX projects',
 		type: 'UI/UX',
 		href: 'https://dribbble.com/thinkcrypt',
 	},
-
-	{
-		src: '/portfolio/home/2.jpg',
-		name: 'Weather App',
-		type: 'iOs & Android App',
-		href: 'https://github.com/aiasifistiaque/weatherapp',
-	},
-
-	{
-		src: '/portfolio/home/3.jpg',
-		name: 'ArewaBooks App',
-		type: 'iOs & Android App',
-		href: 'https://play.google.com/store/apps/details?id=com.arewa.arewabooksapp&hl=en_US&gl=US',
-	},
 ];
 
 const data2 = [
 	{
-		src: '/projects/shohoz.png',
+		src: '/projects/shohoz-new.png',
 		name: 'Shohoz Air',
 		type: 'Air ticketing System',
 		href: 'https://air.shohoz.com/',
@@ -111,30 +102,36 @@ const data2 = [
 		href: 'https://marketrol.vercel.app',
 	},
 	{
-		src: '/portfolio/home/8.jpg',
+		src: '/projects/grocery-new.png',
 		name: 'Grocery Shop',
 		type: 'Ecommerce webapp',
 		href: 'https://gshop-psi.vercel.app/',
 	},
 
 	{
-		src: '/portfolio/home/7.jpg',
+		src: '/projects/dignity-new.png',
 		name: 'Dignity International Agency',
 		type: 'Web App',
 		href: 'https://dignityinternationalagency.com',
 	},
 
 	{
-		src: '/portfolio/home/ciphertext.jpg',
+		src: '/projects/cipher-new.png',
 		name: 'Cipher Text',
 		type: 'iOs & Android App',
 		href: 'https://github.com/aiasifistiaque/chatmama',
 	},
 	{
-		src: '/portfolio/home/5.jpg',
+		src: '/projects/legal-new.png',
 		name: 'Legal Template',
 		type: 'Web App',
 		href: 'https://template-legal.vercel.app/',
+	},
+	{
+		src: '/portfolio/home/3.jpg',
+		name: 'ArewaBooks App',
+		type: 'iOs & Android App',
+		href: 'https://play.google.com/store/apps/details?id=com.arewa.arewabooksapp&hl=en_US&gl=US',
 	},
 ];
 
@@ -182,7 +179,7 @@ const Portfoliopage = () => {
 							Our Work
 						</Heading>
 					</Flex>
-					<Flex
+					<Grid templateColumns={{base: '1fr', md: '4fr 3fr'}}
 						mt='24px'
 						px='24px'
 						border={BORDER}>
@@ -209,7 +206,7 @@ const Portfoliopage = () => {
 								/>
 							))}
 						</Flex>
-					</Flex>
+					</Grid>
 				</PortfolioContainer>
 			</Stack>
 		</Page>

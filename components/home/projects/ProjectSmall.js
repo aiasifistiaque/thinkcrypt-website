@@ -17,6 +17,7 @@ import { styles } from '../../../theme/styles';
 const radius = '0px';
 
 const Background = styled(Flex)`
+	z-index: 99;
 	flex: 1;
 	border: 18px solid #060508;
 	background-position: top center;
@@ -78,14 +79,14 @@ const ProjectSmall = ({ item, index }) => {
 						<Text
 							noOfLines={1}
 							lineHeight='1.4'
-							fontSize='2rem'
+							fontSize={{base: '1.2rem', md: '2rem'}}
 							fontFamily='Bebas Neue'>
 							{item?.name}: {item?.type}
 						</Text>
 					</Flex>
 				</AccordionButton>
 
-				<AccordionPanel w='full'>
+				<AccordionPanel w='full' zIndex='99'>
 					<Flex
 						p='16px'
 						w='full'>
