@@ -61,6 +61,8 @@ function MyApp({ Component, pageProps }) {
 	// 		router.events.off('routeChangeComplete', handleRouteChange);
 	// 	};
 	// }, [router.events]);
+	//test push
+	
 	return (
 		<Provider store={store}>
 			<ChakraProvider theme={theme}>
