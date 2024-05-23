@@ -4,7 +4,7 @@ import EachSchedule from './EachSchedule.jsx';
 
 const BootcampSchedules = ({ bootcampSchedule }) => {
 	return (
-		<Stack w='full' spacing={0} px={{ base: 4, md: 4 }} py={6}>
+		<Stack w='full' spacing={0} px={{ base: 4, md: 4 }} py={6} zIndex={-10}>
 			{bootcampSchedule?.schedules?.map((schedule, index) => {
 				return (
 					<EachSchedule

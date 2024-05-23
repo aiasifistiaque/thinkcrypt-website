@@ -9,16 +9,23 @@ const EachScheduleChildren = ({ schedule, isLast }) => {
 		<Flex w='full'>
 			<Flex
 				w='64px'
-				h={
-					isLast
+				h={{
+					base: isLast
+						? `${
+								(100 / schedule?.items?.length) *
+									(schedule?.items?.length - 1) +
+								100 / schedule?.items?.length / 2
+						  }%`
+						: 'full',
+					md: isLast
 						? `${
 								(100 / schedule?.items?.length) *
 									(schedule?.items?.length - 1) +
 								100 / schedule?.items?.length / 2 -
 								1.5
 						  }%`
-						: 'full'
-				}
+						: 'full',
+				}}
 				borderRight={BORDERDARK}
 			></Flex>
 			<Stack flex={1} my={3} spacing={2}>

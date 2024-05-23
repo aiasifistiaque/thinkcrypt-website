@@ -29,7 +29,7 @@ const EachScheduleHead = ({ schedule, scheduleId }) => {
 				border={BORDER}
 				position={'relative'}
 			>
-				<HeaderText fontSize={'1.25rem'}>{schedule.title}</HeaderText>
+				<HeaderText fontSize={'1.25rem'} noOfLines={1}>{schedule.title}</HeaderText>
 				<SuisseText fontSize={'.75rem'} color={'#888888'}>
 					{schedule.subline}
 				</SuisseText>
