@@ -27,11 +27,31 @@ const EachScheduleHead = ({ schedule, scheduleId }) => {
 				spacing={0}
 				bgColor={'white'}
 				border={BORDER}
+				position={'relative'}
 			>
 				<HeaderText fontSize={'1.25rem'}>{schedule.title}</HeaderText>
 				<SuisseText fontSize={'.75rem'} color={'#888888'}>
 					{schedule.subline}
 				</SuisseText>
+				<Flex
+					justify={'center'}
+					align={'center'}
+					bgColor={'#A9A9A9'}
+					borderRadius={'6px'}
+					px={1}
+					py={0}
+					h='fit-content'
+					position={'absolute'}
+					bottom={2}
+					right={{ base: '16px', md: '24px' }}
+				>
+					<SuisseText
+						fontSize={{ base: '.75rem', md: '.875rem' }}
+						color={'white'}
+					>
+						{schedule.duration}
+					</SuisseText>
+				</Flex>
 			</Stack>
 		</Flex>
 	);

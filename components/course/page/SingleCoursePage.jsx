@@ -1,7 +1,6 @@
 import React from 'react';
 import BootcampScheduleSection from '../bootcamp-schedule/BootcampScheduleSection.jsx';
 import { courseData } from '../../../lib/courseData.js';
-import PageLayout from '../../util/Page/PageLayout.jsx';
 import CourseHeroSection from '../heros-section/CourseHeroSection.jsx';
 import Column from '../../util/Column.jsx';
 import AboutProgram from '../about-program/AboutProgram.jsx';
@@ -13,11 +12,15 @@ import BenefitsOfBootcampHeader from '../benefits-of-bootcamp/BenefitsOfBootcamp
 import BenefitsOfBootcampSection from '../benefits-of-bootcamp/BenefitsOfBootcampSection.jsx';
 import FaqSection from '../faq/FaqSection.jsx';
 import QuoteSection from '../quote/QuoteSection.jsx';
+import Page from '../../util/Page/Page';
+import { Flex } from '@chakra-ui/react';
+import { layout } from '../../lib/constants.js';
 
 const SingleCoursePage = () => {
 	return (
-		<PageLayout>
+		<Page>
 			<Column gap={{ base: 10, lg: '4rem' }} w='full'>
+				<Flex h={'1.5rem'} w='100vw'></Flex>
 				<CourseHeroSection data={courseData} />
 				<AboutProgram data={courseData?.aboutProgram} />
 				<BecomeInstructor />
@@ -33,7 +36,7 @@ const SingleCoursePage = () => {
 				/>
 				<FaqSection data={courseData} />
 			</Column>
-		</PageLayout>
+		</Page>
 	);
 };
 

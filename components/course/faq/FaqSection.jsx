@@ -8,13 +8,10 @@ import HeaderText from '../../util/dynamic-text/HeaderText.jsx';
 const FaqSection = ({ data }) => {
 	return (
 		<BorderContainer>
-			<Grid
-				templateColumns={{ base: '1fr', md: '1fr 1fr' }}
-				h={{ base: 'auto', lg: '500px' }}
-			>
-				<Box h='full'>
+			<Grid templateColumns={{ base: '1fr', md: '1fr' }}>
+				{/* <Box h='full'>
 					<Image h='100%' w='100%' src={data?.faq?.image} objectFit='cover' />
-				</Box>
+				</Box> */}
 				<Flex
 					flex={1}
 					direction='column'
