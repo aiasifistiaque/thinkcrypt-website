@@ -9,7 +9,16 @@ const EachScheduleChildren = ({ schedule, isLast }) => {
 		<Flex w='full'>
 			<Flex
 				w='64px'
-				h={isLast ? '51%' : 'full'}
+				h={
+					isLast
+						? `${
+								(100 / schedule?.items?.length) *
+									(schedule?.items?.length - 1) +
+								100 / schedule?.items?.length / 2 -
+								1.5
+						  }%`
+						: 'full'
+				}
 				borderRight={BORDERDARK}
 			></Flex>
 			<Stack flex={1} my={3} spacing={2}>
@@ -29,12 +38,12 @@ const EachScheduleChildren = ({ schedule, isLast }) => {
 								position={'relative'}
 							>
 								<HeaderText fontSize={'1rem'}>{item.title}</HeaderText>
-								<SuisseText fontSize={'.75rem'} color={'#888888'} maxW='90%'>
+								<SuisseText fontSize={'.875rem'} color={'#888888'} maxW='90%'>
 									{item.subline}
 								</SuisseText>
 
 								<SuisseText fontSize={'.75rem'}>{item.time}</SuisseText>
-								<Flex
+								{/* <Flex
 									justify={'center'}
 									align={'center'}
 									bgColor={'#A9A9A9'}
@@ -52,7 +61,7 @@ const EachScheduleChildren = ({ schedule, isLast }) => {
 									>
 										{item.duration}
 									</SuisseText>
-								</Flex>
+								</Flex> */}
 							</Stack>
 						</Flex>
 					);
