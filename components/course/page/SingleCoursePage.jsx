@@ -12,6 +12,7 @@ import BootcampDetailsSection from '../bootcamp-details/BootcampDetailsSection.j
 import BenefitsOfBootcampHeader from '../benefits-of-bootcamp/BenefitsOfBootcampHeader.jsx';
 import BenefitsOfBootcampSection from '../benefits-of-bootcamp/BenefitsOfBootcampSection.jsx';
 import FaqSection from '../faq/FaqSection.jsx';
+import QuoteSection from '../quote/QuoteSection.jsx';
 
 const SingleCoursePage = () => {
 	return (
@@ -26,10 +27,11 @@ const SingleCoursePage = () => {
 				<BootcampScheduleSection
 					bootcampSchedule={courseData.bootcampSchedule}
 				/>
+				<QuoteSection data={courseData} />
 				<BenefitsOfBootcampSection
 					benefitsOfBootcamp={courseData.benefitsOfBootcamp}
 				/>
-				<FaqSection />
+				<FaqSection data={courseData}/>
 			</Column>
 		</PageLayout>
 	);

@@ -31,6 +31,7 @@ const Learnings = ({ data }) => {
 						key={index}
 						gap={4}
 						border={BORDER}
+						align='start'
 						py={{ base: '45px', md: '55px' }}
 						px={{ base: '14px', md: '40px' }}
 					>
@@ -39,7 +40,7 @@ const Learnings = ({ data }) => {
 						</Box>
 						<BodyText
 							fontSize={{ base: '0.875rem', md: '1rem' }}
-						>{`You and your peers will be experienced professionals, specialists and C-suite executives, who are looking to: `}</BodyText>
+						>{item?.description}</BodyText>
 					</Column>
 				))}
 			</Grid>

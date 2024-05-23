@@ -11,10 +11,11 @@ const SuisseText = ({ children, ...props }) => {
 		<Text
 			fontFamily={fonts.Suisse}
 			color={textColor}
-			fontSize={{ base: '0.825rem', md: '1rem', lg: '1.5rem' }}
+			fontSize={{ base: '1rem', lg: '1.5rem' }}
+			fontWeight={'400'}
 			{...props}
 		>
-			{children && children}
+			{children}
 		</Text>
 	);
 };

@@ -13,7 +13,9 @@ const BenefitsOfBootcampHeader = ({ benefitsOfBootcamp }) => {
 				spacing={0}
 			>
 				<HeaderText>{benefitsOfBootcamp?.heading}</HeaderText>
-				<SuisseText>{benefitsOfBootcamp?.description}</SuisseText>
+				<SuisseText fontSize={{ base: '1rem', md: '1.25rem' }}>
+					{benefitsOfBootcamp?.description}
+				</SuisseText>
 			</Stack>
 		</BorderContainer>
 	);
