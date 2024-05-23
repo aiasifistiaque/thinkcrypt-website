@@ -9,6 +9,9 @@ import BecomeInstructor from '../become-instructor/BecomeInstructor.jsx';
 import Technology from '../tools & technology/Technology.jsx';
 import Learnings from '../learnings/Learnings.jsx';
 import BootcampDetailsSection from '../bootcamp-details/BootcampDetailsSection.jsx';
+import BenefitsOfBootcampHeader from '../benefits-of-bootcamp/BenefitsOfBootcampHeader.jsx';
+import BenefitsOfBootcampSection from '../benefits-of-bootcamp/BenefitsOfBootcampSection.jsx';
+import FaqSection from '../faq/FaqSection.jsx';
 
 const SingleCoursePage = () => {
 	return (
@@ -18,11 +21,15 @@ const SingleCoursePage = () => {
 				<BootcampDetailsSection bootcampDetails={courseData.bootcampDetails} />
 				<AboutProgram data={courseData?.aboutProgram} />
 				<BecomeInstructor />
-        <Learnings data={courseData?.learnings} />
+				<Learnings data={courseData?.learnings} />
 				<Technology data={courseData?.techStack} />
 				<BootcampScheduleSection
 					bootcampSchedule={courseData.bootcampSchedule}
 				/>
+				<BenefitsOfBootcampSection
+					benefitsOfBootcamp={courseData.benefitsOfBootcamp}
+				/>
+				<FaqSection />
 			</Column>
 		</PageLayout>
 	);
