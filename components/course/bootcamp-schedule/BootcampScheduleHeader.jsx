@@ -14,7 +14,9 @@ const BootcampScheduleHeader = ({ bootcampSchedule }) => {
 			borderBottom={BORDER}
 		>
 			<HeaderText>BOOTCAMP SCHEDULE</HeaderText>
-			<SuisseText>{bootcampSchedule?.description}</SuisseText>
+			<SuisseText fontSize={{ base: '1rem', md: '1.25rem' }}>
+				{bootcampSchedule?.description}
+			</SuisseText>
 		</Stack>
 	);
 };

@@ -3,6 +3,7 @@ import BorderContainer from '../../util/container/BorderContainer';
 import Column from '../../util/Column';
 import HeaderText from '../../util/dynamic-text/HeaderText';
 import BodyText from '../../util/dynamic-text/BodyText';
+import SuisseText from '../../util/dynamic-text/SuisseText';
 
 const AboutProgram = ({ data }) => {
 	return (
@@ -13,7 +14,13 @@ const AboutProgram = ({ data }) => {
 				</HeaderText>
 				<Column gap={{ base: 4, md: 6 }}>
 					{data?.map((item, index) => (
-						<BodyText key={index}>{item}</BodyText>
+						<SuisseText
+							fontSize={{ base: '1rem', md: '1.25rem' }}
+							fontWeight={index === 2 ? '600' : '400'}
+							key={index}
+						>
+							{item}
+						</SuisseText>
 					))}
 				</Column>
 			</Column>

@@ -6,6 +6,7 @@ import HeaderText from '../../util/dynamic-text/HeaderText';
 import BodyText from '../../util/dynamic-text/BodyText';
 import { BORDER } from '../../../lib/constants';
 import SquareButton from '../../util/buttons/SquareButton';
+import SuisseText from '../../util/dynamic-text/SuisseText';
 
 const CourseHeroSection = ({ data }) => {
 	return (
@@ -30,7 +31,9 @@ const CourseHeroSection = ({ data }) => {
 						>
 							{data?.title}
 						</HeaderText>
-						<BodyText>{data?.shortDescription}</BodyText>
+						<SuisseText fontSize={{ base: '1rem', md: '1.25rem' }}>
+							{data?.shortDescription}
+						</SuisseText>
 					</Column>
 					<Flex gap={{ base: 3, md: 6 }} wrap='wrap'>
 						<SquareButton w={{ base: '155px', md: '270px' }}>

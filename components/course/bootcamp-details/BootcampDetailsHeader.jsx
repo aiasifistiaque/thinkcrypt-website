@@ -13,7 +13,9 @@ const BootcampDetailsHeader = ({ bootcampDetails }) => {
 				spacing={0}
 			>
 				<HeaderText>{bootcampDetails?.heading}</HeaderText>
-				<SuisseText>{bootcampDetails?.description}</SuisseText>
+				<SuisseText fontSize={{ base: '1rem', md: '1.25rem' }}>
+					{bootcampDetails?.description}
+				</SuisseText>
 			</Stack>
 		</BorderContainer>
 	);

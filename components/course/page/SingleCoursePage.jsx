@@ -19,10 +19,10 @@ const SingleCoursePage = () => {
 		<PageLayout>
 			<Column gap={{ base: 10, lg: '4rem' }} w='full'>
 				<CourseHeroSection data={courseData} />
-				<BootcampDetailsSection bootcampDetails={courseData.bootcampDetails} />
 				<AboutProgram data={courseData?.aboutProgram} />
 				<BecomeInstructor />
 				<Learnings data={courseData?.learnings} />
+				<BootcampDetailsSection bootcampDetails={courseData.bootcampDetails} />
 				<Technology data={courseData?.techStack} />
 				<BootcampScheduleSection
 					bootcampSchedule={courseData.bootcampSchedule}
@@ -31,7 +31,7 @@ const SingleCoursePage = () => {
 				<BenefitsOfBootcampSection
 					benefitsOfBootcamp={courseData.benefitsOfBootcamp}
 				/>
-				<FaqSection data={courseData}/>
+				<FaqSection data={courseData} />
 			</Column>
 		</PageLayout>
 	);

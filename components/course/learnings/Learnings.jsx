@@ -5,26 +5,25 @@ import Column from '../../util/Column';
 import { BORDER } from '../../../lib/constants';
 import HeaderText from '../../util/dynamic-text/HeaderText';
 import BodyText from '../../util/dynamic-text/BodyText';
+import SuisseText from '../../util/dynamic-text/SuisseText';
 
 const Learnings = ({ data }) => {
 	return (
 		<BorderContainer>
-			<Grid
-				templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
-			>
+			<Grid templateColumns={{ base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}>
 				<Column
 					gap={4}
 					border={BORDER}
 					py={{ base: '45px', md: '55px' }}
 					px={{ base: '7px', md: '14px' }}
-          justify='center'
+					justify='center'
 				>
 					<HeaderText
 						fontSize={{ base: '1.5rem', md: '2rem' }}
 					>{`what you’ll learn`}</HeaderText>
-					<BodyText
-						fontSize={{ base: '0.875rem', md: '1rem' }}
-					>{`You and your peers will be experienced professionals, specialists and C-suite executives, who are looking to: `}</BodyText>
+					<SuisseText
+						fontSize={{ base: '1rem', md: '1rem' }}
+					>{`You and your peers will be experienced professionals, specialists and C-suite executives, who are looking to: `}</SuisseText>
 				</Column>
 				{data?.map((item, index) => (
 					<Column
@@ -38,9 +37,9 @@ const Learnings = ({ data }) => {
 						<Box h={'54px'} w='auto'>
 							<Image h={'100%'} w={'100%'} src={item?.icon} alt={item?.title} />
 						</Box>
-						<BodyText
-							fontSize={{ base: '0.875rem', md: '1rem' }}
-						>{item?.description}</BodyText>
+						<SuisseText fontSize={{ base: '1rem', md: '1rem' }}>
+							{item?.description}
+						</SuisseText>
 					</Column>
 				))}
 			</Grid>

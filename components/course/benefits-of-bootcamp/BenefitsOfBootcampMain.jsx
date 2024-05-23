@@ -22,12 +22,15 @@ const BenefitsOfBootcampMain = ({ benefitsOfBootcamp }) => {
 					})}
 				</Stack>
 				<Flex
-					flex={1}
-					h={{ base: '487px', md: '606px' }}
+					// flex={1}
+					// h='full'
+					h={{ base: '487px', md: '506px' }}
 					order={{ base: 1, md: 2 }}
 					px={{ base: 4, md: 6 }}
 				>
 					<Image
+						h='100%'
+						w='100%'
 						src={benefitsOfBootcamp?.photo}
 						alt={benefitsOfBootcamp?.heading}
 						objectFit='cover'

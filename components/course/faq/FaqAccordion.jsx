@@ -41,7 +41,12 @@ const FaqAccordion = ({ data, ...props }) => {
 					</BodyText> */}
 						</AccordionButton>
 					</h2>
-					<AccordionPanel fontFamily={fonts.Suisse} pb={4} fontSize={{ base: '1rem', md: '1rem' }}>
+					<AccordionPanel
+						fontFamily={fonts.Suisse}
+						pb={4}
+						color='#888'
+						fontSize={{ base: '1rem', md: '1rem' }}
+					>
 						{data?.answer}
 					</AccordionPanel>
 				</>
