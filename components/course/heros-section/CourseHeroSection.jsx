@@ -14,7 +14,7 @@ const CourseHeroSection = ({ data }) => {
 			<Grid
 				templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
 				w='full'
-				h={{ base: 'auto', lg: '92vh' }}
+				h={{ base: 'auto', lg: '86vh' }}
 			>
 				<Column
 					gap={{ base: 5, md: 10 }}
@@ -63,7 +63,7 @@ const CourseHeroSection = ({ data }) => {
 					h={{ base: '350px', lg: 'full' }}
 					w='full'
 					order={{ base: 1, lg: 2 }}
-					px={{ base: 4, lg: 0 }}
+					pr={{ base: 4, lg: 0 }}
 				>
 					<Image
 						h={'100%'}

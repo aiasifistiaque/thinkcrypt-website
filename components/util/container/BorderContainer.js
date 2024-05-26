@@ -1,6 +1,7 @@
-import { Flex, Stack } from '@chakra-ui/react';
+import { Flex, Grid, Stack } from '@chakra-ui/react';
 import React from 'react';
 import { BORDER, layout } from '../../../lib/constants.js';
+import Column from '../Column.jsx';
 
 const BorderContainer = ({ children, ...props }) => {
 	return (
@@ -11,8 +12,11 @@ const BorderContainer = ({ children, ...props }) => {
 			borderBottom={BORDER}
 			{...props}
 		>
-			<Stack w='full' maxW={layout.MAX_W} mx='auto' borderLeft={BORDER}>
-				{children}
+			<Stack w='full' maxW={layout.MAX_W} mx='auto'>
+				<Flex w='full'>
+					<Flex w={{ base: '16px', lg: '60px' }} borderRight={BORDER}></Flex>
+					<Column w='full'>{children}</Column>
+				</Flex>
 			</Stack>
 		</Flex>
 	);

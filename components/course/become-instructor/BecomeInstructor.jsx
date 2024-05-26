@@ -8,12 +8,13 @@ import SquareButton from '../../util/buttons/SquareButton';
 
 const BecomeInstructor = () => {
 	return (
-		<Flex w='full' p={4} borderY={BORDER}>
+		<Flex w='full' borderY={BORDER}>
 			<Flex
 				flexDir={{ base: 'column', md: 'row' }}
 				w={'full'}
 				justify={{ base: 'start', md: 'space-between' }}
 				maxW={layout.MAX_W}
+				p={{ base: 4, lg: 6 }}
 				mx='auto'
 				align='center'
 				gap={4}

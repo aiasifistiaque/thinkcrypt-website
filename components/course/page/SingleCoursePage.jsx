@@ -15,12 +15,13 @@ import QuoteSection from '../quote/QuoteSection.jsx';
 import Page from '../../util/Page/Page';
 import { Flex } from '@chakra-ui/react';
 import { layout } from '../../lib/constants.js';
+import EligibilitySection from '../eligibility/EligibilitySection.jsx';
 
 const SingleCoursePage = () => {
 	return (
 		<Page>
 			<Column gap={{ base: 10, lg: '4rem' }} w='full'>
-				<Flex h={'1.5rem'} w='100vw'></Flex>
+				<Flex h={'0.5rem'} w='100vw'></Flex>
 				<CourseHeroSection data={courseData} />
 				<AboutProgram data={courseData?.aboutProgram} />
 				<BecomeInstructor />
@@ -34,6 +35,7 @@ const SingleCoursePage = () => {
 				<BenefitsOfBootcampSection
 					benefitsOfBootcamp={courseData.benefitsOfBootcamp}
 				/>
+				<EligibilitySection data={courseData.eligibility} />
 				<FaqSection data={courseData} />
 			</Column>
 		</Page>

@@ -7,8 +7,15 @@ import HeaderText from '../../util/dynamic-text/HeaderText';
 const QuoteSection = ({ data }) => {
 	const { orange } = useCustomColors();
 	return (
-		<Flex px={{ base: 4, md: 6 }} w='full' maxW={layout.MAX_W} mx='auto'>
-			<Flex p={5} bg={orange}>
+		<Flex w='full' px={{ base: 4, md: 6 }}>
+			<Flex
+				p={5}
+				bg={orange}
+				px={{ base: 4, md: 6 }}
+				w='full'
+				maxW={layout.MAX_W}
+				mx='auto'
+			>
 				<HeaderText
 					color='white'
 					fontSize={{ base: '1.25rem', md: '1.5rem' }}
