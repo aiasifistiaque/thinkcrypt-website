@@ -71,8 +71,7 @@ const Clients = () => {
 							fontFamily='Suisse'
 							color='black.800'
 						>
-							{`
-We provide services to a wide array of companies, including startups, small and medium-sized enterprises (SMEs), and large corporations, offering tailored solutions that drive innovative growth and transformative results. Our partnerships span various industries and sectors, enabling us to deliver impactful, customized solutions that propel businesses forward in their respective markets.`}
+							{`We offer services to a diverse range of businesses, from startups and SMEs to large corporations, providing customized SaaS solutions that foster innovation and transformative growth. Our extensive partnerships across various industries allow us to deliver impactful, tailored SaaS solutions that drive businesses forward in their specific markets.`}
 						</Text>
 					</Stack>
 				</Center>
