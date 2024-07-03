@@ -18,7 +18,7 @@ const BORDER = styles.border.light;
 const EachItem = ({ children, ...props }) => {
 	return (
 		<Center flex={1} bg='white' h={{ base: '140px', md: '200px' }}>
-			<Box p={{ base: 2, md: 24 }}>
+			<Box p={{ base: 2, md: 4 }}>
 				<Image
 					w='auto'
 					h={{base: '64px', md: '84px'}}
