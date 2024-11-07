@@ -10,6 +10,7 @@ export const colors = {
 	charcole: '#2d2d2d',
 	primaryDark: `#4ea4ef`,
 	primaryLight: `#acd4f7`,
+	orange: `#FF6A47`,
 };
 
 export const boxShadow = `2px 2px 10px rgba(153, 140, 140, 0.2)`;
@@ -22,7 +23,6 @@ export const breakpoints = {
 	laptop: '850px',
 	xLarge: '1200px',
 };
-
 
 export const fonts = {
 	heading: 'Bebas Neue, sans-serif',
