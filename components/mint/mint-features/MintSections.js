@@ -84,7 +84,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 				>
 					{reverse ? (
 						<>
-							<GridItem>
+							<GridItem order={{ base: 2, lg: 2 }}>
 								<Flex
 									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
 									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
@@ -133,7 +133,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									</Box>
 								</Flex>
 							</GridItem>
-							<GridItem order={{ base: 1 }}>
+							<GridItem order={{ base: 1, lg: 1 }}>
 								<Column
 									gap={{ base: 2, md: 4, lg: 8 }}
 									justifyItems='center'
@@ -162,7 +162,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 						</>
 					) : (
 						<>
-							<GridItem>
+							<GridItem order={{ base: 2, lg: 2 }}>
 								<Column
 									gap={{ base: 2, md: 4, lg: 8 }}
 									justifyItems='center'
@@ -188,7 +188,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									</ThinkButton>
 								</Column>
 							</GridItem>
-							<GridItem>
+							<GridItem order={{ base: 1, lg: 1 }}>
 								<Flex
 									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
 									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
