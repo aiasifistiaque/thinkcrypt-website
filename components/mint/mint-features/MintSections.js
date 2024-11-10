@@ -4,7 +4,17 @@ import { breakpoints } from '../../lib/constants';
 import Column from '../../util/Column';
 import { fonts } from '../../../lib/constants';
 import { colors } from '../../lib/constants';
-import { Center, Flex, Grid, GridItem, Image, Text } from '@chakra-ui/react';
+import {
+	AspectRatio,
+	Box,
+	Center,
+	Flex,
+	Grid,
+	GridItem,
+	Image,
+	Text,
+	useMediaQuery,
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 const P = styled(Text)`
@@ -42,7 +52,14 @@ const ButtonText = styled(Text)`
 
 const BORDER = styles.border.light;
 
-const MintSections = ({ text, subText, paraText, image }) => {
+const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
+	const [isMobile] = useMediaQuery('(max-width: 768px)');
+
+	const videoStyles = {
+		width: isMobile ? '250px' : '469px',
+		height: isMobile ? '250px' : '326px',
+		borderRadius: isMobile ? '4px' : '8px',
+	};
 	return (
 		<Column
 			mt='60px'
@@ -61,44 +78,167 @@ const MintSections = ({ text, subText, paraText, image }) => {
 				//my='60px'
 			>
 				<Grid
-					templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
+					templateColumns={{ base: '1fr', lg: '1fr', xl: '1fr 1fr' }}
 					gap={12}
 					alignItems='center'
 				>
-					<GridItem>
-						<Column
-							gap={{ base: 2, md: 4, lg: 8 }}
-							justifyItems='center'
-							alignItems={{ base: 'center', lg: 'start' }}
-						>
-							<P fontFamily={fonts.Suisse}>{text}</P>
-							<Text
-								fontFamily='Bebas Neue'
-								fontSize={{ base: '1.5rem', md: '2rem', lg: '3rem' }}
-							>
-								{subText}
-							</Text>
-							<P fontFamily={fonts.Suisse}>{paraText}</P>
+					{reverse ? (
+						<>
+							<GridItem>
+								<Flex
+									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
+									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
+									justifyContent='center'
+									position='relative'
+								>
+									<Image
+										src={image}
+										alt='Banner'
+										w={{ base: '200px', md: '400px', lg: '600px', xl: '800px' }}
+										h={{ base: '123px', md: '241px', lg: '308px', xl: 'auto' }}
+									/>
 
-							<ThinkButton>
-								<ButtonText>Book a Demo</ButtonText>
-							</ThinkButton>
-						</Column>
-					</GridItem>
-					<GridItem>
-						<Flex
-							w={{ base: 'full', md: 'full', lg: '600px' }}
-							h={{ base: 'auto', md: 'auto', lg: '400px' }}
-							justifyContent='center'
-						>
-							<Image
-								src={image}
-								alt='Banner'
-								w={{ base: '200px', md: '400px', lg: '400px' }}
-								h='auto'
-							/>
-						</Flex>
-					</GridItem>
+									<Box
+										position='absolute'
+										top={{ base: '11px', md: '22px', lg: '30px', xl: '47px' }}
+										left={{ md: '23vw', lg: '106px', xl: ' 166px ' }}
+										//borderRadius='lg'
+									>
+										<Box
+											width={{
+												base: '121px',
+												md: '237px',
+												lg: '29.5vw',
+												xl: '470px',
+											}}
+											// height={{ lg: '325px', xl: '325px' }}
+											// bg='red.200'
+										>
+											<video
+												src='./e-mint/emint-v2.mp4'
+												autoPlay
+												// width='469'
+												// height='325'
+												width='full'
+												height='full'
+												muted
+												loop
+												playsInline
+												//controls
+												style={{
+													borderRadius: '6px',
+												}}
+											/>
+										</Box>
+									</Box>
+								</Flex>
+							</GridItem>
+							<GridItem order={{ base: 1 }}>
+								<Column
+									gap={{ base: 2, md: 4, lg: 8 }}
+									justifyItems='center'
+									alignItems={{ base: 'center', lg: 'start' }}
+								>
+									<P fontFamily={fonts.Suisse}>{text}</P>
+									<Text
+										fontFamily='Bebas Neue'
+										fontSize={{
+											base: '1.5rem',
+											md: '1.75rem',
+											lg: '2rem',
+											xl: '2.25rem',
+										}}
+										lineHeight={1}
+									>
+										{subText}
+									</Text>
+									<P fontFamily={fonts.Suisse}>{paraText}</P>
+
+									<ThinkButton>
+										<ButtonText>Book a Demo</ButtonText>
+									</ThinkButton>
+								</Column>
+							</GridItem>
+						</>
+					) : (
+						<>
+							<GridItem>
+								<Column
+									gap={{ base: 2, md: 4, lg: 8 }}
+									justifyItems='center'
+									alignItems={{ base: 'center', lg: 'start' }}
+								>
+									<P fontFamily={fonts.Suisse}>{text}</P>
+									<Text
+										fontFamily='Bebas Neue'
+										fontSize={{
+											base: '1.5rem',
+											md: '1.75rem',
+											lg: '2rem',
+											xl: '2.25rem',
+										}}
+										lineHeight={1}
+									>
+										{subText}
+									</Text>
+									<P fontFamily={fonts.Suisse}>{paraText}</P>
+
+									<ThinkButton>
+										<ButtonText>Book a Demo</ButtonText>
+									</ThinkButton>
+								</Column>
+							</GridItem>
+							<GridItem>
+								<Flex
+									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
+									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
+									justifyContent='center'
+									position='relative'
+								>
+									<Image
+										src={image}
+										alt='Banner'
+										w={{ base: '200px', md: '400px', lg: '600px', xl: '800px' }}
+										h={{ base: '123px', md: '241px', lg: '308px', xl: 'auto' }}
+									/>
+
+									<Box
+										position='absolute'
+										top={{ base: '11px', md: '22px', lg: '30px', xl: '47px' }}
+										left={{ md: '23vw', lg: '106px', xl: ' 166px ' }}
+										//borderRadius='lg'
+									>
+										<Box
+											width={{
+												base: '121px',
+												md: '237px',
+												lg: '29.5vw',
+												xl: '470px',
+											}}
+											// height={{ lg: '325px', xl: '325px' }}
+											// bg='red.200'
+										>
+											<video
+												src='./e-mint/emint-v2.mp4'
+												autoPlay
+												// width='469'
+												// height='325'
+												width='full'
+												height='full'
+												muted
+												loop
+												playsInline
+												//controls
+												style={{
+													borderRadius: '6px',
+												}}
+											/>
+										</Box>
+									</Box>
+								</Flex>
+							</GridItem>
+						</>
+					)}
 				</Grid>
 			</Flex>
 		</Column>
