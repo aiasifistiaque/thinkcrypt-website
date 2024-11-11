@@ -5,7 +5,6 @@ import Column from '../../util/Column';
 import { fonts } from '../../../lib/constants';
 import { colors } from '../../lib/constants';
 import {
-	AspectRatio,
 	Box,
 	Center,
 	Flex,
@@ -13,7 +12,6 @@ import {
 	GridItem,
 	Image,
 	Text,
-	useMediaQuery,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
@@ -53,17 +51,10 @@ const ButtonText = styled(Text)`
 const BORDER = styles.border.light;
 
 const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
-	const [isMobile] = useMediaQuery('(max-width: 768px)');
-
-	const videoStyles = {
-		width: isMobile ? '250px' : '469px',
-		height: isMobile ? '250px' : '326px',
-		borderRadius: isMobile ? '4px' : '8px',
-	};
 	return (
 		<Column
 			mt='60px'
-			px={{ base: 6, md: 16, lg: 32 }}
+			px={{ base: 6, md: 16, lg: 16, xl: 32 }}
 			borderTop={BORDER}
 			borderBottom={BORDER}
 		>
@@ -73,12 +64,22 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 				mx='auto'
 				borderLeft={BORDER}
 				borderRight={BORDER}
-				px={{ base: '16px', md: '24px', lg: '128px' }}
-				py={{ base: '24px', md: '128px' }}
+				px={{
+					base: '16px',
+					md: '16px',
+					lg: '20px',
+					xl: '32px',
+				}}
+				py={{ base: '24px', xl: '128px' }}
 				//my='60px'
 			>
 				<Grid
-					templateColumns={{ base: '1fr', lg: '1fr', xl: '1fr 1fr' }}
+					templateColumns={{
+						base: '1fr',
+						md: '1fr 1fr',
+						lg: '1fr 1fr',
+						xl: '1fr 1fr',
+					}}
 					gap={12}
 					alignItems='center'
 				>
@@ -94,33 +95,35 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									<Image
 										src={image}
 										alt='Banner'
-										w={{ base: '200px', md: '400px', lg: '600px', xl: '800px' }}
-										h={{ base: '123px', md: '241px', lg: '308px', xl: 'auto' }}
+										w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
+										h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
 									/>
 
 									<Box
 										position='absolute'
-										top={{ base: '11px', md: '22px', lg: '30px', xl: '47px' }}
-										left={{ md: '23vw', lg: '106px', xl: ' 166px ' }}
+										top={{ base: '18px', md: '15px', lg: '22px', xl: '47px' }}
+										left={{
+											base: '58px',
+											md: '56px',
+											lg: '82px',
+											xl: ' 166px ',
+										}}
 										//borderRadius='lg'
 									>
 										<Box
 											width={{
-												base: '121px',
-												md: '237px',
-												lg: '29.5vw',
+												base: '184px',
+												md: '167px',
+												lg: '240px',
 												xl: '470px',
 											}}
 											// height={{ lg: '325px', xl: '325px' }}
-											// bg='red.200'
 										>
 											<video
-												src='./e-mint/emint-v2.mp4'
+												src='./e-mint/emint-v1.mp4'
 												autoPlay
 												// width='469'
-												// height='325'
-												width='full'
-												height='full'
+												//height='325'
 												muted
 												loop
 												playsInline
@@ -137,7 +140,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 								<Column
 									gap={{ base: 2, md: 4, lg: 8 }}
 									justifyItems='center'
-									alignItems={{ base: 'center', lg: 'start' }}
+									alignItems={{ base: 'start', lg: 'start' }}
 								>
 									<P fontFamily={fonts.Suisse}>{text}</P>
 									<Text
@@ -166,7 +169,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 								<Column
 									gap={{ base: 2, md: 4, lg: 8 }}
 									justifyItems='center'
-									alignItems={{ base: 'center', lg: 'start' }}
+									alignItems={{ base: 'start', lg: 'start' }}
 								>
 									<P fontFamily={fonts.Suisse}>{text}</P>
 									<Text
@@ -198,33 +201,35 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									<Image
 										src={image}
 										alt='Banner'
-										w={{ base: '200px', md: '400px', lg: '600px', xl: '800px' }}
-										h={{ base: '123px', md: '241px', lg: '308px', xl: 'auto' }}
+										w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
+										h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
 									/>
 
 									<Box
 										position='absolute'
-										top={{ base: '11px', md: '22px', lg: '30px', xl: '47px' }}
-										left={{ md: '23vw', lg: '106px', xl: ' 166px ' }}
+										top={{ base: '18px', md: '15px', lg: '22px', xl: '47px' }}
+										left={{
+											base: '58px',
+											md: '56px',
+											lg: '82px',
+											xl: ' 166px ',
+										}}
 										//borderRadius='lg'
 									>
 										<Box
 											width={{
-												base: '121px',
-												md: '237px',
-												lg: '29.5vw',
+												base: '184px',
+												md: '167px',
+												lg: '240px',
 												xl: '470px',
 											}}
 											// height={{ lg: '325px', xl: '325px' }}
-											// bg='red.200'
 										>
 											<video
-												src='./e-mint/emint-v2.mp4'
+												src='./e-mint/emint-v1.mp4'
 												autoPlay
 												// width='469'
-												// height='325'
-												width='full'
-												height='full'
+												//height='325'
 												muted
 												loop
 												playsInline

@@ -107,7 +107,12 @@ const PlanSection = () => {
 			</Flex>
 
 			<Grid
-				templateColumns={{ base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }}
+				templateColumns={{
+					base: '1fr',
+					md: '1fr 1fr',
+					lg: '1fr 1fr 1fr',
+					xl: '1fr 1fr 1fr 1fr',
+				}}
 				gap={6}
 				py={{ base: 4, md: 6, lg: 10 }}
 				px={{ base: 4, md: 6, lg: 20 }}

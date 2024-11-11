@@ -49,7 +49,7 @@ const Homepage = () => {
 				</SectionHeading> */}
 				{/* <Services /> */}
 				<RegisterPlan />
-				<PlanSection />
+				{/* <PlanSection /> */}
 
 				<Clients />
 				<Testimonial />
