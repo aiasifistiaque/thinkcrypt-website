@@ -70,7 +70,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 					lg: '20px',
 					xl: '32px',
 				}}
-				py={{ base: '24px', xl: '128px' }}
+				py={{ base: '24px', xl: '40px' }}
 				//my='60px'
 			>
 				<Grid
@@ -136,9 +136,9 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									</Box>
 								</Flex>
 							</GridItem>
-							<GridItem order={{ base: 1, lg: 1 }}>
+							<GridItem order={{ base: 1, lg: 1 }} mb={{ base: 0, xl: 36 }}>
 								<Column
-									gap={{ base: 2, md: 4, lg: 8 }}
+									gap={{ base: 2, md: 4, lg: 5 }}
 									justifyItems='center'
 									alignItems={{ base: 'start', lg: 'start' }}
 								>
@@ -157,17 +157,17 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									</Text>
 									<P fontFamily={fonts.Suisse}>{paraText}</P>
 
-									<ThinkButton>
+									{/* <ThinkButton>
 										<ButtonText>Book a Demo</ButtonText>
-									</ThinkButton>
+									</ThinkButton> */}
 								</Column>
 							</GridItem>
 						</>
 					) : (
 						<>
-							<GridItem order={{ base: 2, lg: 2 }}>
+							<GridItem order={{ base: 2, lg: 2 }} mb={36}>
 								<Column
-									gap={{ base: 2, md: 4, lg: 8 }}
+									gap={{ base: 2, md: 4, lg: 5 }}
 									justifyItems='center'
 									alignItems={{ base: 'start', lg: 'start' }}
 								>
@@ -186,9 +186,9 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 									</Text>
 									<P fontFamily={fonts.Suisse}>{paraText}</P>
 
-									<ThinkButton>
+									{/* <ThinkButton>
 										<ButtonText>Book a Demo</ButtonText>
-									</ThinkButton>
+									</ThinkButton> */}
 								</Column>
 							</GridItem>
 							<GridItem order={{ base: 1, lg: 1 }}>
@@ -226,7 +226,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 											// height={{ lg: '325px', xl: '325px' }}
 										>
 											<video
-												src='./e-mint/emint-v1.mp4'
+												src='./e-mint/emint-v2.mp4'
 												autoPlay
 												// width='469'
 												//height='325'

@@ -5,6 +5,7 @@ import Column from '../../util/Column';
 import { fonts } from '../../../lib/constants';
 import { colors } from '../../lib/constants';
 import {
+	Box,
 	Button,
 	Center,
 	Flex,
@@ -64,7 +65,7 @@ const RegisterPlan = () => {
 				mx='auto'
 				borderLeft={BORDER}
 				borderRight={BORDER}
-				px={{ base: '16px', md: '24px' }}
+				px={{ base: '16px', md: '24px', xl: '60px' }}
 				py={{ base: '24px', md: '128px' }}
 				//my='60px'
 			>
@@ -75,15 +76,21 @@ const RegisterPlan = () => {
 				>
 					<GridItem>
 						<Flex
-							w={{ base: 'full', md: 'full', lg: '600px' }}
+							w={{ base: 'full', md: 'full', lg: '800px' }}
 							h={{ base: 'auto', md: 'auto', lg: '400px' }}
 							justifyContent='center'
+							position='relative'
 						>
-							<Image
-								src='./logo/customImage1.svg'
-								alt='Banner'
-								w={{ base: '200px', md: '400px', lg: 'full' }}
-								h='auto'
+							<video
+								autoPlay
+								muted
+								loop
+								playsInline
+								//controls
+								style={{
+									borderRadius: '6px',
+								}}
+								src='./e-mint/emint-v3.mp4'
 							/>
 						</Flex>
 					</GridItem>

@@ -1,10 +1,19 @@
 import React from 'react';
-import { Heading, Flex, Box, Center, Text as BText } from '@chakra-ui/react';
+import {
+	Heading,
+	Flex,
+	Box,
+	Center,
+	Text as BText,
+	Image,
+	Grid,
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { colors, breakpoints } from '../../lib/constants';
 import Link from 'next/link';
 import Marquee from './Marquee';
 import ScrollValue from '../../sidebar-new/ScrollValue';
+import Column from '../../util/Column';
 
 const ThinkButton = styled(Center)`
 	cursor: pointer;
@@ -44,7 +53,7 @@ const Overlay = styled(Flex)`
 	flex-direction: column;
 	justify-content: center;
 	flex: 1;
-	height: 100vh;
+	min-height: 100vh;
 `;
 
 const Title = styled(Heading)`
@@ -70,11 +79,11 @@ const MintHero = () => {
 	return (
 		<Container>
 			<Overlay>
-				<Flex flex='4' pt='128px'>
-					<Flex maxW='100vw' px='24px' flexDir='column' justify='center'>
+				<Grid templateColumns={{ base: '1fr', lg: '3fr 2fr' }} pt='128px'>
+					<Flex px='24px' flexDir='column' justify='center'>
 						<Title fontFamily='Suisse' size='2xl' fontWeight={800}>
-							E-Mint
-							<br /> Inventory Management
+							MINT
+							<br /> Crafting Brands
 						</Title>
 						<Divider />
 						<Text
@@ -82,7 +91,7 @@ const MintHero = () => {
 							size={{ base: 'lg', md: 'xl' }}
 							fontWeight='600'
 							letterSpacing='.2px'
-							maxW={{ md: '60%' }}
+							// maxW={{ md: '60%' }}
 						>
 							{`Transform your online business with our powerful E-commerce CMS, integrated POS, and fully customizable themes designed for growth and flexibility!`}
 						</Text>
@@ -91,7 +100,7 @@ const MintHero = () => {
 							size={{ base: 'lg', md: 'xl', lg: 'md' }}
 							fontWeight='600'
 							letterSpacing='.2px'
-							maxW={{ md: '60%' }}
+							// maxW={{ md: '60%' }}
 							mt={4}
 						>
 							From website to inventory management to marketing, ALL IN ONE!
@@ -102,15 +111,25 @@ const MintHero = () => {
 							</ThinkButton>
 						</Link>
 					</Flex>
-					<Flex w='300px'>
-						<ScrollValue
-							py='0'
-							fontWeight={400}
-							align='flex-start'
-							color='text.800'
-						/>
-					</Flex>
-				</Flex>
+
+					<Column>
+						<Flex w='300px' alignSelf='flex-end'>
+							<ScrollValue
+								py='0'
+								fontWeight={400}
+								align='flex-start'
+								color='text.800'
+							/>
+						</Flex>
+						<Flex>
+							<Image
+								src='./e-mint/mint-illustrationv4.png'
+								alt='mint-illustration'
+								w='full'
+							/>
+						</Flex>
+					</Column>
+				</Grid>
 				<Marquee />
 			</Overlay>
 		</Container>
