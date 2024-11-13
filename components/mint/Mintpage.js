@@ -28,6 +28,7 @@ const Mintpage = () => {
 						'Choose from various themes and customize every detail to match your brand. Our platform allows you to personalize your homepage, colors, sections, and more, giving you full control to create a website that truly reflects your unique identity and stands out to your audience.'
 					}
 					reverse={false}
+					video='./e-mint/emint-v2.mp4'
 				/>
 				<MintSections
 					text={'Marketing Made Easy: Email & SMS'}
@@ -37,6 +38,7 @@ const Mintpage = () => {
 						'Boost engagement with robust email and SMS marketing tools. Reach customers instantly through bulk messaging or targeted campaigns—all from a single platform, making it easy to connect and drive results effectively.'
 					}
 					reverse={true}
+					video='./e-mint/mint-v5.mp4'
 				/>
 				<MintSections
 					text={'Top Products & Customer Insights'}
@@ -46,6 +48,7 @@ const Mintpage = () => {
 					}
 					image='./e-mint/mint-illustrationv3.png'
 					reverse={false}
+					video='./e-mint/mint-v4.mp4'
 				/>
 				<MintSections
 					text={'Role-Based Admin Panel'}
@@ -55,6 +58,7 @@ const Mintpage = () => {
 					}
 					image={'./e-mint/mint-illustrationv3.png'}
 					reverse={true}
+					video='./e-mint/mint-v3.mp4'
 				/>
 				{/* <RegisterPlan /> */}
 				<PlanSection />

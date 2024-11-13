@@ -57,7 +57,7 @@ const Overlay = styled(Flex)`
 `;
 
 const Title = styled(Heading)`
-	font-weight: 800;
+	//font-weight: 800;
 	line-height: 1.2;
 `;
 
@@ -83,7 +83,9 @@ const MintHero = () => {
 					<Flex px='24px' flexDir='column' justify='center'>
 						<Title fontFamily='Suisse' size='2xl' fontWeight={800}>
 							MINT
-							<br /> Crafting Brands
+						</Title>
+						<Title fontFamily='Suisse' fontSize='1.5rem' fontWeight={300}>
+							Crafting Brands
 						</Title>
 						<Divider />
 						<Text
@@ -123,7 +125,7 @@ const MintHero = () => {
 						</Flex>
 						<Flex>
 							<Image
-								src='./e-mint/mint-illustrationv4.png'
+								src='./e-mint/mint-illustrationv5.png'
 								alt='mint-illustration'
 								w='full'
 							/>

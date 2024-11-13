@@ -50,7 +50,7 @@ const MintFeatures = () => {
 			borderBottom={BORDER}
 			px='24px'
 			pl={{ base: '24px', md: '64px', lg: '128px' }}
-			my='60px'
+			mt='60px'
 		>
 			<Flex
 				flex={1}

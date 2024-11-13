@@ -50,7 +50,14 @@ const ButtonText = styled(Text)`
 
 const BORDER = styles.border.light;
 
-const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
+const MintSections = ({
+	text,
+	subText,
+	paraText,
+	image,
+	reverse = false,
+	video,
+}) => {
 	return (
 		<Column
 			mt='60px'
@@ -120,7 +127,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 											// height={{ lg: '325px', xl: '325px' }}
 										>
 											<video
-												src='./e-mint/emint-v1.mp4'
+												src={`${video}`}
 												autoPlay
 												// width='469'
 												//height='325'
@@ -226,7 +233,7 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
 											// height={{ lg: '325px', xl: '325px' }}
 										>
 											<video
-												src='./e-mint/emint-v2.mp4'
+												src={`${video}`}
 												autoPlay
 												// width='469'
 												//height='325'
