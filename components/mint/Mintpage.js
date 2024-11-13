@@ -7,6 +7,7 @@ import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import MintFeatures from './mint-features/MintFeatures';
 import MintSections from './mint-features/MintSections';
+import TestimonialSection from './testimonial-section/TestimonialSection';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -62,6 +63,7 @@ const Mintpage = () => {
 				/>
 				{/* <RegisterPlan /> */}
 				<PlanSection />
+				{/* <TestimonialSection /> */}
 			</Container>
 		</Page>
 	);

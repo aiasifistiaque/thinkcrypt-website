@@ -3,16 +3,8 @@ import { styles } from '../../../theme/styles';
 import { breakpoints } from '../../lib/constants';
 import Column from '../../util/Column';
 import { fonts } from '../../../lib/constants';
-import { colors } from '../../lib/constants';
-import {
-	Box,
-	Center,
-	Flex,
-	Grid,
-	GridItem,
-	Image,
-	Text,
-} from '@chakra-ui/react';
+
+import { Box, Flex, Grid, GridItem, Image, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 const P = styled(Text)`
@@ -21,31 +13,6 @@ const P = styled(Text)`
 		line-height: 1.6;
 		max-width: 50vw;
 	}
-`;
-
-const ThinkButton = styled(Center)`
-	cursor: pointer;
-	margin: 32px 0;
-	height: 50px;
-	width: 220px;
-	background-color: ${colors.charcole};
-	transition: 0.2s;
-	&:hover {
-		@media (min-width: ${breakpoints.desktop}) {
-			background-color: ${colors.orange};
-		}
-	}
-	&:active {
-		background-color: black.800;
-	}
-`;
-
-const ButtonText = styled(Text)`
-	line-height: 0;
-	color: white;
-	font-weight: bold;
-	letter-spacing: 0.75px;
-	font-size: 1rem;
 `;
 
 const BORDER = styles.border.light;
@@ -115,7 +82,6 @@ const MintSections = ({
 											lg: '82px',
 											xl: ' 166px ',
 										}}
-										//borderRadius='lg'
 									>
 										<Box
 											width={{
@@ -124,7 +90,6 @@ const MintSections = ({
 												lg: '240px',
 												xl: '470px',
 											}}
-											// height={{ lg: '325px', xl: '325px' }}
 										>
 											<video
 												src={`${video}`}
@@ -163,10 +128,6 @@ const MintSections = ({
 										{subText}
 									</Text>
 									<P fontFamily={fonts.Suisse}>{paraText}</P>
-
-									{/* <ThinkButton>
-										<ButtonText>Book a Demo</ButtonText>
-									</ThinkButton> */}
 								</Column>
 							</GridItem>
 						</>
@@ -192,10 +153,6 @@ const MintSections = ({
 										{subText}
 									</Text>
 									<P fontFamily={fonts.Suisse}>{paraText}</P>
-
-									{/* <ThinkButton>
-										<ButtonText>Book a Demo</ButtonText>
-									</ThinkButton> */}
 								</Column>
 							</GridItem>
 							<GridItem order={{ base: 1, lg: 1 }}>
@@ -221,7 +178,6 @@ const MintSections = ({
 											lg: '82px',
 											xl: ' 166px ',
 										}}
-										//borderRadius='lg'
 									>
 										<Box
 											width={{
@@ -230,7 +186,6 @@ const MintSections = ({
 												lg: '240px',
 												xl: '470px',
 											}}
-											// height={{ lg: '325px', xl: '325px' }}
 										>
 											<video
 												src={`${video}`}

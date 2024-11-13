@@ -208,3 +208,105 @@ export const logoTexts = [
 	'Mobile Friendly App For Business On-The-Go',
 	'Role Based System For Task Management',
 ];
+
+export const testimonialData = [
+	{
+		id: 1,
+		heading: 'Outstanding Service',
+		subHeading: 'Exceeding Expectations',
+		user: 'John Doe',
+		company: 'Acme Corp',
+		userImage: '/images/users/john_doe.jpg',
+		companyImage: '/images/companies/acme_corp.png',
+		userDescription:
+			'The team at Acme Corp provided exceptional service from start to finish, making the process seamless and enjoyable.',
+	},
+	{
+		id: 2,
+		heading: 'Professional and Dedicated',
+		subHeading: 'High-Quality Service',
+		user: 'Jane Smith',
+		company: 'Tech Innovators',
+		userImage: '/images/users/jane_smith.jpg',
+		companyImage: '/images/companies/tech_innovators.png',
+		userDescription:
+			'Their professionalism and attention to detail were truly impressive. I look forward to working with them again.',
+	},
+	{
+		id: 3,
+		heading: 'A Game Changer',
+		subHeading: 'Remarkable Transformation',
+		user: 'Alex Johnson',
+		company: 'Creative Solutions',
+		userImage: '/images/users/alex_johnson.jpg',
+		companyImage: '/images/companies/creative_solutions.png',
+		userDescription:
+			'Their innovative solutions transformed our approach, achieving results far beyond our expectations.',
+	},
+	{
+		id: 4,
+		heading: 'Exceptional Customer Support',
+		subHeading: 'Always There When Needed',
+		user: 'Emma Brown',
+		company: 'SupportHub',
+		userImage: '/images/users/emma_brown.jpg',
+		companyImage: '/images/companies/supporthub.png',
+		userDescription:
+			'Their team was responsive and supportive, addressing all of our queries and issues promptly.',
+	},
+	{
+		id: 5,
+		heading: 'Top-Notch Expertise',
+		subHeading: 'Highly Skilled Team',
+		user: 'Chris Lee',
+		company: 'BuildRight',
+		userImage: '/images/users/chris_lee.jpg',
+		companyImage: '/images/companies/buildright.png',
+		userDescription:
+			'With unparalleled expertise, they guided us through complex projects smoothly and efficiently.',
+	},
+	{
+		id: 6,
+		heading: 'Highly Recommended',
+		subHeading: 'Outstanding Results',
+		user: 'Sophia Martinez',
+		company: 'BrightMind',
+		userImage: '/images/users/sophia_martinez.jpg',
+		companyImage: '/images/companies/brightmind.png',
+		userDescription:
+			'They took our vision and made it a reality with professionalism and creativity. Truly outstanding work.',
+	},
+	{
+		id: 7,
+		heading: 'Above and Beyond',
+		subHeading: 'Exceptional Dedication',
+		user: 'Liam Wilson',
+		company: 'GreenWave',
+		userImage: '/images/users/liam_wilson.jpg',
+		companyImage: '/images/companies/greenwave.png',
+		userDescription:
+			'Their commitment to excellence set them apart from other companies we’ve worked with.',
+	},
+	{
+		id: 8,
+		heading: 'Innovative Approach',
+		subHeading: 'Creative and Effective Solutions',
+		user: 'Isabella Clark',
+		company: 'DesignHub',
+		userImage: '/images/users/isabella_clark.jpg',
+		companyImage: '/images/companies/designhub.png',
+		userDescription:
+			'Their creative approach and innovative ideas made a significant impact on our project.',
+	},
+	{
+		id: 9,
+		heading: 'Reliable and Efficient',
+		subHeading: 'Consistency at its Best',
+		user: 'James Anderson',
+		company: 'OptimizePro',
+		userImage: '/images/users/james_anderson.jpg',
+		companyImage: '/images/companies/optimizepro.png',
+		userDescription:
+			'They delivered on every promise with reliability and efficiency, setting a high standard for others.',
+	},
+];
