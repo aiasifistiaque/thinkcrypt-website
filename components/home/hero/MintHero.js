@@ -109,7 +109,7 @@ const MintHero = () => {
 						</Text>
 						<Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
 							<ThinkButton>
-								<ButtonText>Book a Demo</ButtonText>
+								<ButtonText>Request a Demo</ButtonText>
 							</ThinkButton>
 						</Link>
 					</Flex>

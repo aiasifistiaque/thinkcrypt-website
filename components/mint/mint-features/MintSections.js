@@ -59,7 +59,7 @@ const MintSections = ({
 				>
 					{reverse ? (
 						<>
-							<GridItem order={{ base: 2, lg: 2 }}>
+							<GridItem order={{ base: 1, md: 2 }}>
 								<Flex
 									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
 									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
@@ -108,54 +108,79 @@ const MintSections = ({
 									</Box>
 								</Flex>
 							</GridItem>
-							<GridItem order={{ base: 1, lg: 1 }} mb={{ base: 0, xl: 36 }}>
+							<GridItem order={{ base: 2, md: 1 }} mb={{ base: 0, xl: 36 }}>
 								<Column
-									gap={{ base: 2, md: 4, lg: 5 }}
+									gap={{ base: 2, md: 2, lg: 5 }}
 									justifyItems='center'
 									alignItems={{ base: 'start', lg: 'start' }}
 								>
-									<P fontFamily={fonts.Suisse}>{text}</P>
+									<Text
+										fontSize={{ base: '14px', lg: '1.25rem' }}
+										// maxWidth='50vw'
+										fontFamily={fonts.Suisse}
+									>
+										{text}
+									</Text>
 									<Text
 										fontFamily='Bebas Neue'
 										fontSize={{
 											base: '1.5rem',
-											md: '1.75rem',
-											lg: '2rem',
+											md: '1.3rem',
+											lg: '1.75rem',
 											xl: '2.25rem',
 										}}
-										lineHeight={1}
+										lineHeight={1.6}
 									>
 										{subText}
 									</Text>
-									<P fontFamily={fonts.Suisse}>{paraText}</P>
+									<Text
+										fontSize={{ base: '12px', xl: '1.4rem' }}
+										fontFamily={fonts.Suisse}
+										lineHeight={{ xl: 1.6 }}
+										// maxWidth='50vw'
+									>
+										{paraText}
+									</Text>
 								</Column>
 							</GridItem>
 						</>
 					) : (
 						<>
-							<GridItem order={{ base: 2, lg: 2 }} mb={36}>
+							<GridItem order={{ base: 2, md: 2 }}>
 								<Column
 									gap={{ base: 2, md: 4, lg: 5 }}
 									justifyItems='center'
 									alignItems={{ base: 'start', lg: 'start' }}
 								>
-									<P fontFamily={fonts.Suisse}>{text}</P>
+									<Text
+										fontSize={{ base: '14px', lg: '1.25rem' }}
+										lineHeight={{ xl: 1 }}
+										fontFamily={fonts.Suisse}
+									>
+										{text}
+									</Text>
 									<Text
 										fontFamily='Bebas Neue'
 										fontSize={{
 											base: '1.5rem',
-											md: '1.75rem',
-											lg: '2rem',
+											md: '1.3rem',
+											lg: '1.75rem',
 											xl: '2.25rem',
 										}}
 										lineHeight={1}
 									>
 										{subText}
 									</Text>
-									<P fontFamily={fonts.Suisse}>{paraText}</P>
+									<Text
+										fontSize={{ base: '12px', xl: '1.4rem' }}
+										lineHeight={{ xl: 1.6 }}
+										fontFamily={fonts.Suisse}
+									>
+										{paraText}
+									</Text>
 								</Column>
 							</GridItem>
-							<GridItem order={{ base: 1, lg: 1 }}>
+							<GridItem order={{ base: 1, md: 1 }}>
 								<Flex
 									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
 									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React from 'react';
 import { styles } from '../../../theme/styles';
 import { breakpoints, layout } from '../../lib/constants';
@@ -15,6 +16,7 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 const P = styled(Text)`
 	@media (min-width: ${breakpoints.desktop}) {
@@ -55,7 +57,7 @@ const RegisterPlan = () => {
 	return (
 		<Column
 			mt='60px'
-			px={{ base: 6, md: 16, lg: 32 }}
+			px={{ base: 6, md: 16, lg: 16, xl: 32 }}
 			borderTop={BORDER}
 			borderBottom={BORDER}
 		>
@@ -76,8 +78,8 @@ const RegisterPlan = () => {
 				>
 					<GridItem>
 						<Flex
-							w={{ base: 'full', md: 'full', lg: '800px' }}
-							h={{ base: 'auto', md: 'auto', lg: '400px' }}
+							w={{ base: 'full', md: 'full', xl: '800px' }}
+							h={{ base: 'auto', md: 'auto', xl: '400px' }}
 							justifyContent='center'
 							position='relative'
 						>
@@ -96,32 +98,51 @@ const RegisterPlan = () => {
 					</GridItem>
 					<GridItem>
 						<Column
-							gap={{ base: 2, md: 4, lg: 8 }}
+							gap={{ base: 2, md: 4, lg: 4, xl: 8 }}
 							justifyItems='center'
-							alignItems={{ base: 'center', lg: 'start' }}
+							alignItems={{ base: 'center', md: 'start', lg: 'start' }}
 						>
 							<Text
-								fontSize={{ base: '1.5rem', md: '2rem', lg: '3rem' }}
+								fontSize={{
+									base: '1.5rem',
+									md: '2rem',
+									lg: '2rem',
+									xl: '3rem',
+								}}
 								fontFamily='Bebas Neue'
 							>
 								e-Mint store coming soon
 							</Text>
-							<P fontFamily={fonts.Suisse}>
+							<Text
+								fontFamily={fonts.Suisse}
+								fontSize={{ lg: '1rem', xl: '1.25rem' }}
+								lineHeight={1.6}
+							>
 								A simple and feature-rich inventory and e-commerce solution that
 								integrates seamlessly with your business operations. Built by
 								our trusted partner, MINT is a cutting-edge application designed
 								to streamline inventory management, invoicing, billing, and
 								customer engagement—all in one platform
-							</P>
-							<P fontFamily={fonts.Suisse}>
+							</Text>
+							<Text
+								fontFamily={fonts.Suisse}
+								fontSize={{ lg: '1rem', xl: '1.25rem' }}
+								lineHeight={1.6}
+							>
 								Click below to receive the latest updates.
-							</P>
-							<P fontFamily={fonts.Suisse}>
+							</Text>
+							<Text
+								fontFamily={fonts.Suisse}
+								fontSize={{ lg: '1rem', xl: '1.25rem' }}
+								lineHeight={1.6}
+							>
 								Want to know more? Join our pre-launch phase!
-							</P>
-							<ThinkButton>
-								<ButtonText>Register your Interest</ButtonText>
-							</ThinkButton>
+							</Text>
+							<Link href='/mint'>
+								<ThinkButton>
+									<ButtonText>Learn More</ButtonText>
+								</ThinkButton>
+							</Link>
 						</Column>
 					</GridItem>
 				</Grid>
