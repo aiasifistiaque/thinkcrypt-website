@@ -79,7 +79,7 @@ const PlanSection = () => {
 			</Text>
 			<Flex
 				gap={{ base: 2, md: 4 }}
-				wrap={{ base: 'wrap', md: 'nowrap' }}
+				//wrap={{ base: 'wrap', md: 'nowrap' }}
 				alignItems='center'
 			>
 				<P

@@ -48,7 +48,7 @@ const Homepage = () => {
 					be intuitive and simple to understand.
 				</SectionHeading> */}
 				{/* <Services /> */}
-				<RegisterPlan />
+				{/* <RegisterPlan /> */}
 				{/* <PlanSection /> */}
 
 				<Clients />
