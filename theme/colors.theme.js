@@ -81,4 +81,8 @@ export const colors = {
 		light: '#DEDEE0',
 		dark: '#DEDEE0',
 	},
+	sectionBg: {
+		light: '#f3f2ef',
+		dark: '#f3f2ef',
+	},
 };
