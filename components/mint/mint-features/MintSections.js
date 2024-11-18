@@ -42,7 +42,8 @@ const MintSections = ({
 					base: '16px',
 					md: '16px',
 					lg: '20px',
-					xl: '32px',
+					xLarge: '20px',
+					xxl: '36px',
 				}}
 				py={{ base: '24px', xl: '40px' }}
 				//my='60px'

@@ -64,7 +64,7 @@ const RegisterPlan = () => {
 			<Flex
 				w='full'
 				// maxW={layout.MAX_W}
-				mx='auto'
+				//mx='auto'
 				borderLeft={BORDER}
 				borderRight={BORDER}
 				px={{ base: '16px', md: '24px', xl: '60px' }}
@@ -78,7 +78,7 @@ const RegisterPlan = () => {
 				>
 					<GridItem>
 						<Flex
-							w={{ base: 'full', md: 'full', xl: '800px' }}
+							w={{ base: 'full', md: 'full', xLarge: '500px', xxl: '600px' }}
 							h={{ base: 'auto', md: 'auto', xl: '400px' }}
 							justifyContent='center'
 							position='relative'
