@@ -34,7 +34,7 @@ const MintSections = ({
 		>
 			<Flex
 				w='full'
-				// maxW={layout.MAX_W}
+				//maxW={layout.MAX_W}
 				mx='auto'
 				borderLeft={BORDER}
 				borderRight={BORDER}
@@ -42,8 +42,8 @@ const MintSections = ({
 					base: '16px',
 					md: '16px',
 					lg: '20px',
-					xLarge: '20px',
-					xxl: '36px',
+					xl: '32px',
+					
 				}}
 				py={{ base: '24px', xl: '40px' }}
 				//my='60px'
@@ -60,21 +60,23 @@ const MintSections = ({
 				>
 					{reverse ? (
 						<>
-							<GridItem order={{ base: 1, md: 2 }}>
+							<GridItem order={{ base: 1, md: 2 }} 
+							
+							>
 								<Flex
-									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
-									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
+									w={{ base: 'full', md: 'full', lg: 'full'  }}
+									h={{ base: 'auto', md: 'auto', lg: 'auto' }}
 									justifyContent='center'
-									position='relative'
+									//position='relative'
 								>
 									<Image
 										src={image}
 										alt='Banner'
-										w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
-										h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
+										// w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
+										// h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
 									/>
 
-									<Box
+									{/* <Box
 										position='absolute'
 										top={{ base: '18px', md: '15px', lg: '22px', xl: '47px' }}
 										left={{
@@ -106,10 +108,10 @@ const MintSections = ({
 												}}
 											/>
 										</Box>
-									</Box>
+									</Box> */}
 								</Flex>
 							</GridItem>
-							<GridItem order={{ base: 2, md: 1 }} mb={{ base: 0, xl: 36 }}>
+							<GridItem order={{ base: 2, md: 1 }} >
 								<Column
 									gap={{ base: 2, md: 2, lg: 5 }}
 									justifyItems='center'
@@ -183,19 +185,19 @@ const MintSections = ({
 							</GridItem>
 							<GridItem order={{ base: 1, md: 1 }}>
 								<Flex
-									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
-									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
+									w={{ base: 'full', md: 'full', lg: 'full'}}
+									h={{ base: 'auto', md: 'auto', lg: 'auto' }}
 									justifyContent='center'
-									position='relative'
+									//position='relative'
 								>
 									<Image
 										src={image}
 										alt='Banner'
-										w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
-										h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
+										// w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
+										// h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
 									/>
 
-									<Box
+									{/* <Box
 										position='absolute'
 										top={{ base: '18px', md: '15px', lg: '22px', xl: '47px' }}
 										left={{
@@ -227,7 +229,7 @@ const MintSections = ({
 												}}
 											/>
 										</Box>
-									</Box>
+									</Box> */}
 								</Flex>
 							</GridItem>
 						</>
