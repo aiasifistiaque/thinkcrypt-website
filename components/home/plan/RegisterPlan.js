@@ -79,9 +79,10 @@ const RegisterPlan = () => {
 					<GridItem>
 						<Flex
 							w={{ base: 'full', md: 'full', xLarge: '500px', xxl: '600px' }}
-							h={{ base: 'auto', md: 'auto', xl: '400px' }}
+							h={{ base: 'auto', md: 'auto', lg: 'auto' }}
 							justifyContent='center'
 							position='relative'
+							
 						>
 							<video
 								autoPlay
@@ -91,6 +92,7 @@ const RegisterPlan = () => {
 								//controls
 								style={{
 									borderRadius: '6px',
+									
 								}}
 								src='./e-mint/emint-v3.mp4'
 							/>
@@ -98,7 +100,7 @@ const RegisterPlan = () => {
 					</GridItem>
 					<GridItem>
 						<Column
-							gap={{ base: 2, md: 4, lg: 4, xl: 8 }}
+							gap={{ base: 2, md: 4, xl: 6 }}
 							justifyItems='center'
 							alignItems={{ base: 'center', md: 'start', lg: 'start' }}
 						>

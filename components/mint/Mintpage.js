@@ -24,22 +24,22 @@ const Mintpage = () => {
 				<MintSections
 					text={'Fully Customizable Website Themes'}
 					subText={'Tailored Website Customization'}
-					image={'./e-mint/mint-illustrationv3.png'}
+					image={'./e-mint/mint-section1.gif'}
 					paraText={
 						'Choose from various themes and customize every detail to match your brand. Our platform allows you to personalize your homepage, colors, sections, and more, giving you full control to create a website that truly reflects your unique identity and stands out to your audience.'
 					}
 					reverse={false}
-					video='./e-mint/emint-v2.mp4'
+					//video='./e-mint/emint-v2.mp4'
 				/>
 				<MintSections
 					text={'Marketing Made Easy: Email & SMS'}
 					subText={'Boost Your Sales & Engagement'}
-					image={'./e-mint/mint-illustrationv3.png'}
+					image={'./e-mint/mint-section4.gif'}
 					paraText={
 						'Boost engagement with robust email and SMS marketing tools. Reach customers instantly through bulk messaging or targeted campaigns—all from a single platform, making it easy to connect and drive results effectively.'
 					}
 					reverse={true}
-					video='./e-mint/mint-v5.mp4'
+					//video='./e-mint/mint-section2.gif'
 				/>
 				<MintSections
 					text={'Top Products & Customer Insights'}
@@ -47,9 +47,9 @@ const Mintpage = () => {
 					paraText={
 						'Make informed decisions with real-time analytics. Track best-selling products and identify top customers to refine and enhance your sales strategies. Our platform’s reporting tools provide the insights you need to optimize performance and boost results, helping you stay ahead in a competitive market.'
 					}
-					image='./e-mint/mint-illustrationv3.png'
+					image='./e-mint/mint-section3.gif'
 					reverse={false}
-					video='./e-mint/mint-v4.mp4'
+					//video='./e-mint/mint-v4.mp4'
 				/>
 				<MintSections
 					text={'Role-Based Admin Panel'}
@@ -57,9 +57,9 @@ const Mintpage = () => {
 					paraText={
 						'Efficiently manage your team with a secure, role-based admin panel. Assign roles, control access levels, and maintain smooth operations across your business. This streamlined approach enhances team collaboration while safeguarding sensitive information, giving you complete control over permissions and workflow management.'
 					}
-					image={'./e-mint/mint-illustrationv3.png'}
+					image={'./e-mint/mint-section2.gif'}
 					reverse={true}
-					video='./e-mint/mint-v3.mp4'
+					//video='./e-mint/mint-v3.mp4'
 				/>
 				{/* <RegisterPlan /> */}
 				<PlanSection />

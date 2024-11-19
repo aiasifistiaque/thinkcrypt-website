@@ -1,19 +1,10 @@
 import React from 'react';
 import { styles } from '../../../theme/styles';
-import { breakpoints } from '../../lib/constants';
 import Column from '../../util/Column';
 import { fonts } from '../../../lib/constants';
 
-import { Box, Flex, Grid, GridItem, Image, Text } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import { Flex, Grid, GridItem, Image, Text } from '@chakra-ui/react';
 
-const P = styled(Text)`
-	@media (min-width: ${breakpoints.desktop}) {
-		font-size: 1.2rem;
-		line-height: 1.6;
-		max-width: 50vw;
-	}
-`;
 
 const BORDER = styles.border.light;
 
@@ -23,7 +14,6 @@ const MintSections = ({
 	paraText,
 	image,
 	reverse = false,
-	video,
 }) => {
 	return (
 		<Column
@@ -34,7 +24,7 @@ const MintSections = ({
 		>
 			<Flex
 				w='full'
-				// maxW={layout.MAX_W}
+				
 				mx='auto'
 				borderLeft={BORDER}
 				borderRight={BORDER}
@@ -42,11 +32,10 @@ const MintSections = ({
 					base: '16px',
 					md: '16px',
 					lg: '20px',
-					xLarge: '20px',
-					xxl: '36px',
+					xl: '32px',
+					
 				}}
 				py={{ base: '24px', xl: '40px' }}
-				//my='60px'
 			>
 				<Grid
 					templateColumns={{
@@ -60,56 +49,22 @@ const MintSections = ({
 				>
 					{reverse ? (
 						<>
-							<GridItem order={{ base: 1, md: 2 }}>
+							<GridItem order={{ base: 1, md: 2 }} 
+							
+							>
 								<Flex
-									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
-									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
+									w={{ base: 'full', md: 'full', lg: 'full'  }}
+									h={{ base: 'auto', md: 'auto', lg: 'auto' }}
 									justifyContent='center'
-									position='relative'
+									
 								>
 									<Image
 										src={image}
-										alt='Banner'
-										w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
-										h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
+										alt='Banner'				
 									/>
-
-									<Box
-										position='absolute'
-										top={{ base: '18px', md: '15px', lg: '22px', xl: '47px' }}
-										left={{
-											base: '58px',
-											md: '56px',
-											lg: '82px',
-											xl: ' 166px ',
-										}}
-									>
-										<Box
-											width={{
-												base: '184px',
-												md: '167px',
-												lg: '240px',
-												xl: '470px',
-											}}
-										>
-											<video
-												src={`${video}`}
-												autoPlay
-												// width='469'
-												//height='325'
-												muted
-												loop
-												playsInline
-												//controls
-												style={{
-													borderRadius: '6px',
-												}}
-											/>
-										</Box>
-									</Box>
 								</Flex>
 							</GridItem>
-							<GridItem order={{ base: 2, md: 1 }} mb={{ base: 0, xl: 36 }}>
+							<GridItem order={{ base: 2, md: 1 }} >
 								<Column
 									gap={{ base: 2, md: 2, lg: 5 }}
 									justifyItems='center'
@@ -117,7 +72,6 @@ const MintSections = ({
 								>
 									<Text
 										fontSize={{ base: '14px', lg: '1.25rem' }}
-										// maxWidth='50vw'
 										fontFamily={fonts.Suisse}
 									>
 										{text}
@@ -138,7 +92,6 @@ const MintSections = ({
 										fontSize={{ base: '12px', xl: '1.4rem' }}
 										fontFamily={fonts.Suisse}
 										lineHeight={{ xl: 1.6 }}
-										// maxWidth='50vw'
 									>
 										{paraText}
 									</Text>
@@ -183,51 +136,14 @@ const MintSections = ({
 							</GridItem>
 							<GridItem order={{ base: 1, md: 1 }}>
 								<Flex
-									w={{ base: 'full', md: 'full', lg: 'full', xl: '800px' }}
-									h={{ base: 'auto', md: 'auto', lg: 'auto', xl: '485px' }}
+									w={{ base: 'full', md: 'full', lg: 'full'}}
+									h={{ base: 'auto', md: 'auto', lg: 'auto' }}
 									justifyContent='center'
-									position='relative'
 								>
 									<Image
 										src={image}
-										alt='Banner'
-										w={{ base: '400px', md: '400px', lg: '600px', xl: '800px' }}
-										h={{ base: '190px', md: '168px', lg: '244px', xl: 'auto' }}
+										alt='Banner'									
 									/>
-
-									<Box
-										position='absolute'
-										top={{ base: '18px', md: '15px', lg: '22px', xl: '47px' }}
-										left={{
-											base: '58px',
-											md: '56px',
-											lg: '82px',
-											xl: ' 166px ',
-										}}
-									>
-										<Box
-											width={{
-												base: '184px',
-												md: '167px',
-												lg: '240px',
-												xl: '470px',
-											}}
-										>
-											<video
-												src={`${video}`}
-												autoPlay
-												// width='469'
-												//height='325'
-												muted
-												loop
-												playsInline
-												//controls
-												style={{
-													borderRadius: '6px',
-												}}
-											/>
-										</Box>
-									</Box>
 								</Flex>
 							</GridItem>
 						</>
