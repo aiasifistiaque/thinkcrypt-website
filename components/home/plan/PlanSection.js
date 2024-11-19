@@ -69,19 +69,31 @@ const PlanSection = () => {
       alignItems="center"
       borderTop={BORDER}
       borderBottom={BORDER}
-      gap={{ base: 4, md: 10, lg: 16 }}
+      gap={{ base: 4, md: 8, xl: 8 }}
       bg="sectionBg.light"
     >
       <Text
-        fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}
+        fontSize={{ base: "1.4rem", md: "2rem", lg: "3rem" }}
         fontFamily="Bebas Neue"
+        textAlign="center"
       >
         There’s an E-mint store for every business
       </Text>
-      <Flex gap={{ base: 2, md: 4 }} alignItems="center">
-        <P fontFamily={fonts.Suisse}>Pay Monthly</P>
-        <Switch size="lg" isChecked={isYearly} onChange={handleToggle} />
-        <P fontFamily={fonts.Suisse}>Pay Annually</P>
+      <Flex
+        flexDir={{ base: "column", md: "row" }}
+        gap={{ base: 0, md: 4 }}
+        alignItems="center"
+      >
+        <Flex
+          gap={{ base: 2, sm: 4 }}
+          alignItems="center"
+          justifyContent={{ base: "space-around" }}
+          wrap={{ base: "wrap", md: "nowrap" }}
+        >
+          <P fontFamily={fonts.Suisse}>Pay Monthly</P>
+          <Switch size="lg" isChecked={isYearly} onChange={handleToggle} />
+          <P fontFamily={fonts.Suisse}>Pay Annually</P>
+        </Flex>
         <P
           fontFamily={fonts.Suisse}
           bgColor="orange.light"
@@ -89,6 +101,8 @@ const PlanSection = () => {
           px={2}
           textColor="white"
           textAlign="center"
+          w={{ base: "fit-content" }}
+          mt={{ base: 4, sm: 0 }}
         >
           50% OFF ALL YEAR
         </P>
@@ -101,7 +115,7 @@ const PlanSection = () => {
           xl: "1fr 1fr 1fr 1fr",
         }}
         gap={6}
-        py={{ base: 4, md: 6, lg: 10 }}
+        py={{ base: 4, md: 6, lg: 8 }}
         px={{ base: 4, md: 6, lg: 10, xl: 20 }}
       >
         {planData?.map((plan) => (
