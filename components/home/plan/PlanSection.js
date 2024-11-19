@@ -102,7 +102,7 @@ const PlanSection = () => {
           textColor="white"
           textAlign="center"
           w={{ base: "fit-content" }}
-          mt={{ base: 4, sm: 0 }}
+          mt={{ base: 4, md: 0 }}
         >
           50% OFF ALL YEAR
         </P>
