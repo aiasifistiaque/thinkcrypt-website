@@ -13,6 +13,7 @@ import Clients from "./clients/Clients";
 import AboutUsSection from "./about-us/AboutUsSection";
 import RegisterPlan from "./plan/RegisterPlan";
 import PlanSection from "./plan/PlanSection";
+import MintRegisterSection from "./plan/MintRegisterSection";
 
 const Container = styled(Flex)`
   flex: 1;
@@ -48,7 +49,19 @@ const Homepage = () => {
 					be intuitive and simple to understand.
 				</SectionHeading> */}
         {/* <Services /> */}
-        <RegisterPlan />
+        {/* <RegisterPlan /> */}
+        <MintRegisterSection
+          heading={"Inventory Management System"}
+          subHeading={""}
+          btnText="Learn More"
+          href="/mint"
+        >
+          A simple and feature-rich inventory and e-commerce solution that
+          integrates seamlessly with your business operations. Built by our
+          trusted partner, MINT is a cutting-edge application designed to
+          streamline inventory management, invoicing, billing, and customer
+          engagement—all in one platform
+        </MintRegisterSection>
         {/* <PlanSection /> */}
 
         <Clients />
