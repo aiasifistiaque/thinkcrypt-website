@@ -91,7 +91,26 @@ const PlanSection = () => {
           wrap={{ base: "wrap", md: "nowrap" }}
         >
           <P fontFamily={fonts.Suisse}>Pay Monthly</P>
-          <Switch size="lg" isChecked={isYearly} onChange={handleToggle} />
+          <Switch
+            // colorScheme="blackAlpha"
+            sx={{
+              ".chakra-switch__track": {
+                bg: "#CBD5E0",
+                _checked: {
+                  bg: "black",
+                },
+              },
+              ".chakra-switch__thumb": {
+                bg: "black",
+                _checked: {
+                  bg: "white",
+                },
+              },
+            }}
+            size="lg"
+            isChecked={isYearly}
+            onChange={handleToggle}
+          />
           <P fontFamily={fonts.Suisse}>Pay Annually</P>
         </Flex>
         <P
