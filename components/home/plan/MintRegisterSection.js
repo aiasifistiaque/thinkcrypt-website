@@ -98,7 +98,7 @@ const MintRegisterSection = ({
       >
         <Left>
           {/* <Subtitle fontFamily="Bebas Neue"> {subHeading}</Subtitle> */}
-          <CustomImage w="full" h={{ base: "322px", lg: "450px" }}>
+          <CustomImage w="full" h={{ base: "322px", lg: "466px" }}>
             {mintSectionImage2}
           </CustomImage>
         </Left>
@@ -127,7 +127,7 @@ const MintRegisterSection = ({
   );
 
   return (
-    <Flex mt="24px" w="100%" pb="64px" borderBottom={BORDER}>
+    <Flex mt="64px" w="100%" pb="64px" borderBottom={BORDER}>
       <Flex px="24px" border={BORDER} {...props}>
         <Flex
           flexDir="column"

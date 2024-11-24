@@ -67,14 +67,18 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
                       base: "1.5rem",
                       md: "1.3rem",
                       lg: "1.75rem",
-                      xl: "2.25rem",
+                      // xl: "2.25rem",
                     }}
                     lineHeight={1.6}
                   >
                     {subText}
                   </Text>
                   <Text
-                    fontSize={{ base: "12px", lg: "1rem", xl: "1.25rem" }}
+                    fontSize={{
+                      base: "12px",
+                      lg: "1rem",
+                      //  xl: "1.25rem"
+                    }}
                     fontFamily={fonts.Suisse}
                     lineHeight={{ xl: 1.6 }}
                   >
@@ -104,14 +108,18 @@ const MintSections = ({ text, subText, paraText, image, reverse = false }) => {
                       base: "1.5rem",
                       md: "1.3rem",
                       lg: "1.75rem",
-                      xl: "2.25rem",
+                      // xl: "2.25rem",
                     }}
                     lineHeight={1}
                   >
                     {subText}
                   </Text>
                   <Text
-                    fontSize={{ base: "12px", lg: "1rem", xl: "1.25rem" }}
+                    fontSize={{
+                      base: "12px",
+                      lg: "1rem",
+                      // xl: "1.25rem"
+                    }}
                     lineHeight={{ xl: 1.6 }}
                     fontFamily={fonts.Suisse}
                   >
