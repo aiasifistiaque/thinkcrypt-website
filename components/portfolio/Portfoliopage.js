@@ -80,7 +80,7 @@ const data = [
 const data2 = [
   {
     src: "/portfolio/home/krishi-swapno.png",
-    name: "Krishi Swapno",
+    name: "Krishi Shwapno",
     type: "Web App",
     href: "https://krishi-shwapno-rouge.vercel.app",
   },
