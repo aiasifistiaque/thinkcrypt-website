@@ -26,7 +26,7 @@ const ThinkButton = styled(Center)`
   transition: 0.2s;
   &:hover {
     @media (min-width: ${breakpoints.desktop}) {
-      background-color: ${colors.charcole};
+      background-color: ${colors.orange};
     }
   }
   &:active {
