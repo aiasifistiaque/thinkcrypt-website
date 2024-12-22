@@ -8,79 +8,79 @@ import { breakpoints } from "../lib/constants";
 import { styles } from "../../theme/styles";
 
 const data = [
-	{
-		src: '/portfolio/home/zhoey.png',
-		name: 'Zhoei',
-		type: 'Web App',
-		href: 'https://zhoei.mintapp.store',
-	},
-	{
-		src: '/portfolio/home/mint-commerce.png',
-		name: 'Mint Commerce',
-		type: 'Web App',
-		href: 'https://admin-thinkcommerce.vercel.app',
-	},
-	{
-		src: '/portfolio/home/event-pro.png',
-		name: 'Event Pro',
-		type: 'Web App',
-		href: 'https://eventpro-ticketing-frontend-production.vercel.app',
-	},
-	{
-		src: '/projects/samc.svg',
-		name: 'SAMC Bangladesh',
-		type: 'Web App',
-		href: 'https://samcbangladesh.org',
-	},
-	{
-		src: '/projects/livefresh.svg',
-		name: 'Live Fresh',
-		type: 'e-commerce',
-		href: 'https://livefreshbd.com/',
-	},
-	{
-		src: '/projects/bazar.svg',
-		name: 'Bazar365',
-		type: 'E-Commerce',
-		href: 'https://bazar365.com',
-	},
-	{
-		src: '/projects/challent.svg',
-		name: 'Challent',
-		type: 'Management web app',
-		href: 'https://challent.vercel.app/',
-	},
-	{
-		src: '/projects/netsoon-new.png',
-		name: 'Netsooon',
-		type: 'Social Media Web app',
-		href: 'https://netsooon.vercel.app/',
-	},
-	{
-		src: '/projects/checklist-new.png',
-		name: 'Checkliiist Inventory Management system',
-		type: 'Inventory Management Saas',
-		href: 'https://checkliiist.com',
-	},
-	{
-		src: '/projects/arewa.svg',
-		name: 'Arewa Books',
-		type: 'Web App',
-		href: 'https://arewabooks.com',
-	},
+  {
+    src: "/portfolio/home/zhoey.png",
+    name: "Zhoei",
+    type: "Web App",
+    href: "https://zhoei.mintapp.store",
+  },
+  {
+    src: "/portfolio/home/mint-commerce.png",
+    name: "Mint Commerce",
+    type: "Web App",
+    href: "https://admin-thinkcommerce.vercel.app",
+  },
+  {
+    src: "/portfolio/home/event-pro.png",
+    name: "Event Pro",
+    type: "Web App",
+    href: "https://eventpro-ticketing-frontend-production.vercel.app",
+  },
+  {
+    src: "/projects/samc.svg",
+    name: "SAMC Bangladesh",
+    type: "Web App",
+    href: "https://samcbangladesh.org",
+  },
+  {
+    src: "/projects/livefresh.svg",
+    name: "Live Fresh",
+    type: "e-commerce",
+    href: "https://livefreshbd.com/",
+  },
+  {
+    src: "/projects/bazar.svg",
+    name: "Bazar365",
+    type: "E-Commerce",
+    href: "https://bazar365.com",
+  },
+  {
+    src: "/projects/challent.svg",
+    name: "Challent",
+    type: "Management web app",
+    href: "https://challent.vercel.app/",
+  },
+  {
+    src: "/projects/netsoon-new.png",
+    name: "Netsooon",
+    type: "Social Media Web app",
+    href: "https://netsooon.vercel.app/",
+  },
+  {
+    src: "/projects/checklist-new.png",
+    name: "Checkliiist Inventory Management system",
+    type: "Inventory Management Saas",
+    href: "https://checkliiist.com",
+  },
+  {
+    src: "/projects/arewa.svg",
+    name: "Arewa Books",
+    type: "Web App",
+    href: "https://arewabooks.com",
+  },
 
-	{
-		src: '/projects/weather-new.png',
-		name: 'Weather App',
-		type: 'iOs & Android App',
-		href: 'https://github.com/aiasifistiaque/weatherapp',
-	},
-	{
-		src: '/portfolio/home/ui.jpg',
-		name: 'UI/UX projects',
-		type: 'UI/UX',
-		href: 'https://dribbble.com/thinkcrypt',
-	},
+  {
+    src: "/projects/weather-new.png",
+    name: "Weather App",
+    type: "iOs & Android App",
+    href: "https://github.com/aiasifistiaque/weatherapp",
+  },
+  {
+    src: "/portfolio/home/ui.jpg",
+    name: "UI/UX projects",
+    type: "UI/UX",
+    href: "https://dribbble.com/thinkcrypt",
+  },
 ];
 
 const data2 = [
@@ -95,6 +95,12 @@ const data2 = [
     name: "Mint Go",
     type: "Web App",
     href: "https://mint-hongo.vercel.app",
+  },
+  {
+    src: "/portfolio/home/technovelty.png",
+    name: "Tech Novelty Solutions",
+    type: "Web App",
+    href: "https://www.technoveltysolutions.com",
   },
   {
     src: "/projects/shohoz-new.png",

@@ -21,36 +21,37 @@ const teamMemebers = [
     name: "Manazir Irteza Rashid",
     designation: "Head of Sales & Marketing",
   },
-  {
-    img: "/team/Nurain.jpeg",
-    name: "Sumratul Nurain",
-    designation: "HR & Administration Officer",
-  },
-  {
-    img: "/team/Arefin.jpg",
-    name: "Kazi Samsul Arefin",
-    designation: "Software Engineer",
-  },
+  // {
+  //   img: "/team/Nurain.jpeg",
+  //   name: "Sumratul Nurain",
+  //   designation: "HR & Administration Officer",
+  // },
   {
     img: "/team/Anamika.png",
     name: "Sadiya Afroze Anamika",
     designation: "Project Manager",
   },
   {
-    img: "/team/ashikuzzaman-abir.png",
-    name: "MD Ashikuzzaman Abir",
+    img: "/team/Arefin.jpg",
+    name: "Kazi Samsul Arefin",
     designation: "Software Engineer",
   },
-  {
-    img: "/team/mubin.jpg",
-    name: "Kazi Ehsanul Mubin",
-    designation: "Software Engineer",
-  },
-  {
-    img: "/team/Md-Aminul-Haque.jpg",
-    name: "Md Aminul Haque",
-    designation: "Software Engineer",
-  },
+
+  // {
+  //   img: "/team/ashikuzzaman-abir.png",
+  //   name: "MD Ashikuzzaman Abir",
+  //   designation: "Software Engineer",
+  // },
+  // {
+  //   img: "/team/mubin.jpg",
+  //   name: "Kazi Ehsanul Mubin",
+  //   designation: "Software Engineer",
+  // },
+  // {
+  //   img: "/team/Md-Aminul-Haque.jpg",
+  //   name: "Md Aminul Haque",
+  //   designation: "Software Engineer",
+  // },
   {
     img: "/team/Abeer.jpg",
     name: "Naimul Haq Abeer",
@@ -58,8 +59,8 @@ const teamMemebers = [
   },
   {
     img: "/team/Sampod.jpg",
-    name: "Khandaker Sampod",
-    designation: "Business Development",
+    name: "Khandaker Ahsan Akib",
+    designation: "Business Development Intern",
   },
   {
     img: "/team/siam.png",
@@ -71,32 +72,32 @@ const teamMemebers = [
     name: "Sajib Hasan",
     designation: "Intern Software Engineer",
   },
-  {
-    img: "/team/Afrid.jpg",
-    name: "Khondaker Samiul Alam Afrid",
-    designation: "Junior Executive, Marketing",
-  },
-  {
-    img: "/team/Susan.jpg",
-    name: "Susan Jannat",
-    designation: "Junior UI/UX Designer ",
-  },
-  {
-    img: "/team/Turzo.jpg",
-    name: "Jalal Uddin Turzo",
-    designation: "Junior Executive, Marketing",
-  },
-  {
-    img: "/team/Sumit.jpg",
-    name: "Istiaque Ahmed Sumit",
-    designation: "Intern Frontend Developer",
-  },
+  // {
+  //   img: "/team/Afrid.jpg",
+  //   name: "Khondaker Samiul Alam Afrid",
+  //   designation: "Junior Executive, Marketing",
+  // },
+  // {
+  //   img: "/team/Susan.jpg",
+  //   name: "Susan Jannat",
+  //   designation: "Junior UI/UX Designer ",
+  // },
+  // {
+  //   img: "/team/Turzo.jpg",
+  //   name: "Jalal Uddin Turzo",
+  //   designation: "Junior Executive, Marketing",
+  // },
+  // {
+  //   img: "/team/Sumit.jpg",
+  //   name: "Istiaque Ahmed Sumit",
+  //   designation: "Intern Frontend Developer",
+  // },
 
-  {
-    img: "/team/Parvez.jpg",
-    name: "Md Parvez",
-    designation: "Office Assistant",
-  },
+  // {
+  //   img: "/team/Parvez.jpg",
+  //   name: "Md Parvez",
+  //   designation: "Office Assistant",
+  // },
 ];
 
 const BORDER = styles.border.light;
