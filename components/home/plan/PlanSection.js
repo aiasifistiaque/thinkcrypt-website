@@ -4,7 +4,9 @@ import { breakpoints } from "../../lib/constants";
 import { fonts } from "../../../lib/constants";
 import { colors } from "../../lib/constants";
 import styled from "@emotion/styled";
-import { FaCheck, FaTimes } from "react-icons/fa";
+import { FaCheck, FaChessRook, FaTimes } from "react-icons/fa";
+import { GiSpearHook } from "react-icons/gi";
+
 import {
   Box,
   Center,
@@ -58,7 +60,7 @@ const PlanSection = () => {
   const handleToggle = () => setIsYearly(!isYearly);
 
   // Extract all unique features from the "Advanced" plan
-  const advancedFeatures = planData.find((plan) => plan.item === "Advanced")[
+  const advancedFeatures = planData.find((plan) => plan.item === "Enterprise")[
     "data-list"
   ];
 
@@ -66,7 +68,6 @@ const PlanSection = () => {
     <Column
       mt="60px"
       p={{ base: 6, md: 16, lg: 32 }}
-      alignItems="center"
       borderTop={BORDER}
       borderBottom={BORDER}
       gap={{ base: 4, md: 8, xl: 8 }}
@@ -83,6 +84,7 @@ const PlanSection = () => {
         flexDir={{ base: "column", md: "row" }}
         gap={{ base: 0, md: 4 }}
         alignItems="center"
+        alignSelf="center"
       >
         <Flex
           gap={{ base: 2, sm: 4 }}
@@ -131,11 +133,11 @@ const PlanSection = () => {
         templateColumns={{
           base: "1fr",
           md: "1fr 1fr",
-          xl: "1fr 1fr 1fr 1fr",
+          xl: "1fr 1fr 1fr",
         }}
-        gap={6}
+        gap={{ base: 6, lg: 10, "2xl": 20 }}
         py={{ base: 4, md: 6, lg: 8 }}
-        px={{ base: 4, md: 6, lg: 10, xl: 20 }}
+        px={{ base: 4, md: 6, lg: 10 }}
       >
         {planData?.map((plan) => (
           <GridItem key={plan?.id}>
@@ -157,42 +159,63 @@ const PlanSection = () => {
                 {plan?.item}
               </Text>
 
-              <Text as="s" color="gray.500" fontFamily={fonts.Suisse}>
-                BDT {isYearly ? plan.oldYearlyPayment : plan.oldMonthlyPayment}
-              </Text>
+              {plan?.item === "Enterprise" ? (
+                <Text color="gray.500" fontFamily={fonts.Suisse}>
+                  TBA
+                </Text>
+              ) : (
+                <Text as="s" color="gray.500" fontFamily={fonts.Suisse}>
+                  {`BDT ${plan?.regularPrice}`}
+                </Text>
+              )}
+
               <Flex>
                 <Text
                   fontSize={{ base: "1.75rem", md: "2rem", lg: "2.5rem" }}
                   fontWeight={500}
                   fontFamily="Bebas Neue"
                 >
-                  {isYearly ? plan["yearly-payment"] : plan["monthly-payment"]}
+                  {plan?.item === "Enterprise"
+                    ? "TBA"
+                    : `${plan?.oneTimePayment}`}
                 </Text>
-                <P fontWeight={500}>{isYearly ? "/yr*" : "/mo*"}</P>
+                <P fontWeight={500}>
+                  {plan?.item === "Enterprise" ? "" : "/for one time only"}
+                </P>
               </Flex>
+              <Text
+                color="gray.500"
+                fontSize={"1rem"}
+                mb={4}
+                fontFamily={fonts.Suisse}
+              >
+                {plan?.item === "Enterprise"
+                  ? "TBA"
+                  : `${plan?.yearlyMaintenance} for yearly maintenance`}
+              </Text>
 
-              <Text color="gray.500" mb={4} fontFamily={fonts.Suisse}>
+              {/* <Text color="gray.500" mb={4} fontFamily={fonts.Suisse}>
                 Save BDT{" "}
                 {isYearly ? plan["yearly-savings"] : plan["monthly-savings"]}
                 {isYearly ? "/yr" : "/mo"} for 3 months
-              </Text>
+              </Text> */}
 
               <ThinkButton w="full">
                 <ButtonText>Buy now</ButtonText>
               </ThinkButton>
 
               <Column gap={2} w="full">
-                {advancedFeatures
+                {plan?.["data-list"]
                   // Sort to bring features present in the current plan to the top
-                  .sort((a, b) => {
-                    const isAIncluded = plan["data-list"].includes(a);
-                    const isBIncluded = plan["data-list"].includes(b);
-                    return isAIncluded === isBIncluded
-                      ? 0
-                      : isAIncluded
-                      ? -1
-                      : 1;
-                  })
+                  // .sort((a, b) => {
+                  //   const isAIncluded = plan["data-list"].includes(a);
+                  //   const isBIncluded = plan["data-list"].includes(b);
+                  //   return isAIncluded === isBIncluded
+                  //     ? 0
+                  //     : isAIncluded
+                  //     ? -1
+                  //     : 1;
+                  // })
                   .map((feature, index) => (
                     <Flex
                       key={index}
@@ -202,11 +225,7 @@ const PlanSection = () => {
                       w="full"
                     >
                       <Box flexShrink={0} flexBasis="auto">
-                        {plan["data-list"].includes(feature) ? (
-                          <FaCheck color="green" size="1em" />
-                        ) : (
-                          <FaTimes color="red" size="1em" />
-                        )}
+                        <GiSpearHook />
                       </Box>
                       <Text flexGrow={1} fontFamily={fonts.Suisse}>
                         {feature}
