@@ -15,11 +15,21 @@ import { howWeWork, howWeWorkPic1, howWeWorkPic2 } from '../../../data/data';
 import { fonts } from '../../lib/constants';
 
 import { styles } from '../../../theme/styles';
+import { useGetAllQuery } from '../../../store';
 
 const BORDER = styles.border.light;
 
 const ServicesNew = () => {
 	const [hoveredIndex, setHoveredIndex] = useState(0);
+
+	const { data, isFetching } = useGetAllQuery({
+		path: 'services',
+		limit: 15,
+		sort: '-priority',
+		filters: {
+			isActive: true,
+		},
+	});
 
 	const CustomImage = ({ children, w, h }) => {
 		return (
@@ -75,7 +85,7 @@ const ServicesNew = () => {
 					<Accordion
 						defaultIndex={[0]}
 						borderLeft={BORDER}>
-						{howWeWork?.map((item, index) => (
+						{data?.doc?.map((item, index) => (
 							<AccordionItem
 								key={index}
 								border={BORDER}>
@@ -90,7 +100,7 @@ const ServicesNew = () => {
 												fontSize='18px'
 												fontWeight={600}
 												fontFamily={fonts.heading}>
-												{item.title}
+												{item?.name}
 											</Text>
 										</Box>
 									</AccordionButton>
@@ -99,7 +109,7 @@ const ServicesNew = () => {
 									<Text
 										fontSize='14px'
 										fontFamily='Suisse'>
-										{item.subTitle}
+										{item?.description}
 									</Text>
 								</AccordionPanel>
 							</AccordionItem>
@@ -147,7 +157,7 @@ const ServicesNew = () => {
 					templateColumns='repeat(4, 1fr)'
 					gap='1px'
 					bgColor='#DEDEE0'>
-					{howWeWork?.map((item, index) => (
+					{data?.doc?.map((item, index) => (
 						<Column
 							key={index}
 							px={4}
@@ -162,14 +172,14 @@ const ServicesNew = () => {
 								fontSize='24px'
 								fontWeight='400'
 								fontFamily={fonts.heading}>
-								{item.title}
+								{(index + 1).toString().padStart(2, '0')} {item?.name}
 							</Text>
 							<Text
 								fontFamily='Suisse'
 								fontSize='16px'
 								fontWeight='400'
 								overflow='hidden'>
-								{item.subTitle}
+								{item?.description}
 							</Text>
 						</Column>
 					))}
