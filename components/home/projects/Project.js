@@ -8,9 +8,9 @@ const radius = '0px';
 
 const Background = styled(Flex)`
 	flex: 1;
-	border: 18px solid #060508;
+	border: 12px solid #060508;
 	background-position: top center;
-	border-radius: 16px;
+	border-radius: 12px;
 	background-size: cover;
 	width: 100%;
 	height: 200px;
@@ -49,7 +49,6 @@ const TextBox = styled(Flex)`
 
 const TextOverlay = styled(Stack)`
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 75.79%);
-
 	@media (min-width: ${breakpoints.desktop}) {
 		border-bottom-left-radius: ${radius};
 		border-bottom-right-radius: ${radius};
@@ -61,7 +60,7 @@ const BORDER = styles.border.light;
 const Project = ({ item, index }) => {
 	return (
 		<Link
-			href={item.href}
+			href={item?.liveUrl}
 			isExternal
 			_hover={{ textDecoration: 'none' }}>
 			<Flex
@@ -83,14 +82,14 @@ const Project = ({ item, index }) => {
 					</Text>
 				</Flex>
 				<Flex p={{ base: 6, md: 8 }}>
-					<Background bg={`url(${item.src})`}>
+					<Background bg={`url(${item?.image})`}>
 						<Overlay>
 							<TextBox>
 								<TextOverlay
 									p={3}
 									spacing={0.5}>
-									<Heading size='lg'>{item.name}</Heading>
-									<Heading size='xs'>{item.type}</Heading>
+									<Heading size='lg'>{item?.name}</Heading>
+									<Heading size='xs'>{item?.category}</Heading>
 								</TextOverlay>
 							</TextBox>
 						</Overlay>

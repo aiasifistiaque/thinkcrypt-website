@@ -79,24 +79,26 @@ const ProjectSmall = ({ item, index }) => {
 						<Text
 							noOfLines={1}
 							lineHeight='1.4'
-							fontSize={{base: '1.2rem', md: '2rem'}}
+							fontSize={{ base: '1.2rem', md: '2rem' }}
 							fontFamily='Bebas Neue'>
-							{item?.name}: {item?.type}
+							{item?.name}: {item?.category}
 						</Text>
 					</Flex>
 				</AccordionButton>
 
-				<AccordionPanel w='full' zIndex='99'>
+				<AccordionPanel
+					w='full'
+					zIndex='99'>
 					<Flex
 						p='16px'
 						w='full'>
 						<Link
-							href={item.href}
+							href={item?.liveUrl || '#'}
 							isExternal
 							w='full'
 							_hover={{ textDecoration: 'none' }}>
 							<Background
-								bg={`url(${item.src})`}
+								bg={`url(${item?.image})`}
 								width='full'>
 								<Overlay>
 									<TextBox>
@@ -106,12 +108,12 @@ const ProjectSmall = ({ item, index }) => {
 											<Heading
 												fontFamily='Suisse'
 												size='lg'>
-												{item.name}
+												{item?.name}
 											</Heading>
 											<Heading
 												fontFamily='Suisse'
 												size='xs'>
-												{item.type}
+												{item?.category}
 											</Heading>
 										</TextOverlay>
 									</TextBox>

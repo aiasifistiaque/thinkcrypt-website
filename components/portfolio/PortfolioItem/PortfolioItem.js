@@ -27,16 +27,16 @@ const ImageBox = styled(Image)`
 `;
 
 const BORDER = styles.border.light;
-const PortfolioItem = ({ item, href }) => {
+const PortfolioItem = ({ item }) => {
 	return (
 		<Link
 			isExternal
-			href={item.href}>
+			href={item?.liveUrl || '#'}>
 			<Container border={BORDER}>
 				<ImageBox
 					p={{ base: '12px', md: '24px' }}
-					src={`${item.src}`}
-					alt={item.name}
+					src={`${item?.image}`}
+					alt={item?.name}
 				/>
 				<Flex
 					mt='12px'
@@ -50,12 +50,12 @@ const PortfolioItem = ({ item, href }) => {
 						fontFamily='Bebas Neue'
 						fontSize={32}
 						fontWeight='600'>
-						{item.name}
+						{item?.name}
 					</Text>
 					<Text
 						fontFamily='Bebas Neue'
-						fontSize='24px'>
-						{item.type}
+						fontSize='20px'>
+						{item?.category}
 					</Text>
 				</Flex>
 			</Container>
