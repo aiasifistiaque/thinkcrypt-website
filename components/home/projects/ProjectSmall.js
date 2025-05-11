@@ -93,7 +93,9 @@ const ProjectSmall = ({ item, index }) => {
 				p='16px'
 				w='full'>
 				<Link
-					href={item?.liveUrl || '#'}
+					href={
+						item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'
+					}
 					isExternal
 					w='full'
 					_hover={{ textDecoration: 'none' }}>

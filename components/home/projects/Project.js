@@ -60,7 +60,7 @@ const BORDER = styles.border.light;
 const Project = ({ item, index }) => {
 	return (
 		<Link
-			href={item?.liveUrl}
+			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}
 			isExternal
 			_hover={{ textDecoration: 'none' }}>
 			<Flex
