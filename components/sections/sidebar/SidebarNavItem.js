@@ -21,7 +21,7 @@ const SidebarNavItem = ({ id, name, href, ...props }) => {
 				cursor='pointer'
 				align='flex-start'
 				gap={{ base: 2, lg: 3 }}
-				fontFamily='Suisse'
+				fontFamily='Michroma'
 				w='full'
 				borderBottom={{ base: '1px solid', md: 'none' }}
 				pb='6px'

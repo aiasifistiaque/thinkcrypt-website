@@ -2,7 +2,7 @@ import { Box, Flex, Stack } from '@chakra-ui/react';
 import React from 'react';
 import { BORDER, BORDERDARK } from '../../../lib/constants.js';
 import HeaderText from '../../util/dynamic-text/HeaderText.jsx';
-import SuisseText from '../../util/dynamic-text/SuisseText.jsx';
+import MichromaText from '../../util/dynamic-text/MichromaText.jsx';
 
 const EachScheduleChildren = ({ schedule, isLast }) => {
 	return (
@@ -46,11 +46,11 @@ const EachScheduleChildren = ({ schedule, isLast }) => {
 								position={'relative'}
 							>
 								<HeaderText fontSize={'1rem'}>{item.title}</HeaderText>
-								<SuisseText fontSize={'.875rem'} color={'#888888'} maxW='90%'>
+								<MichromaText fontSize={'.875rem'} color={'#888888'} maxW='90%'>
 									{item.subline}
-								</SuisseText>
+								</MichromaText>
 
-								<SuisseText fontSize={'.75rem'}>{item.time}</SuisseText>
+								<MichromaText fontSize={'.75rem'}>{item.time}</MichromaText>
 								{/* <Flex
 									justify={'center'}
 									align={'center'}
@@ -63,12 +63,12 @@ const EachScheduleChildren = ({ schedule, isLast }) => {
 									bottom={2}
 									right={{ base: '16px', md: '24px' }}
 								>
-									<SuisseText
+									<MichromaText
 										fontSize={{ base: '.75rem', md: '.875rem' }}
 										color={'white'}
 									>
 										{item.duration}
-									</SuisseText>
+									</MichromaText>
 								</Flex> */}
 							</Stack>
 						</Flex>

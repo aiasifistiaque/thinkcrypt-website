@@ -18,8 +18,8 @@ const colors = {
 };
 
 const components = {
-	Heading: { baseStyle: { fontFamily: 'Montserrat, sans-serif' } },
-	Text: { baseStyle: { color: '#000' } },
+	Heading: { baseStyle: { fontFamily: 'Michroma, sans-serif' } },
+	Text: { baseStyle: { color: '#000', fontFamily: 'Michroma' } },
 	Checkbox: { baseStyle: { color: '#7A86A1' } },
 };
 
@@ -62,7 +62,7 @@ function MyApp({ Component, pageProps }) {
 	// 	};
 	// }, [router.events]);
 	//test push
-	
+
 	return (
 		<Provider store={store}>
 			<ChakraProvider theme={theme}>

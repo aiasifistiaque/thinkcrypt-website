@@ -19,12 +19,12 @@ const radius = '0px';
 const Background = styled(Flex)`
 	z-index: 99;
 	flex: 1;
-	border: 18px solid #060508;
+	border: 4px solid #060508;
 	background-position: top center;
-	border-radius: 16px;
+	border-radius: 4px;
 	background-size: cover;
 	width: 100%;
-	height: 200px;
+	height: 400px;
 	background-repeat: no-repeat;
 	box-shadow: ${boxShadow};
 `;
@@ -61,68 +61,68 @@ const BORDER = styles.border.light;
 const ProjectSmall = ({ item, index }) => {
 	return (
 		<>
-			<AccordionItem
+			{/* <AccordionItem
 				borderTop='none'
 				flexDir='column'
 				borderRight={index % 2 === 0 ? BORDER : 'none'}
 				borderBottom={BORDER}
 				cursor='pointer'
-				flex={1}>
-				<AccordionButton
+				flex={1}> */}
+			{/* <AccordionButton
 					border='none'
 					textAlign='left'
 					px={0}
-					w='full'>
-					<Flex
-						w='full'
-						p={{ base: '8px 24px', md: '16px 32px' }}>
-						<Text
-							noOfLines={1}
-							lineHeight='1.4'
-							fontSize={{ base: '1.2rem', md: '2rem' }}
-							fontFamily='Bebas Neue'>
-							{item?.name}: {item?.category}
-						</Text>
-					</Flex>
-				</AccordionButton>
+					w='full'> */}
+			<Flex
+				w='full'
+				p={{ base: '8px 16px', md: '16px 16px' }}>
+				<Text
+					noOfLines={1}
+					lineHeight='1.4'
+					fontSize={{ base: '1.2rem', md: '2rem' }}
+					fontFamily='Michroma'>
+					{item?.name}: {item?.category}
+				</Text>
+			</Flex>
+			{/* </AccordionButton> */}
 
-				<AccordionPanel
+			{/* <AccordionPanel
 					w='full'
-					zIndex='99'>
-					<Flex
-						p='16px'
-						w='full'>
-						<Link
-							href={item?.liveUrl || '#'}
-							isExternal
-							w='full'
-							_hover={{ textDecoration: 'none' }}>
-							<Background
-								bg={`url(${item?.image})`}
-								width='full'>
-								<Overlay>
-									<TextBox>
-										<TextOverlay
-											p={3}
-											spacing={0.5}>
-											<Heading
-												fontFamily='Suisse'
-												size='lg'>
-												{item?.name}
-											</Heading>
-											<Heading
-												fontFamily='Suisse'
-												size='xs'>
-												{item?.category}
-											</Heading>
-										</TextOverlay>
-									</TextBox>
-								</Overlay>
-							</Background>
-						</Link>
-					</Flex>
-				</AccordionPanel>
-			</AccordionItem>
+					zIndex='99'> */}
+			<Flex
+				p='16px'
+				w='full'>
+				<Link
+					href={item?.liveUrl || '#'}
+					isExternal
+					w='full'
+					_hover={{ textDecoration: 'none' }}>
+					<Background
+						bg={`url(${item?.image})`}
+						width='full'>
+						<Overlay>
+							<TextBox>
+								<TextOverlay
+									p={3}
+									spacing={0.5}>
+									<Heading
+										fontFamily='Michroma'
+										size='lg'>
+										{item?.name}
+									</Heading>
+									<Heading
+										fontFamily='Michroma'
+										size='xs'>
+										{item?.category}
+									</Heading>
+								</TextOverlay>
+							</TextBox>
+						</Overlay>
+					</Background>
+				</Link>
+			</Flex>
+			{/* </AccordionPanel>
+			</AccordionItem> */}
 		</>
 	);
 };

@@ -26,7 +26,7 @@ const Sections = styled(Flex)`
 
 const FooterText = styled(Text)`
 	font-size: 0.8rem;
-	font-family: Suisse;
+	font-family: Michroma;
 	letter-spacing: 2%;
 	line-height: 1.2rem;
 	font-weight: 300;
@@ -37,7 +37,7 @@ const Footer = () => {
 		return (
 			<Stack spacing={4}>
 				<Heading
-					fontFamily='Bebas Neue'
+					fontFamily='Michroma'
 					letterSpacing='2px'
 					size='sm'>
 					{data.heading}
@@ -47,7 +47,7 @@ const Footer = () => {
 						<Link
 							key={i}
 							href={item.href}>
-							<Text fontFamily='Suisse'>{item.name}</Text>
+							<Text fontFamily='Michroma'>{item.name}</Text>
 						</Link>
 					))}
 				</Stack>
@@ -61,7 +61,7 @@ const Footer = () => {
 				<Sections>
 					<Stack>
 						<Heading
-							fontFamily='Bebas Neue'
+							fontFamily='Michroma'
 							size='md'>
 							Contact Us
 						</Heading>
@@ -93,7 +93,7 @@ const Footer = () => {
 							spacing={0}
 							pt={4}>
 							<FooterText
-								fontFamily='Bebas Neue !important'
+								fontFamily='Michroma !important'
 								fontSize='24px !important'
 								mb='8px'>
 								Thinkcrypt.io

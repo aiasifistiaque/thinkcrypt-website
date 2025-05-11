@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react';
 import React from 'react';
 import HeaderText from '../../util/dynamic-text/HeaderText.jsx';
-import SuisseText from '../../util/dynamic-text/SuisseText.jsx';
+import MichromaText from '../../util/dynamic-text/MichromaText.jsx';
 import { BORDER } from '../../../lib/constants.js';
 
 const BootcampEachGridItem = ({ item }) => {
@@ -18,9 +18,9 @@ const BootcampEachGridItem = ({ item }) => {
 			<HeaderText fontSize={{ base: '1.5rem', md: '2.5rem' }}>
 				{item.title}
 			</HeaderText>
-			<SuisseText fontSize={{ base: '0.75rem', md: '1rem' }}>
+			<MichromaText fontSize={{ base: '0.75rem', md: '1rem' }}>
 				{item?.subline}
-			</SuisseText>
+			</MichromaText>
 		</Stack>
 	);
 };

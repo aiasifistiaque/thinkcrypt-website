@@ -9,7 +9,7 @@ const SpringValue = ({ children, pos, ...props }) => (
 		gridTemplateColumns='1fr 1fr'
 		w='60px'>
 		<RobotoText
-			fontFamily='Suisse'
+			fontFamily='Michroma'
 			fontSize='12px'
 			fontWeight='300'
 			letterSpacing='4px'
@@ -19,7 +19,7 @@ const SpringValue = ({ children, pos, ...props }) => (
 			{`${pos}. `}
 		</RobotoText>
 		<RobotoText
-			fontFamily='Suisse'
+			fontFamily='Michroma'
 			fontSize='12px'
 			fontWeight='300'
 			letterSpacing='4px'

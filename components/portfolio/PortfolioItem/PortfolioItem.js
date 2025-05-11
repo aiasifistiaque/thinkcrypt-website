@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Flex, Heading, Image, Link, Stack, Text } from '@chakra-ui/react';
+import { Flex, Image, Link, Text } from '@chakra-ui/react';
 import { breakpoints } from '../../lib/constants';
 import { styles } from '../../../theme/styles';
 
 const Container = styled(Flex)`
 	flex: 1;
 	cursor: pointer;
-
 	flex-direction: column;
 `;
 
@@ -34,26 +33,25 @@ const PortfolioItem = ({ item }) => {
 			href={item?.liveUrl || '#'}>
 			<Container border={BORDER}>
 				<ImageBox
-					p={{ base: '12px', md: '24px' }}
+					p={{ base: '12px', md: '16px' }}
 					src={`${item?.image}`}
 					alt={item?.name}
 				/>
 				<Flex
-					mt='12px'
 					flexDir='column'
-					p={{ base: '12px', md: '24px' }}
+					p={{ base: '12px', md: '16px' }}
 					gap={2}
 					borderTop={BORDER}>
 					<Text
 						lineHeight={1.2}
 						noOfLines={2}
-						fontFamily='Bebas Neue'
+						fontFamily='Michroma'
 						fontSize={32}
 						fontWeight='600'>
 						{item?.name}
 					</Text>
 					<Text
-						fontFamily='Bebas Neue'
+						fontFamily='Michroma'
 						fontSize='20px'>
 						{item?.category}
 					</Text>

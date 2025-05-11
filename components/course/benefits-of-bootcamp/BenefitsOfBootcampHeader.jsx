@@ -2,7 +2,7 @@ import React from 'react';
 import BorderContainer from '../../util/container/BorderContainer.js';
 import { Stack } from '@chakra-ui/react';
 import HeaderText from '../../util/dynamic-text/HeaderText.jsx';
-import SuisseText from '../../util/dynamic-text/SuisseText.jsx';
+import MichromaText from '../../util/dynamic-text/MichromaText.jsx';
 
 const BenefitsOfBootcampHeader = ({ benefitsOfBootcamp }) => {
 	return (
@@ -13,9 +13,9 @@ const BenefitsOfBootcampHeader = ({ benefitsOfBootcamp }) => {
 				spacing={0}
 			>
 				<HeaderText>{benefitsOfBootcamp?.heading}</HeaderText>
-				<SuisseText fontSize={{ base: '1rem', md: '1.25rem' }}>
+				<MichromaText fontSize={{ base: '1rem', md: '1.25rem' }}>
 					{benefitsOfBootcamp?.description}
-				</SuisseText>
+				</MichromaText>
 			</Stack>
 		</BorderContainer>
 	);

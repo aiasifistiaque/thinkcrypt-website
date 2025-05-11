@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import Column from '../../util/Home/Column';
-import {
-	Accordion,
-	AccordionButton,
-	AccordionItem,
-	AccordionPanel,
-	Box,
-	Flex,
-	Grid,
-	Image,
-	Text,
-} from '@chakra-ui/react';
-import { howWeWork, howWeWorkPic1, howWeWorkPic2 } from '../../../data/data';
+import { Box, Flex, Grid, Image, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { howWeWorkPic1, howWeWorkPic2 } from '../../../data/data';
 import { fonts } from '../../lib/constants';
 
 import { styles } from '../../../theme/styles';
@@ -20,11 +10,9 @@ import { useGetAllQuery } from '../../../store';
 const BORDER = styles.border.light;
 
 const ServicesNew = () => {
-	const [hoveredIndex, setHoveredIndex] = useState(0);
-
 	const { data, isFetching } = useGetAllQuery({
 		path: 'services',
-		limit: 15,
+		limit: 10,
 		sort: '-priority',
 		filters: {
 			isActive: true,
@@ -69,7 +57,7 @@ const ServicesNew = () => {
 							p={4}>
 							<Text
 								fontSize='32px'
-								fontFamily={fonts.heading}>
+								fontFamily='Michroma'>
 								Our Services
 							</Text>
 						</Flex>
@@ -82,17 +70,18 @@ const ServicesNew = () => {
 				</Grid>
 
 				<Column ml={6}>
-					<Accordion
-						defaultIndex={[0]}
-						borderLeft={BORDER}>
-						{data?.doc?.map((item, index) => (
-							<AccordionItem
-								key={index}
-								border={BORDER}>
-								<h2>
-									<AccordionButton>
+					<Flex
+						borderLeft={BORDER}
+						flexDir='column'>
+						{data?.doc?.map(
+							(item, i) =>
+								i <= 4 && (
+									<Flex
+										borderBottom={BORDER}
+										p={4}
+										key={i}
+										flexDir='column'>
 										<Box
-											as='span'
 											flex='1'
 											textAlign='left'
 											py={3}>
@@ -100,21 +89,19 @@ const ServicesNew = () => {
 												fontSize='18px'
 												fontWeight={600}
 												fontFamily={fonts.heading}>
-												{item?.name}
+												{(i + 1).toString().padStart(2, '0')} {item?.name}
 											</Text>
 										</Box>
-									</AccordionButton>
-								</h2>
-								<AccordionPanel pb={4}>
-									<Text
-										fontSize='14px'
-										fontFamily='Suisse'>
-										{item?.description}
-									</Text>
-								</AccordionPanel>
-							</AccordionItem>
-						))}
-					</Accordion>
+
+										<Text
+											fontSize='14px'
+											fontFamily='Michroma'>
+											{item?.description}
+										</Text>
+									</Flex>
+								)
+						)}
+					</Flex>
 				</Column>
 			</Column>
 
@@ -157,32 +144,20 @@ const ServicesNew = () => {
 					templateColumns='repeat(4, 1fr)'
 					gap='1px'
 					bgColor='#DEDEE0'>
-					{data?.doc?.map((item, index) => (
-						<Column
-							key={index}
-							px={4}
-							py={6}
-							gap={5}
-							bgColor='white'
-							h='230px'
-							transition='all 0.3s'
-							gridColumn={index === 0 ? 'span 2' : index === 4 && hoveredIndex === 3 ? '3' : 'auto'}
-							gridRow={index === 4 && hoveredIndex === 3 ? '1' : 'auto'}>
-							<Text
-								fontSize='24px'
-								fontWeight='400'
-								fontFamily={fonts.heading}>
-								{(index + 1).toString().padStart(2, '0')} {item?.name}
-							</Text>
-							<Text
-								fontFamily='Suisse'
-								fontSize='16px'
-								fontWeight='400'
-								overflow='hidden'>
-								{item?.description}
-							</Text>
-						</Column>
-					))}
+					{isFetching
+						? [...Array(10)].map((_, i) => (
+								<SeriveItemLgSkeleton
+									key={i}
+									index={i}
+								/>
+						  ))
+						: data?.doc?.map((item, i) => (
+								<SeriveItemLg
+									item={item}
+									index={i}
+									key={i}
+								/>
+						  ))}
 				</Grid>
 			</Column>
 		</Column>
@@ -199,6 +174,49 @@ const container = {
 	borderBottom: BORDER,
 	mt: '60px',
 	mb: '40px',
+};
+
+const SeriveItemLg = ({ item, index }) => (
+	<Column
+		{...itemCss}
+		gridColumn={index === 0 || index == 9 ? 'span 2' : 'auto'}>
+		<Text
+			fontSize='18px'
+			fontWeight='800'
+			fontFamily={fonts.heading}>
+			{(index + 1).toString().padStart(2, '0')} {item?.name}
+		</Text>
+		<Text
+			fontFamily='Michroma'
+			fontSize='14px'
+			fontWeight='400'
+			overflow='hidden'>
+			{item?.description}
+		</Text>
+	</Column>
+);
+
+const SeriveItemLgSkeleton = ({ index }) => (
+	<Column
+		{...itemCss}
+		gridColumn={index === 0 || index == 9 ? 'span 2' : 'auto'}>
+		<Skeleton>
+			<Text
+				fontSize='18px'
+				fontWeight='800'
+				fontFamily={fonts.heading}>
+				01 NAME OF ITEM
+			</Text>
+		</Skeleton>
+		<SkeletonText noOfLines={4} />
+	</Column>
+);
+
+const itemCss = {
+	px: 4,
+	py: 6,
+	gap: 5,
+	bgColor: 'white',
 };
 
 export default ServicesNew;

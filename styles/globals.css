@@ -9,28 +9,28 @@
 }
 
 @font-face {
-	font-family: 'Suisse';
-	src: url('/fonts/sussie/SuisseIntl-Light.otf') format('opentype');
+	font-family: 'Michroma';
+	src: url('/fonts/sussie/MichromaIntl-Light.otf') format('opentype');
 	font-weight: 300;
 }
 @font-face {
-	font-family: 'Suisse';
-	src: url('/fonts/sussie/SuisseIntl-Regular.otf') format('opentype');
+	font-family: 'Michroma';
+	src: url('/fonts/sussie/MichromaIntl-Regular.otf') format('opentype');
 	font-weight: 400;
 }
 @font-face {
-	font-family: 'Suisse';
-	src: url('/fonts/sussie/SuisseIntl-Medium.otf') format('opentype');
+	font-family: 'Michroma';
+	src: url('/fonts/sussie/MichromaIntl-Medium.otf') format('opentype');
 	font-weight: 500;
 }
 @font-face {
-	font-family: 'Suisse';
-	src: url('/fonts/sussie/SuisseIntl-SemiBold.otf') format('opentype');
+	font-family: 'Michroma';
+	src: url('/fonts/sussie/MichromaIntl-SemiBold.otf') format('opentype');
 	font-weight: 600;
 }
 @font-face {
-	font-family: 'Suisse';
-	src: url('/fonts/sussie/SuisseIntl-Bold.otf') format('opentype');
+	font-family: 'Michroma';
+	src: url('/fonts/sussie/MichromaIntl-Bold.otf') format('opentype');
 	font-weight: 700;
 }
 

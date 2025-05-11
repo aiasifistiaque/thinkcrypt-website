@@ -6,7 +6,7 @@ import { breakpoints } from '../lib/constants.js';
 import { styles } from '../../theme/styles.js';
 
 const NameText = styled(ChakraText)`
-	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Michroma', sans-serif;
 	letter-spacing: 1px;
 	font-size: 1rem;
 	line-height: 1;
@@ -22,7 +22,7 @@ const NameText = styled(ChakraText)`
 `;
 
 const DesignationText = styled(ChakraText)`
-	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Michroma', sans-serif;
 	font-size: 0.725rem;
 	letter-spacing: 1px;
 	line-height: 1.4;

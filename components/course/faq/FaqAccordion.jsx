@@ -29,7 +29,7 @@ const FaqAccordion = ({ data, ...props }) => {
 								as='span'
 								flex='1'
 								textAlign='left'
-								fontFamily={fonts.Suisse}
+								fontFamily={fonts.Michroma}
 								fontSize={{ base: '1rem', md: '1.25rem' }}
 							>
 								{data?.question ? data?.question : 'Untitled'}
@@ -42,7 +42,7 @@ const FaqAccordion = ({ data, ...props }) => {
 						</AccordionButton>
 					</h2>
 					<AccordionPanel
-						fontFamily={fonts.Suisse}
+						fontFamily={fonts.Michroma}
 						pb={4}
 						color='#888'
 						fontSize={{ base: '1rem', md: '1rem' }}

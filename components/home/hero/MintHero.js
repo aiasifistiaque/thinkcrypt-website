@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-	Heading,
-	Flex,
-	Box,
-	Center,
-	Text as BText,
-	Image,
-	Grid,
-} from '@chakra-ui/react';
+import { Heading, Flex, Box, Center, Text as BText, Image, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { colors, breakpoints } from '../../lib/constants';
 import Link from 'next/link';
@@ -79,17 +71,28 @@ const MintHero = () => {
 	return (
 		<Container>
 			<Overlay>
-				<Grid templateColumns={{ base: '1fr', lg: '3fr 2fr' }} pt='128px'>
-					<Flex px='24px' flexDir='column' justify='center'>
-						<Title fontFamily='Suisse' size='2xl' fontWeight={800}>
+				<Grid
+					templateColumns={{ base: '1fr', lg: '3fr 2fr' }}
+					pt='128px'>
+					<Flex
+						px='24px'
+						flexDir='column'
+						justify='center'>
+						<Title
+							fontFamily='Michroma'
+							size='2xl'
+							fontWeight={800}>
 							MINT
 						</Title>
-						<Title fontFamily='Suisse' fontSize='1.5rem' fontWeight={300}>
+						<Title
+							fontFamily='Michroma'
+							fontSize='1.5rem'
+							fontWeight={300}>
 							Crafting Brands
 						</Title>
 						<Divider />
 						<Text
-							fontFamily='Suisse'
+							fontFamily='Michroma'
 							size={{ base: 'lg', md: 'xl' }}
 							fontWeight='600'
 							letterSpacing='.2px'
@@ -98,13 +101,12 @@ const MintHero = () => {
 							{`Transform your online business with our powerful E-commerce CMS, integrated POS, and fully customizable themes designed for growth and flexibility!`}
 						</Text>
 						<Text
-							fontFamily='Suisse'
+							fontFamily='Michroma'
 							size={{ base: 'lg', md: 'xl', lg: 'md' }}
 							fontWeight='600'
 							letterSpacing='.2px'
 							// maxW={{ md: '60%' }}
-							mt={4}
-						>
+							mt={4}>
 							From website to inventory management to marketing, ALL IN ONE!
 						</Text>
 						<Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
@@ -115,7 +117,9 @@ const MintHero = () => {
 					</Flex>
 
 					<Column>
-						<Flex w='300px' alignSelf='flex-end'>
+						<Flex
+							w='300px'
+							alignSelf='flex-end'>
 							<ScrollValue
 								py='0'
 								fontWeight={400}

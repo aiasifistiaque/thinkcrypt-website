@@ -5,7 +5,7 @@ import Column from '../../util/Column';
 import { BORDER } from '../../../lib/constants';
 import HeaderText from '../../util/dynamic-text/HeaderText';
 import BodyText from '../../util/dynamic-text/BodyText';
-import SuisseText from '../../util/dynamic-text/SuisseText';
+import MichromaText from '../../util/dynamic-text/MichromaText';
 
 const Learnings = ({ data }) => {
 	return (
@@ -21,9 +21,9 @@ const Learnings = ({ data }) => {
 					<HeaderText
 						fontSize={{ base: '1.5rem', md: '2rem' }}
 					>{`what you’ll learn`}</HeaderText>
-					<SuisseText
+					<MichromaText
 						fontSize={{ base: '1rem', md: '1rem' }}
-					>{`You and your peers will be experienced professionals, specialists and C-suite executives, who are looking to: `}</SuisseText>
+					>{`You and your peers will be experienced professionals, specialists and C-suite executives, who are looking to: `}</MichromaText>
 				</Column>
 				{data?.map((item, index) => (
 					<Column
@@ -37,9 +37,9 @@ const Learnings = ({ data }) => {
 						<Box h={'54px'} w='auto'>
 							<Image h={'100%'} w={'100%'} src={item?.icon} alt={item?.title} />
 						</Box>
-						<SuisseText fontSize={{ base: '1rem', md: '1rem' }}>
+						<MichromaText fontSize={{ base: '1rem', md: '1rem' }}>
 							{item?.description}
-						</SuisseText>
+						</MichromaText>
 					</Column>
 				))}
 			</Grid>

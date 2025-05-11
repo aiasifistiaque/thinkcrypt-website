@@ -47,7 +47,7 @@ const Right = styled(Flex)`
 
 const Title = styled(ChakraText)`
 	font-size: 2rem;
-	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Michroma', sans-serif;
 	line-height: 2.5rem;
 	letter-spacing: 2px;
 	margin-top: 0.5rem;
@@ -64,7 +64,7 @@ const Title = styled(ChakraText)`
 
 const Subtitle = styled(ChakraText)`
 	font-size: 1.2rem;
-	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Michroma', sans-serif;
 	font-weight: bold;
 
 	line-height: 1.6;
@@ -74,7 +74,7 @@ const Subtitle = styled(ChakraText)`
 `;
 
 const Text = styled(ChakraText)`
-	font-family: 'Suisse', sans-serif;
+	font-family: 'Michroma', sans-serif;
 
 	line-height: 1.2;
 

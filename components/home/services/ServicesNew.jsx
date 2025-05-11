@@ -98,7 +98,7 @@ const ServicesNew = () => {
 								<AccordionPanel pb={4}>
 									<Text
 										fontSize='14px'
-										fontFamily='Suisse'>
+										fontFamily='Michroma'>
 										{item.subTitle}
 									</Text>
 								</AccordionPanel>
@@ -165,7 +165,7 @@ const ServicesNew = () => {
 								{item.title}
 							</Text>
 							<Text
-								fontFamily='Suisse'
+								fontFamily='Michroma'
 								fontSize='16px'
 								fontWeight='400'
 								overflow='hidden'>

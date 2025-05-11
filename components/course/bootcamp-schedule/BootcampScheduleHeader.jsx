@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react';
 import React from 'react';
 import HeaderText from '../../util/dynamic-text/HeaderText.jsx';
-import SuisseText from '../../util/dynamic-text/SuisseText.jsx';
+import MichromaText from '../../util/dynamic-text/MichromaText.jsx';
 import { BORDER } from '../../../lib/constants.js';
 
 const BootcampScheduleHeader = ({ bootcampSchedule }) => {
@@ -14,9 +14,9 @@ const BootcampScheduleHeader = ({ bootcampSchedule }) => {
 			borderBottom={BORDER}
 		>
 			<HeaderText>BOOTCAMP SCHEDULE</HeaderText>
-			<SuisseText fontSize={{ base: '1rem', md: '1.25rem' }}>
+			<MichromaText fontSize={{ base: '1rem', md: '1.25rem' }}>
 				{bootcampSchedule?.description}
-			</SuisseText>
+			</MichromaText>
 		</Stack>
 	);
 };

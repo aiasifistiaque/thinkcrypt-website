@@ -28,6 +28,7 @@ const ButtonText = styled(BText)`
 	font-weight: bold;
 	letter-spacing: 0.75px;
 	font-size: 1rem;
+	font-family: 'Michroma', sans-serif;
 `;
 const Container = styled(Flex)`
 	flex: 1;
@@ -48,6 +49,7 @@ const Overlay = styled(Flex)`
 `;
 
 const Title = styled(Heading)`
+	font-family: Michroma, sans-serif;
 	font-weight: 800;
 	line-height: 1.2;
 `;
@@ -79,7 +81,7 @@ const Hero = () => {
 						flexDir='column'
 						justify='center'>
 						<Title
-							fontFamily='Suisse'
+							fontFamily='Michroma'
 							size='2xl'
 							fontWeight={800}>
 							Transforming Ideas
@@ -87,7 +89,7 @@ const Hero = () => {
 						</Title>
 						<Divider />
 						<Text
-							fontFamily='Suisse'
+							fontFamily='Michroma'
 							size={{ base: 'lg', md: 'xl' }}
 							fontWeight='600'
 							letterSpacing='.2px'

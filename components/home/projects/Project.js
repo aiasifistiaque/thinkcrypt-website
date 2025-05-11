@@ -8,9 +8,9 @@ const radius = '0px';
 
 const Background = styled(Flex)`
 	flex: 1;
-	border: 12px solid #060508;
+	// border: 6px solid #060508;
 	background-position: top center;
-	border-radius: 12px;
+	// border-radius: 8px;
 	background-size: cover;
 	width: 100%;
 	height: 200px;
@@ -22,7 +22,7 @@ const Background = styled(Flex)`
 		max-height: 100px;
 	}
 	@media (min-width: ${breakpoints.desktop}) {
-		min-height: 360px;
+		min-height: 400px;
 
 		&:hover {
 			box-shadow: ${boxShadowHover};
@@ -70,26 +70,43 @@ const Project = ({ item, index }) => {
 				cursor='pointer'
 				flex={1}>
 				<Flex
-					align='center'
+					flexDir='column'
 					borderBottom={BORDER}
-					p={{ base: '8px 24px', md: '16px 32px' }}>
+					p={{ base: '8px 16px', md: '16px 16px' }}>
 					<Text
 						noOfLines={1}
 						lineHeight='1.4'
-						fontSize='2rem'
-						fontFamily='Bebas Neue'>
+						fontSize='1.8rem'
+						fontWeight='800'
+						fontFamily='Michroma'>
 						{item?.name}: {item?.type}
 					</Text>
+					<Text
+						noOfLines={1}
+						lineHeight='1.4'
+						fontSize='1rem'
+						fontWeight='400'
+						fontFamily='Michroma'>
+						{item?.category}
+					</Text>
 				</Flex>
-				<Flex p={{ base: 6, md: 8 }}>
+				<Flex p={{ base: 4, md: 0 }}>
 					<Background bg={`url(${item?.image})`}>
 						<Overlay>
 							<TextBox>
 								<TextOverlay
 									p={3}
 									spacing={0.5}>
-									<Heading size='lg'>{item?.name}</Heading>
-									<Heading size='xs'>{item?.category}</Heading>
+									<Heading
+										fontFamily='Michroma'
+										size='lg'>
+										{item?.name}
+									</Heading>
+									<Heading
+										fontFamily='Michroma'
+										size='xs'>
+										{item?.category}
+									</Heading>
 								</TextOverlay>
 							</TextBox>
 						</Overlay>

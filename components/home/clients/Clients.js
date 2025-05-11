@@ -90,7 +90,7 @@ const subTitle = {
 	fontWeight: 400,
 	letterSpacing: '-.2px',
 	lineHeight: '1.5',
-	fontFamily: 'Suisse',
+	fontFamily: 'Michroma',
 	color: 'black.800',
 };
 
@@ -127,7 +127,7 @@ const titleStack = {
 	py: 4,
 	flexDir: 'column',
 	w: 'full',
-	gap: 4,
+	gap: 12,
 };
 
 export default Clients;

@@ -45,19 +45,18 @@ const AboutUsSection = ({}) => {
 						gap={5}
 						flex={5}>
 						<Heading
-							fontFamily={fonts.heading}
 							fontSize={{ base: '2rem', md: '2rem' }}
-							fontWeight='400'
+							fontWeight='800'
 							color='textColor.light'>
 							WHO WE ARE
 						</Heading>
 						<RobotoText
-							fontFamily={fonts.body}
-							fontSize={{ base: '1.4rem', lg: '2.25rem' }}
+							fontFamily='Michroma'
+							fontSize={{ base: '1.4rem', lg: '1.5rem' }}
 							maxW={{ base: '100%', lg: '75%' }}
 							color='black.800'
-							letterSpacing={{ base: '-1.3px', md: '-2px' }}
-							lineHeight={{ base: '1.5', md: '1.2' }}>
+							letterSpacing={{ base: '-1.3px', md: '0px' }}
+							lineHeight={{ base: '1.5', md: '1.6' }}>
 							{AboutUs.ABOUT_DESCRIPTION}
 						</RobotoText>
 					</Column>

@@ -22,9 +22,10 @@ const EachItem = ({ children, text, ...props }) => {
 			bg='white'
 			textAlign='center'
 			alignItems='center'
-			h={{ base: '140px', md: '200px' }}
-		>
-			<Box p={{ base: 2, md: 4 }} maxW={200}>
+			h={{ base: '140px', md: '200px' }}>
+			<Box
+				p={{ base: 2, md: 4 }}
+				maxW={200}>
 				<Image
 					w='auto'
 					h={{ base: '64px', md: '84px' }}
@@ -50,26 +51,26 @@ const MintFeatures = () => {
 			borderBottom={BORDER}
 			px='24px'
 			pl={{ base: '24px', md: '64px', lg: '128px' }}
-			mt='60px'
-		>
+			mt='60px'>
 			<Flex
 				flex={1}
 				flexDir='column'
 				borderLeft={{ base: BORDER, md: BORDER }}
-				borderRight={BORDER}
-			>
+				borderRight={BORDER}>
 				<Center
 					px={{ base: 4, md: 8, lg: 16 }}
 					py={{ base: 4, md: 8, lg: 8 }}
-					borderBottom={BORDER}
-				>
-					<Stack py='16px' spacing={0} w='full' gap={4}>
+					borderBottom={BORDER}>
+					<Stack
+						py='16px'
+						spacing={0}
+						w='full'
+						gap={4}>
 						<Text
 							fontSize={{ base: '1.5rem', md: '3rem' }}
 							fontWeight={700}
 							fontFamily={fonts.heading}
-							color='black.800'
-						>
+							color='black.800'>
 							Key Features
 						</Text>
 						<Text
@@ -77,9 +78,8 @@ const MintFeatures = () => {
 							fontWeight={400}
 							letterSpacing='-.2px'
 							lineHeight='1.5'
-							fontFamily='Suisse'
-							color='black.800'
-						>
+							fontFamily='Michroma'
+							color='black.800'>
 							{`MINT offers seamless inventory, sales, POS, and delivery management, with customizable themes, reports, and multi-user roles, enhancing e-commerce efficiency.`}
 						</Text>
 					</Stack>
@@ -92,10 +92,11 @@ const MintFeatures = () => {
 						lg: '1fr 1fr 1fr 1fr 1fr',
 					}}
 					gap='1px'
-					bg={'#DEDEE0'}
-				>
+					bg={'#DEDEE0'}>
 					{featureLogos.map((logo, index) => (
-						<EachItem key={index} text={logoTexts[index]}>
+						<EachItem
+							key={index}
+							text={logoTexts[index]}>
 							{logo}
 						</EachItem>
 					))}

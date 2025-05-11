@@ -2,6 +2,7 @@ import React from 'react';
 import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
 import PortfolioItem from './PortfolioItem/PortfolioItem';
+import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { styles } from '../../theme/styles';
@@ -40,7 +41,7 @@ const Portfoliopage = () => {
 				<PortfolioContainer>
 					<Flex {...titleContainer}>
 						<Heading
-							fontFamily='Suisse'
+							fontFamily='Michroma'
 							size='xl'>
 							Our Work
 						</Heading>
@@ -49,20 +50,24 @@ const Portfoliopage = () => {
 						<Flex
 							{...itemContainer}
 							borderLeft={BORDER}>
-							{dataOne?.map((item, i) => (
-								<PortfolioItem
-									item={item}
-									key={i}
-								/>
-							))}
+							{isFetching
+								? [...Array(2)].map((_, i) => <PortfolioItemSkeleton key={i} />)
+								: dataOne?.map((item, i) => (
+										<PortfolioItem
+											item={item}
+											key={i}
+										/>
+								  ))}
 						</Flex>
 						<Flex {...itemContainer}>
-							{dataTwo?.map((item, i) => (
-								<PortfolioItem
-									item={item}
-									key={i}
-								/>
-							))}
+							{isFetching
+								? [...Array(2)].map((_, i) => <PortfolioItemSkeleton key={i} />)
+								: dataTwo?.map((item, i) => (
+										<PortfolioItem
+											item={item}
+											key={i}
+										/>
+								  ))}
 						</Flex>
 					</Grid>
 				</PortfolioContainer>

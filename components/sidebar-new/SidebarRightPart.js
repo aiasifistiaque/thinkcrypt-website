@@ -41,7 +41,7 @@ const SidebarRightPart = ({ onClose }) => {
 	return (
 		<Column
 			flex={1}
-			fontFamily='Suisse'>
+			fontFamily='Michroma'>
 			<CloseButton onClick={onClose} />
 
 			<ScrollValue />
@@ -63,7 +63,7 @@ const SidebarRightPart = ({ onClose }) => {
 						alignItems='flex-end'>
 						<Text
 							color='text.200'
-							fontFamily='Suisse'
+							fontFamily='Michroma'
 							fontSize={{ md: '6rem', lg: '8rem' }}
 							letterSpacing='4px'
 							lineHeight='1'

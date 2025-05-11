@@ -18,7 +18,7 @@ const Marquee = () => {
 			<MarqueeComponent>
 				<Text
 					letterSpacing='2px'
-					fontFamily='Suisse'
+					fontFamily='Michroma'
 					fontSize='.9rem'>
 					{CONTENT}
 				</Text>

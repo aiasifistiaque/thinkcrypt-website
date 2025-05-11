@@ -13,7 +13,7 @@ const P = styled(Text)`
 		font-size: 1.25rem;
 		line-height: 1.6;
 		max-width: 50vw;
-		fontfamily: 'Suisse';
+		fontfamily: 'Michroma';
 	}
 `;
 
@@ -25,13 +25,11 @@ const TestimonialSection = () => {
 			py={12}
 			borderTop={BORDER}
 			borderBottom={BORDER}
-			bg='sectionBg.light'
-		>
+			bg='sectionBg.light'>
 			<Text
-				fontFamily='Bebas Neue'
+				fontFamily='Michroma'
 				fontSize={{ base: '1.5rem', md: '2rem', lg: '3rem' }}
-				textAlign='center'
-			>
+				textAlign='center'>
 				See what all the hype is about
 			</Text>
 
@@ -40,8 +38,7 @@ const TestimonialSection = () => {
 				p={{ base: 4, md: 16, xl: 28 }}
 				justifyContent='space-between'
 				gap={6}
-				mt={4}
-			>
+				mt={4}>
 				{testimonialData.map(testimonial => (
 					<Flex
 						flexDir='column'
@@ -49,34 +46,34 @@ const TestimonialSection = () => {
 						gap={4}
 						borderRadius={16}
 						overflow='hidden'
-						key={testimonial?.id}
-					>
+						key={testimonial?.id}>
 						<Column
 							bg='#373f51'
 							alignItems='center'
 							textAlign='center'
 							p={6}
-							gap={2}
-						>
+							gap={2}>
 							<Text
-								fontFamily='Suisse'
+								fontFamily='Michroma'
 								fontSize={{ base: '1rem', md: '1.1rem', lg: '1.5rem' }}
-								textColor='white'
-							>
+								textColor='white'>
 								{testimonial?.heading}
 							</Text>
 							<Text
-								fontFamily='Suisse'
+								fontFamily='Michroma'
 								fontSize={{ base: '1rem', md: '1.1rem', lg: '1.4rem' }}
 								textColor='white'
-								fontWeight={300}
-							>
+								fontWeight={300}>
 								{testimonial?.subHeading}
 							</Text>
 						</Column>
 
-						<Column p={6} gap={6}>
-							<Flex alignItems='center' gap={1}>
+						<Column
+							p={6}
+							gap={6}>
+							<Flex
+								alignItems='center'
+								gap={1}>
 								<AvatarGroup>
 									<Avatar
 										name={`${testimonial?.user}`}
@@ -92,7 +89,9 @@ const TestimonialSection = () => {
 									/>
 								</AvatarGroup>
 
-								<Column gap={2} ml={4}>
+								<Column
+									gap={2}
+									ml={4}>
 									<P>{testimonial?.user}</P>
 									<P>{testimonial?.company}</P>
 								</Column>

@@ -4,7 +4,7 @@ import Column from '../../util/Column';
 import HeaderText from '../../util/dynamic-text/HeaderText';
 import { Box, Grid, Image, ListItem, UnorderedList } from '@chakra-ui/react';
 import BodyText from '../../util/dynamic-text/BodyText';
-import SuisseText from '../../util/dynamic-text/SuisseText';
+import MichromaText from '../../util/dynamic-text/MichromaText';
 
 const EligibilitySection = ({ data }) => {
 	return (
@@ -15,9 +15,9 @@ const EligibilitySection = ({ data }) => {
 					<UnorderedList px={4} spacing={4}>
 						{data?.items?.map((item, index) => (
 							<ListItem key={index}>
-								<SuisseText fontSize={{ base: '1rem', md: '1.125rem' }}>
+								<MichromaText fontSize={{ base: '1rem', md: '1.125rem' }}>
 									{item}
-								</SuisseText>
+								</MichromaText>
 							</ListItem>
 						))}
 					</UnorderedList>
