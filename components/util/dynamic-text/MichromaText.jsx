@@ -2,7 +2,7 @@
 
 import { Text, TextProps } from '@chakra-ui/react';
 import React from 'react';
-import { fonts } from '../../../lib/constants';
+import { fonts } from '../../../lib/constants.js';
 import useCustomColors from '../../../hooks/useCustomColors.jsx';
 
 const MichromaText = ({ children, ...props }) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Title, Subtitle, Text, Container, Row, Right, Left } from './styles';
+import { Subtitle, Text, Row } from './styles';
 
-import { Flex, Text as BText, Center, Link as CLink } from '@chakra-ui/react';
+import { Flex, Text as BText, Center, Link as CLink, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints, colors, links } from '../../lib/constants';
 import { styles } from '../../../theme/styles';
@@ -43,32 +43,34 @@ const ButtonText = styled(BText)`
 	font-size: 1rem;
 `;
 
+const leftCss = {
+	flex: 1,
+	alignSelf: { base: 'flex-start', md: 'center' },
+	width: '100%',
+	height: '100%',
+	pt: { base: '0', md: '64px' },
+};
+
 const BORDER = styles.border.light;
 
 const rightCss = {
 	flexDir: 'column',
-	flex: 2.25,
+	flex: 2,
+
 	paddingBottom: 6,
-	paddingLeft: { base: 0, md: 6 },
+
 	paddingTop: { base: 0, md: 6 },
 };
 
-const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, ...props }) => {
+const SubSection = ({ subHeading, heading, children, btnText, href, to, F, ...props }) => {
 	const top = (
 		<Flex
+			{...leftCss}
 			w='100%'
-			flexDir={{ base: 'column', md: 'row' }}
-			pt={{ base: '16px', md: '0' }}>
-			<Left borderRight={{ base: 'none', md: BORDER }}>
-				<Subtitle fontFamily='Michroma'>{subHeading}</Subtitle>
-			</Left>
-			<Flex
-				{...rightCss}
-				borderBottom={BORDER}
-				pl={{ base: '0px', md: '24px' }}>
-				<Title>{heading}</Title>
-				<Divider />
-			</Flex>
+			flexDir={{ base: 'column', md: 'column' }}>
+			<Subtitle fontFamily='Michroma'>{subHeading}</Subtitle>
+
+			<Text {...titleCss}>{heading}</Text>
 		</Flex>
 	);
 
@@ -92,11 +94,9 @@ const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, .
 
 	const bottom = (
 		<>
-			<Left />
 			<Flex
 				{...rightCss}
-				pt='24px'
-				borderLeft={{ base: 'none', md: BORDER }}>
+				pt='24px'>
 				<Text pr='24px'>{children}</Text>
 				{to ? cotactButtom : btn}
 			</Flex>
@@ -104,7 +104,7 @@ const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, .
 	);
 
 	return (
-		<Flex
+		<Grid
 			mt='24px'
 			w='100%'
 			pb='64px'
@@ -114,16 +114,27 @@ const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, .
 				border={BORDER}
 				{...props}>
 				<Flex
-					flexDir='column'
+					w='full'
+					py='64px'
+					flexDir={{ base: 'column', md: 'row' }}
 					borderRight={BORDER}
 					borderLeft={BORDER}
 					pl='24px'>
-					<Row>{top}</Row>
-					<Row>{bottom}</Row>
+					{top}
+					{bottom}
 				</Flex>
 			</Flex>
-		</Flex>
+		</Grid>
 	);
 };
 
-export default SectionHeading;
+const titleCss = {
+	fontSize: { base: '2rem', md: '2.5rem !important' },
+	fontFamily: 'Michroma',
+	lineHeight: { base: '2.5rem', md: '5rem' },
+	letterSpacing: '2px',
+	marginTop: '0.5rem',
+	fontWeight: 800,
+};
+
+export default SubSection;

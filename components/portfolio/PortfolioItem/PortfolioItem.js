@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Flex, Image, Link, Text } from '@chakra-ui/react';
 import { breakpoints } from '../../lib/constants';
 import { styles } from '../../../theme/styles';
+import NextLink from 'next/link';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -30,7 +31,7 @@ const PortfolioItem = ({ item }) => {
 	return (
 		<Link
 			isExternal
-			href={item?.liveUrl || '#'}>
+			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
 			<Container border={BORDER}>
 				<ImageBox
 					p={{ base: '12px', md: '16px' }}

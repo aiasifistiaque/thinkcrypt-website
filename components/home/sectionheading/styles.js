@@ -25,16 +25,17 @@ const Left = styled(Flex)`
 	flex: 1;
 	align-self: flex-start;
 	width: 100%;
+	height: 100%;
 
 	@media (min-width: ${breakpoints.desktop}) {
 		align-self: center;
+		padding-top: 64px;
 	}
 `;
 
 const Right = styled(Flex)`
 	flex-direction: column;
 	flex: 2.25;
-
 	padding-bottom: 24px;
 	padding-left: 0;
 	@media (min-width: ${breakpoints.desktop}) {
@@ -42,6 +43,14 @@ const Right = styled(Flex)`
 		padding-left: 42px;
 	}
 `;
+
+export const rightCss = {
+	flexDir: 'column',
+	flex: 2.25,
+	paddingBottom: 6,
+	paddingLeft: { base: 0, md: 6 },
+	paddingTop: { base: 0, md: 6 },
+};
 
 /**Texts */
 
@@ -76,11 +85,23 @@ const Subtitle = styled(ChakraText)`
 const Text = styled(ChakraText)`
 	font-family: 'Michroma', sans-serif;
 
-	line-height: 1.2;
+	line-height: 1.4;
+	font-size: 1rem;
 
 	@media (min-width: ${breakpoints.desktop}) {
-		font-size: 1.5rem;
-		line-height: 1.3;
+		font-size: 1.4rem;
+		line-height: 1.5;
+	}
+`;
+
+export const SectionText = styled(ChakraText)`
+	font-family: 'Michroma', sans-serif;
+	font-size: 1rem;
+	line-height: 1.4;
+
+	@media (min-width: ${breakpoints.desktop}) {
+		font-size: 1.4rem;
+		line-height: 1.5;
 	}
 `;
 
