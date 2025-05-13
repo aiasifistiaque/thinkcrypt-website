@@ -33,7 +33,7 @@ const Testimonial = () => {
 					color={'white'}>
 					What our clients are saying about us
 				</Heading>
-				<P color={'white'}>
+				<P color='white'>
 					I am really thankful to the thinkcrypt team for making this amazing website and app for
 					our business. Thinkcrypt has fulfilled all of our demands and queries. They have a very
 					strong team of developers. We will surely be working with thinkcrypt team for future

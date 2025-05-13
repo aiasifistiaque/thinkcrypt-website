@@ -129,8 +129,8 @@ const Startups = () => {
 								<Text
 									{...textStyle}
 									mb='6'>
-									This approach allows you to gather valuable user feedback early and iterate
-									quickly, reducing the risk of building a product that doesn't meet market needs.
+									{`This approach allows you to gather valuable user feedback early and iterate
+									quickly, reducing the risk of building a product that doesn't meet market needs.`}
 								</Text>
 								<Link href='/contact'>
 									<Button {...buttonStyle}>Discuss Your MVP</Button>

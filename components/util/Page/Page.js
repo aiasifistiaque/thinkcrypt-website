@@ -18,7 +18,7 @@ const Container = styled('main')`
 	flex: 1;
 `;
 
-const Page = ({ children, title, description }) => {
+const Page = ({ children, title, description, image }) => {
 	return (
 		<>
 			<Head>
