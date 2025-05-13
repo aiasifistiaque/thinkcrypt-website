@@ -14,6 +14,7 @@ import AboutUsSection from './about-us/AboutUsSection';
 import RegisterPlan from './plan/RegisterPlan';
 import PlanSection from './plan/PlanSection';
 import MintRegisterSection from './plan/MintRegisterSection';
+import Servicesv2 from './services/ServiceV2';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -33,7 +34,8 @@ const Homepage = () => {
 			<Container>
 				<Hero />
 				<AboutUsSection />
-				<Service />
+				{/* <Service /> */}
+				<Servicesv2 />
 				<SectionHeading
 					heading='Featured Projects'
 					subHeading='Meticulously Designed Projects'

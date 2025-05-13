@@ -8,6 +8,7 @@ const Container = styled(Flex)`
 	gap: 1rem;
 	padding: 64px 24px;
 	flex: 1;
+
 	@media (min-width: ${breakpoints.desktop}) {
 		padding: 64px 128px;
 	}
@@ -30,6 +31,7 @@ const FooterText = styled(Text)`
 	letter-spacing: 2%;
 	line-height: 1.2rem;
 	font-weight: 300;
+	color: white;
 `;
 
 const Footer = () => {
@@ -37,6 +39,7 @@ const Footer = () => {
 		return (
 			<Stack spacing={4}>
 				<Heading
+					color='white'
 					fontFamily='Michroma'
 					letterSpacing='2px'
 					size='sm'>
@@ -47,7 +50,11 @@ const Footer = () => {
 						<Link
 							key={i}
 							href={item.href}>
-							<Text fontFamily='Michroma'>{item.name}</Text>
+							<Text
+								color='white'
+								fontFamily='Michroma'>
+								{item.name}
+							</Text>
 						</Link>
 					))}
 				</Stack>
@@ -56,7 +63,9 @@ const Footer = () => {
 	};
 
 	return (
-		<Stack bg='#f2f2f2'>
+		<Stack
+			bg='black'
+			color='white'>
 			<Container>
 				<Sections>
 					<Stack>
@@ -123,7 +132,7 @@ const Footer = () => {
 			<Center p='4px 16px'>
 				<Text
 					textAlign='center'
-					color='gray.600'
+					color='white'
 					fontSize={12}>
 					{`Copyright ©2024`} | thinkcrypt.io | ALL RIGHTS RESERVED
 				</Text>
