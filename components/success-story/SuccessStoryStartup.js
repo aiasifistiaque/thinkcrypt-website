@@ -9,9 +9,9 @@ const SuccessStorieyStartup = () => {
 				<Box>
 					<Heading {...headingStyle}>Success Stories</Heading>
 					<Text {...paragraphStyle}>
-						We've helped dozens of startups successfully launch their products and secure funding.
+						{`We've helped dozens of startups successfully launch their products and secure funding.
 						Our expertise in building MVPs and scalable platforms has contributed to the success of
-						startups across various industries.
+						startups across various industries.`}
 					</Text>
 					<VStack {...vStackStyle}>
 						<Flex {...storyFlexStyle}>

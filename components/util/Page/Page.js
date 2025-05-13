@@ -18,14 +18,14 @@ const Container = styled('main')`
 	flex: 1;
 `;
 
-const Page = ({ children, title }) => {
+const Page = ({ children, title, description }) => {
 	return (
 		<>
 			<Head>
 				<title>{title || 'thinkcrypt.io'}</title>
 				<meta
 					property='title'
-					content='thinkcrypt.io'
+					content={title || 'thinkcrypt.io'}
 				/>
 				<link
 					rel='icon'
@@ -37,18 +37,21 @@ const Page = ({ children, title }) => {
 					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'></meta>
 				<meta
 					property='og:title'
-					content='thinkcrypt.io'
+					content={title || 'thinkcrypt.io'}
 					key='ogtitle'
 				/>
 				<meta
 					property='og:description'
-					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
+					content={
+						description ||
+						'At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
+					}
 					key='ogdesc'
 				/>
 
 				<meta
 					property='og:image'
-					content='/hero.jpeg'
+					content={image || '/hero.jpeg'}
 					key='ogimage'
 				/>
 				<meta

@@ -93,7 +93,9 @@ const mvpBenefits = [
 
 const Startups = () => {
 	return (
-		<Page>
+		<Page
+			title='MVP Development for Startups | Full Tech & Launch SupportLaunch-Ready MVPs for Startups | We Handle Tech, You Drive Growth'
+			description='Thinkcrypt helps startups validate, build, and launch investor-ready MVPs with speed and precision. From product strategy to full-stack execution — we’re your technical cofounder without the equity.'>
 			<Box {...pageStyle}>
 				<Box
 					as='main'
