@@ -38,7 +38,7 @@ const SidebarNavItem = ({ id, name, href, ...props }) => {
 						fontWeight='300'
 						color='text.200'
 						lineHeight='1'
-						fontSize='4rem'>
+						fontSize={{ base: '2.5rem', md: '4rem' }}>
 						{name}
 					</Text>
 					<Text
