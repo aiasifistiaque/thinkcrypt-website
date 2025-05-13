@@ -10,8 +10,8 @@ const ReadyToLaunchSection = () => {
 				<VStack {...vStackStyle}>
 					<Heading {...headingStyle}>Ready to Launch Your Startup?</Heading>
 					<Text {...textStyle}>
-						Let's transform your idea into a market-ready product that users love and investors
-						believe in.
+						{`Let's transform your idea into a market-ready product that users love and investors
+						believe in.`}
 					</Text>
 					<Link href='/contact'>
 						<Button {...buttonStyle}>Schedule a Consultation</Button>
