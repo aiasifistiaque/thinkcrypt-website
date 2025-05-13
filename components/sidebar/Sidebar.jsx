@@ -35,7 +35,7 @@ const menu = [
 const EachMenuItem = ({ href, children }) => {
 	return (
 		<Link href={href} cursor={'pointer'}>
-			<Text fontSize={'2rem'} color={colors.charcole} fontWeight={600} fontFamily={'Poppins'}>
+			<Text fontSize={ {base:'1.5rem',md:'2rem'}} color={colors.charcole} fontWeight={600} fontFamily={'Poppins'}>
 				{children}
 			</Text>
 		</Link>

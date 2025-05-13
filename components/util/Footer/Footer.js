@@ -10,7 +10,7 @@ const Container = styled(Flex)`
 	flex: 1;
 
 	@media (min-width: ${breakpoints.desktop}) {
-		padding: 64px 128px;
+		padding: 64px 44px;
 	}
 `;
 
@@ -26,12 +26,13 @@ const Sections = styled(Flex)`
 `;
 
 const FooterText = styled(Text)`
-	font-size: 0.8rem;
+	font-size: 0.7rem;
 	font-family: Michroma;
 	letter-spacing: 2%;
-	line-height: 1.2rem;
+	line-height: 1.1rem;
 	font-weight: 300;
 	color: white;
+	margin-top: 8px;
 `;
 
 const Footer = () => {
@@ -40,8 +41,8 @@ const Footer = () => {
 			<Stack spacing={4}>
 				<Heading
 					color='white'
+					fontSize='22px'
 					fontFamily='Michroma'
-					letterSpacing='2px'
 					size='sm'>
 					{data.heading}
 				</Heading>
@@ -51,6 +52,7 @@ const Footer = () => {
 							key={i}
 							href={item.href}>
 							<Text
+								fontSize='16px'
 								color='white'
 								fontFamily='Michroma'>
 								{item.name}
@@ -70,6 +72,7 @@ const Footer = () => {
 				<Sections>
 					<Stack>
 						<Heading
+							fontSize='20px'
 							fontFamily='Michroma'
 							size='md'>
 							Contact Us

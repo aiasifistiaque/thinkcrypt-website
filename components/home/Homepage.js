@@ -15,6 +15,7 @@ import RegisterPlan from './plan/RegisterPlan';
 import PlanSection from './plan/PlanSection';
 import MintRegisterSection from './plan/MintRegisterSection';
 import Servicesv2 from './services/ServiceV2';
+import NewsletterSection from './Newsletter/Newsletter';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -80,6 +81,7 @@ const Homepage = () => {
 					brings it all together in one beautiful experience. If you are too, call or send us an
 					email to get started.
 				</SectionHeading>
+				<NewsletterSection />
 			</Container>
 		</Page>
 	);
