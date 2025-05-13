@@ -26,19 +26,29 @@ const Container = styled(Flex)`
 
 const Header = () => {
 	return (
-		<Container mixBlendMode='difference'>
+		<Container
+			mixBlendMode='difference'
+			zIndex={999}>
 			<ScrollYProgtess />
-			<Link href='/' style={{ cursor: 'pointer' }}>
+			<Link
+				href='/'
+				style={{ cursor: 'pointer' }}>
 				<Logo />
 			</Link>
-			<Flex gap={6} align={'center'}>
+			<Flex
+				gap={6}
+				align={'center'}>
 				<Time />
 				<Sidebar
 					boxSize='1.75rem'
 					borderRadius='full'
 					border='.5px solid #fefefe'
 					button={
-						<LiaEqualsSolid size='1rem' color='#fefefe' cursor='pointer' />
+						<LiaEqualsSolid
+							size='1rem'
+							color='#fefefe'
+							cursor='pointer'
+						/>
 					}
 				/>
 			</Flex>
