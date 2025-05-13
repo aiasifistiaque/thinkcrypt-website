@@ -94,6 +94,7 @@ const mvpBenefits = [
 const Startups = () => {
 	return (
 		<Page
+			image='https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 			title='MVP Development for Startups | Full Tech & Launch SupportLaunch-Ready MVPs for Startups | We Handle Tech, You Drive Growth'
 			description='Thinkcrypt helps startups validate, build, and launch investor-ready MVPs with speed and precision. From product strategy to full-stack execution — we’re your technical cofounder without the equity.'>
 			<Box {...pageStyle}>
@@ -103,7 +104,7 @@ const Startups = () => {
 					<Hero
 						title='FROM IDEA TO SUCCESSFUL STARTUP'
 						subtitle='We help innovative startups launch market-ready MVPs and build scalable SaaS platforms that attract users and investors.'
-						imageUrl='https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+						imageUrl='https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 					/>
 
 					{/* MVP Section */}
