@@ -37,7 +37,7 @@ const headingWrapperStyle = {
 const headingStyle = {
 	mb: 4,
 	textTransform: 'uppercase',
-	fontSize: { base: '2xl', md: '3xl' },
+	fontSize: { base: 'xl', md: '3xl' },
 };
 
 const subHeadingStyle = {
