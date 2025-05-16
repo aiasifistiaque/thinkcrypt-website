@@ -16,6 +16,7 @@ import PlanSection from './plan/PlanSection';
 import MintRegisterSection from './plan/MintRegisterSection';
 import Servicesv2 from './services/ServiceV2';
 import NewsletterSection from './Newsletter/Newsletter';
+import RightBusinessSolution from './services/RightBusinessSolution';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -36,7 +37,8 @@ const Homepage = () => {
 				<Hero />
 				<AboutUsSection />
 				{/* <Service /> */}
-				<Servicesv2 />
+
+				<RightBusinessSolution />
 				<SectionHeading
 					heading='Featured Projects'
 					subHeading='Meticulously Designed Projects'
@@ -48,6 +50,7 @@ const Homepage = () => {
 					future with impactful software.
 				</SectionHeading>
 				<Projects />
+				<Servicesv2 />
 				{/* <SectionHeading
 					heading='A symphony of look and function'
 					subHeading='Our Services'>
