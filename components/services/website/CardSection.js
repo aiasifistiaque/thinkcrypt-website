@@ -35,9 +35,9 @@ const headingWrapperStyle = {
 };
 
 const headingStyle = {
-	as: 'h2',
 	mb: 4,
 	textTransform: 'uppercase',
+	fontSize: { base: '2xl', md: '3xl' },
 };
 
 const subHeadingStyle = {
