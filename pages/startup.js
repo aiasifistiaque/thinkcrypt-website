@@ -225,12 +225,6 @@ const containerStyle = {
 	px: { base: 6, md: 16 },
 };
 
-const flexStyle = {
-	direction: { base: 'column', md: 'row' },
-	gap: 16,
-	align: 'center',
-};
-
 const headingStyle = {
 	size: 'xl',
 	mb: 6,
