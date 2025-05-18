@@ -1,4 +1,3 @@
-import React from 'react';
 import { Clock, Shield, TrendingUp } from 'lucide-react';
 import CardSection from './CardSection';
 import LightIItemCard from '../card/LightIItemCard';

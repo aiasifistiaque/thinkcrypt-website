@@ -104,10 +104,11 @@ const RightBusinessSolution = () => {
 };
 
 const headingCss = {
-	lineHeight: 1.4,
+	lineHeight: 1.3,
 	color: 'black',
-	fontSize: { base: '32px', md: '48px' },
+	fontSize: { base: '32px', md: '44px' },
 	fontFamily: fonts.heading,
+	fontWeight: '900',
 };
 
 const subHeadingCss = {

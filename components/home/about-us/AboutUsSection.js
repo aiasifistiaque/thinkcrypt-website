@@ -23,7 +23,7 @@ const AboutUsSection = ({}) => {
 				// minH={{ base: "auto", lg: "720px" }}
 				gap={{ base: 8, md: 16 }}
 				pt='5rem'
-				pb={{ base: '4rem', md: '4rem' }}
+				pb={{ base: '4rem', md: '8rem' }}
 				px={{ base: padding.baseBody, lg: padding.lgBody }}
 				mx='auto'
 				maxW={layout.MAX_W}>
@@ -52,10 +52,10 @@ const AboutUsSection = ({}) => {
 						</Heading>
 						<RobotoText
 							fontFamily='Michroma'
-							fontSize={{ base: '1.4rem', lg: '1.5rem' }}
+							fontSize={{ base: '1rem', lg: '1.5rem' }}
 							maxW={{ base: '100%', lg: '75%' }}
 							color='black.800'
-							letterSpacing={{ base: '-1.3px', md: '0px' }}
+							letterSpacing={{ base: '0px', md: '0px' }}
 							lineHeight={{ base: '1.5', md: '1.6' }}>
 							{AboutUs.ABOUT_DESCRIPTION}
 						</RobotoText>
