@@ -1,15 +1,15 @@
 import React from 'react';
 import Column from '../../util/Home/Column';
-import { Box, Button, Center, Flex, Grid, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Button, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { fonts } from '../../lib/constants';
-import { styles } from '../../../theme/styles';
 import { useGetAllQuery } from '../../../store';
 
 import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lucide-react';
-import Link from 'next/link';
+// import SolutionCard from './SolutionCard';
+import SolutionCard, { Skeleton } from './SolutionCard';
 
 // Updated primary solution cards data for the 6 main business categories
-const data = [
+const doc = [
 	{
 		title: 'STARTUPS',
 		description:
@@ -55,16 +55,15 @@ const data = [
 ];
 
 const RightBusinessSolution = () => {
-	// const { data, isFetching } = useGetAllQuery({
-	// 	path: 'services',
-	// 	limit: 9,
-	// 	sort: '-priority',
-	// 	filters: {
-	// 		isActive: true,
-	// 	},
-	// });
-
-	const isFetching = false;
+	const { data, isFetching } = useGetAllQuery({
+		path: 'solutions',
+		limit: 6,
+		sort: '-priority',
+		filters: {
+			isFeatured: true,
+			status: 'published',
+		},
+	});
 
 	return (
 		<Column {...containerCss}>
@@ -77,25 +76,28 @@ const RightBusinessSolution = () => {
 			</Center>
 
 			<Grid {...gridCss}>
-				{isFetching
-					? [...Array(10)].map((_, i) => <SeriveItemLgSkeleton key={i} />)
-					: data?.map((item, i) => (
-							<SeriveItemLg
-								item={item}
-								key={i}
-							/>
-					  ))}
+				{isFetching && [...Array(3)].map((_, i) => <Skeleton key={i} />)}
+				{data &&
+					data?.doc?.map((item, i) => (
+						<SolutionCard
+							href={item?.toStaticPage ? item?.staticPageUrl : `/businesses/${item?._id}`}
+							icon={
+								<Image
+									w='48px'
+									h='48px'
+									objectFit='contain'
+									src={item?.icon}
+								/>
+							}
+							key={i}
+							title={item?.name}
+							description={item?.shortDescription}
+							btnText='Learn More'
+						/>
+					))}
 			</Grid>
 			<Center>
-				<Button
-					bg='white'
-					border='1px solid black'
-					textTransform='uppercase'
-					fontFamily='Michroma'
-					borderRadius='none'
-					_hover={{ bg: 'white', color: 'black' }}>
-					View all business solutions
-				</Button>
+				<Button {...btnCss}>View all business solutions</Button>
 			</Center>
 		</Column>
 	);
@@ -136,76 +138,14 @@ const gridCss = {
 	gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
 };
 
-const SeriveItemLg = ({ item }) => (
-	<Column {...itemCss}>
-		<Center
-			w='full'
-			pb={2}>
-			<Flex
-				bg='whitesmoke'
-				p={4}
-				borderRadius='full'>
-				{item?.icon}
-			</Flex>
-		</Center>
-		<Text {...titleCss}>{item?.title}</Text>
-		<Text {...bodyTextCss}>{item?.description}</Text>
-		<Center mt={2}>
-			<Button
-				size='md'
-				bg='transparent'
-				color='black'
-				borderColor='black'
-				border='1px solid'
-				fontSize='12px'
-				borderRadius='none'
-				fontFamily='Michroma'
-				_hover={{ bg: 'transparent', color: 'black' }}>
-				LEARN MORE
-			</Button>
-		</Center>
-	</Column>
-);
-
-const SeriveItemLgSkeleton = () => (
-	<Column {...itemCss}>
-		<Skeleton>
-			<Text
-				{...titleCss}
-				fontFamily={fonts.heading}>
-				NAME OF ITEM
-			</Text>
-		</Skeleton>
-		<SkeletonText noOfLines={4} />
-	</Column>
-);
-
-const itemCss = {
-	p: 8,
-	gap: 4,
-	border: '1px solid #e6e6e6',
-	bgColor: 'white',
-	justify: 'center',
-};
-
-const titleCss = {
-	fontSize: { base: '16px', md: '22px' },
-	fontWeight: '900',
-	fontFamily: fonts.heading,
-	textTransform: 'uppercase',
-	textAlign: 'center',
-	lineHeight: 1.4,
-};
-
-const bodyTextCss = {
-	color: '#737373',
+const btnCss = {
+	bg: 'transparent',
+	borderColor: 'black',
+	border: '1px solid',
+	fontSize: '12px',
+	borderRadius: 'none',
 	fontFamily: 'Michroma',
-	fontSize: '14px',
-	textTransform: 'capitalize',
-	fontSize: '.9rem',
-	lineHeight: 1.5,
-	fontWeight: '500',
-	textAlign: 'center',
+	_hover: { bg: 'transparent', color: 'black' },
 };
 
 export default RightBusinessSolution;
