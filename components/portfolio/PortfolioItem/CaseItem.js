@@ -65,8 +65,12 @@ const CaseItem = ({ item }) => {
 					{item?.shortDescription || lorem}
 				</Text>
 				<Wrap mb={4}>
-					{tags?.map((item, i) => (
-						<Badge {...badgeCss}>{item}</Badge>
+					{item?.tags?.map((tag, i) => (
+						<Badge
+							{...badgeCss}
+							key={i}>
+							{tag}
+						</Badge>
 					))}
 				</Wrap>
 				<Link
