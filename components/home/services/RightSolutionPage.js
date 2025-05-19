@@ -3,64 +3,18 @@ import Column from '../../util/Home/Column';
 import { Button, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { fonts } from '../../lib/constants';
 import { useGetAllQuery } from '../../../store';
-import Link from 'next/link';
 
 import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lucide-react';
 // import SolutionCard from './SolutionCard';
 import SolutionCard, { Skeleton } from './SolutionCard';
 
-// Updated primary solution cards data for the 6 main business categories
-const doc = [
-	{
-		title: 'STARTUPS',
-		description:
-			'Early-stage companies focused on innovation and rapid growth, seeking nimble tech solutions to disrupt markets.',
-		icon: <Rocket size={48} />,
-		link: '/solution/startups',
-	},
-	{
-		title: 'SMALL & MEDIUM ENTERPRISES',
-		description:
-			'Established businesses looking to enhance efficiency and expand reach through targeted digital transformation.',
-		icon: <Building size={48} />,
-		link: '/solution/sme',
-	},
-	{
-		title: 'ENTERPRISE & CORPORATIONS',
-		description:
-			'Large organizations requiring complex, integrated solutions to manage scale and drive innovation.',
-		icon: <Building2 size={48} />,
-		link: '/solution/enterprise',
-	},
-	{
-		title: 'E-COMMERCE',
-		description:
-			'Online retailers seeking robust platforms and strategies to enhance customer experience and increase sales.',
-		icon: <ShoppingCart size={48} />,
-		link: '/solution/ecommerce',
-	},
-	{
-		title: 'MANUFACTURING & INDUSTRIAL',
-		description:
-			'Production-oriented businesses looking to optimize operations through automation and intelligent systems.',
-		icon: <Factory size={48} />,
-		link: '/solution/manufacturing',
-	},
-	{
-		title: 'HEALTHCARE',
-		description:
-			'Medical providers requiring secure, compliant systems to enhance patient care and operational efficiency.',
-		icon: <Hospital size={48} />,
-		link: '/solution/healthcare',
-	},
-];
-
-const RightBusinessSolution = () => {
+const RightSolutionPage = () => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'solutions',
-		limit: 6,
+		limit: 99,
 		sort: '-priority',
 		filters: {
+			isFeatured: true,
 			status: 'published',
 		},
 	});
@@ -68,10 +22,17 @@ const RightBusinessSolution = () => {
 	return (
 		<Column {...containerCss}>
 			<Center {...headingContainerCss}>
-				<Text {...headingCss}>FIND THE RIGHT SOLUTION FOR YOUR BUSINESS</Text>
+				<Text {...headingCss}>Power Up Your Business with the Right Digital Tools</Text>
 				<Text {...subHeadingCss}>
-					Every business has unique challenges and goals. We provide tailored digital solutions to
-					help you overcome obstacles and achieve sustainable growth.
+					{`In today’s fast-moving world, having the right digital solution can make all the
+					difference. Whether you're running a café, managing a clinic, selling products online, or
+					offering services — the right website, app, or software can help you save time, reach more customers, and grow faster.`}
+				</Text>
+				<Text {...subHeadingCss}>
+					{`At Thinkcrypt, we don’t believe in one-size-fits-all. We build smart, modern digital
+					solutions designed specifically for your industry. From powerful eCommerce platforms and
+					booking systems to CRMs, POS, or inventory tools — we help you turn ideas into action and
+					challenges into opportunities.`}
 				</Text>
 			</Center>
 
@@ -96,11 +57,6 @@ const RightBusinessSolution = () => {
 						/>
 					))}
 			</Grid>
-			<Center>
-				<Link href='/business-solution'>
-					<Button {...btnCss}>View all business solutions</Button>
-				</Link>
-			</Center>
 		</Column>
 	);
 };
@@ -120,7 +76,7 @@ const subHeadingCss = {
 };
 
 const containerCss = {
-	bg: 'whitesmoke',
+	bg: 'white',
 	py: { base: 16, md: 16 },
 	px: { base: 4, md: 8 },
 	gap: 12,
@@ -130,7 +86,7 @@ const headingContainerCss = {
 	flexDir: 'column',
 	gap: 4,
 	mx: 'auto',
-	maxW: { base: '100%', md: '60vw' },
+	maxW: { base: '100%', md: '80vw' },
 	textAlign: 'center',
 	w: 'full',
 };
@@ -151,4 +107,4 @@ const btnCss = {
 	_hover: { bg: 'transparent', color: 'black' },
 };
 
-export default RightBusinessSolution;
+export default RightSolutionPage;
