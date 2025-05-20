@@ -27,7 +27,7 @@ const Servicesv2 = () => {
 
 			<Grid {...gridCss}>
 				{isFetching
-					? [...Array(10)].map((_, i) => <SeriveItemLgSkeleton key={i} />)
+					? [...Array(6)].map((_, i) => <SeriveItemLgSkeleton key={i} />)
 					: data?.doc?.map((item, i) => (
 							<SeriveItemLg
 								item={item}
