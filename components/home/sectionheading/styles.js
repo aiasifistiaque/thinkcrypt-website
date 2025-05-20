@@ -57,17 +57,17 @@ export const rightCss = {
 const Title = styled(ChakraText)`
 	font-size: 2rem;
 	font-family: 'Michroma', sans-serif;
-	line-height: 2.5rem;
-	letter-spacing: 2px;
+	line-height: 1.3;
+
 	margin-top: 0.5rem;
-	font-weight: 700;
+	font-weight: 900;
+	text-transform: uppercase;
 	@media (min-width: ${breakpoints.desktop}) {
 		max-width: 700px;
 	}
 
 	@media (min-width: ${breakpoints.desktop}) {
-		font-size: 3.75rem;
-		line-height: 5rem;
+		font-size: 3rem;
 	}
 `;
 

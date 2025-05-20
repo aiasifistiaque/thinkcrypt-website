@@ -7,18 +7,17 @@ import Project from './Project.js';
 import { styles } from '../../../theme/styles.js';
 import ProjectSmall from './ProjectSmall.js';
 import { useGetAllQuery } from '../../../store/index.js';
+import CaseItem from '../../portfolio/PortfolioItem/CaseItem.js';
+import PortfolioItemSkeleton from '../../portfolio/PortfolioItem/PortfolioSkeleton.js';
 
 const Section = styled(Grid)`
 	grid-template-columns: 1fr;
-	@media (min-width: ${breakpoints.tab}) {
-		grid-template-columns: 1fr 1fr;
-	}
 `;
 
 const BORDER = styles.border.light;
 
 const Projects = () => {
-	const { data } = useGetAllQuery({
+	const { data, isFetching } = useGetAllQuery({
 		path: 'portfolios',
 		limit: 12,
 		sort: '-priority',
@@ -27,14 +26,23 @@ const Projects = () => {
 	return (
 		<Flex
 			borderBottom={BORDER}
-			px='24px'
-			pl={{ base: '24px', md: '128px' }}
+			px={{ base: '16px', md: '24px' }}
 			w='100%'>
 			<Section
 				w='100%'
 				borderLeft={BORDER}
 				borderRight={BORDER}>
-				<Show above='md'>
+				<Grid {...itemContainer}>
+					{isFetching
+						? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
+						: data?.doc?.map((item, i) => (
+								<CaseItem
+									item={item}
+									key={i}
+								/>
+						  ))}
+				</Grid>
+				{/* <Show above='md'>
 					{data?.doc?.map((item, i) => (
 						<Project
 							index={i}
@@ -54,10 +62,19 @@ const Projects = () => {
 							/>
 						))}
 					</Accordion>
-				</Show>
+				</Show> */}
 			</Section>
 		</Flex>
 	);
+};
+
+const itemContainer = {
+	gridTemplateColumns: {
+		base: '1fr',
+		md: 'repeat(3, 1fr)',
+	},
+	pb: '64px',
+	gap: 4,
 };
 
 export default Projects;

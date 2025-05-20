@@ -42,14 +42,13 @@ const Homepage = () => {
 				<HomeStacks />
 
 				<SectionHeading
+					containerProps={{ pb: { base: '16px', md: '32px' } }}
 					heading='Featured Projects'
-					subHeading='Meticulously Designed Projects'
+					subHeading='Meticulously Designed Ideas'
 					btnText='View Our Portfolio'
 					href='/portfolio'>
-					Discover our portfolio: From innovative apps to robust enterprise solutions, each project
-					highlights our dedication to excellence. Explore case studies that demonstrate our
-					approach to overcoming challenges and surpassing expectations. Join us in shaping the
-					future with impactful software.
+					See what we’ve built — smart apps, powerful tools, real results. Dive into success stories
+					that show how we turn bold ideas into better software. Let’s build the future, together.
 				</SectionHeading>
 				<Projects />
 				<RightBusinessSolution />
