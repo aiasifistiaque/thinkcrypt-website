@@ -8,7 +8,7 @@ import { useGetAllQuery } from '../../../store';
 const Servicesv2 = () => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'services',
-		limit: 9,
+		limit: 6,
 		sort: '-priority',
 		filters: {
 			isActive: true,
