@@ -82,7 +82,7 @@ const cardHeadingStyle = {
 
 const cardTextStyle = {
 	color: '#737373',
-	fontSize: '16px',
+	fontSize: '14px',
 	fontWeight: '500',
 };
 
