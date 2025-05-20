@@ -95,7 +95,7 @@ const CaseStudyPage = () => {
 					<Grid {...itemGrid}>
 						<Grid {...itemContainer}>
 							{isFetching
-								? [...Array(2)].map((_, i) => <PortfolioItemSkeleton key={i} />)
+								? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
 								: data?.doc?.map((item, i) => (
 										<CaseItem
 											item={item}
@@ -132,6 +132,7 @@ const itemContainer = {
 		base: '1fr',
 		md: 'repeat(3, 1fr)',
 	},
+	pb: '64px',
 	gap: 4,
 };
 
