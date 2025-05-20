@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
 import PortfolioItem from './PortfolioItem/PortfolioItem';
@@ -15,22 +15,28 @@ const img =
 const BORDER = styles.border.light;
 
 const CaseStudyPage = () => {
+	const [cat, setCat] = useState('');
+
+	const onCategoryChange = value => {
+		setCat(value);
+	};
+
 	const { data, isFetching } = useGetAllQuery({
 		path: 'portfolios',
 		limit: 99,
 		sort: '-priority',
-		filters: { status: 'published' },
+		filters: { status: 'published', category: cat || '' },
 	});
 
 	const industries = [
-		'ecommerce',
-		'healthcare',
-		'education',
-		'finance',
-		'real estate',
-		'travel',
-		'food & beverage',
-		'entertainment',
+		{ title: 'All projects', value: '' },
+		{ title: 'E-commerce', value: 'e-commerce' },
+		{ title: 'Website', value: 'website' },
+		{ title: 'SAAS', value: 'saas' },
+		{ title: 'MVP', value: 'mvp' },
+		{ title: 'Travel', value: 'travel' },
+		{ title: 'Inventory', value: 'inventory' },
+		{ title: 'Healthcare', value: 'healthcare' },
 	];
 
 	return (
@@ -69,11 +75,17 @@ const CaseStudyPage = () => {
 								<Wrap>
 									{industries?.map((item, i) => (
 										<Flex
+											onClick={() => onCategoryChange(item?.value)}
 											cursor='pointer'
 											p={2}
+											bg={cat === item?.value ? 'black' : 'white'}
 											border={BORDER}
 											key={i}>
-											<Text textTransform='uppercase'>{item}</Text>
+											<Text
+												color={cat === item?.value ? 'white' : '#737373'}
+												textTransform='uppercase'>
+												{item?.title}
+											</Text>
 										</Flex>
 									))}
 								</Wrap>

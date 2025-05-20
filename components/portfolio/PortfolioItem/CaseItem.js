@@ -18,7 +18,9 @@ const CaseItem = ({ item }) => {
 				src={`${item?.image}`}
 				alt={item?.name}
 			/>
-			<Flex {...cardCss}>
+			<Flex
+				{...cardCss}
+				flex={1}>
 				<Text {...titleCss}>{item?.name}</Text>
 				<Text {...catText}>{item?.category}</Text>
 				<Text {...descCss}>{item?.shortDescription}</Text>
@@ -31,18 +33,21 @@ const CaseItem = ({ item }) => {
 						</Badge>
 					))}
 				</Wrap>
-				<Link
-					_hover={{
-						textDecoration: 'none',
-					}}
-					isExternal
-					href={
-						item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'
-					}>
-					<Box>
+
+				<Flex
+					align='flex-end'
+					flex={1}>
+					<Link
+						_hover={{
+							textDecoration: 'none',
+						}}
+						isExternal
+						href={
+							item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'
+						}>
 						<Button {...btnCss}>{item?.showCaseStudy ? 'View case Study' : 'Visit Project'}</Button>
-					</Box>
-				</Link>
+					</Link>
+				</Flex>
 			</Flex>
 		</Container>
 	);
