@@ -1,8 +1,8 @@
 import React from 'react';
-import Portfoliopage from '../components/portfolio/Portfoliopage';
+import CaseStudyPage from '../components/portfolio/CaseStudypage';
 
-const portfolio = () => {
-	return <Portfoliopage />;
+const CaseStudies = () => {
+	return <CaseStudyPage />;
 };
 
-export default portfolio;
+export default CaseStudies;

@@ -53,7 +53,17 @@ const rightCss = {
 	paddingTop: { base: 0, md: 6 },
 };
 
-const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, ...props }) => {
+const SectionHeading = ({
+	subHeading,
+	heading,
+	children,
+	btnText,
+	href,
+	to,
+	F,
+	containerProps,
+	...props
+}) => {
 	const top = (
 		<Flex
 			w='100%'
@@ -108,11 +118,12 @@ const SectionHeading = ({ subHeading, heading, children, btnText, href, to, F, .
 			mt='24px'
 			w='100%'
 			pb='64px'
-			borderBottom={BORDER}>
+			borderBottom={BORDER}
+			{...containerProps}>
 			<Flex
+				{...props}
 				px='24px'
-				border={BORDER}
-				{...props}>
+				border={BORDER}>
 				<Flex
 					flexDir='column'
 					borderRight={BORDER}

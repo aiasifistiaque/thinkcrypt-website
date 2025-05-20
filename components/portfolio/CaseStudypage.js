@@ -9,10 +9,8 @@ import { styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
 import CaseItem from './PortfolioItem/CaseItem';
 
-const PortfolioContainer = styled(Flex)`
-	min-height: 100vh;
-	flex-direction: column;
-`;
+const img =
+	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
 const BORDER = styles.border.light;
 
@@ -23,9 +21,6 @@ const CaseStudyPage = () => {
 		sort: '-priority',
 		filters: { status: 'published' },
 	});
-
-	const dataOne = data?.doc?.filter((_, index) => index % 2 === 0) || [];
-	const dataTwo = data?.doc?.filter((_, index) => index % 2 !== 0) || [];
 
 	const industries = [
 		'ecommerce',
@@ -39,18 +34,22 @@ const CaseStudyPage = () => {
 	];
 
 	return (
-		<Page>
+		<Page
+			image={img}
+			title={`Our Work – Real Projects, Real Impact | Thinkcrypt`}
+			description={`Explore Thinkcrypt’s portfolio of SaaS, eCommerce, and web solutions built with the MERN stack. Real-world impact, scalable systems, and startup-ready MVPs.`}>
 			<Stack
 				spacing={4}
 				pt='48px'>
 				<SectionHeading
+					containerProps={{ pb: '32px' }}
 					heading='All of Our Work'
 					subHeading='Our Projects'>
 					Explore our portfolio of successful projects and innovative solutions across various
 					industries and technologies.
 				</SectionHeading>
 
-				<PortfolioContainer>
+				<Flex flexDir='column'>
 					<Flex {...titleContainer}>
 						{/* <Heading
 							fontFamily='Michroma'
@@ -82,30 +81,18 @@ const CaseStudyPage = () => {
 						</Flex>
 					</Flex>
 					<Grid {...itemGrid}>
-						<Flex
-							{...itemContainer}
-							borderLeft={BORDER}>
+						<Grid {...itemContainer}>
 							{isFetching
 								? [...Array(2)].map((_, i) => <PortfolioItemSkeleton key={i} />)
-								: dataOne?.map((item, i) => (
+								: data?.doc?.map((item, i) => (
 										<CaseItem
 											item={item}
 											key={i}
 										/>
 								  ))}
-						</Flex>
-						<Flex {...itemContainer}>
-							{isFetching
-								? [...Array(2)].map((_, i) => <PortfolioItemSkeleton key={i} />)
-								: dataTwo?.map((item, i) => (
-										<CaseItem
-											item={item}
-											key={i}
-										/>
-								  ))}
-						</Flex>
+						</Grid>
 					</Grid>
-				</PortfolioContainer>
+				</Flex>
 			</Stack>
 		</Page>
 	);
@@ -113,7 +100,7 @@ const CaseStudyPage = () => {
 
 const titleContainer = {
 	pt: 4,
-	px: 8,
+	px: { base: 4, md: 6 },
 	borderLeft: BORDER,
 	borderRight: BORDER,
 };
@@ -121,15 +108,18 @@ const titleContainer = {
 const itemGrid = {
 	templateColumns: {
 		base: '1fr',
-		md: '5fr 5fr',
 	},
 	mt: '24px',
-	px: '24px',
+	px: { base: 4, md: 6 },
 	border: BORDER,
+	py: '24px',
 };
 
 const itemContainer = {
-	flexDir: 'column',
+	gridTemplateColumns: {
+		base: '1fr',
+		md: 'repeat(3, 1fr)',
+	},
 	gap: 4,
 };
 
