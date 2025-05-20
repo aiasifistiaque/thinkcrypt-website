@@ -122,7 +122,7 @@ const SectionHeading = ({
 			{...containerProps}>
 			<Flex
 				{...props}
-				px='24px'
+				px={{ base: '16px', md: '24px' }}
 				border={BORDER}>
 				<Flex
 					flexDir='column'
