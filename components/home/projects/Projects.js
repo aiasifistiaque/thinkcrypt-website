@@ -19,7 +19,7 @@ const BORDER = styles.border.light;
 const Projects = () => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'portfolios',
-		limit: 12,
+		limit: 9,
 		sort: '-priority',
 		filters: { status: 'published', isFeatured: true },
 	});

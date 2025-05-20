@@ -31,9 +31,15 @@ const container = {
 	width: '100%',
 };
 
+const img =
+	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+
 const Homepage = () => {
 	return (
-		<Page>
+		<Page
+			image={img}
+			title='Thinkcrypt – Your Tech Partner for Smarter, Scalable Growth'
+			description='We help impact-driven startups and SMEs grow with custom software, business tools, and analytics. Cut costs, boost efficiency, and scale faster with Thinkcrypt.'>
 			<Container>
 				<Hero />
 				<AboutUsSection />
@@ -47,8 +53,8 @@ const Homepage = () => {
 					subHeading='Meticulously Designed Ideas'
 					btnText='View Our Portfolio'
 					href='/portfolio'>
-					See what we’ve built — smart apps, powerful tools, real results. Dive into success stories
-					that show how we turn bold ideas into better software. Let’s build the future, together.
+					{`See what we’ve built — smart apps, powerful tools, real results. Dive into success stories
+					that show how we turn bold ideas into better software. Let’s build the future, together.`}
 				</SectionHeading>
 				<Projects />
 				<RightBusinessSolution />
