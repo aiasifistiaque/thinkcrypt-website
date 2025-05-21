@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, VStack, Heading, SimpleGrid, Flex } from '@chakra-ui/react';
+import { Box, VStack, Heading, SimpleGrid, Flex, Button } from '@chakra-ui/react';
+import Link from 'next/link';
 
-const CardSection = ({ data, title, subHeading, children, grid, ...props }) => {
+const CardSection = ({ data, title, subHeading, children, btnText, href, grid, ...props }) => {
 	return (
 		<Flex
 			{...containerStyle}
@@ -15,15 +16,43 @@ const CardSection = ({ data, title, subHeading, children, grid, ...props }) => {
 				columns={{ base: 1, md: 2, lg: grid || 4 }}>
 				{children}
 			</SimpleGrid>
+			{btnText && (
+				<Link href={href || '#'}>
+					<Box
+						mt='44px'
+						mb='-24px'
+						mx='auto'>
+						<Button {...btnStyle}>{btnText || 'Button Text'}</Button>
+					</Box>
+				</Link>
+			)}
 		</Flex>
 	);
 };
 
 export default CardSection;
 
+const btnStyle = {
+	bg: 'transparent',
+	color: 'black',
+	border: '1px solid',
+	borderColor: 'black',
+	px: 4,
+	py: 2,
+	borderRadius: 'none',
+	fontSize: '14px',
+	fontWeight: 'bold',
+	fontFamily: 'Michroma',
+	_hover: {
+		bg: 'transparent',
+		color: 'black',
+	},
+};
+
 const containerStyle = {
 	px: { base: 6, md: 16 },
 	py: 20,
+	pb: 16,
 	flexDirection: 'column',
 };
 
