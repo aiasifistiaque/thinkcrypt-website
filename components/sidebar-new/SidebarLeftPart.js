@@ -55,7 +55,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 						/>
 
 						<SidebarNavItem
-							href='/clinents'
+							href='/clients'
 							id='04'
 							name='Clients'
 						/>
