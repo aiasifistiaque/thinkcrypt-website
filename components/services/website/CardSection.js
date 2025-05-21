@@ -2,7 +2,17 @@ import React from 'react';
 import { Box, VStack, Heading, SimpleGrid, Flex, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 
-const CardSection = ({ data, title, subHeading, children, btnText, href, grid, ...props }) => {
+const CardSection = ({
+	data,
+	title,
+	subHeading,
+	children,
+	btnText,
+	href,
+	grid,
+	columns,
+	...props
+}) => {
 	return (
 		<Flex
 			{...containerStyle}
@@ -13,7 +23,7 @@ const CardSection = ({ data, title, subHeading, children, btnText, href, grid, .
 			</VStack>
 			<SimpleGrid
 				{...gridStyle}
-				columns={{ base: 1, md: 2, lg: grid || 4 }}>
+				columns={columns || { base: 1, md: 2, lg: grid || 4 }}>
 				{children}
 			</SimpleGrid>
 			{btnText && (
@@ -77,5 +87,5 @@ const subHeadingStyle = {
 };
 
 const gridStyle = {
-	spacing: 8,
+	spacing: { base: 2, md: 6 },
 };

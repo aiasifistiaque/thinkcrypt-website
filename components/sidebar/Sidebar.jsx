@@ -22,14 +22,18 @@ const menu = [
 		title: 'Home',
 		href: '/',
 	},
-	{
-		title: 'Our Team',
-		href: '/team',
-	},
 
 	{
-		title: 'Portfolio',
+		title: 'Our Work',
 		href: '/portfolio',
+	},
+	{
+		title: 'Team',
+		href: '/team',
+	},
+	{
+		title: 'Clients',
+		href: '/clients',
 	},
 ];
 const EachMenuItem = ({ href, children }) => {

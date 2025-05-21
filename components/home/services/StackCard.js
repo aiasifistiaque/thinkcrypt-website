@@ -1,7 +1,16 @@
 import React from 'react';
 import { Box, VStack, Heading, Text, Flex, Center, Wrap } from '@chakra-ui/react';
 
-const StackCard = ({ icon, title, description, tags, align = 'center', heading, iconBg }) => {
+const StackCard = ({
+	icon,
+	title,
+	description,
+	tags,
+	align = 'center',
+	heading,
+	iconBg,
+	headingStyle,
+}) => {
 	return (
 		<Box {...cardStyle}>
 			<VStack
@@ -24,7 +33,8 @@ const StackCard = ({ icon, title, description, tags, align = 'center', heading, 
 					<Heading
 						{...cardHeadingStyle}
 						fontSize={{ base: '18px', md: iconBg ? '1rem' : '18px' }}
-						textAlign={align == 'start' ? 'left' : 'center'}>
+						textAlign={align == 'start' ? 'left' : 'center'}
+						{...headingStyle}>
 						{title}
 					</Heading>
 				</Flex>
