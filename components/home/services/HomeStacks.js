@@ -15,7 +15,7 @@ const HomeStacks = () => {
 	});
 	return (
 		<CardSection
-			columns={3}
+			columns={{ base: 1, md: 3 }}
 			colorMode='dark'
 			btnText='View Our Tech Stacks'
 			href='/techstacks'
