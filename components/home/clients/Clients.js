@@ -17,6 +17,7 @@ import { useGetAllQuery } from '../../../store';
 import { max } from 'moment-timezone';
 import { padding } from '../../../lib/constants';
 import LinkButton from '../about-us/LinkButton';
+import CustomMarquee from '../hero/CustomMarquee';
 
 const BORDER = styles.border.dark;
 
@@ -28,7 +29,7 @@ const EachItem = ({ children, ...props }) => {
 			h={{ base: '120px', md: '180px' }}>
 			<Box p={{ base: 2, md: 4 }}>
 				<Image
-					w={{ base: '100px', md: '120px' }}
+					w={{ base: '100px', md: '140px' }}
 					h={{ base: '55px', md: '100px' }}
 					objectFit='contain'
 					src={children}
@@ -66,7 +67,7 @@ const Clients = () => {
 	return (
 		<Flex {...container}>
 			<Flex {...section}>
-				<Center {...titleContainer}>
+				<Flex {...titleContainer}>
 					<Grid {...titleStack}>
 						<Text {...title}>Our Partners & Clients</Text>
 						<Flex justify='flex-end'>
@@ -77,25 +78,28 @@ const Clients = () => {
 								justifySelf='flex-end'
 								w={{ base: '100%', md: '80%' }}>
 								<Text {...subTitle}>
-									{`We offer services to a diverse range of businesses, from startups and SMEs to large corporations, providing customized SaaS solutions that foster innovation and transformative growth. Our extensive partnerships across various industries allow us to deliver impactful, tailored SaaS solutions that drive businesses forward in their specific markets.`}
+									{`We offer services to a diverse range of businesses, from startups and SMEs to large corporations. Our extensive partnerships across various industries allow us to deliver impactful, tailored solutions that drive businesses forward.`}
 								</Text>
 								<LinkButton href='/clients'>View All Clients</LinkButton>
 							</Flex>
 						</Flex>
 					</Grid>
-				</Center>
+					<CustomMarquee>
+						{!data
+							? Array.from({ length: 12 }).map((_, index) => (
+									<EachItemLoading key={`loading-${index}`} />
+							  ))
+							: data?.doc?.map((logo, index) => <EachItem key={index}>{logo?.icon}</EachItem>)}
+					</CustomMarquee>
+				</Flex>
+
 				{/* <Grid {...itemContainer}>
-					{partnerLogos?.map((logo, index) => (
-						<EachItem key={index}>{logo}</EachItem>
-					))}
-				</Grid> */}
-				<Grid {...itemContainer}>
 					{!data
 						? Array.from({ length: 12 }).map((_, index) => (
 								<EachItemLoading key={`loading-${index}`} />
 						  ))
 						: data?.doc?.map((logo, index) => <EachItem key={index}>{logo?.icon}</EachItem>)}
-				</Grid>
+				</Grid> */}
 			</Flex>
 		</Flex>
 	);
@@ -122,35 +126,25 @@ const subTitle = {
 };
 
 const container = {
-	mx: 'auto',
 	borderTop: BORDER,
 	borderBottom: BORDER,
-	px: 0,
-
+	h: '100vh',
 	w: 'full',
-
 	bg: colors?.background?.dark,
+	// bg: 'teal',
 };
 
 const section = {
 	flex: 1,
-	// borderLeft: BORDER,
-	// borderRight: BORDER,
 	flexDir: 'column',
 };
 
-const itemContainer = {
-	flex: 1,
-	borderTop: BORDER,
-	templateColumns: { base: '1fr 1fr', md: '1fr 1fr 1fr 1fr 1fr' },
-	gap: '1px',
-	bg: '#333',
-};
-
 const titleContainer = {
-	px: { base: padding?.baseBody, md: padding?.lgBody },
+	flexDir: 'column',
+	// px: { base: padding?.baseBody, md: padding?.lgBody },
 	py: { base: 4, md: 8, lg: 8 },
-	// borderBottom: BORDER,
+
+	px: 0,
 };
 
 const titleStack = {
@@ -158,9 +152,12 @@ const titleStack = {
 	flexDir: 'column',
 	w: 'full',
 	gap: 12,
+	// bg: 'red',
 	gridTemplateColumns: { base: '1fr', md: 'repeat(2, 1fr)' },
-	mb: 12,
-	h: '70vh',
+	px: { base: padding?.baseBody, md: padding?.lgBody },
+	maxW: '100vw',
+	mb: 4,
+	minH: '65vh',
 };
 
 export default Clients;
