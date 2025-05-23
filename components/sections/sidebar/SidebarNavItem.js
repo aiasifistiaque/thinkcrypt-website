@@ -1,7 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import { styles } from '../../../theme/styles';
+import { colors, styles } from '../../../theme/styles';
 import Link from 'next/link';
+import { fonts } from '../../../lib/constants';
 
 const SidebarNavItem = ({ id, name, href, ...props }) => {
 	const idText = (
@@ -21,7 +22,7 @@ const SidebarNavItem = ({ id, name, href, ...props }) => {
 				cursor='pointer'
 				align='flex-start'
 				gap={{ base: 2, lg: 3 }}
-				fontFamily='Michroma'
+				fontFamily={fonts?.title}
 				w='full'
 				borderBottom={{ base: '1px solid', md: 'none' }}
 				pb='6px'
@@ -35,10 +36,11 @@ const SidebarNavItem = ({ id, name, href, ...props }) => {
 					align='flex-start'
 					justify={{ base: 'space-between', md: 'flex-start' }}>
 					<Text
+						fontFamily={fonts?.title}
 						fontWeight='300'
-						color='text.200'
+						color={colors?.text?.dark}
 						lineHeight='1'
-						fontSize={{ base: '2.5rem', md: '4rem' }}>
+						fontSize={{ base: '2.5rem', md: '5rem' }}>
 						{name}
 					</Text>
 					<Text

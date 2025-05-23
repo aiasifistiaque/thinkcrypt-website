@@ -49,7 +49,7 @@ const CaseStudyPage = () => {
 			description={`Explore Thinkcrypt’s portfolio of SaaS, eCommerce, and web solutions built with the MERN stack. Real-world impact, scalable systems, and startup-ready MVPs.`}>
 			<Stack
 				spacing={4}
-				pt='48px'>
+				pt='64px'>
 				<SectionHeading
 					colorMode={colorMode}
 					containerProps={{ pb: '32px' }}

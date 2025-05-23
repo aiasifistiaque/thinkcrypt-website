@@ -27,23 +27,6 @@ const Projects = () => {
 		filters: { status: 'published', isFeatured: true },
 	});
 
-	const Divider = () => {
-		return (
-			<Flex
-				px={{ base: padding?.baseBody, md: padding?.lgBody }}
-				h='3px'
-				py='92px'
-				w='100%'>
-				<Flex
-					bg='red'
-					borderTop='1px solid'
-					borderColor={colors?.border?.light}
-					w='100%'
-					flex={1}
-				/>
-			</Flex>
-		);
-	};
 	return (
 		<Flex
 			flexDir='column'
@@ -66,7 +49,7 @@ const Projects = () => {
 					</Grid>
 				</SectionOne>
 			</Flex>
-			<Heading>View All Our Work</Heading>
+			{/* <Heading>View All Our Work</Heading> */}
 		</Flex>
 	);
 };

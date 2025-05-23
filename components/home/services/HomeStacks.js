@@ -7,7 +7,7 @@ const HomeStacks = () => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'techstacks',
 		sort: '-priority',
-		limit: 4,
+		limit: 3,
 		filters: {
 			ifFeatured: true,
 			status: 'published',
@@ -15,6 +15,7 @@ const HomeStacks = () => {
 	});
 	return (
 		<CardSection
+			columns={3}
 			colorMode='dark'
 			btnText='View Our Tech Stacks'
 			href='/techstacks'

@@ -19,6 +19,7 @@ import NewsletterSection from './Newsletter/Newsletter';
 import RightBusinessSolution from './services/RightBusinessSolution';
 import HomeStacks from './services/HomeStacks';
 import ViewOurWork from './about-us/ViewOurWork';
+import TitleSection from './about-us/TitleSection';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -84,7 +85,17 @@ const Homepage = () => {
 
 				<Clients />
 				<Testimonial />
-				<SectionHeading
+				<TitleSection
+					top
+					btn='Contact Us'
+					title='Contact Us'
+					titleTop='Let’s design'
+					titleBottom='your project'>
+					{`We're passionate about design, innovation, brilliant ideas and the execution that
+					brings it all together in one beautiful experience. If you are too, call or send us an
+					email to get started.`}
+				</TitleSection>
+				{/* <SectionHeading
 					colorMode='dark'
 					heading='Let’s design your next project'
 					subHeading='Contact Us'
@@ -94,7 +105,7 @@ const Homepage = () => {
 					{`We're`} passionate about design, innovation, brilliant ideas and the execution that
 					brings it all together in one beautiful experience. If you are too, call or send us an
 					email to get started.
-				</SectionHeading>
+				</SectionHeading> */}
 				<NewsletterSection />
 			</Container>
 		</Page>

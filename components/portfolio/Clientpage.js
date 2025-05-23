@@ -8,6 +8,7 @@ import { styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
 import CardSection from '../services/website/CardSection';
 import StackCard from '../home/services/StackCard';
+import TitleSection from '../home/about-us/TitleSection';
 
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
@@ -58,30 +59,38 @@ const Clientpage = () => {
 			image={img}
 			title={`Trusted by Innovators Worldwide | Our Clients & Partners – Thinkcrypt`}
 			description={`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}>
-			<Stack
-				spacing={0}
-				pt='48px'>
-				<SectionHeading
+			<Stack spacing={0}>
+				{/* <SectionHeading
 					colorMode={colorMode}
 					containerProps={{ pb: '32px' }}
 					heading='Our Clients & Partners'
 					subHeading='Our Partners'>
 					{`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}
-				</SectionHeading>
+				</SectionHeading> */}
+
+				<TitleSection
+					top
+					colorMode='light'
+					title='Stakeholders'
+					titleTop='Our Clients'
+					titleBottom='& Partners'>
+					{`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}
+				</TitleSection>
 
 				<CardSection
 					colorMode={colorMode}
 					columns={{ base: 2, md: 4, lg: 4 }}
 					title='Trusted by Innovators Worldwide'
-					pt='44px'>
+					pt='0px'>
 					{data &&
 						data?.doc?.map((item, i) => (
 							<URLContainer
 								item={item}
 								key={i}>
 								<StackCard
+									align='center'
 									colorMode={colorMode}
-									headingStyle={{ fontSize: { base: '10px', md: '18px' } }}
+									headingStyle={{ fontSize: { base: '10px', md: '28px' }, lineHeight: 1 }}
 									icon={
 										<Image
 											src={item?.icon}

@@ -43,14 +43,14 @@ const Servicesv2 = () => {
 const headingCss = {
 	lineHeight: 1,
 	color: colors?.text?.dark,
-	fontSize: { base: '32px', md: '8rem' },
+	fontSize: { base: '44px', md: '8rem' },
 	fontFamily: fonts.title,
 	textTransform: 'uppercase',
 };
 
 const subHeadingCss = {
-	fontSize: { base: '16px', md: '18px' },
-	color: styles?.color?.textDarker || 'white',
+	fontSize: { base: '14px', md: '16px' },
+	color: colors?.text?.blue || 'white',
 	fontFamily: fonts.heading,
 	textTransform: 'uppercase',
 	fontFamily: fonts.primary,
@@ -103,7 +103,8 @@ const SeriveItemLgSkeleton = () => (
 const itemCss = {
 	p: { base: 6, md: 8 },
 	gap: 4,
-	border: '1px solid #333',
+	borderRadius: '12px',
+	// border: '1px solid #333',
 	bgColor: colors?.card?.dark,
 };
 

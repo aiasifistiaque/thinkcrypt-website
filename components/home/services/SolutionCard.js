@@ -53,7 +53,8 @@ const itemCss = {
 	pb: 6,
 	gap: 4,
 	border: '1px solid',
-	borderColor: '#333',
+	// borderColor: '#333',
+	borderRadius: '12px',
 	bgColor: colors?.card?.dark,
 	justify: 'center',
 };

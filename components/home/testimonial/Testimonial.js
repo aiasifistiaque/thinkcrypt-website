@@ -9,13 +9,12 @@ const Container = styled(Center)`
 	padding: 128px 24px;
 	display: flex;
 	flex-direction: column;
-	text-align: center;
-	font-family: Michroma;
+
 	padding-bottom: 92px;
 `;
 
 const P = styled(Text)`
-	text-align: center;
+	text-transform: uppercase;
 	@media (min-width: ${breakpoints.desktop}) {
 		max-width: 80vw;
 	}
@@ -36,10 +35,9 @@ const Testimonial = () => {
 					What our clients are saying about us
 				</Heading>
 				<P
+					textAlign='center'
 					color={colors?.text?.dark}
-					textTransform='uppercase'
-					lineHeight='1.2'
-					fontSize={{ base: '1rem', md: '2rem' }}
+					fontSize={{ base: '1rem', md: '1.2rem' }}
 					fontFamily={fonts?.primary}>
 					I am really thankful to the thinkcrypt team for making this amazing website and app for
 					our business. Thinkcrypt has fulfilled all of our demands and queries. They have a very

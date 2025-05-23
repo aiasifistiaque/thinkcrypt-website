@@ -4,7 +4,8 @@ import { Stack, Grid, Flex } from '@chakra-ui/react';
 import EachTeamMember from './EachTeamMember';
 import SectionHeadingWithoutMaxH from '../home/sectionheading/SectionHeading.js';
 import { Container } from '../home/sectionheading/styles.js';
-import { styles } from '../../theme/styles.js';
+import { colors, styles } from '../../theme/styles.js';
+import TitleSection from '../home/about-us/TitleSection.js';
 const teamMemebers = [
 	{
 		img: '/team/amiyo-vai.jpg',
@@ -101,26 +102,31 @@ const teamMemebers = [
 ];
 
 const BORDER = styles.border.light;
+const colorMode = 'dark';
 
 function TeamPage() {
 	return (
 		<Page>
 			<Stack
 				spacing={0}
-				w='full'
-				mt='42px'>
-				<SectionHeadingWithoutMaxH
-					heading='MEET THE CREATORS OF TEAM THINKCRYPT '
-					subHeading={'Our Team'}
-					pt={{ base: 2, md: 4 }}>
+				w='full'>
+				<TitleSection
+					colorMode={colorMode}
+					top
+					titleTop='Meet the Creators'
+					titleBottom='of Thinkcrypt'
+					title='Our Team'>
 					Get to know the faces behind the innovation and learn about the collaborative spirit that
 					fuels our mission to create cutting-edge solutions that empower individuals and businesses
 					to safeguard their digital assets with confidence.
-				</SectionHeadingWithoutMaxH>
+				</TitleSection>
+
 				<Container
-					pl={{ base: '24px', md: '128px' }}
+					borderColor={colorMode == 'dark' ? colors?.text?.dark : colors?.border?.light}
+					bg={colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light}
+					pl={{ base: '24px', md: '24px' }}
 					pr='24px'>
-					<Flex borderLeft={BORDER}>
+					<Flex>
 						<Grid
 							pb='64px'
 							w='full'

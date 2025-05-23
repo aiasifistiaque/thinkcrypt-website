@@ -71,7 +71,7 @@ const SectionHeading = ({
 
 	const top = (
 		<Flex
-			w='100%'
+			w='full'
 			flexDir={{ base: 'column', md: 'row' }}
 			pt={{ base: '16px', md: '0' }}>
 			<Left borderRight={{ base: 'none', md: BORDER }}>
@@ -117,7 +117,10 @@ const SectionHeading = ({
 				pt='24px'
 				borderLeft={{ base: 'none', md: BORDER }}>
 				<Text
+					fontSize='1rem'
 					pr='24px'
+					fontFamily={fonts?.primary}
+					textTransform='uppercase'
 					color={textSecondary}>
 					{children}
 				</Text>
@@ -135,6 +138,7 @@ const SectionHeading = ({
 			bg={bg}>
 			<Flex
 				{...props}
+				w='full'
 				px={{ base: '16px', md: '24px' }}
 				border={BORDER}>
 				<Flex

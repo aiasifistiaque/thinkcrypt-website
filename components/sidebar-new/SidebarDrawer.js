@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import SidebarLeftPart from './SidebarLeftPart';
 import SidebarRightPart from './SidebarRightPart';
+import { colors } from '../../theme/styles';
 
 const SidebarDrawer = ({ button, ...props }) => {
 	// HOOKS
@@ -33,8 +34,8 @@ const SidebarDrawer = ({ button, ...props }) => {
 				<DrawerContent>
 					<DrawerBody
 						p={0}
-						bg='black.800'
-						color='white'>
+						bg={colors?.background?.dark}
+						color={colors?.text?.dark}>
 						<Flex
 							h='full'
 							flex={1}>

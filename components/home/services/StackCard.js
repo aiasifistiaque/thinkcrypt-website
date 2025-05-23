@@ -8,7 +8,7 @@ const StackCard = ({
 	title,
 	description,
 	tags,
-	align = 'center',
+	align = 'left',
 	heading,
 	iconBg,
 	colorMode,
@@ -23,15 +23,20 @@ const StackCard = ({
 	return (
 		<Flex
 			{...cardStyle}
-			borderColor={borderColor}
+			justify={align == 'center' ? 'center' : 'flex-start'}
+			// borderColor={borderColor}
 			bg={bg}>
-			<VStack {...cardContentStyle}>
+			<VStack
+				{...cardContentStyle}
+				justify={align == 'center' ? 'center' : 'flex-start'}>
 				<Flex
 					w='full'
+					align={align == 'center' ? 'center' : 'flex-start'}
 					flexDir={heading == 'inline' ? 'row' : 'column'}
 					gap={iconBg ? 2 : 4}>
 					{icon && (
 						<Flex
+							justify={align == 'center' ? 'center' : 'flex-start'}
 							w={iconBg ? '44px' : 'auto'}
 							h={iconBg ? '44px' : 'auto'}
 							bg={iconBg || 'transparent'}
@@ -43,7 +48,8 @@ const StackCard = ({
 						{...cardHeadingStyle}
 						color={textColor}
 						fontSize={{ base: '18px', md: iconBg ? '1rem' : '50px' }}
-						{...headingStyle}>
+						{...headingStyle}
+						textAlign={align}>
 						{title}
 					</Heading>
 				</Flex>
@@ -55,6 +61,7 @@ const StackCard = ({
 					justify='flex-end'>
 					<Text
 						{...cardTextStyle}
+						textAlign={align}
 						color={secondaryTextColor}>
 						{description}
 					</Text>
@@ -62,13 +69,13 @@ const StackCard = ({
 						<Wrap
 							pb={1}
 							pt={6}
-							spacing={0}>
+							spacing={2}>
 							{tags?.map((tag, i) => (
 								<Text
 									fontSize='14px'
 									fontFamily={fonts?.primary}
 									textTransform='uppercase'
-									color={textColor}
+									color={colors?.text?.blue}
 									key={i}>
 									{tag}
 									{tags?.length < i ? '' : ', '}
@@ -84,12 +91,11 @@ const StackCard = ({
 
 const cardStyle = {
 	border: '1px solid',
-
-	borderRadius: 'none',
+	borderRadius: '12px',
 	overflow: 'hidden',
 	pt: 8,
-	px: 4,
-	pb: 2,
+	px: 6,
+	pb: 4,
 	flex: 1,
 	h: 'full',
 	gap: 4,
@@ -107,10 +113,11 @@ const cardHeadingStyle = {
 	mb: 1,
 	textTransform: 'uppercase',
 	fontFamily: fonts?.title,
+	letterSpacing: '1px',
 };
 
 const cardTextStyle = {
-	fontSize: '16px',
+	fontSize: '14px',
 	fontWeight: '500',
 	fontFamily: fonts?.primary,
 	textTransform: 'uppercase',

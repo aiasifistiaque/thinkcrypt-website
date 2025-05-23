@@ -30,23 +30,6 @@ const SectionOne = ({ title, subTitle, children, ...props }) => {
 	);
 };
 
-const headingCss = {
-	lineHeight: 1,
-	color: colors?.text?.dark,
-	fontSize: { base: '32px', md: '8rem' },
-	fontFamily: fonts.title,
-	textTransform: 'uppercase',
-};
-
-const subHeadingCss = {
-	fontSize: '20px',
-	color: styles?.color?.textDarker || 'white',
-	fontFamily: fonts.heading,
-	textTransform: 'uppercase',
-	fontFamily: fonts.primary,
-	maxW: { base: '100%', md: '70%' },
-};
-
 const containerCss = {
 	bg: colors?.background?.dark,
 	py: { base: 4, md: 4 },
@@ -56,39 +39,25 @@ const containerCss = {
 
 const headingContainerCss = {
 	flexDir: 'column',
-	gap: 0,
-	w: 'full',
-};
-
-const gridCss = {
-	gap: 6,
-	w: 'full',
-	gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
-};
-
-const itemCss = {
-	p: 8,
 	gap: 4,
-	border: '1px solid #333',
-	bgColor: colors?.card?.dark,
+	w: 'full',
 };
 
-const titleCss = {
-	color: colors?.text?.dark,
-	fontSize: { base: '16px', md: '3rem' },
-	fontWeight: '800',
+const headingCss = {
 	lineHeight: 1,
+	color: colors?.text?.dark,
+	fontSize: { base: '44px', md: '8rem' },
 	fontFamily: fonts.title,
 	textTransform: 'uppercase',
 };
 
-const bodyTextCss = {
-	color: colors?.text?.dark,
-	fontFamily: fonts.primary,
-	fontSize: '16px',
-	lineHeight: 1.5,
-	fontWeight: '400',
+const subHeadingCss = {
+	fontSize: { base: '14px', md: '16px' },
+	color: colors?.text?.blue || 'white',
+	fontFamily: fonts.heading,
 	textTransform: 'uppercase',
+	fontFamily: fonts.primary,
+	maxW: { base: '100%', md: '70%' },
 };
 
 export default SectionOne;
