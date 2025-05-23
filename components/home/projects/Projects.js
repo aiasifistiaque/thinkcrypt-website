@@ -1,14 +1,17 @@
 import React from 'react';
 import data from './data.js';
-import { Accordion, Flex, Grid, Show } from '@chakra-ui/react';
+import { Accordion, Flex, Grid, Heading, Show } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints } from '../../lib/constants';
 import Project from './Project.js';
-import { styles } from '../../../theme/styles.js';
+import { colors, styles } from '../../../theme/styles.js';
 import ProjectSmall from './ProjectSmall.js';
 import { useGetAllQuery } from '../../../store/index.js';
 import CaseItem from '../../portfolio/PortfolioItem/CaseItem.js';
 import PortfolioItemSkeleton from '../../portfolio/PortfolioItem/PortfolioSkeleton.js';
+import SectionOne from '../services/SectionOne.js';
+import { padding } from '../../../lib/constants.js';
+import CaseItemUpdated from '../../portfolio/PortfolioItem/CaseItemUpdated.js';
 
 const Section = styled(Grid)`
 	grid-template-columns: 1fr;
@@ -19,51 +22,51 @@ const BORDER = styles.border.light;
 const Projects = () => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'portfolios',
-		limit: 9,
+		limit: 6,
 		sort: '-priority',
 		filters: { status: 'published', isFeatured: true },
 	});
+
+	const Divider = () => {
+		return (
+			<Flex
+				px={{ base: padding?.baseBody, md: padding?.lgBody }}
+				h='3px'
+				py='92px'
+				w='100%'>
+				<Flex
+					bg='red'
+					borderTop='1px solid'
+					borderColor={colors?.border?.light}
+					w='100%'
+					flex={1}
+				/>
+			</Flex>
+		);
+	};
 	return (
 		<Flex
-			borderBottom={BORDER}
-			px={{ base: '16px', md: '24px' }}
-			w='100%'>
-			<Section
-				w='100%'
-				borderLeft={BORDER}
-				borderRight={BORDER}>
-				<Grid {...itemContainer}>
-					{isFetching
-						? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
-						: data?.doc?.map((item, i) => (
-								<CaseItem
-									item={item}
-									key={i}
-								/>
-						  ))}
-				</Grid>
-				{/* <Show above='md'>
-					{data?.doc?.map((item, i) => (
-						<Project
-							index={i}
-							item={item}
-							key={i}
-						/>
-					))}
-				</Show>
-
-				<Show below='md'>
-					<Accordion defaultIndex={[0]}>
-						{data?.doc?.map((item, i) => (
-							<ProjectSmall
-								index={i}
-								item={item}
-								key={i}
-							/>
-						))}
-					</Accordion>
-				</Show> */}
-			</Section>
+			flexDir='column'
+			bg={colors?.background?.dark}>
+			{/* <Divider /> */}
+			<Flex>
+				<SectionOne
+					title='Featured Projects'
+					subTitle='See what we’ve built — smart apps, powerful tools, real results. Dive into success stories that show how we turn bold ideas into better software. Let’s build the future, together.'>
+					<Grid {...itemContainer}>
+						{isFetching
+							? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
+							: data?.doc?.map((item, i) => (
+									<CaseItemUpdated
+										colorMode='dark'
+										item={item}
+										key={i}
+									/>
+							  ))}
+					</Grid>
+				</SectionOne>
+			</Flex>
+			<Heading>View All Our Work</Heading>
 		</Flex>
 	);
 };
@@ -74,7 +77,7 @@ const itemContainer = {
 		md: 'repeat(3, 1fr)',
 	},
 	pb: '64px',
-	gap: 4,
+	gap: 8,
 };
 
 export default Projects;

@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-import { Title, Subtitle, Text, Container, Row, Right, Left } from './styles';
-
+import { Title, Subtitle, Text, Row, Left } from './styles';
 import { Flex, Text as BText, Center, Link as CLink } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints, colors, links } from '../../lib/constants';
-import { styles } from '../../../theme/styles';
+import { styles, colors as clr } from '../../../theme/styles';
+import { fonts } from '../../../lib/constants';
 
 const Divider = styled(Flex)`
 	height: 10px;
 	width: 80px;
-	background-color: ${colors.charcole};
+
 	margin: 1rem 0 1.5rem 0;
 	@media (min-width: ${breakpoints.desktop}) {
 		margin-bottom: 2rem;
@@ -43,8 +43,6 @@ const ButtonText = styled(BText)`
 	font-size: 1rem;
 `;
 
-const BORDER = styles.border.light;
-
 const rightCss = {
 	flexDir: 'column',
 	flex: 2.25,
@@ -62,22 +60,33 @@ const SectionHeading = ({
 	to,
 	F,
 	containerProps,
+	colorMode,
 	...props
 }) => {
+	const bg = colorMode == 'dark' ? clr?.background?.dark : clr?.background?.light;
+	const textColor = colorMode == 'dark' ? clr?.text?.dark : clr?.text?.light;
+	const textSecondary = colorMode == 'dark' ? clr?.textSecondary?.dark : clr?.textSecondary?.light;
+
+	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
+
 	const top = (
 		<Flex
 			w='100%'
 			flexDir={{ base: 'column', md: 'row' }}
 			pt={{ base: '16px', md: '0' }}>
 			<Left borderRight={{ base: 'none', md: BORDER }}>
-				<Subtitle fontFamily='Michroma'>{subHeading}</Subtitle>
+				<Subtitle color={textColor}>{subHeading}</Subtitle>
 			</Left>
 			<Flex
 				{...rightCss}
 				borderBottom={BORDER}
 				pl={{ base: '0px', md: '24px' }}>
-				<Title>{heading}</Title>
-				<Divider />
+				<Title
+					color={textColor}
+					fontFamily={fonts?.title}>
+					{heading}
+				</Title>
+				<Divider bg={textSecondary} />
 			</Flex>
 		</Flex>
 	);
@@ -107,7 +116,11 @@ const SectionHeading = ({
 				{...rightCss}
 				pt='24px'
 				borderLeft={{ base: 'none', md: BORDER }}>
-				<Text pr='24px'>{children}</Text>
+				<Text
+					pr='24px'
+					color={textSecondary}>
+					{children}
+				</Text>
 				{to ? cotactButtom : btn}
 			</Flex>
 		</>
@@ -115,11 +128,11 @@ const SectionHeading = ({
 
 	return (
 		<Flex
-			mt='24px'
 			w='100%'
 			pb='64px'
 			borderBottom={BORDER}
-			{...containerProps}>
+			{...containerProps}
+			bg={bg}>
 			<Flex
 				{...props}
 				px={{ base: '16px', md: '24px' }}

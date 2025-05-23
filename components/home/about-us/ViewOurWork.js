@@ -2,16 +2,17 @@
 // import RobotoText from '@/components/util/text/RobotoText';
 // import { fonts, layout, padding } from '@/lib/constants';
 // import { AboutUs } from '@/lib/staticElements';
-import { border, Box, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
+import { border, Box, Button, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { fonts, layout } from '../../lib/constants';
 import RobotoText from '../../util/text/RobotoText';
 import Column from '../../util/Column';
 import { AboutUs, padding } from '../../../lib/constants';
 import { colors, styles } from '../../../theme/styles';
+import Link from 'next/link';
 
 const BORDER = styles.border.light;
-const AboutUsSection = ({}) => {
+const ViewOurWork = ({}) => {
 	return (
 		<Flex
 			bg={colors?.background?.dark}
@@ -26,7 +27,7 @@ const AboutUsSection = ({}) => {
 					<RobotoText
 						color={colors?.text?.dark}
 						fontSize={'0.875rem'}>
-						OUR VISION
+						OUR WORK
 					</RobotoText>
 				</Flex>
 
@@ -36,9 +37,9 @@ const AboutUsSection = ({}) => {
 						gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
 						gap={5}>
 						<Heading {...headingCss}>
-							WE STARTED
+							Explore Our
 							<br />
-							BACK IN 2017
+							Full Portfolio
 						</Heading>
 
 						<Flex
@@ -47,35 +48,49 @@ const AboutUsSection = ({}) => {
 							<Flex
 								gap={8}
 								flexDir='column'
-								maxW={{ base: '100%', md: '70%' }}>
+								maxW={{ base: '100%', md: '80%' }}>
 								<RobotoText {...bodyTextCss}>
-									Thinkcrypt was founded in 2017 to help entrepreneurs turn their ideas into reality
-									using modern technology. We aimed to bridge the gap between vision and execution
-									by delivering smart, cost-efficient digital solutions.
+									{`We’ve helped startups and businesses build websites, apps, and digital tools that solve real problems. Our focus is on making things fast, modern, and easy to use.`}
 								</RobotoText>
 								<RobotoText {...bodyTextCss}>
-									Today, we build scalable platforms and custom tools that streamline workflows and
-									drive growth. From MVPs to full systems, we handle the tech so businesses can
-									focus on reaching their goals.
+									Take a look at our past projects to see how we turn ideas into working products.
+									If you like what you see, we can build something great for you too.
 								</RobotoText>
+								<Link href='/portfolio'>
+									<Box>
+										<Button
+											_hover={{
+												bg: 'transparent',
+												color: colors?.text?.dark,
+											}}
+											p={6}
+											borderColor={colors?.text?.dark}
+											color={colors?.textSecondary?.dark}
+											textTransform='uppercase'
+											variant='outline'
+											borderRadius='none'>
+											VIEW OUR WORK
+										</Button>
+									</Box>
+								</Link>
 							</Flex>
 						</Flex>
 					</Grid>
 				</Column>
 				{/* <Flex flex={2} justify='flex-end' align={'flex-end'}>
-						<RobotoText
-							fontSize='1rem'
-							fontWeight='500'
-							textDecor={'underline'}
-							fontFamily={fonts.heading}
-						>
-							LEARN ABOUT US
-						</RobotoText>
-					</Flex> */}
+                        <RobotoText
+                            fontSize='1rem'
+                            fontWeight='500'
+                            textDecor={'underline'}
+                            fontFamily={fonts.heading}
+                        >
+                            LEARN ABOUT US
+                        </RobotoText>
+                    </Flex> */}
 			</Flex>
 			{/* <Box maxH='550px' minW='fit-content' order={{ base: 1, lg: 2 }}>
-				<Image src='/home/phone.svg' h='100%' w='100%' objectFit='cover' />
-			</Box> */}
+                <Image src='/home/phone.svg' h='100%' w='100%' objectFit='cover' />
+            </Box> */}
 		</Flex>
 	);
 };
@@ -117,7 +132,7 @@ const headingCss = {
 };
 
 const bodyTextCss = {
-	color: colors?.text?.dark,
+	color: colors?.textSecondary?.dark,
 	fontSize: { base: '14px', lg: '16px' },
 
 	letterSpacing: { base: '0px', md: '0px' },
@@ -126,4 +141,4 @@ const bodyTextCss = {
 	textTransform: 'uppercase',
 };
 
-export default AboutUsSection;
+export default ViewOurWork;

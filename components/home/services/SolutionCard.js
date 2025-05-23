@@ -1,21 +1,36 @@
-import { Button, Center, Flex, Skeleton as SK, SkeletonText, Text } from '@chakra-ui/react';
+import { Button, Center, color, Flex, Skeleton as SK, SkeletonText, Text } from '@chakra-ui/react';
 import Column from '../../util/Home/Column';
 import { fonts } from '../../lib/constants';
 import Link from 'next/link';
+import { colors } from '../../../theme/styles';
 
-const SolutionCard = ({ icon, title, description, btnText, href }) => {
+const SolutionCard = ({ icon, title, description, btnText, href, colorMode }) => {
 	return (
 		<Column {...itemCss}>
-			<Center {...iconContainer}>
+			<Flex {...iconContainer}>
 				<Flex {...iconCss}>{icon}</Flex>
-			</Center>
-			<Text {...titleCss}>{title}</Text>
+				<Text
+					{...titleCss}
+					color={colors?.text?.dark}>
+					{title}
+				</Text>
+			</Flex>
+
 			<Text {...bodyTextCss}>{description}</Text>
-			<Center mt={2}>
+			<Flex
+				w='full'
+				mt={1}
+				align='flex-end'
+				justify='flex-end'
+				flex={1}>
 				<Link href={href || '#'}>
-					<Button {...learnMoreBtnCss}>{btnText || 'LEARN MORE'}</Button>
+					<Button
+						w='full'
+						{...learnMoreBtnCss}>
+						{btnText || 'LEARN MORE'}
+					</Button>
 				</Link>
-			</Center>
+			</Flex>
 		</Column>
 	);
 };
@@ -35,52 +50,64 @@ export const Skeleton = () => (
 
 const itemCss = {
 	p: 8,
+	pb: 6,
 	gap: 4,
-	border: '1px solid #e6e6e6',
-	bgColor: 'white',
+	border: '1px solid',
+	borderColor: '#333',
+	bgColor: colors?.card?.dark,
 	justify: 'center',
 };
 
 const iconContainer = {
 	w: 'full',
 	pb: 2,
+	gap: 4,
+	align: 'center',
 };
 
 const iconCss = {
-	bg: 'whitesmoke',
-	p: 4,
+	bg: colors?.background?.light,
+	p: 2,
 	borderRadius: 'full',
+	w: '60px',
+	h: '60px',
+	align: 'center',
+	justify: 'center',
 };
 
 const learnMoreBtnCss = {
 	bg: 'transparent',
-	color: 'black',
-	borderColor: 'black',
+	color: colors?.text?.dark,
 	border: '1px solid',
-	fontSize: '12px',
+	fontSize: '14px',
+	textTransform: 'uppercase',
+	borderColor: colors?.border?.dark,
 	borderRadius: 'none',
-	fontFamily: 'Michroma',
-	_hover: { bg: 'transparent', color: 'black' },
+	borderRight: 'none',
+	borderLeft: 'none',
+	fontFamily: fonts?.primary,
+	_hover: { bg: 'transparent', color: colors?.text?.dark, borderColor: colors?.text?.dark },
 };
 
 const titleCss = {
-	fontSize: { base: '16px', md: '22px' },
+	fontSize: { base: '1.5rem', md: '3rem' },
 	fontWeight: '900',
-	fontFamily: fonts.heading,
+	fontFamily: fonts.title,
 	textTransform: 'uppercase',
-	textAlign: 'center',
-	lineHeight: 1.4,
+	// textAlign: 'center',
+	lineHeight: 1,
+	color: colors?.text?.dark,
 };
 
 const bodyTextCss = {
-	color: '#737373',
-	fontFamily: 'Michroma',
+	color: colors?.textSecondary?.dark,
+	fontFamily: fonts.primary,
 	fontSize: '14px',
-	textTransform: 'capitalize',
+	textTransform: 'uppercase',
 	fontSize: '.9rem',
-	lineHeight: 1.5,
+	lineHeight: 1.4,
 	fontWeight: '500',
-	textAlign: 'center',
+	// textAlign: 'center',
 };
 
 export default SolutionCard;

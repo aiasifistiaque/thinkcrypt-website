@@ -5,20 +5,15 @@ import Header from '../Header/Header';
 import styled from '@emotion/styled';
 import { CgMenuRound } from 'react-icons/cg';
 import CircleFollow from '../CircleFollow';
+import { Flex } from '@chakra-ui/react';
 
 import dynamic from 'next/dynamic';
 import ScrollYProgtess from './ScrollProgress';
+import { colors } from '../../../theme/styles';
 
 const Scroll = dynamic(() => import('../../scroll/Scroll'));
 
-const Container = styled('main')`
-	display: flex;
-	max-width: 100vw;
-	min-height: 100vh;
-	flex: 1;
-`;
-
-const Page = ({ children, title, description, image }) => {
+const Page = ({ children, title, description, colorMode, image }) => {
 	return (
 		<>
 			<Head>
@@ -64,7 +59,13 @@ const Page = ({ children, title, description, image }) => {
 			<Header />
 
 			<Scroll>
-				<Container>{children}</Container>
+				<Flex
+					bg={colorMode == 'dark' ? colors?.background?.dark : colors}
+					maxW='100vw'
+					minH='100vh'
+					flex={1}>
+					{children}
+				</Flex>
 			</Scroll>
 			<Footer />
 		</>

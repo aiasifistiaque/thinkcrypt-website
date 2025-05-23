@@ -5,14 +5,16 @@ import PortfolioItem from './PortfolioItem/PortfolioItem';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid, Wrap, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { styles } from '../../theme/styles';
+import { colors, styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
 import CaseItem from './PortfolioItem/CaseItem';
 
+const colorMode = 'dark';
+const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
+const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
+
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
-
-const BORDER = styles.border.light;
 
 const CaseStudyPage = () => {
 	const [cat, setCat] = useState('');
@@ -41,6 +43,7 @@ const CaseStudyPage = () => {
 
 	return (
 		<Page
+			colorMode={colorMode}
 			image={img}
 			title={`Our Work – Real Projects, Real Impact | Thinkcrypt`}
 			description={`Explore Thinkcrypt’s portfolio of SaaS, eCommerce, and web solutions built with the MERN stack. Real-world impact, scalable systems, and startup-ready MVPs.`}>
@@ -48,6 +51,7 @@ const CaseStudyPage = () => {
 				spacing={4}
 				pt='48px'>
 				<SectionHeading
+					colorMode={colorMode}
 					containerProps={{ pb: '32px' }}
 					heading='All of Our Work'
 					subHeading='Our Projects'>
@@ -57,19 +61,14 @@ const CaseStudyPage = () => {
 
 				<Flex flexDir='column'>
 					<Flex {...titleContainer}>
-						{/* <Heading
-							fontFamily='Michroma'
-							size='xl'>
-							Our Work
-						</Heading> */}
 						<Flex>
 							<Flex
 								gap={6}
 								flexDir='column'>
 								<Heading
 									textTransform='uppercase'
-									fontFamily='Michroma'
-									size='md'>
+									size='md'
+									color={textColor}>
 									Filter By Industry
 								</Heading>
 								<Wrap>
@@ -78,11 +77,25 @@ const CaseStudyPage = () => {
 											onClick={() => onCategoryChange(item?.value)}
 											cursor='pointer'
 											p={2}
-											bg={cat === item?.value ? 'black' : 'white'}
+											bg={
+												cat === item?.value
+													? colorMode == 'dark'
+														? '#fafafa'
+														: 'black'
+													: 'transparent'
+											}
 											border={BORDER}
 											key={i}>
 											<Text
-												color={cat === item?.value ? 'white' : '#737373'}
+												color={
+													cat === item?.value
+														? colorMode == 'dark'
+															? 'black'
+															: 'white'
+														: colorMode == 'dark'
+														? colors?.textSecondary?.dark
+														: '#737373'
+												}
 												textTransform='uppercase'>
 												{item?.title}
 											</Text>
@@ -98,6 +111,7 @@ const CaseStudyPage = () => {
 								? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
 								: data?.doc?.map((item, i) => (
 										<CaseItem
+											colorMode={colorMode}
 											item={item}
 											key={i}
 										/>

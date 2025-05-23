@@ -1,4 +1,6 @@
 import { border, Box, Button, Container, Flex, Heading, Input, Text } from '@chakra-ui/react';
+import { colors } from '../../../theme/styles';
+import { fonts, padding } from '../../../lib/constants';
 
 export default function NewsletterSection() {
 	return (
@@ -25,9 +27,9 @@ export default function NewsletterSection() {
 
 const sectionStyle = {
 	py: { base: 12, md: 20 },
-	bg: '#f2f2f2',
-	color: 'black',
-	px: { base: 4, md: 8 },
+	bg: colors?.background?.dark,
+	color: colors?.text?.dark,
+	px: { base: padding?.baseBody, md: padding?.lgBody },
 };
 
 const containerStyle = {
@@ -36,15 +38,21 @@ const containerStyle = {
 
 const headingStyle = {
 	mb: 4,
-	fontSize: { base: '2xl', md: '3xl' },
+	fontSize: { base: '3rem', md: '5rem' },
 	textTransform: 'uppercase',
 	fontWeight: '600',
+	lineHeight: '1',
+	letterSpacing: '2px',
+	fontFamily: fonts?.title,
 };
 
 const textStyle = {
-	color: '#737373',
+	color: colors?.textSecondary?.dark,
 	mb: 8,
-	fontSize: { base: '16px', md: '18px' },
+	fontSize: { base: '16px', md: '2rem' },
+	fontFamily: fonts?.title,
+	textTransform: 'uppercase',
+	lineHeight: { base: '1.5', md: '1' },
 };
 
 const flexStyle = {
@@ -58,32 +66,42 @@ const inputStyle = {
 	h: 14,
 	w: 'full',
 	border: '1px',
-	borderColor: '#e6e6e6',
+	borderColor: colors?.text?.dark,
 	borderRadius: 'none',
-	bg: 'white',
+	bg: colors?.text?.dark,
+	color: colors?.text?.dark,
 	px: 3,
-	fontFamily: 'Michroma',
+	fontFamily: fonts?.primary,
 	py: 2,
 	fontSize: 'base',
-	color: 'white',
+	color: colors?.text?.light,
 	_placeholder: {
-		fontFamiy: 'Michroma',
+		fontFamiy: fonts?.primary,
+		textTransform: 'uppercase',
 	},
 };
 
 const buttonStyle = {
 	size: 'lg',
 	borderRadius: 'none',
-	bg: 'black',
-	color: 'white',
+	bg: 'transparent',
+	color: colors?.text?.dark,
 	fontSize: '16px',
 	h: 14,
 	border: '1px',
-	fontFamily: 'Michroma',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
+	borderColor: colors?.text?.dark,
+	_hover: {
+		bg: 'transparent',
+		color: colors?.text?.dark,
+	},
 };
 
 const subTextStyle = {
 	fontSize: 'xs',
-	color: '#737373',
+	color: colors?.textSecondary?.blue,
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 	mt: 3,
 };

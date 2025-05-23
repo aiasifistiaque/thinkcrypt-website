@@ -1,21 +1,34 @@
-import { Box, Center, Flex, Grid, Image, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react';
+import {
+	Box,
+	Center,
+	Flex,
+	grid,
+	Grid,
+	Image,
+	Skeleton,
+	SkeletonCircle,
+	Text,
+} from '@chakra-ui/react';
 import React from 'react';
 import { fonts } from '../../lib/constants';
 import { partnerLogos } from '../../../data/data';
-import { styles } from '../../../theme/styles';
+import { colors, styles } from '../../../theme/styles';
 import { useGetAllQuery } from '../../../store';
+import { max } from 'moment-timezone';
+import { padding } from '../../../lib/constants';
+import LinkButton from '../about-us/LinkButton';
 
-const BORDER = styles.border.light;
+const BORDER = styles.border.dark;
 
 const EachItem = ({ children, ...props }) => {
 	return (
 		<Center
 			flex={1}
-			bg='white'
-			h={{ base: '140px', md: '200px' }}>
+			bg={colors?.background?.dark}
+			h={{ base: '120px', md: '180px' }}>
 			<Box p={{ base: 2, md: 4 }}>
 				<Image
-					w={{ base: '100px', md: '180px' }}
+					w={{ base: '100px', md: '120px' }}
 					h={{ base: '55px', md: '100px' }}
 					objectFit='contain'
 					src={children}
@@ -47,19 +60,29 @@ const Clients = () => {
 	const { data } = useGetAllQuery({
 		path: 'tcclients',
 		sort: '-priority',
-		limit: 24,
+		limit: 15,
 		filters: { isActive: true },
 	});
 	return (
 		<Flex {...container}>
 			<Flex {...section}>
 				<Center {...titleContainer}>
-					<Flex {...titleStack}>
+					<Grid {...titleStack}>
 						<Text {...title}>Our Partners & Clients</Text>
-						<Text {...subTitle}>
-							{`We offer services to a diverse range of businesses, from startups and SMEs to large corporations, providing customized SaaS solutions that foster innovation and transformative growth. Our extensive partnerships across various industries allow us to deliver impactful, tailored SaaS solutions that drive businesses forward in their specific markets.`}
-						</Text>
-					</Flex>
+						<Flex justify='flex-end'>
+							<Flex
+								flexDir='column'
+								gap={6}
+								justify='flex-end'
+								justifySelf='flex-end'
+								w={{ base: '100%', md: '80%' }}>
+								<Text {...subTitle}>
+									{`We offer services to a diverse range of businesses, from startups and SMEs to large corporations, providing customized SaaS solutions that foster innovation and transformative growth. Our extensive partnerships across various industries allow us to deliver impactful, tailored SaaS solutions that drive businesses forward in their specific markets.`}
+								</Text>
+								<LinkButton href='/clients'>View All Clients</LinkButton>
+							</Flex>
+						</Flex>
+					</Grid>
 				</Center>
 				{/* <Grid {...itemContainer}>
 					{partnerLogos?.map((logo, index) => (
@@ -79,48 +102,55 @@ const Clients = () => {
 };
 
 const title = {
-	fontSize: { base: '1.5rem', md: '3rem' },
+	mt: '32px',
+	fontSize: { base: '2rem', md: '8rem' },
 	fontWeight: 700,
-	fontFamily: fonts.heading,
-	color: 'black.800',
+	fontFamily: fonts.title,
+	color: colors?.text?.dark,
+	lineHeight: 1,
 };
 
 const subTitle = {
-	fontSize: { base: '1rem', md: '1.5rem' },
+	fontSize: { base: '1rem', md: '14px' },
 	fontWeight: 400,
-	letterSpacing: '-.2px',
+	letterSpacing: '.5px',
 	lineHeight: '1.5',
-	fontFamily: 'Michroma',
-	color: 'black.800',
+	fontFamily: fonts?.primary,
+	color: colors?.textSecondary?.dark,
+	textTransform: 'uppercase',
+	maxW: { base: '100%', md: '60vw' },
 };
 
 const container = {
 	mx: 'auto',
 	borderTop: BORDER,
 	borderBottom: BORDER,
-	px: '24px',
-	pl: { base: '24px', md: '128px' },
-	my: '60px',
+	px: 0,
+
+	w: 'full',
+
+	bg: colors?.background?.dark,
 };
 
 const section = {
 	flex: 1,
-	borderLeft: BORDER,
-	borderRight: BORDER,
+	// borderLeft: BORDER,
+	// borderRight: BORDER,
 	flexDir: 'column',
 };
 
 const itemContainer = {
 	flex: 1,
-	templateColumns: { base: '1fr 1fr', md: '1fr 1fr 1fr 1fr' },
+	borderTop: BORDER,
+	templateColumns: { base: '1fr 1fr', md: '1fr 1fr 1fr 1fr 1fr' },
 	gap: '1px',
-	bg: '#DEDEE0',
+	bg: '#333',
 };
 
 const titleContainer = {
-	px: { base: 4, md: 8, lg: 16 },
+	px: { base: padding?.baseBody, md: padding?.lgBody },
 	py: { base: 4, md: 8, lg: 8 },
-	borderBottom: BORDER,
+	// borderBottom: BORDER,
 };
 
 const titleStack = {
@@ -128,6 +158,9 @@ const titleStack = {
 	flexDir: 'column',
 	w: 'full',
 	gap: 12,
+	gridTemplateColumns: { base: '1fr', md: 'repeat(2, 1fr)' },
+	mb: 12,
+	h: '70vh',
 };
 
 export default Clients;

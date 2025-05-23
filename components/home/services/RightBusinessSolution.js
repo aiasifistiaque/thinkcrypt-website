@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lucide-react';
 // import SolutionCard from './SolutionCard';
 import SolutionCard, { Skeleton } from './SolutionCard';
+import { colors } from '../../../theme/styles';
 
 // Updated primary solution cards data for the 6 main business categories
 const doc = [
@@ -68,11 +69,13 @@ const RightBusinessSolution = () => {
 	return (
 		<Column {...containerCss}>
 			<Center {...headingContainerCss}>
-				<Text {...headingCss}>FIND THE RIGHT SOLUTION FOR YOUR BUSINESS</Text>
-				<Text {...subHeadingCss}>
+				<Text {...headingCss}>
+					FIND THE RIGHT SOLUTION FOR YOUR BUSINESS - FILTERED BY INDUSTRY
+				</Text>
+				{/* <Text {...subHeadingCss}>
 					Every business has unique challenges and goals. We provide tailored digital solutions to
 					help you overcome obstacles and achieve sustainable growth.
-				</Text>
+				</Text> */}
 			</Center>
 
 			<Grid {...gridCss}>
@@ -80,11 +83,12 @@ const RightBusinessSolution = () => {
 				{data &&
 					data?.doc?.map((item, i) => (
 						<SolutionCard
+							colorMode='dark'
 							href={item?.toStaticPage ? item?.staticPageUrl : `/businesses/${item?._id}`}
 							icon={
 								<Image
-									w='48px'
-									h='48px'
+									w='32px'
+									h='32px'
 									objectFit='contain'
 									src={item?.icon}
 								/>
@@ -106,21 +110,21 @@ const RightBusinessSolution = () => {
 };
 
 const headingCss = {
-	lineHeight: 1.3,
-	color: 'black',
-	fontSize: { base: '32px', md: '44px' },
-	fontFamily: fonts.heading,
+	lineHeight: 1,
+	color: colors?.text?.dark,
+	fontSize: { base: '3rem', md: '6rem' },
+	fontFamily: fonts.title,
 	fontWeight: '900',
 };
 
 const subHeadingCss = {
-	fontSize: '16px',
-	color: '#737373' || 'white',
-	fontFamily: fonts.heading,
+	color: colors?.textSecondary?.dark,
+	fontFamily: fonts.primary,
+	fontSize: { base: '1rem', md: '1.5rem' },
 };
 
 const containerCss = {
-	bg: 'whitesmoke',
+	bg: colors?.background?.dark,
 	py: { base: 16, md: 16 },
 	px: { base: 4, md: 8 },
 	gap: 12,
@@ -130,7 +134,7 @@ const headingContainerCss = {
 	flexDir: 'column',
 	gap: 4,
 	mx: 'auto',
-	maxW: { base: '100%', md: '60vw' },
+	maxW: { base: '100%', md: '80vw' },
 	textAlign: 'center',
 	w: 'full',
 };
@@ -143,12 +147,19 @@ const gridCss = {
 
 const btnCss = {
 	bg: 'transparent',
-	borderColor: 'black',
 	border: '1px solid',
-	fontSize: '12px',
+	fontSize: { base: '1.5rem', md: '3rem' },
+	lineHeight: 1,
+	py: 8,
+	pt: 9,
+	mt: 4,
+	color: colors?.text?.dark,
 	borderRadius: 'none',
-	fontFamily: 'Michroma',
-	_hover: { bg: 'transparent', color: 'black' },
+	borderRight: 'none',
+	borderLeft: 'none',
+	fontFamily: fonts?.title,
+	borderColor: colors?.border?.dark,
+	_hover: { bg: 'transparent', color: colors?.text?.dark, borderColor: colors?.text?.dark },
 };
 
 export default RightBusinessSolution;

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
-import PortfolioItem from './PortfolioItem/PortfolioItem';
-import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
-import { Heading, Stack, Flex, Grid, Wrap, Text, Image } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+
+import { Stack, Image, Link } from '@chakra-ui/react';
+
 import { styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
-import CaseItem from './PortfolioItem/CaseItem';
 import CardSection from '../services/website/CardSection';
 import StackCard from '../home/services/StackCard';
 
@@ -41,8 +39,22 @@ const Clientpage = () => {
 		{ title: 'Healthcare', value: 'healthcare' },
 	];
 
+	const URLContainer = ({ item, children }) => {
+		return (
+			<Link
+				_hover={{ textDecoration: 'none' }}
+				isExternal={item?.url ? true : false}
+				href={item?.url || '#'}>
+				{children}
+			</Link>
+		);
+	};
+
+	const colorMode = 'light';
+
 	return (
 		<Page
+			colorMode={colorMode}
 			image={img}
 			title={`Trusted by Innovators Worldwide | Our Clients & Partners – Thinkcrypt`}
 			description={`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}>
@@ -50,6 +62,7 @@ const Clientpage = () => {
 				spacing={0}
 				pt='48px'>
 				<SectionHeading
+					colorMode={colorMode}
 					containerProps={{ pb: '32px' }}
 					heading='Our Clients & Partners'
 					subHeading='Our Partners'>
@@ -57,24 +70,29 @@ const Clientpage = () => {
 				</SectionHeading>
 
 				<CardSection
+					colorMode={colorMode}
 					columns={{ base: 2, md: 4, lg: 4 }}
 					title='Trusted by Innovators Worldwide'
 					pt='44px'>
 					{data &&
 						data?.doc?.map((item, i) => (
-							<StackCard
-								headingStyle={{ fontSize: { base: '10px', md: '18px' } }}
-								icon={
-									<Image
-										src={item?.icon}
-										h='120px'
-										w='120px'
-										objectFit='contain'
-									/>
-								}
-								title={item?.name}
-								key={i}
-							/>
+							<URLContainer
+								item={item}
+								key={i}>
+								<StackCard
+									colorMode={colorMode}
+									headingStyle={{ fontSize: { base: '10px', md: '18px' } }}
+									icon={
+										<Image
+											src={item?.icon}
+											h='120px'
+											w='120px'
+											objectFit='contain'
+										/>
+									}
+									title={item?.name}
+								/>
+							</URLContainer>
 						))}
 				</CardSection>
 			</Stack>

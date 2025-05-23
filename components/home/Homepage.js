@@ -18,6 +18,7 @@ import Servicesv2 from './services/ServiceV2';
 import NewsletterSection from './Newsletter/Newsletter';
 import RightBusinessSolution from './services/RightBusinessSolution';
 import HomeStacks from './services/HomeStacks';
+import ViewOurWork from './about-us/ViewOurWork';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -47,7 +48,8 @@ const Homepage = () => {
 				<Servicesv2 />
 				<HomeStacks />
 
-				<SectionHeading
+				{/* <SectionHeading
+					colorMode='dark'
 					containerProps={{ pb: { base: '16px', md: '32px' } }}
 					heading='Featured Projects'
 					subHeading='Meticulously Designed Ideas'
@@ -55,7 +57,8 @@ const Homepage = () => {
 					href='/portfolio'>
 					{`See what we’ve built — smart apps, powerful tools, real results. Dive into success stories
 					that show how we turn bold ideas into better software. Let’s build the future, together.`}
-				</SectionHeading>
+				</SectionHeading> */}
+				<ViewOurWork />
 				<Projects />
 				<RightBusinessSolution />
 				{/* <SectionHeading
@@ -67,7 +70,7 @@ const Homepage = () => {
 				</SectionHeading> */}
 				{/* <Services /> */}
 				{/* <RegisterPlan /> */}
-				<MintRegisterSection
+				{/* <MintRegisterSection
 					heading={'Inventory Management System'}
 					subHeading={''}
 					btnText='Learn More'
@@ -76,12 +79,13 @@ const Homepage = () => {
 					with your business operations. Built by our trusted partner, MINT is a cutting-edge
 					application designed to streamline inventory management, invoicing, billing, and customer
 					engagement—all in one platform
-				</MintRegisterSection>
+				</MintRegisterSection> */}
 				{/* <PlanSection /> */}
 
 				<Clients />
 				<Testimonial />
 				<SectionHeading
+					colorMode='dark'
 					heading='Let’s design your next project'
 					subHeading='Contact Us'
 					btnText='Contact Us Today'

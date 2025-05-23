@@ -6,7 +6,7 @@ import { colors, styles } from '../../../theme/styles';
 import { useGetAllQuery } from '../../../store';
 import { padding } from '../../../lib/constants';
 
-const Servicesv2 = () => {
+const SectionOne = ({ title, subTitle, children, ...props }) => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'services',
 		limit: 6,
@@ -17,25 +17,15 @@ const Servicesv2 = () => {
 	});
 
 	return (
-		<Column {...containerCss}>
+		<Column
+			{...containerCss}
+			{...props}>
 			<Flex {...headingContainerCss}>
-				<Text {...headingCss}>Our Digital Expertise</Text>
-				<Text {...subHeadingCss}>
-					We combine strategic thinking, design excellence, and technical mastery to create digital
-					experiences that exceed expectations.
-				</Text>
+				<Text {...headingCss}>{title}</Text>
+				<Text {...subHeadingCss}>{subTitle}</Text>
 			</Flex>
 
-			<Grid {...gridCss}>
-				{isFetching
-					? [...Array(6)].map((_, i) => <SeriveItemLgSkeleton key={i} />)
-					: data?.doc?.map((item, i) => (
-							<SeriveItemLg
-								item={item}
-								key={i}
-							/>
-					  ))}
-			</Grid>
+			{children}
 		</Column>
 	);
 };
@@ -49,7 +39,7 @@ const headingCss = {
 };
 
 const subHeadingCss = {
-	fontSize: { base: '16px', md: '18px' },
+	fontSize: '20px',
 	color: styles?.color?.textDarker || 'white',
 	fontFamily: fonts.heading,
 	textTransform: 'uppercase',
@@ -66,7 +56,7 @@ const containerCss = {
 
 const headingContainerCss = {
 	flexDir: 'column',
-	gap: 4,
+	gap: 0,
 	w: 'full',
 };
 
@@ -76,32 +66,8 @@ const gridCss = {
 	gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
 };
 
-const SeriveItemLg = ({ item }) => (
-	<Column {...itemCss}>
-		<Text {...titleCss}>{item?.name}</Text>
-		<Flex
-			flex={1}
-			align='flex-end'>
-			<Text {...bodyTextCss}>{item?.description}</Text>
-		</Flex>
-	</Column>
-);
-
-const SeriveItemLgSkeleton = () => (
-	<Column {...itemCss}>
-		<Skeleton>
-			<Text
-				{...titleCss}
-				fontFamily={fonts.heading}>
-				NAME OF ITEM
-			</Text>
-		</Skeleton>
-		<SkeletonText noOfLines={4} />
-	</Column>
-);
-
 const itemCss = {
-	p: { base: 6, md: 8 },
+	p: 8,
 	gap: 4,
 	border: '1px solid #333',
 	bgColor: colors?.card?.dark,
@@ -109,7 +75,7 @@ const itemCss = {
 
 const titleCss = {
 	color: colors?.text?.dark,
-	fontSize: { base: '2rem', md: '3rem' },
+	fontSize: { base: '16px', md: '3rem' },
 	fontWeight: '800',
 	lineHeight: 1,
 	fontFamily: fonts.title,
@@ -119,10 +85,10 @@ const titleCss = {
 const bodyTextCss = {
 	color: colors?.text?.dark,
 	fontFamily: fonts.primary,
-	fontSize: { base: '14px', lg: '16px' },
+	fontSize: '16px',
 	lineHeight: 1.5,
 	fontWeight: '400',
 	textTransform: 'uppercase',
 };
 
-export default Servicesv2;
+export default SectionOne;

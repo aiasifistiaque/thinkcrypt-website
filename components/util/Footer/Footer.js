@@ -1,8 +1,11 @@
-import { Heading, Stack, Flex, Text, Link, Center } from '@chakra-ui/react';
+import { Heading, Stack, Flex, Text, Center } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import footerData from '../../../data/footerData';
 import { breakpoints } from '../../lib/constants';
+import { colors } from '../../../theme/styles';
+import { fonts } from '../../../lib/constants';
+import Link from 'next/link';
 
 const Container = styled(Flex)`
 	gap: 1rem;
@@ -27,11 +30,12 @@ const Sections = styled(Flex)`
 
 const FooterText = styled(Text)`
 	font-size: 0.7rem;
-	font-family: Michroma;
+	font-family: ${fonts?.primary};
 	letter-spacing: 2%;
+	text-transform: uppercase;
 	line-height: 1.1rem;
 	font-weight: 300;
-	color: white;
+	color: ${colors?.text?.dark};
 	margin-top: 8px;
 `;
 
@@ -39,22 +43,19 @@ const Footer = () => {
 	const Section = ({ data }) => {
 		return (
 			<Stack spacing={4}>
-				<Heading
-					color='white'
-					fontSize='22px'
-					fontFamily='Michroma'
-					size='sm'>
-					{data.heading}
-				</Heading>
+				<Heading {...headingCss}>{data.heading}</Heading>
 				<Stack spacing={2}>
 					{data.items.map((item, i) => (
 						<Link
 							key={i}
 							href={item.href}>
 							<Text
-								fontSize='16px'
-								color='white'
-								fontFamily='Michroma'>
+								_hover={{ color: colors?.text?.blue, textDecoration: 'none' }}
+								letterSpacing='1px'
+								textTransform='uppercase'
+								fontSize='14px'
+								color={colors?.text?.dark}
+								fontFamily={fonts?.primary}>
 								{item.name}
 							</Text>
 						</Link>
@@ -66,17 +67,15 @@ const Footer = () => {
 
 	return (
 		<Stack
-			bg='black'
-			color='white'>
+			borderTop='1px solid'
+			borderColor={colors?.border?.dark}
+			bg={colors?.background?.dark}
+			color={colors?.text?.dark}
+			pt='24px'>
 			<Container>
 				<Sections>
 					<Stack>
-						<Heading
-							fontSize='20px'
-							fontFamily='Michroma'
-							size='md'>
-							Contact Us
-						</Heading>
+						<Heading {...headingCss}>CONTACT US</Heading>
 						<svg
 							width='80'
 							height='80'
@@ -105,10 +104,10 @@ const Footer = () => {
 							spacing={0}
 							pt={4}>
 							<FooterText
-								fontFamily='Michroma !important'
-								fontSize='24px !important'
-								mb='8px'>
-								Thinkcrypt.io
+								fontSize='2rem !important'
+								fontFamily={`${fonts?.title} !important`}
+								mb='16px'>
+								THINKCRYPT.IO
 							</FooterText>
 							<FooterText>Flat 5B, House 88</FooterText>
 							<FooterText>Road 17/A, Block E, Banani</FooterText>
@@ -135,13 +134,24 @@ const Footer = () => {
 			<Center p='4px 16px'>
 				<Text
 					textAlign='center'
-					color='white'
+					textTransform='uppercase'
+					fontFamily={fonts?.primary}
+					color={colors?.text?.dark}
 					fontSize={12}>
-					{`Copyright ©2024`} | thinkcrypt.io | ALL RIGHTS RESERVED
+					{`Copyright ©2025`} | thinkcrypt.io | ALL RIGHTS RESERVED
 				</Text>
 			</Center>
 		</Stack>
 	);
+};
+
+const headingCss = {
+	textTransform: 'uppercase',
+	color: colors?.text?.dark,
+	fontSize: { base: '2rem', md: '3rem' },
+	fontWeight: '300',
+	fontFamily: fonts?.title,
+	size: 'sm',
 };
 
 export default Footer;

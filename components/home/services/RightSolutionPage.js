@@ -7,6 +7,7 @@ import { useGetAllQuery } from '../../../store';
 import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lucide-react';
 // import SolutionCard from './SolutionCard';
 import SolutionCard, { Skeleton } from './SolutionCard';
+import { colors } from '../../../theme/styles';
 
 const RightSolutionPage = () => {
 	const { data, isFetching } = useGetAllQuery({
@@ -71,12 +72,12 @@ const headingCss = {
 
 const subHeadingCss = {
 	fontSize: '16px',
-	color: '#737373' || 'white',
+	color: colors?.textSecondary?.dark,
 	fontFamily: fonts.heading,
 };
 
 const containerCss = {
-	bg: 'white',
+	bg: colors?.background?.dark,
 	py: { base: 16, md: 16 },
 	px: { base: 4, md: 8 },
 	gap: 12,

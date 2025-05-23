@@ -1,6 +1,7 @@
 import { Text as ChakraText, Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints } from '../../lib/constants';
+import { fonts } from '../../../lib/constants';
 
 /**Containers */
 
@@ -56,25 +57,26 @@ export const rightCss = {
 
 const Title = styled(ChakraText)`
 	font-size: 2rem;
-	font-family: 'Michroma', sans-serif;
-	line-height: 1.3;
+
+	line-height: 1;
 
 	margin-top: 0.5rem;
-	font-weight: 900;
+	font-weight: 600;
 	text-transform: uppercase;
 	@media (min-width: ${breakpoints.desktop}) {
 		max-width: 700px;
 	}
 
 	@media (min-width: ${breakpoints.desktop}) {
-		font-size: 3rem;
+		font-size: 8rem;
 	}
 `;
 
 const Subtitle = styled(ChakraText)`
-	font-size: 1.2rem;
-	font-family: 'Michroma', sans-serif;
-	font-weight: bold;
+	font-size: 1rem;
+	font-family: ${fonts?.primary}, sans-serif;
+	font-weight: 400;
+	color: white;
 
 	line-height: 1.6;
 	@media (min-width: ${breakpoints.desktop}) {
@@ -83,7 +85,7 @@ const Subtitle = styled(ChakraText)`
 `;
 
 const Text = styled(ChakraText)`
-	font-family: 'Michroma', sans-serif;
+	font-family: ${fonts?.primary}, sans-serif;
 
 	line-height: 1.4;
 	font-size: 1rem;

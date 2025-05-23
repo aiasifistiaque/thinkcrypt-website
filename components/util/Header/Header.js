@@ -8,6 +8,7 @@ import { LiaEqualsSolid } from 'react-icons/lia';
 import Logo from './Logo';
 import Time from './Time';
 import ScrollYProgtess from '../Page/ScrollProgress';
+import { padding } from '../../../lib/constants';
 
 const Container = styled(Flex)`
 	zindex: 9999;
@@ -20,7 +21,7 @@ const Container = styled(Flex)`
 	width: 100%;
 
 	@media (min-width: ${breakpoints.desktop}) {
-		padding: 0 1.5rem;
+		padding: 0 ${padding?.lgBody};
 	}
 `;
 

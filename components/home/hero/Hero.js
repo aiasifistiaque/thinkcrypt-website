@@ -2,9 +2,11 @@ import React from 'react';
 import { Heading, Flex, Box, Center, Text as BText } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { colors, breakpoints } from '../../lib/constants';
+import { colors as clr } from '../../../theme/styles';
 import Link from 'next/link';
 import Marquee from './Marquee';
 import ScrollValue from '../../sidebar-new/ScrollValue';
+import { fonts, padding } from '../../../lib/constants';
 
 const ThinkButton = styled(Center)`
 	cursor: pointer;
@@ -46,10 +48,10 @@ const Overlay = styled(Flex)`
 	justify-content: center;
 	flex: 1;
 	height: 100vh;
+	background-color: ${clr?.background?.dark};
 `;
 
 const Title = styled(Heading)`
-	font-family: Michroma, sans-serif;
 	font-weight: 800;
 	line-height: 1.2;
 `;
@@ -61,7 +63,7 @@ const Text = styled(Heading)`
 `;
 
 const Divider = styled(Box)`
-	background-color: #060508;
+	background-color: transparent;
 	height: 0.5rem;
 	width: 207px;
 	margin-top: 16px;
@@ -73,43 +75,51 @@ const Hero = () => {
 		<Container>
 			<Overlay>
 				<Flex
-					flex='4'
+					flex='5'
 					pt='128px'>
 					<Flex
 						maxW='100vw'
-						px='24px'
+						px={{ base: padding.baseBody, lg: padding.lgBody }}
 						flexDir='column'
-						justify='center'>
-						<Title
-							fontFamily='Michroma'
-							size='2xl'
-							fontWeight={800}>
-							Transforming Ideas
-							<br /> Into Digital Reality
-						</Title>
+						justify='flex-end'>
+						<Heading
+							color={clr?.text?.dark}
+							fontFamily='Bebas Neue'
+							fontSize={{ base: '3rem', md: '8rem' }}
+							textTransform='uppercase'
+							lineHeight='1'
+							letterSpacing='2px'
+							fontWeight={600}>
+							design. build.
+							<br /> scale. repeat.
+						</Heading>
 						<Divider />
 						<Text
-							fontFamily='Michroma'
-							size={{ base: 'lg', md: 'xl' }}
-							fontWeight='600'
-							letterSpacing='.2px'
-							maxW={{ md: '60%' }}>
+							color={clr?.textSecondary?.blue}
+							fontFamily={fonts?.primary}
+							textTransform='uppercase'
+							fontSize={{ base: '14px', md: '14px' }}
+							fontWeight='500'
+							lineHeight='1.5'
+							letterSpacing='0'
+							maxW={{ md: '35%' }}>
 							{/* {`From initial concept to user-tested MVPs and final product launch using the MERN stack, we're your partner in creating exceptional value and transformative outcomes.`} */}
 							We build innovative, easy-to-use digital solutions that help startups and enterprises
 							grow faster, work better & thrive in the digital landscape.
 						</Text>
-						<Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
+						{/* <Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
 							<ThinkButton>
 								<ButtonText>Get A Quote</ButtonText>
 							</ThinkButton>
-						</Link>
+						</Link> */}
 					</Flex>
 					<Flex w='300px'>
 						<ScrollValue
 							py='0'
+							fontSize='10px'
 							fontWeight={400}
 							align='flex-start'
-							color='text.800'
+							color={clr?.text?.dark}
 						/>
 					</Flex>
 				</Flex>

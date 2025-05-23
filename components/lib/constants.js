@@ -27,6 +27,8 @@ export const breakpoints = {
 export const fonts = {
 	heading: 'Michroma',
 	body: 'Michroma',
+	primary: 'Mona Sans',
+	title: 'Bebas Neue',
 };
 
 export const layout = {

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Badge, Button, Flex, Image, Link, Text, Wrap, Box } from '@chakra-ui/react';
-import { styles } from '../../../theme/styles';
+import { colors, styles } from '../../../theme/styles';
+import { fonts } from '../../../lib/constants';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -9,10 +10,14 @@ const Container = styled(Flex)`
 	flex-direction: column;
 `;
 
-const BORDER = styles.border.light;
-const CaseItem = ({ item }) => {
+const CaseItem = ({ item, colorMode }) => {
+	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
+	const textColor = colorMode == 'dark' ? colors.text.dark : colors.text.light;
+	const cardBg = colorMode == 'dark' ? colors.card.dark : colors.card.light;
 	return (
-		<Container border={BORDER}>
+		<Container
+			border={BORDER}
+			bg={cardBg}>
 			<Image
 				{...imgCss}
 				src={`${item?.image}`}
@@ -20,14 +25,27 @@ const CaseItem = ({ item }) => {
 			/>
 			<Flex
 				{...cardCss}
+				borderTop={BORDER}
 				flex={1}>
-				<Text {...titleCss}>{item?.name}</Text>
+				<Text
+					{...titleCss}
+					color={textColor}>
+					{item?.name}
+				</Text>
 				<Text {...catText}>{item?.category}</Text>
-				<Text {...descCss}>{item?.shortDescription}</Text>
-				<Wrap mb={4}>
+				<Text
+					{...descCss}
+					color={textColor}>
+					{item?.shortDescription}
+				</Text>
+				<Wrap
+					mb={4}
+					spacing={1}>
 					{item?.tags?.map((tag, i) => (
 						<Badge
+							borderRadius='none'
 							{...badgeCss}
+							bg={colorMode == 'dark' ? '#ebebeb' : '#f2f2f2'}
 							key={i}>
 							{tag}
 						</Badge>
@@ -45,7 +63,12 @@ const CaseItem = ({ item }) => {
 						href={
 							item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'
 						}>
-						<Button {...btnCss}>{item?.showCaseStudy ? 'View case Study' : 'Visit Project'}</Button>
+						<Button
+							{...btnCss}
+							bg={colorMode == 'dark' ? '#ebebeb' : 'black'}
+							color={colorMode == 'dark' ? 'black' : 'white'}>
+							{item?.showCaseStudy ? 'View case Study' : 'Visit Project'}
+						</Button>
 					</Link>
 				</Flex>
 			</Flex>
@@ -54,9 +77,10 @@ const CaseItem = ({ item }) => {
 };
 
 const catText = {
-	fontFamily: 'Michroma',
+	fontFamily: fonts?.primary,
 	fontSize: '16px',
-	color: '#737373',
+	textTransform: 'uppercase',
+	color: colors?.text?.blue,
 };
 
 const imgCss = {
@@ -68,8 +92,9 @@ const imgCss = {
 };
 
 const descCss = {
-	fontFamily: 'Michroma',
+	fontFamily: fonts?.primary,
 	fontSize: '16px',
+	textTransform: 'uppercase',
 	noOfLines: 3,
 	mb: 4,
 };
@@ -78,31 +103,33 @@ const btnCss = {
 	bg: 'black',
 	borderRadius: 'none',
 	color: 'white',
-	fontFamily: 'Michroma',
+	fontFamily: fonts?.primary,
 	textTransform: 'uppercase',
+	fontSize: '14px',
 };
 
 const cardCss = {
 	flexDir: 'column',
+
 	p: { base: '12px', md: '16px' },
 	gap: 2,
-	borderTop: BORDER,
 };
 
 const titleCss = {
-	lineHeight: 1.2,
-	fontFamily: 'Michroma',
-	fontSize: '24px',
+	lineHeight: 1,
+	fontFamily: fonts?.title,
+	fontSize: { base: '20px', md: '44px' },
 	fontWeight: '600',
 	noOfLines: 2,
 	textTransform: 'uppercase',
 };
 
 const badgeCss = {
-	fontFamily: 'Michroma',
-	fontSize: '12px',
+	fontFamily: fonts?.primary,
+	fontSize: '10px',
 	fontWeight: '500',
-	p: 2,
+	p: 1,
+	size: 'sm',
 	bg: '#f2f2f2',
 	textTransform: 'uppercase',
 };

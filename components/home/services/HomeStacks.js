@@ -15,13 +15,14 @@ const HomeStacks = () => {
 	});
 	return (
 		<CardSection
+			colorMode='dark'
 			btnText='View Our Tech Stacks'
 			href='/techstacks'
-			title='Technology Stack'
-			bg='whitesmoke'>
+			title='Technology Stack'>
 			{data &&
 				data?.doc?.map((item, i) => (
 					<StackCard
+						colorMode='dark'
 						icon={
 							<Image
 								src={item?.icon}

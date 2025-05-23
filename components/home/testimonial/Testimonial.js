@@ -1,7 +1,9 @@
 import { Center, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import { breakpoints, colors } from '../../lib/constants';
+import { breakpoints } from '../../lib/constants';
+import { colors } from '../../../theme/styles';
+import { fonts } from '../../../lib/constants';
 
 const Container = styled(Center)`
 	padding: 128px 24px;
@@ -9,31 +11,36 @@ const Container = styled(Center)`
 	flex-direction: column;
 	text-align: center;
 	font-family: Michroma;
-	margin-bottom: 32px;
+	padding-bottom: 92px;
 `;
 
 const P = styled(Text)`
 	text-align: center;
 	@media (min-width: ${breakpoints.desktop}) {
-		font-size: 1.2rem;
-		line-height: 1.6;
-		max-width: 50vw;
+		max-width: 80vw;
 	}
 `;
 
 const Testimonial = () => {
 	return (
-		<Container bg='black.800'>
+		<Container bg={colors?.background?.dark}>
 			<Center
 				flexDir='column'
 				gap={4}
 				mb={4}>
 				<Heading
 					size='xl'
-					color={'white'}>
+					fontFamily={fonts?.title}
+					fontSize={{ base: '1.5rem', md: '6rem' }}
+					color={colors?.text?.dark}>
 					What our clients are saying about us
 				</Heading>
-				<P color='white'>
+				<P
+					color={colors?.text?.dark}
+					textTransform='uppercase'
+					lineHeight='1.2'
+					fontSize={{ base: '1rem', md: '2rem' }}
+					fontFamily={fonts?.primary}>
 					I am really thankful to the thinkcrypt team for making this amazing website and app for
 					our business. Thinkcrypt has fulfilled all of our demands and queries. They have a very
 					strong team of developers. We will surely be working with thinkcrypt team for future
@@ -43,26 +50,28 @@ const Testimonial = () => {
 
 			<Flex
 				my='2rem'
+				align='center'
 				gap={4}>
 				<Image
-					h='60px'
-					w='60px'
+					h='100px'
+					w='100px'
 					objectFit='cover'
 					src='/pp.jpeg'
 					borderRadius='full'
 				/>
 				<Stack
 					align='start'
-					spacing={0}>
+					spacing={3}>
 					<P
-						fontFamily='Michroma'
-						color={'white'}>
+						fontSize='3rem'
+						fontFamily={fonts?.title}
+						color={colors?.text?.dark}>
 						Shahbaz Amin Bhuiyan
 					</P>
 					<Heading
-						fontFamily='Michroma'
-						size='sm'
-						color='#d63384'>
+						fontFamily={fonts?.title}
+						size='md'
+						color={colors?.text?.blue}>
 						Vincent{`'`}s Sphere
 					</Heading>
 				</Stack>
