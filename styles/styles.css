@@ -56,6 +56,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Poppins",'Mona Sans', sans-serif, 'Apercu','Michroma', 'Michroma';
   box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 a {

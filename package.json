@@ -18,6 +18,8 @@
 		"@emotion/styled": "^11.10.5",
 		"@reduxjs/toolkit": "^2.0.1",
 		"framer-motion": "^7.10.2",
+		"lenis": "^1.3.3",
+		"locomotive-scroll": "^4.1.4",
 		"lucide-react": "^0.510.0",
 		"moment-timezone": "^0.5.45",
 		"next": "12.3.0",

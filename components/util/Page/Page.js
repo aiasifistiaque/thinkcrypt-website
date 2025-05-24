@@ -10,8 +10,10 @@ import { Flex } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import ScrollYProgtess from './ScrollProgress';
 import { colors } from '../../../theme/styles';
+// import ScrollContainer from '../../home/ScrollContainer';
 
 const Scroll = dynamic(() => import('../../scroll/Scroll'));
+const ScrollContainer = dynamic(() => import('../../home/ScrollContainer'));
 
 const Page = ({ children, title, description, colorMode, image }) => {
 	return (
@@ -59,13 +61,15 @@ const Page = ({ children, title, description, colorMode, image }) => {
 			<Header />
 
 			<Scroll>
-				<Flex
-					bg={colorMode == 'dark' ? colors?.background?.dark : colors}
-					maxW='100vw'
-					minH='100vh'
-					flex={1}>
-					{children}
-				</Flex>
+				<ScrollContainer>
+					<Flex
+						bg={colorMode == 'dark' ? colors?.background?.dark : colors}
+						maxW='100vw'
+						minH='100vh'
+						flex={1}>
+						{children}
+					</Flex>
+				</ScrollContainer>
 			</Scroll>
 			<Footer />
 		</>
