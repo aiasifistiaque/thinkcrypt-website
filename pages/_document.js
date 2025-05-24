@@ -35,7 +35,7 @@ export default function Document() {
 				</noscript>
 			</Head>
 			<body>
-				<ColorModeScript initialColorMode={theme.config.initialColorMode} />
+				<ColorModeScript initialColorMode='dark' />
 
 				<Main />
 				<NextScript />
