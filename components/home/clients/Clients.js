@@ -156,7 +156,7 @@ const titleStack = {
 	gridTemplateColumns: { base: '1fr', md: 'repeat(2, 1fr)' },
 	px: { base: padding?.baseBody, md: padding?.lgBody },
 	maxW: '100vw',
-	mb: 4,
+	mb: 8,
 	minH: '65vh',
 };
 
