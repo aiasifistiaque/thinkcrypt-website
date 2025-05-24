@@ -30,7 +30,7 @@ const EachItem = ({ children, ...props }) => {
 			<Box p={{ base: 2, md: 4 }}>
 				<Image
 					w={{ base: '100px', md: '140px' }}
-					h={{ base: '80px', md: '120px' }}
+					h={{ base: '80px', md: '100px' }}
 					objectFit='contain'
 					src={children}
 					alt='logo'
