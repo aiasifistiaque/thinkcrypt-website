@@ -19,7 +19,7 @@ const Section = styled(Grid)`
 
 const BORDER = styles.border.light;
 
-const Projects = () => {
+const Projects = ({ theme }) => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'portfolios',
 		limit: 6,
@@ -27,13 +27,16 @@ const Projects = () => {
 		filters: { status: 'published', isFeatured: true },
 	});
 
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+
 	return (
 		<Flex
 			flexDir='column'
-			bg={colors?.background?.dark}>
+			bg={bg}>
 			{/* <Divider /> */}
 			<Flex>
 				<SectionOne
+					theme={theme}
 					title='Featured Projects'
 					subTitle='See what we’ve built — smart apps, powerful tools, real results. Dive into success stories that show how we turn bold ideas into better software. Let’s build the future, together.'>
 					<Grid {...itemContainer}>
@@ -41,7 +44,7 @@ const Projects = () => {
 							? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
 							: data?.doc?.map((item, i) => (
 									<CaseItemUpdated
-										colorMode='dark'
+										colorMode={theme}
 										item={item}
 										key={i}
 									/>

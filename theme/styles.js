@@ -15,8 +15,9 @@ export const styles = {
 export const colors = {
 	card: {
 		dark: '#1B1B1B',
-		light: '#f2f2f2',
+		light: '#E9E7DD',
 		blue: '#65c8cb',
+		darkBlue: '#216163',
 	},
 	border: {
 		dark: '#FAF8F1',
@@ -30,14 +31,17 @@ export const colors = {
 	text: {
 		// dark: '#fdfdfd',
 		dark: '#FAF8F1',
-		light: 'black',
+		light: '#0D0D0D',
 		blue: '#65c8cb',
+		darkBlue: '#2f7a7c',
+		//#1d4f50 muted navy
 	},
 
 	textSecondary: {
 		blue: '#65c8cb',
 		dark: '#c6c8cb',
-		light: 'black',
+		light: '#1d4f50',
+		darkBlue: '#216163',
 	},
 	border: {
 		white: '#FAF8F1',

@@ -56,7 +56,7 @@ const doc = [
 	},
 ];
 
-const RightBusinessSolution = () => {
+const RightBusinessSolution = ({ theme, colorMode }) => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'solutions',
 		limit: 6,
@@ -66,10 +66,21 @@ const RightBusinessSolution = () => {
 		},
 	});
 
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const textColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const subTextColor =
+		theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
+	const containerBg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const borderColor = theme === 'dark' ? colors?.border?.dark : colors?.border?.light;
+
 	return (
-		<Column {...containerCss}>
+		<Column
+			{...containerCss}
+			bg={bg}>
 			<Center {...headingContainerCss}>
-				<Text {...headingCss}>
+				<Text
+					{...headingCss}
+					color={textColor}>
 					FIND THE RIGHT SOLUTION FOR YOUR BUSINESS - FILTERED BY INDUSTRY
 				</Text>
 				{/* <Text {...subHeadingCss}>
@@ -83,7 +94,7 @@ const RightBusinessSolution = () => {
 				{data &&
 					data?.doc?.map((item, i) => (
 						<SolutionCard
-							colorMode='dark'
+							colorMode={theme}
 							href={item?.toStaticPage ? item?.staticPageUrl : `/businesses/${item?._id}`}
 							icon={
 								<Image
@@ -102,7 +113,11 @@ const RightBusinessSolution = () => {
 			</Grid>
 			<Center>
 				<Link href='/business-solution'>
-					<Button {...btnCss}>View all business solutions</Button>
+					<Button
+						{...btnCss}
+						color={textColor}>
+						View all business solutions
+					</Button>
 				</Link>
 			</Center>
 		</Column>

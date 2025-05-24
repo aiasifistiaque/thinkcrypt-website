@@ -4,7 +4,7 @@ import Lenis from 'lenis';
 export default function ScrollContainer({ children }) {
 	useEffect(() => {
 		const lenis = new Lenis({
-			duration: 3.0,
+			duration: 2.5,
 			easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
 			smooth: true,
 			gestureOrientation: 'vertical',

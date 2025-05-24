@@ -34,11 +34,11 @@ const ButtonText = styled(BText)`
 `;
 const Container = styled(Flex)`
 	flex: 1;
-	background-image: url('/home/main-hero section.svg');
+	// background-image: url('/home/main-hero section.svg');
 	background-position: center center;
 	background-size: cover;
 	@media (max-width: ${breakpoints.tab}) {
-		background-image: url('/home/phone hero section.svg');
+		// background-image: url('/home/phone hero section.svg');
 	}
 `;
 
@@ -48,7 +48,6 @@ const Overlay = styled(Flex)`
 	justify-content: center;
 	flex: 1;
 	height: 100vh;
-	background-color: ${clr?.background?.dark};
 `;
 
 const Title = styled(Heading)`
@@ -70,10 +69,12 @@ const Divider = styled(Box)`
 	margin-bottom: 32px;
 `;
 
-const Hero = () => {
+const Hero = ({ theme }) => {
+	const bg = theme === 'dark' ? clr?.background?.dark : clr?.background?.light;
+	const headingColor = theme === 'dark' ? clr?.text?.dark : clr?.text?.light;
 	return (
 		<Container>
-			<Overlay>
+			<Overlay bg={bg}>
 				<Flex
 					flex='5'
 					pt='128px'>
@@ -83,7 +84,7 @@ const Hero = () => {
 						flexDir='column'
 						justify='flex-end'>
 						<Heading
-							color={clr?.text?.dark}
+							color={headingColor}
 							fontFamily='Bebas Neue'
 							fontSize={{ base: '3rem', md: '8rem' }}
 							textTransform='uppercase'
@@ -95,7 +96,7 @@ const Hero = () => {
 						</Heading>
 						<Divider />
 						<Text
-							color={clr?.textSecondary?.blue}
+							color={theme === 'dark' ? clr?.text?.blue : clr?.text?.darkBlue}
 							fontFamily={fonts?.primary}
 							textTransform='uppercase'
 							fontSize={{ base: '14px', md: '14px' }}
@@ -119,11 +120,11 @@ const Hero = () => {
 							fontSize='10px'
 							fontWeight={400}
 							align='flex-start'
-							color={clr?.text?.dark}
+							color={headingColor}
 						/>
 					</Flex>
 				</Flex>
-				<Marquee />
+				<Marquee theme={theme} />
 			</Overlay>
 		</Container>
 	);

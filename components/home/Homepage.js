@@ -6,7 +6,7 @@ import Projects from './projects/Projects';
 import Service from './services/Service';
 import Testimonial from './testimonial/Testimonial';
 
-import { Flex } from '@chakra-ui/react';
+import { Flex, useColorMode } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import ServicesNew from './services/ServicesNew';
 import Clients from './clients/Clients';
@@ -33,21 +33,25 @@ const container = {
 	width: '100%',
 };
 
+// const theme = 'light';
+
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
 const Homepage = () => {
+	const { colorMode } = useColorMode();
+	const theme = colorMode;
 	return (
 		<Page
 			image={img}
 			title='Thinkcrypt – Your Tech Partner for Smarter, Scalable Growth'
 			description='We help impact-driven startups and SMEs grow with custom software, business tools, and analytics. Cut costs, boost efficiency, and scale faster with Thinkcrypt.'>
 			<Container>
-				<Hero />
-				<AboutUsSection />
+				<Hero theme={theme} />
+				<AboutUsSection theme={theme} />
 				{/* <Service /> */}
-				<Servicesv2 />
-				<HomeStacks />
+				<Servicesv2 theme={theme} />
+				<HomeStacks theme={theme} />
 
 				{/* <SectionHeading
 					colorMode='dark'
@@ -59,9 +63,9 @@ const Homepage = () => {
 					{`See what we’ve built — smart apps, powerful tools, real results. Dive into success stories
 					that show how we turn bold ideas into better software. Let’s build the future, together.`}
 				</SectionHeading> */}
-				<ViewOurWork />
-				<Projects />
-				<RightBusinessSolution />
+				<ViewOurWork theme={theme} />
+				<Projects theme={theme} />
+				<RightBusinessSolution theme={theme} />
 				{/* <SectionHeading
 					heading='A symphony of look and function'
 					subHeading='Our Services'>
@@ -84,8 +88,9 @@ const Homepage = () => {
 				{/* <PlanSection /> */}
 
 				<Clients />
-				<Testimonial />
+				{/* <Testimonial /> */}
 				<TitleSection
+					colorMode={theme}
 					top
 					btn='Contact Us'
 					title='Contact Us'
@@ -106,7 +111,7 @@ const Homepage = () => {
 					brings it all together in one beautiful experience. If you are too, call or send us an
 					email to get started.
 				</SectionHeading> */}
-				<NewsletterSection />
+				<NewsletterSection theme={theme} />
 			</Container>
 		</Page>
 	);

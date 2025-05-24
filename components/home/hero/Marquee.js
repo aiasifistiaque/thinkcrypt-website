@@ -6,7 +6,7 @@ import { fonts } from '../../../lib/constants';
 
 const CONTENT = `We help startups build powerful digital products fast. | We turn your ideas into real, working software. | We create solutions that grow with your business. | Partner with us to innovate, scale, and succeed. | Delivering tech that drives measurable growth. | Your trusted partner for lasting digital impact.`;
 
-const Marquee = () => {
+const Marquee = ({ theme }) => {
 	return (
 		<Flex
 			align='flex-end'
@@ -16,7 +16,7 @@ const Marquee = () => {
 				<Text
 					textTransform='uppercase'
 					fontFamily={fonts?.primary}
-					color={colors?.text?.dark}
+					color={theme === 'dark' ? colors?.text?.dark : colors?.text?.light}
 					letterSpacing='1px'
 					fontSize='.8rem'>
 					{CONTENT}

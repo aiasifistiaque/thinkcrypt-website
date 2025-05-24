@@ -12,31 +12,42 @@ import { colors, styles } from '../../../theme/styles';
 import Link from 'next/link';
 
 const BORDER = styles.border.light;
-const ViewOurWork = ({}) => {
+const ViewOurWork = ({ theme }) => {
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const primaryColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const secondaryColor =
+		theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
+	const borderColor = theme === 'dark' ? colors?.background?.light : colors?.background?.dark;
 	return (
 		<Flex
-			bg={colors?.background?.dark}
+			bg={bg}
 			w='full'>
 			<Flex {...containerCss}>
-				<Flex {...visionContainerCss}>
+				<Flex
+					{...visionContainerCss}
+					borderColor={borderColor}>
 					<Text
-						color={colors?.text?.dark}
+						color={primaryColor}
 						fontFamily={fonts.body}>
 						01
 					</Text>
 					<RobotoText
-						color={colors?.text?.dark}
+						color={primaryColor}
 						fontSize={'0.875rem'}>
 						OUR WORK
 					</RobotoText>
 				</Flex>
 
-				<Column {...bodyCss}>
+				<Column
+					{...bodyCss}
+					borderColor={borderColor}>
 					<Grid
 						flex={1}
 						gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
 						gap={5}>
-						<Heading {...headingCss}>
+						<Heading
+							{...headingCss}
+							color={primaryColor}>
 							Explore Our
 							<br />
 							Full Portfolio
@@ -49,10 +60,14 @@ const ViewOurWork = ({}) => {
 								gap={8}
 								flexDir='column'
 								maxW={{ base: '100%', md: '80%' }}>
-								<RobotoText {...bodyTextCss}>
+								<RobotoText
+									{...bodyTextCss}
+									color={secondaryColor}>
 									{`We’ve helped startups and businesses build websites, apps, and digital tools that solve real problems. Our focus is on making things fast, modern, and easy to use.`}
 								</RobotoText>
-								<RobotoText {...bodyTextCss}>
+								<RobotoText
+									{...bodyTextCss}
+									color={secondaryColor}>
 									Take a look at our past projects to see how we turn ideas into working products.
 									If you like what you see, we can build something great for you too.
 								</RobotoText>
@@ -61,11 +76,11 @@ const ViewOurWork = ({}) => {
 										<Button
 											_hover={{
 												bg: 'transparent',
-												color: colors?.text?.dark,
+												color: primaryColor,
 											}}
 											p={6}
-											borderColor={colors?.text?.dark}
-											color={colors?.textSecondary?.dark}
+											borderColor={secondaryColor}
+											color={primaryColor}
 											textTransform='uppercase'
 											variant='outline'
 											borderRadius='none'>

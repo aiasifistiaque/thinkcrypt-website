@@ -5,18 +5,28 @@ import Link from 'next/link';
 import { colors } from '../../../theme/styles';
 
 const SolutionCard = ({ icon, title, description, btnText, href, colorMode }) => {
+	const bg = colorMode === 'dark' ? colors?.card?.dark : colors?.card?.light;
+	const textColor = colorMode === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const secondaryColor =
+		colorMode === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
 	return (
-		<Column {...itemCss}>
+		<Column
+			{...itemCss}
+			bg={bg}>
 			<Flex {...iconContainer}>
 				<Flex {...iconCss}>{icon}</Flex>
 				<Text
 					{...titleCss}
-					color={colors?.text?.dark}>
+					color={textColor}>
 					{title}
 				</Text>
 			</Flex>
 
-			<Text {...bodyTextCss}>{description}</Text>
+			<Text
+				{...bodyTextCss}
+				color={secondaryColor}>
+				{description}
+			</Text>
 			<Flex
 				w='full'
 				mt={1}
@@ -26,7 +36,9 @@ const SolutionCard = ({ icon, title, description, btnText, href, colorMode }) =>
 				<Link href={href || '#'}>
 					<Button
 						w='full'
-						{...learnMoreBtnCss}>
+						{...learnMoreBtnCss}
+						borderColor={secondaryColor}
+						color={textColor}>
 						{btnText || 'LEARN MORE'}
 					</Button>
 				</Link>
@@ -52,7 +64,7 @@ const itemCss = {
 	p: 8,
 	pb: 6,
 	gap: 4,
-	border: '1px solid',
+	// border: '1px solid',
 	// borderColor: '#333',
 	borderRadius: '12px',
 	bgColor: colors?.card?.dark,

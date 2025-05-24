@@ -3,7 +3,7 @@ import { useGetAllQuery } from '../../../store';
 import CardSection from '../../services/website/CardSection';
 import StackCard from './StackCard';
 
-const HomeStacks = () => {
+const HomeStacks = ({ theme }) => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'techstacks',
 		sort: '-priority',
@@ -16,14 +16,14 @@ const HomeStacks = () => {
 	return (
 		<CardSection
 			columns={{ base: 1, md: 3 }}
-			colorMode='dark'
+			colorMode={theme}
 			btnText='View Our Tech Stacks'
 			href='/techstacks'
 			title='Technology Stack'>
 			{data &&
 				data?.doc?.map((item, i) => (
 					<StackCard
-						colorMode='dark'
+						colorMode={theme}
 						icon={
 							<Image
 								src={item?.icon}

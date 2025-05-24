@@ -6,7 +6,7 @@ import { colors, styles } from '../../../theme/styles';
 import { useGetAllQuery } from '../../../store';
 import { padding } from '../../../lib/constants';
 
-const SectionOne = ({ title, subTitle, children, ...props }) => {
+const SectionOne = ({ title, subTitle, theme, children, ...props }) => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'services',
 		limit: 6,
@@ -16,13 +16,27 @@ const SectionOne = ({ title, subTitle, children, ...props }) => {
 		},
 	});
 
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const textColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const subTextColor = theme === 'dark' ? colors?.text?.blue : colors?.text?.light;
+	const containerBg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+
 	return (
 		<Column
 			{...containerCss}
+			bg={containerBg}
 			{...props}>
 			<Flex {...headingContainerCss}>
-				<Text {...headingCss}>{title}</Text>
-				<Text {...subHeadingCss}>{subTitle}</Text>
+				<Text
+					{...headingCss}
+					color={textColor}>
+					{title}
+				</Text>
+				<Text
+					{...subHeadingCss}
+					color={subTextColor}>
+					{subTitle}
+				</Text>
 			</Flex>
 
 			{children}

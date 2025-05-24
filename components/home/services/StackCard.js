@@ -14,7 +14,7 @@ const StackCard = ({
 	colorMode,
 	headingStyle,
 }) => {
-	const bg = colorMode == 'dark' ? colors?.card?.dark : colors?.backcardground?.light;
+	const bg = colorMode == 'dark' ? colors?.card?.dark : colors?.card?.light;
 	const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
 	const secondaryTextColor =
 		colorMode == 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
@@ -24,7 +24,7 @@ const StackCard = ({
 		<Flex
 			{...cardStyle}
 			justify={align == 'center' ? 'center' : 'flex-start'}
-			// borderColor={borderColor}
+			borderColor={'transparent'}
 			bg={bg}>
 			<VStack
 				{...cardContentStyle}
@@ -75,7 +75,11 @@ const StackCard = ({
 									fontSize='14px'
 									fontFamily={fonts?.primary}
 									textTransform='uppercase'
-									color={colors?.text?.blue}
+									color={
+										colorMode == 'dark'
+											? colors?.textSecondary?.blue
+											: colors?.textSecondary?.darkBlue
+									}
 									key={i}>
 									{tag}
 									{tags?.length < i ? '' : ', '}

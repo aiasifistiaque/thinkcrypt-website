@@ -2,6 +2,8 @@ import { Html, Head, Main, NextScript } from 'next/document';
 import { FB_PIXEL_ID } from '../lib/fpixel';
 
 import { gtag } from '../lib/googleAnalytics.js';
+import { ColorModeScript } from '@chakra-ui/react';
+import theme from '../theme/theme';
 
 export default function Document() {
 	return (
@@ -33,6 +35,8 @@ export default function Document() {
 				</noscript>
 			</Head>
 			<body>
+				<ColorModeScript initialColorMode={theme.config.initialColorMode} />
+
 				<Main />
 				<NextScript />
 			</body>

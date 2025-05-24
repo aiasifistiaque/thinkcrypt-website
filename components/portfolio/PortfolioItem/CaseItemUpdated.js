@@ -17,6 +17,8 @@ const CaseItemUpdated = ({ item, colorMode }) => {
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const textColor = colorMode == 'dark' ? colors.text.dark : colors.text.light;
 	const cardBg = colorMode == 'dark' ? colors.card.dark : colors.card.light;
+	const secondaryColor =
+		colorMode == 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
 	return (
 		<Link
 			flex={1}
@@ -43,10 +45,14 @@ const CaseItemUpdated = ({ item, colorMode }) => {
 						color={textColor}>
 						{item?.name}
 					</Text>
-					<Text {...catText}>{item?.category}</Text>
+					<Text
+						{...catText}
+						color={colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue}>
+						{item?.category}
+					</Text>
 					<Text
 						{...descCss}
-						color={textColor}>
+						color={secondaryColor}>
 						{item?.shortDescription}
 					</Text>
 					<Flex
@@ -57,6 +63,7 @@ const CaseItemUpdated = ({ item, colorMode }) => {
 							{item?.tags?.map((tag, i) => (
 								<Text
 									{...badgeCss}
+									color={secondaryColor}
 									key={i}>
 									{tag},
 								</Text>

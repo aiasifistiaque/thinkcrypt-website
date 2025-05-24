@@ -6,7 +6,12 @@ import { colors, styles } from '../../../theme/styles';
 import { useGetAllQuery } from '../../../store';
 import { padding } from '../../../lib/constants';
 
-const Servicesv2 = () => {
+const Servicesv2 = ({ theme }) => {
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const primaryColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const blue = theme === 'dark' ? colors?.text?.blue : colors?.text?.darkBlue;
+	const secondaryColor =
+		theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
 	const { data, isFetching } = useGetAllQuery({
 		path: 'services',
 		limit: 6,
@@ -17,10 +22,18 @@ const Servicesv2 = () => {
 	});
 
 	return (
-		<Column {...containerCss}>
+		<Column
+			{...containerCss}
+			bg={bg}>
 			<Flex {...headingContainerCss}>
-				<Text {...headingCss}>Our Digital Expertise</Text>
-				<Text {...subHeadingCss}>
+				<Text
+					{...headingCss}
+					color={primaryColor}>
+					Our Digital Expertise
+				</Text>
+				<Text
+					{...subHeadingCss}
+					color={blue}>
 					We combine strategic thinking, design excellence, and technical mastery to create digital
 					experiences that exceed expectations.
 				</Text>
@@ -31,6 +44,7 @@ const Servicesv2 = () => {
 					? [...Array(6)].map((_, i) => <SeriveItemLgSkeleton key={i} />)
 					: data?.doc?.map((item, i) => (
 							<SeriveItemLg
+								theme={theme}
 								item={item}
 								key={i}
 							/>
@@ -76,13 +90,23 @@ const gridCss = {
 	gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
 };
 
-const SeriveItemLg = ({ item }) => (
-	<Column {...itemCss}>
-		<Text {...titleCss}>{item?.name}</Text>
+const SeriveItemLg = ({ item, theme }) => (
+	<Column
+		{...itemCss}
+		bg={theme === 'dark' ? colors?.card?.dark : colors?.card?.light}>
+		<Text
+			{...titleCss}
+			color={theme === 'dark' ? colors?.text?.dark : colors?.text?.light}>
+			{item?.name}
+		</Text>
 		<Flex
 			flex={1}
 			align='flex-end'>
-			<Text {...bodyTextCss}>{item?.description}</Text>
+			<Text
+				{...bodyTextCss}
+				color={theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light}>
+				{item?.description}
+			</Text>
 		</Flex>
 	</Column>
 );

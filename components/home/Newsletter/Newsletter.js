@@ -2,23 +2,54 @@ import { border, Box, Button, Container, Flex, Heading, Input, Text } from '@cha
 import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
 
-export default function NewsletterSection() {
+export default function NewsletterSection({ theme }) {
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const textColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const secondaryColor =
+		theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
+	const borderColor = theme === 'dark' ? colors?.background?.light : colors?.background?.dark;
+	const blueColor =
+		theme === 'dark' ? colors?.textSecondary?.blue : colors?.textSecondary?.darkBlue;
 	return (
-		<Box {...sectionStyle}>
+		<Box
+			{...sectionStyle}
+			bg={bg}>
 			<Container {...containerStyle}>
 				<Box
 					maxW='3xl'
 					mx='auto'
 					textAlign='center'>
-					<Heading {...headingStyle}>Subscribe to our newsletter</Heading>
-					<Text {...textStyle}>
+					<Heading
+						{...headingStyle}
+						color={textColor}>
+						Subscribe to our newsletter
+					</Heading>
+					<Text
+						{...textStyle}
+						color={secondaryColor}>
 						Stay updated with the latest technology trends, industry insights, and company news.
 					</Text>
 					<Flex {...flexStyle}>
-						<Input {...inputStyle} />
-						<Button {...buttonStyle}>Subscribe</Button>
+						<Input
+							{...inputStyle}
+							bg={theme == 'dark' ? colors?.text?.dark : 'white'}
+							borderColor={theme == 'dark' ? colors?.text?.dark : colors?.text?.darkBlue}
+							color={colors?.text?.light}
+							placeholder='Enter your email'
+							_placeholder={{ color: colors?.text?.light }}
+						/>
+						<Button
+							{...buttonStyle}
+							color={textColor}
+							borderColor={textColor}>
+							Subscribe
+						</Button>
 					</Flex>
-					<Text {...subTextStyle}>By subscribing, you agree to our Privacy Policy.</Text>
+					<Text
+						{...subTextStyle}
+						color={blueColor}>
+						By subscribing, you agree to our Privacy Policy.
+					</Text>
 				</Box>
 			</Container>
 		</Box>

@@ -80,11 +80,11 @@ const TitleSection = ({
 										<Button
 											_hover={{
 												bg: 'transparent',
-												color: colors?.text?.dark,
+												color: textColor,
 											}}
 											p={6}
-											borderColor={colors?.text?.dark}
-											color={colors?.textSecondary?.dark}
+											borderColor={secondaryColor}
+											color={textColor}
 											textTransform='uppercase'
 											variant='outline'
 											borderRadius='none'>
