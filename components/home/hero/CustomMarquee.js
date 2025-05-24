@@ -10,7 +10,11 @@ const CustomMarquee = ({ children }) => {
 	return (
 		<Flex flex={1}>
 			<MarqueeComponent speed={50}>
-				<Flex gap={{ base: 8, md: 20 }}>{children}</Flex>
+				<Flex
+					gap={{ base: 12, md: 20 }}
+					pr={{ base: 12, md: 20 }}>
+					{children}
+				</Flex>
 			</MarqueeComponent>
 		</Flex>
 	);
