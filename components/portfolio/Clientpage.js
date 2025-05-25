@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
 
-import { Stack, Image, Link } from '@chakra-ui/react';
+import { Stack, Image, Link, useColorMode } from '@chakra-ui/react';
 
 import { styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
@@ -51,11 +51,11 @@ const Clientpage = () => {
 		);
 	};
 
-	const colorMode = 'light';
+	const { colorMode } = useColorMode();
 
 	return (
 		<Page
-			colorMode={colorMode}
+			theme={colorMode}
 			image={img}
 			title={`Trusted by Innovators Worldwide | Our Clients & Partners – Thinkcrypt`}
 			description={`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}>
@@ -70,7 +70,7 @@ const Clientpage = () => {
 
 				<TitleSection
 					top
-					colorMode='light'
+					colorMode={colorMode}
 					title='Stakeholders'
 					titleTop='Our Clients'
 					titleBottom='& Partners'>
@@ -89,7 +89,7 @@ const Clientpage = () => {
 								key={i}>
 								<StackCard
 									align='center'
-									colorMode={colorMode}
+									colorMode={'dark'}
 									headingStyle={{ fontSize: { base: '10px', md: '28px' }, lineHeight: 1 }}
 									icon={
 										<Image

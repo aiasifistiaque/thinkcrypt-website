@@ -94,7 +94,7 @@ const headingStyle = {
 	textTransform: 'uppercase',
 	fontWeight: '600',
 	textAlign: 'center',
-	fontSize: { base: 'xl', md: '8rem' },
+	fontSize: { base: 'xl', md: '6rem' },
 };
 
 const subHeadingStyle = {

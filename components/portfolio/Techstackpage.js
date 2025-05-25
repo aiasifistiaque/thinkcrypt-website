@@ -3,13 +3,14 @@ import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
 import PortfolioItem from './PortfolioItem/PortfolioItem';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
-import { Heading, Stack, Flex, Grid, Wrap, Text, Image } from '@chakra-ui/react';
+import { Heading, Stack, Flex, Grid, Wrap, Text, Image, useColorMode } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
 import CaseItem from './PortfolioItem/CaseItem';
 import CardSection from '../services/website/CardSection';
 import StackCard from '../home/services/StackCard';
+import TitleSection from '../home/about-us/TitleSection';
 
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
@@ -40,30 +41,36 @@ const TechstackPage = () => {
 		{ title: 'Inventory', value: 'inventory' },
 		{ title: 'Healthcare', value: 'healthcare' },
 	];
+	const { colorMode } = useColorMode();
+	const theme = colorMode;
 
 	return (
 		<Page
+			theme={theme}
 			image={img}
 			title={`Our Technology Stacks for Web & Mobile Development | MERN Experts - Thinkcrypt`}
 			description={`Explore the powerful technology stacks used by Thinkcrypt, including the MERN stack, to deliver scalable web and mobile applications. From MVPs to enterprise solutions, we build future-ready software.`}>
-			<Stack
-				spacing={0}
-				pt='48px'>
-				<SectionHeading
-					containerProps={{ pb: '32px' }}
-					heading='Our Tech Stacks for Scalable Solutions'
+			<Stack spacing={0}>
+				<TitleSection
+					top
+					title='Technology Stacks'
+					colorMode={theme}
+					titleBottom='For Scalable Solutions'
+					titleTop='Our Tech Stacks'
 					subHeading='Technology Stacks'>
 					At Thinkcrypt, we use cutting-edge technologies like MongoDB, Express.js, React, and
 					Node.js to build fast, scalable, and secure web and mobile applications. Our full stack
 					expertise drives product success from MVP to enterprise-grade platforms.
-				</SectionHeading>
+				</TitleSection>
 
 				<CardSection
-					title='What we use for development'
-					pt='44px'>
+					pt={0}
+					colorMode={theme}
+					title='What we use for development'>
 					{data &&
 						data?.doc?.map((item, i) => (
 							<StackCard
+								colorMode={theme}
 								icon={
 									<Image
 										src={item?.icon}

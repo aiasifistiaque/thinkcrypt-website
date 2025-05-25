@@ -43,6 +43,7 @@ const Homepage = () => {
 	const theme = colorMode;
 	return (
 		<Page
+			theme={theme}
 			image={img}
 			title='Thinkcrypt – Your Tech Partner for Smarter, Scalable Growth'
 			description='We help impact-driven startups and SMEs grow with custom software, business tools, and analytics. Cut costs, boost efficiency, and scale faster with Thinkcrypt.'>

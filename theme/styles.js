@@ -19,10 +19,10 @@ export const colors = {
 		blue: '#65c8cb',
 		darkBlue: '#216163',
 	},
-	border: {
-		dark: '#FAF8F1',
-		light: '#333',
-	},
+	// border: {
+	// 	dark: '#FAF8F1',
+	// 	light: '#e6e8ec',
+	// },
 	background: {
 		dark: '#0D0D0D',
 		// dark: '#000',
@@ -44,8 +44,8 @@ export const colors = {
 		darkBlue: '#216163',
 	},
 	border: {
-		white: '#FAF8F1',
-		light: '#333',
+		dark: '#FAF8F1',
+		light: '#CFC6B8',
 		dark: '#333',
 	},
 };

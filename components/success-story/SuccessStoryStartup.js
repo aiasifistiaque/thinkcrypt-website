@@ -1,34 +1,76 @@
 import React from 'react';
 import { Box, Container, Flex, Heading, Text, VStack, Button, Image } from '@chakra-ui/react';
 import Link from 'next/link';
+import { colors } from '../../theme/styles';
+import { fonts } from '../../lib/constants';
 
-const SuccessStorieyStartup = () => {
+const SuccessStorieyStartup = ({ theme }) => {
+	const bg = theme === 'dark' ? colors?.background.dark : colors?.background.light;
+	const text = theme === 'dark' ? colors?.text.dark : colors?.text.light;
+	const secondary = theme === 'dark' ? colors?.textSecondary.dark : colors?.textSecondary.light;
+	const blue = theme === 'dark' ? colors?.text.blue : colors?.text.darkBlue;
 	return (
-		<Box {...sectionStyle}>
+		<Box
+			{...sectionStyle}
+			bg={bg}>
 			<Flex {...flexStyle}>
 				<Box>
-					<Heading {...headingStyle}>Success Stories</Heading>
-					<Text {...paragraphStyle}>
+					<Heading
+						{...headingStyle}
+						color={text}>
+						Success Stories
+					</Heading>
+					<Text
+						{...paragraphStyle}
+						color={secondary}>
 						{`We've helped dozens of startups successfully launch their products and secure funding.
 						Our expertise in building MVPs and scalable platforms has contributed to the success of
 						startups across various industries.`}
 					</Text>
 					<VStack {...vStackStyle}>
 						<Flex {...storyFlexStyle}>
-							<Box {...lineStyle} />
-							<Text {...storyTextStyle}>FinTech startup secured $2.5M in seed funding</Text>
+							<Box
+								{...lineStyle}
+								bg={blue}
+							/>
+							<Text
+								{...storyTextStyle}
+								color={text}>
+								FinTech startup secured $2.5M in seed funding
+							</Text>
 						</Flex>
 						<Flex {...storyFlexStyle}>
-							<Box {...lineStyle} />
-							<Text {...storyTextStyle}>HealthTech MVP reached 10,000 users in 3 months</Text>
+							<Box
+								{...lineStyle}
+								bg={blue}
+							/>
+							<Text
+								{...storyTextStyle}
+								color={text}>
+								HealthTech MVP reached 10,000 users in 3 months
+							</Text>
 						</Flex>
 						<Flex {...storyFlexStyle}>
-							<Box {...lineStyle} />
-							<Text {...storyTextStyle}>EdTech platform acquired within 18 months of launch</Text>
+							<Box
+								{...lineStyle}
+								bg={blue}
+							/>
+							<Text
+								{...storyTextStyle}
+								color={text}>
+								EdTech platform acquired within 18 months of launch
+							</Text>
 						</Flex>
 					</VStack>
 					<Link href='/case-studies'>
-						<Button {...buttonStyle}>View Case Studies</Button>
+						<Button
+							{...buttonStyle}
+							bg='transparent'
+							border='1px solid'
+							borderColor={text}
+							color={text}>
+							View Case Studies
+						</Button>
 					</Link>
 				</Box>
 				<Box>
@@ -49,7 +91,7 @@ export default SuccessStorieyStartup;
 const sectionStyle = {
 	w: 'full',
 	p: { base: 6, md: 16 },
-	py: { base: 12, md: 44 },
+	py: { base: 12, md: 24 },
 };
 
 const containerStyle = {
@@ -65,14 +107,18 @@ const flexStyle = {
 
 const headingStyle = {
 	as: 'h2',
-	size: 'lg',
+
 	mb: 6,
 	textTransform: 'uppercase',
 	letterSpacing: 'wide',
+	fontFamily: fonts?.title,
+	size: { base: 'lg', md: '2xl' },
 };
 
 const paragraphStyle = {
 	mb: 6,
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 };
 
 const vStackStyle = {
@@ -93,8 +139,10 @@ const lineStyle = {
 };
 
 const storyTextStyle = {
-	fontWeight: 'bold',
+	fontWeight: '500',
 	fontSize: '18px',
+	textTransform: 'uppercase',
+	fontFamily: fonts?.primary,
 };
 
 const buttonStyle = {
@@ -102,6 +150,8 @@ const buttonStyle = {
 	bg: 'black',
 	color: 'white',
 	borderRadius: 'none',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 };
 
 const imageStyle = {

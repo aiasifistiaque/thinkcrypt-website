@@ -1,15 +1,28 @@
 import React from 'react';
 import { Box, Heading, Text, Button, VStack, Flex, border } from '@chakra-ui/react';
 import Link from 'next/link';
-import { styles } from '../../theme/styles';
+import { colors, styles } from '../../theme/styles';
+import { fonts } from '../../lib/constants';
 
-const ReadyToLaunchSection = () => {
+const ReadyToLaunchSection = ({ theme }) => {
+	const bg = theme === 'dark' ? colors?.background.dark : colors?.background.light;
+	const text = theme === 'dark' ? colors?.text.dark : colors?.text.light;
+	const secondary = theme === 'dark' ? colors?.textSecondary.dark : colors?.textSecondary.light;
+	const blue = theme === 'dark' ? colors?.text.blue : colors?.text.darkBlue;
 	return (
-		<Box {...sectionStyle}>
+		<Box
+			{...sectionStyle}
+			bg={bg}>
 			<Flex {...containerStyle}>
 				<VStack {...vStackStyle}>
-					<Heading {...headingStyle}>Ready to Launch Your Startup?</Heading>
-					<Text {...textStyle}>
+					<Heading
+						{...headingStyle}
+						color={text}>
+						Ready to Launch Your Startup?
+					</Heading>
+					<Text
+						{...textStyle}
+						color={secondary}>
 						{`Let's transform your idea into a market-ready product that users love and investors
 						believe in.`}
 					</Text>
@@ -27,6 +40,7 @@ export default ReadyToLaunchSection;
 // Style Constants
 const sectionStyle = {
 	py: { base: 20, md: 32 },
+	pt: 0,
 	bg: 'black',
 	color: 'white',
 };
@@ -45,10 +59,11 @@ const vStackStyle = {
 
 const headingStyle = {
 	as: 'h2',
-	size: 'lg',
+	fontSize: { base: '2rem', md: '6rem' },
 	textTransform: 'uppercase',
-	letterSpacing: 'wider',
+	fontFamily: fonts?.title,
 	mb: 2,
+	lineHeight: '1',
 };
 
 const textStyle = {

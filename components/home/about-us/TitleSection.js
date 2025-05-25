@@ -19,6 +19,7 @@ const TitleSection = ({
 	href,
 	colorMode = 'dark',
 	children,
+	...props
 }) => {
 	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
 	const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
@@ -28,10 +29,11 @@ const TitleSection = ({
 		<Flex
 			{...containerCss}
 			pt={top ? '0' : '92px'}
-			bg={bg}>
+			bg={bg}
+			{...props}>
 			<Flex
 				{...visionContainerCss}
-				borderTop={top ? '1px solid' : 'none'}>
+				borderTop={top ? 'none' : '1px solid'}>
 				<Text
 					color={textColor}
 					fontFamily={fonts.body}>

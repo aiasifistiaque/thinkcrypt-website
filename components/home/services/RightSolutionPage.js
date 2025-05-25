@@ -9,7 +9,7 @@ import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lu
 import SolutionCard, { Skeleton } from './SolutionCard';
 import { colors } from '../../../theme/styles';
 
-const RightSolutionPage = () => {
+const RightSolutionPage = ({ theme }) => {
 	const { data, isFetching } = useGetAllQuery({
 		path: 'solutions',
 		limit: 99,
@@ -20,28 +20,44 @@ const RightSolutionPage = () => {
 		},
 	});
 
+	const bg = theme == 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const text = theme == 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const secondaryColor =
+		theme == 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
+
 	return (
-		<Column {...containerCss}>
-			<Center {...headingContainerCss}>
-				<Text {...headingCss}>Power Up Your Business with the Right Digital Tools</Text>
-				<Text {...subHeadingCss}>
+		<Column
+			{...containerCss}
+			bg={bg}>
+			{/* <Center {...headingContainerCss}>
+				<Text
+					{...headingCss}
+					text={text}>
+					Power Up Your Business with the Right Digital Tools
+				</Text>
+				<Text
+					{...subHeadingCss}
+					color={secondaryColor}>
 					{`In today’s fast-moving world, having the right digital solution can make all the
 					difference. Whether you're running a café, managing a clinic, selling products online, or
 					offering services — the right website, app, or software can help you save time, reach more customers, and grow faster.`}
 				</Text>
-				<Text {...subHeadingCss}>
+				<Text
+					{...subHeadingCss}
+					color={secondaryColor}>
 					{`At Thinkcrypt, we don’t believe in one-size-fits-all. We build smart, modern digital
 					solutions designed specifically for your industry. From powerful eCommerce platforms and
 					booking systems to CRMs, POS, or inventory tools — we help you turn ideas into action and
 					challenges into opportunities.`}
 				</Text>
-			</Center>
+			</Center> */}
 
 			<Grid {...gridCss}>
 				{isFetching && [...Array(3)].map((_, i) => <Skeleton key={i} />)}
 				{data &&
 					data?.doc?.map((item, i) => (
 						<SolutionCard
+							colorMode={theme}
 							href={item?.toStaticPage ? item?.staticPageUrl : `/businesses/${item?._id}`}
 							icon={
 								<Image
@@ -63,17 +79,17 @@ const RightSolutionPage = () => {
 };
 
 const headingCss = {
-	lineHeight: 1.3,
-	color: 'black',
-	fontSize: { base: '32px', md: '44px' },
-	fontFamily: fonts.heading,
+	lineHeight: 1.1,
+
+	fontSize: { base: '32px', md: '5rem' },
+	fontFamily: fonts.title,
 	fontWeight: '900',
 };
 
 const subHeadingCss = {
 	fontSize: '16px',
-	color: colors?.textSecondary?.dark,
-	fontFamily: fonts.heading,
+	fontFamily: fonts.primary,
+	textTransform: 'uppercase',
 };
 
 const containerCss = {

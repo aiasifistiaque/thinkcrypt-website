@@ -1,13 +1,91 @@
 import React from 'react';
-import { Box, Button, Container, Flex, Grid, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, Heading, Text, useColorMode, VStack } from '@chakra-ui/react';
 
 import Hero from '../components/hero/Hero';
 import { Rocket, CheckCircle, Cpu, ServerIcon } from 'lucide-react';
 import Link from 'next/link';
 import Page from '../components/util/Page/Page';
-import { links } from '../lib/constants';
+import { links, padding } from '../lib/constants';
 import SuccessStorieyStartup from '../components/success-story/SuccessStoryStartup';
 import ReadyToLaunchSection from '../components/success-story/ReadyToLaunchSection';
+import TitleSection from '../components/home/about-us/TitleSection';
+import { colors } from '../theme/styles';
+import { fonts } from '../components/lib/constants';
+
+const startupServicesLight = [
+	{
+		title: 'IDEA VALIDATION',
+		description:
+			'We help validate your startup idea through market research, user interviews, and competitive analysis to ensure product-market fit.',
+		icon: (
+			<CheckCircle
+				size={48}
+				color={colors?.text?.light}
+			/>
+		),
+		details: [
+			'Market research and analysis',
+			'User interviews and personas',
+			'Competitive landscape analysis',
+			'Value proposition refinement',
+			'Business model validation',
+		],
+	},
+	{
+		title: 'RAPID PROTOTYPING',
+		description:
+			'Our team quickly transforms your validated idea into a functional prototype, allowing you to visualize and test your product.',
+		icon: (
+			<Cpu
+				size={48}
+				color={colors?.text?.light}
+			/>
+		),
+		details: [
+			'Wireframing and user flow design',
+			'Interactive prototyping',
+			'User testing and feedback',
+			'Iterative refinement process',
+			'Prototype to MVP planning',
+		],
+	},
+	{
+		title: 'TECH CONSULTING',
+		description:
+			'Our experts provide strategic technology guidance to help you make informed decisions about your product architecture.',
+		icon: (
+			<ServerIcon
+				size={48}
+				color={colors?.text?.light}
+			/>
+		),
+		details: [
+			'Technology stack selection',
+			'Scalability planning',
+			'Cloud infrastructure design',
+			'Security implementation strategy',
+			'Third-party integrations assessment',
+		],
+	},
+	{
+		title: 'LAUNCH & SUPPORT',
+		description:
+			'We assist with the successful launch of your MVP and provide ongoing support to ensure your product thrives in the market.',
+		icon: (
+			<Rocket
+				size={48}
+				color={colors?.text?.light}
+			/>
+		),
+		details: [
+			'Deployment strategy',
+			'Performance optimization',
+			'Analytics implementation',
+			'Post-launch bug fixes',
+			'Continuous improvement planning',
+		],
+	},
+];
 
 const startupServices = [
 	{
@@ -92,8 +170,16 @@ const mvpBenefits = [
 ];
 
 const Startups = () => {
+	const { colorMode } = useColorMode();
+	const bg = colorMode === 'dark' ? colors?.background.dark : colors.background.light;
+	const text = colorMode === 'dark' ? colors?.text.dark : colors.text.light;
+	const secondary = colorMode === 'dark' ? colors?.textSecondary.dark : colors.textSecondary.light;
+	const card = colorMode === 'dark' ? colors?.card.dark : colors.card.light;
+	const blue = colorMode === 'dark' ? colors?.text.blue : colors.text.darkBlue;
+	const services = colorMode === 'dark' ? startupServices : startupServicesLight;
 	return (
 		<Page
+			theme={colorMode}
 			image='https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 			title='MVP Development for Startups | Full Tech & Launch SupportLaunch-Ready MVPs for Startups | We Handle Tech, You Drive Growth'
 			description='Thinkcrypt helps startups validate, build, and launch investor-ready MVPs with speed and precision. From product strategy to full-stack execution — we’re your technical cofounder without the equity.'>
@@ -101,62 +187,109 @@ const Startups = () => {
 				<Box
 					as='main'
 					flex='1'>
-					<Hero
+					<TitleSection
+						top
+						pb={0}
+						colorMode={colorMode}
+						titleTop='From Idea To'
+						titleBottom='Successful Startup'
+						title='MVP'>
+						{
+							'We help innovative startups launch market-ready MVPs and build scalable SaaS platforms that attract users and investors.'
+						}
+					</TitleSection>
+					{/* <Hero
 						title='FROM IDEA TO SUCCESSFUL STARTUP'
 						subtitle='We help innovative startups launch market-ready MVPs and build scalable SaaS platforms that attract users and investors.'
 						imageUrl='https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-					/>
+					/> */}
 
 					{/* MVP Section */}
-					<Box {...sectionGrayStyle}>
+					<Box
+						{...sectionGrayStyle}
+						bg={bg}>
 						<Grid
 							{...containerStyle}
 							w='full'
 							gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
 							gap={8}>
 							<Box flex='1'>
-								<Heading {...headingStyle}>What is an MVP?</Heading>
-								<Text {...textStyle}>
+								<Heading
+									{...headingStyle}
+									color={text}>
+									What is an MVP?
+								</Heading>
+								<Text
+									{...textStyle}
+									color={secondary}>
 									A Minimum Viable Product (MVP) is the initial version of your product with just
 									enough features to attract early-adopter customers and validate your business idea
 									early in the product development cycle.
 								</Text>
-								<Text {...textStyle}>
+								<Text
+									{...textStyle}
+									color={secondary}>
 									Instead of building a complete product with all intended features—which can be
 									time-consuming and expensive—an MVP focuses on core functionality that solves the
 									primary problem for your users.
 								</Text>
 								<Text
 									{...textStyle}
+									color={secondary}
 									mb='6'>
 									{`This approach allows you to gather valuable user feedback early and iterate
 									quickly, reducing the risk of building a product that doesn't meet market needs.`}
 								</Text>
 								<Link href='/contact'>
-									<Button {...buttonStyle}>Discuss Your MVP</Button>
+									<Button
+										{...buttonStyle}
+										bg='transparent'
+										border='1px solid'
+										borderColor={text}
+										color={text}>
+										Discuss Your MVP
+									</Button>
 								</Link>
 							</Box>
 							<Grid
 								gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
 								gap='4'>
 								{mvpBenefits.map((benefit, index) => (
-									<Box
+									<Flex
 										key={index}
-										{...cardStyle}>
+										{...cardStyle}
+										flexDir='column'
+										bg={card}>
 										<Heading {...cardHeadingStyle}>{benefit.title}</Heading>
-										<Text {...cardTextStyle}>{benefit.description}</Text>
-									</Box>
+										<Flex
+											flex={1}
+											align='flex-end'>
+											<Text
+												{...cardTextStyle}
+												color={blue}>
+												{benefit.description}
+											</Text>
+										</Flex>
+									</Flex>
 								))}
 							</Grid>
 						</Grid>
 					</Box>
 
 					{/* How We Help Section */}
-					<Box {...sectionBlackStyle}>
+					<Box
+						{...sectionBlackStyle}
+						bg={bg}>
 						<Flex {...containerStyle}>
 							<Box {...centeredBoxStyle}>
-								<Heading {...headingStyle}>How We Help Startups</Heading>
-								<Text {...whiteTextStyle}>
+								<Heading
+									{...headingStyle}
+									color={text}>
+									How We Help Startups
+								</Heading>
+								<Text
+									{...whiteTextStyle}
+									color={blue}>
 									Our end-to-end approach takes you from initial concept to market-ready product,
 									with expert guidance at every step.
 								</Text>
@@ -164,15 +297,24 @@ const Startups = () => {
 							<Grid
 								gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
 								gap={8}>
-								{startupServices.map((service, index) => (
+								{services.map((service, index) => (
 									<Box
 										key={index}
-										{...serviceCardStyle}>
+										{...serviceCardStyle}
+										bg={card}>
 										<Flex {...flexIconHeadingStyle}>
 											<Box {...iconBoxStyle}>{service.icon}</Box>
-											<Heading {...serviceHeadingStyle}>{service.title}</Heading>
+											<Heading
+												{...serviceHeadingStyle}
+												color={text}>
+												{service.title}
+											</Heading>
 										</Flex>
-										<Text {...serviceTextStyle}>{service.description}</Text>
+										<Text
+											{...serviceTextStyle}
+											color={secondary}>
+											{service.description}
+										</Text>
 										<VStack {...detailsListStyle}>
 											{service.details.map((detail, idx) => (
 												<Flex
@@ -180,9 +322,13 @@ const Startups = () => {
 													{...detailFlexStyle}>
 													<CheckCircle
 														size={16}
-														color='white'
+														color={text}
 													/>
-													<Text {...detailTextStyle}>{detail}</Text>
+													<Text
+														{...detailTextStyle}
+														color={blue}>
+														{detail}
+													</Text>
 												</Flex>
 											))}
 										</VStack>
@@ -191,8 +337,8 @@ const Startups = () => {
 							</Grid>
 						</Flex>
 					</Box>
-					<SuccessStorieyStartup />
-					<ReadyToLaunchSection />
+					<SuccessStorieyStartup theme={colorMode} />
+					<ReadyToLaunchSection theme={colorMode} />
 				</Box>
 			</Box>
 		</Page>
@@ -222,49 +368,57 @@ const sectionBlackStyle = {
 
 const containerStyle = {
 	flexDirection: 'column',
-	px: { base: 6, md: 16 },
+	px: { base: padding?.baseBody, md: padding?.lgBody },
 };
 
 const headingStyle = {
-	size: 'xl',
+	fontFamily: fonts?.title,
 	mb: 6,
 	textTransform: 'uppercase',
 	letterSpacing: 'wide',
+	size: { base: '2xl', md: '3xl' },
 };
 
 const textStyle = {
 	mb: 4,
 	fontSize: { base: '1rem', md: '16px' },
-	lineHeight: '1.6',
+	lineHeight: '1.4',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 };
 
 const buttonStyle = {
 	size: 'lg',
-	bg: 'black',
-	color: 'white',
 	fontSize: '16px',
-	fontFamily: 'Michroma',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 	borderRadius: 'none',
 };
 
 const cardStyle = {
 	p: 6,
-	border: '1px solid',
-	borderColor: 'black',
+	borderRadius: '12px',
+	// border: '1px solid',
+	// borderColor: 'black',
 };
 
 const cardHeadingStyle = {
 	as: 'h3',
 	fontSize: 'lg',
 	mb: 3,
-	lineHeight: '1.4',
+	lineHeight: '1',
 	textTransform: 'uppercase',
 	letterSpacing: 'wide',
+	fontFamily: fonts?.title,
+	fontSize: { base: '2rem', md: '2rem' },
 };
 
 const cardTextStyle = {
 	fontSize: 'sm',
 	color: '#737373',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
+	lineHeight: '1.5',
 };
 
 const centeredBoxStyle = {
@@ -274,6 +428,8 @@ const centeredBoxStyle = {
 
 const whiteTextStyle = {
 	color: 'whiteAlpha.700',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 };
 
 const flexWrapStyle = {
@@ -284,10 +440,10 @@ const flexWrapStyle = {
 
 const serviceCardStyle = {
 	p: 8,
-	border: '1px solid',
-	borderColor: '#333',
-	bg: 'black',
-	borderRadius: 'none',
+	// border: '1px solid',
+	// borderColor: '#333',
+	// bg: 'black',
+	borderRadius: '12px',
 };
 
 const flexIconHeadingStyle = {
@@ -301,14 +457,19 @@ const iconBoxStyle = {
 
 const serviceHeadingStyle = {
 	as: 'h3',
-	fontSize: 'xl',
+
 	textTransform: 'uppercase',
 	letterSpacing: 'wide',
+	fontFamily: fonts?.title,
+	size: { base: 'xl', md: '2xl' },
 };
 
 const serviceTextStyle = {
 	mb: 6,
 	color: 'whiteAlpha.800',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
+	fontSize: '16px',
 };
 
 const detailsListStyle = {
@@ -318,10 +479,13 @@ const detailsListStyle = {
 
 const detailFlexStyle = {
 	align: 'center',
+	gap: 2,
 };
 
 const detailTextStyle = {
 	ml: 2,
 	color: 'whiteAlpha.900',
 	fontSize: '1rem',
+	fontFamily: fonts?.primary,
+	textTransform: 'uppercase',
 };

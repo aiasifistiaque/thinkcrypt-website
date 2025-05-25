@@ -4,17 +4,11 @@ import React from 'react';
 import footerData from '../../../data/footerData';
 import { breakpoints } from '../../lib/constants';
 import { colors } from '../../../theme/styles';
-import { fonts } from '../../../lib/constants';
+import { fonts, padding } from '../../../lib/constants';
 import Link from 'next/link';
 
 const Container = styled(Flex)`
-	gap: 1rem;
-	padding: 64px 24px;
 	flex: 1;
-
-	@media (min-width: ${breakpoints.desktop}) {
-		padding: 64px 44px;
-	}
 `;
 
 const Sections = styled(Flex)`
@@ -39,22 +33,55 @@ const FooterText = styled(Text)`
 	margin-top: 8px;
 `;
 
-const Footer = () => {
+const Footer = ({ theme }) => {
+	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const text = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const secondary = theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
+
+	const headingCss = {
+		textTransform: 'uppercase',
+		color: text,
+		fontSize: { base: '2rem', md: '3rem' },
+		fontWeight: '300',
+		fontFamily: fonts?.title,
+		size: 'sm',
+	};
+
+	const footerText = {
+		fontSize: { base: '1rem', md: '18px' },
+		fontFamily: fonts?.primary,
+		letterSpacing: '2%',
+		textTransform: 'uppercase',
+		lineHeight: '1.2',
+		fontWeight: '300',
+		color: text,
+		marginTop: '8px',
+	};
+
 	const Section = ({ data }) => {
 		return (
 			<Stack spacing={4}>
 				<Heading {...headingCss}>{data.heading}</Heading>
-				<Stack spacing={2}>
+				<Stack
+					spacing={{
+						base: 3,
+						md: 6,
+					}}>
 					{data.items.map((item, i) => (
 						<Link
 							key={i}
 							href={item.href}>
 							<Text
-								_hover={{ color: colors?.text?.blue, textDecoration: 'none' }}
-								letterSpacing='1px'
+								_hover={{
+									color:
+										theme === 'dark'
+											? colors?.textSecondary?.blue
+											: colors?.textSecondary?.darkBlue,
+									textDecoration: 'none',
+								}}
 								textTransform='uppercase'
-								fontSize='14px'
-								color={colors?.text?.dark}
+								fontSize={{ base: '18px', md: '22px' }}
+								color={text}
 								fontFamily={fonts?.primary}>
 								{item.name}
 							</Text>
@@ -67,16 +94,30 @@ const Footer = () => {
 
 	return (
 		<Stack
-			borderTop='1px solid'
-			borderColor={colors?.border?.dark}
-			bg={colors?.background?.dark}
-			color={colors?.text?.dark}
-			pt='24px'>
-			<Container>
+			bg={theme === 'dark' ? colors?.background?.dark : colors?.card?.light}
+			px={{
+				base: padding?.baseBody,
+				md: padding?.lgBody,
+			}}
+			color={text}>
+			<Flex py='64px'>
 				<Sections>
+					<Flex
+						wrap='wrap'
+						gap={{
+							base: '6rem',
+							md: '6rem',
+						}}>
+						{footerData.map((item, i) => (
+							<Section
+								data={item}
+								key={i}
+							/>
+						))}
+					</Flex>
 					<Stack>
 						<Heading {...headingCss}>CONTACT US</Heading>
-						<svg
+						{/* <svg
 							width='80'
 							height='80'
 							viewBox='0 0 80 80'
@@ -98,60 +139,53 @@ const Footer = () => {
 								fill='white'
 								mask='url(#path-2-inside-1_2814_2074)'
 							/>
-						</svg>
+						</svg> */}
 
-						<Stack
-							spacing={0}
-							pt={4}>
-							<FooterText
-								fontSize='2rem !important'
-								fontFamily={`${fonts?.title} !important`}
-								mb='16px'>
-								THINKCRYPT.IO
-							</FooterText>
-							<FooterText>Flat 5B, House 88</FooterText>
-							<FooterText>Road 17/A, Block E, Banani</FooterText>
-							<FooterText>Dhaka 1213, Bangladesh</FooterText>
+						<Stack>
+							<Stack spacing={1}>
+								<Text
+									{...footerText}
+									fontSize='2rem'
+									lineHeight={1}
+									fontFamily={`${fonts?.title}`}
+									mb='8px'>
+									THINKCRYPT.IO
+								</Text>
+								<Text {...footerText}>Flat 5B, House 88</Text>
+								<Text {...footerText}>Road 17/A, Block E, Banani</Text>
+								<Text {...footerText}>Dhaka 1213, Bangladesh</Text>
+							</Stack>
 						</Stack>
 
-						<Stack spacing={0}>
-							<FooterText>Tel: (+88) 01828398225, 01799399555</FooterText>
-							<FooterText>Email: info@thinkcrypt.io</FooterText>
+						<Stack spacing={2}>
+							<Text {...footerText}>(+88) 01828398225, 01799399555</Text>
+							<Text {...footerText}>info@thinkcrypt.io</Text>
 						</Stack>
 					</Stack>
-					<Flex
-						wrap='wrap'
-						gap='5rem'>
-						{footerData.map((item, i) => (
-							<Section
-								data={item}
-								key={i}
-							/>
-						))}
-					</Flex>
 				</Sections>
-			</Container>
-			<Center p='4px 16px'>
-				<Text
-					textAlign='center'
-					textTransform='uppercase'
-					fontFamily={fonts?.primary}
-					color={colors?.text?.dark}
-					fontSize={12}>
-					{`Copyright ©2025`} | thinkcrypt.io | ALL RIGHTS RESERVED
-				</Text>
-			</Center>
+			</Flex>
+			<Flex>
+				<Flex
+					w='full'
+					py={4}
+					align='center'
+					borderTop='1px solid'
+					borderColor={theme === 'dark' ? colors?.border?.dark : colors?.border?.light}>
+					<Text
+						textAlign='center'
+						textTransform='uppercase'
+						fontFamily={fonts?.primary}
+						color={text}
+						fontSize={{
+							base: '16pxrem',
+							md: '20px',
+						}}>
+						{`Copyright © 2025`} | thinkcrypt.io | ALL RIGHTS RESERVED
+					</Text>
+				</Flex>
+			</Flex>
 		</Stack>
 	);
-};
-
-const headingCss = {
-	textTransform: 'uppercase',
-	color: colors?.text?.dark,
-	fontSize: { base: '2rem', md: '3rem' },
-	fontWeight: '300',
-	fontFamily: fonts?.title,
-	size: 'sm',
 };
 
 export default Footer;

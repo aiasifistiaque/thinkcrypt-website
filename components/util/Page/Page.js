@@ -15,7 +15,7 @@ import { colors } from '../../../theme/styles';
 const Scroll = dynamic(() => import('../../scroll/Scroll'));
 const ScrollContainer = dynamic(() => import('../../home/ScrollContainer'));
 
-const Page = ({ children, title, description, colorMode, image }) => {
+const Page = ({ children, title, description, colorMode, image, theme }) => {
 	return (
 		<>
 			<Head>
@@ -71,7 +71,7 @@ const Page = ({ children, title, description, colorMode, image }) => {
 					</Flex>
 				</ScrollContainer>
 			</Scroll>
-			<Footer />
+			<Footer theme={theme || 'dark'} />
 		</>
 	);
 };
