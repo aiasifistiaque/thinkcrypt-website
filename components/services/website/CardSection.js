@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Box, VStack, Heading, SimpleGrid, Flex, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
+
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import SplitType from 'split-type';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const CardSection = ({
 	data,
@@ -18,13 +26,64 @@ const CardSection = ({
 }) => {
 	const textColor = colorMode === 'dark' ? colors?.text?.dark : colors?.text?.light;
 	const containerBg = colorMode === 'dark' ? colors?.background?.dark : colors?.background?.light;
+
+	const container = useRef();
+	const headingRef = useRef();
+
+	useGSAP(() => {
+		const split = new SplitType(headingRef.current, {
+			types: 'lines, words',
+			lineClass: 'line',
+		});
+
+		gsap.from(split.lines, {
+			yPercent: 160,
+			xPercent: 0,
+			opacity: 0,
+			stagger: 0.2,
+			ease: 'back.out',
+			duration: 1,
+			scrollTrigger: {
+				trigger: headingRef.current,
+				start: 'top 90%',
+				end: 'bottom 60%',
+				scrub: false,
+				markers: false,
+				toggleActions: 'play none none reset',
+			},
+		});
+
+		// // Exit animation
+		// gsap.to(split.lines, {
+		// 	yPercent: -100,
+		// 	opacity: 0,
+		// 	stagger: 0.1,
+		// 	ease: 'power2.in',
+		// 	scrollTrigger: {
+		// 		trigger: headingRef.current,
+		// 		start: 'top 20%', // Starts when element is 20% from top
+		// 		end: 'top -20%', // Ends when element is -20% from top
+		// 		scrub: true, // Smooth animation that follows scroll
+		// 		toggleActions: 'play none none reverse',
+		// 	},
+		// });
+
+		return () => {
+			split.revert();
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+		};
+	}, []);
+
 	return (
 		<Flex
 			{...containerStyle}
 			{...props}
-			bg={containerBg}>
+			bg={containerBg}
+			ref={container}>
 			<VStack {...headingWrapperStyle}>
 				<Heading
+					ref={headingRef}
+					className='split'
 					{...headingStyle}
 					color={textColor}>
 					{title}
@@ -66,7 +125,6 @@ const btnStyle = {
 	py: 2,
 	borderRadius: 'none',
 	fontSize: '18px',
-
 	fontFamily: fonts?.primary,
 	_hover: {
 		bg: 'transparent',

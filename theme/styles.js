@@ -16,6 +16,7 @@ export const colors = {
 	card: {
 		dark: '#1B1B1B',
 		light: '#E9E7DD',
+
 		blue: '#65c8cb',
 		darkBlue: '#216163',
 	},
@@ -31,6 +32,7 @@ export const colors = {
 	text: {
 		// dark: '#fdfdfd',
 		dark: '#FAF8F1',
+		//#FFFCE1
 		light: '#0D0D0D',
 		blue: '#65c8cb',
 		darkBlue: '#2f7a7c',

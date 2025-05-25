@@ -1,6 +1,10 @@
 import { Clock, Shield, TrendingUp } from 'lucide-react';
 import CardSection from './CardSection';
 import LightIItemCard from '../card/LightIItemCard';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const data = [
 	{
@@ -34,6 +38,7 @@ const WebsiteImportance = ({ colorMode }) => {
 			title='Your Website Is Your Digital Headquarters'>
 			{data?.map((item, i) => (
 				<LightIItemCard
+					className='card-item'
 					colorMode={colorMode}
 					item={item}
 					key={i}
