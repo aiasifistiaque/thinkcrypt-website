@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Flex, Grid, Text, Heading, Button, Box } from '@chakra-ui/react';
 import { colors, layout } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
@@ -6,6 +6,12 @@ import RobotoText from '../../util/text/RobotoText';
 import Column from '../../util/Column';
 import { styles } from '../../../theme/styles';
 import Link from 'next/link';
+import { useGSAP } from '@gsap/react';
+import SplitType from 'split-type';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const TitleSection = ({
 	index = '01',
@@ -25,6 +31,48 @@ const TitleSection = ({
 	const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
 	const secondaryColor =
 		colorMode == 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
+
+	const container = useRef();
+	const headingRef = useRef();
+
+	useGSAP(() => {
+		// const split = new SplitType(headingRef.current, {
+		// 	types: 'lines, words',
+		// 	lineClass: 'line-zero',
+		// });
+
+		// gsap.from('.line-zero', {
+		// 	scrollTrigger: {
+		// 		trigger: '.line-zero',
+		// 		scrub: true,
+		// 		start: 'top bottom',
+		// 		end: 'top top',
+		// 	},
+		// 	scaleX: 0,
+		// 	transformOrigin: 'left center',
+		// 	ease: 'none',
+		// });
+
+		gsap.from('.line-zero', {
+			scrollTrigger: {
+				trigger: '.line-zero',
+				start: 'top 80%', // Starts animation when line is 80% from viewport top
+				end: 'top 20%', // Ends animation when line is 20% from viewport top
+				scrub: 1, // Smooth animation with 1 second delay
+				markers: false, // Set to true for debugging
+				toggleActions: 'play none none reverse',
+			},
+			scaleX: 0, // Start from width 0
+			transformOrigin: 'left center',
+			duration: 1.5, // Animation duration
+			ease: 'power2.out', // Smooth easing function
+		});
+
+		return () => {
+			ScrollTrigger?.getAll()?.forEach(trigger => trigger?.kill());
+		};
+	}, []);
+
 	return (
 		<Flex
 			{...containerCss}
@@ -48,6 +96,7 @@ const TitleSection = ({
 
 			<Column
 				{...bodyCss}
+				border='none'
 				borderColor={colorMode == 'dark' ? colors.background.light : colors.border.light}>
 				<Grid
 					flex={1}
@@ -99,6 +148,12 @@ const TitleSection = ({
 					</Flex>
 				</Grid>
 			</Column>
+			<Flex
+				mt='-64px'
+				h='1px'
+				className='line-zero'
+				w='full'
+				bg={textColor}></Flex>
 		</Flex>
 	);
 };
@@ -106,7 +161,8 @@ const TitleSection = ({
 const containerCss = {
 	direction: 'column',
 	gap: { base: 8, md: 16 },
-	pb: { base: '3rem', md: '8rem' },
+	// pb: { base: '3rem', md: '8rem' },
+	pb: 0,
 	px: { base: padding.baseBody, lg: padding.lgBody },
 	mx: 'auto',
 

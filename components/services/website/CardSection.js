@@ -53,21 +53,6 @@ const CardSection = ({
 			},
 		});
 
-		// // Exit animation
-		// gsap.to(split.lines, {
-		// 	yPercent: -100,
-		// 	opacity: 0,
-		// 	stagger: 0.1,
-		// 	ease: 'power2.in',
-		// 	scrollTrigger: {
-		// 		trigger: headingRef.current,
-		// 		start: 'top 20%', // Starts when element is 20% from top
-		// 		end: 'top -20%', // Ends when element is -20% from top
-		// 		scrub: true, // Smooth animation that follows scroll
-		// 		toggleActions: 'play none none reverse',
-		// 	},
-		// });
-
 		return () => {
 			split.revert();
 			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
