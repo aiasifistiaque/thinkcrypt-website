@@ -22,17 +22,6 @@ const Sections = styled(Flex)`
 	}
 `;
 
-const FooterText = styled(Text)`
-	font-size: 0.7rem;
-	font-family: ${fonts?.primary};
-	letter-spacing: 2%;
-	text-transform: uppercase;
-	line-height: 1.1rem;
-	font-weight: 300;
-	color: ${colors?.text?.dark};
-	margin-top: 8px;
-`;
-
 const Footer = ({ theme }) => {
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
 	const text = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
@@ -80,7 +69,7 @@ const Footer = ({ theme }) => {
 									textDecoration: 'none',
 								}}
 								textTransform='uppercase'
-								fontSize={{ base: '18px', md: '22px' }}
+								fontSize={{ base: '18px', md: '20px' }}
 								color={text}
 								fontFamily={fonts?.primary}>
 								{item.name}

@@ -36,13 +36,15 @@ const data = [
 	},
 ];
 
-const WebsiteUseCases = () => {
+const WebsiteUseCases = ({ colorMode }) => {
 	return (
 		<CardSection
+			colorMode={colorMode}
 			title='Build for Every Purpose'
 			grid={3}>
 			{data?.map((item, i) => (
 				<LightIItemCard
+					colorMode={colorMode}
 					heading='inline'
 					align='start'
 					item={item}

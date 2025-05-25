@@ -51,13 +51,14 @@ const data = [
 	},
 ];
 
-const WebsiteFeatures = () => {
+const WebsiteFeatures = ({ colorMode }) => {
 	return (
 		<CardSection
-			bg='whitesmoke'
+			colorMode={colorMode}
 			title='Why Nodejs & Nextjs Is the Backbone of Modern Web Development'>
 			{data?.map((item, i) => (
 				<LightIItemCard
+					colorMode={colorMode}
 					item={item}
 					key={i}
 				/>

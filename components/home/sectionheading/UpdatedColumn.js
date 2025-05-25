@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Subtitle, Text, Row } from './styles';
 
-import { Flex, Text as BText, Center, Link as CLink, Grid, Heading } from '@chakra-ui/react';
+import { Flex, Text as BText, Center, Link as CLink, Text as ChakraText } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints, links } from '../../lib/constants';
 import { styles, colors } from '../../../theme/styles';
@@ -27,7 +27,7 @@ const ThinkButton = styled(Center)`
 	transition: 0.2s;
 	&:hover {
 		@media (min-width: ${breakpoints.desktop}) {
-			// background-color: ${colors.orange};
+			background-color: ${colors.orange};
 		}
 	}
 	&:active {
@@ -49,38 +49,43 @@ const leftCss = {
 	alignSelf: { base: 'flex-start', md: 'center' },
 	width: '100%',
 	height: '100%',
-	pt: { base: '0', md: '64px' },
 };
 
 const BORDER = styles.border.light;
 
 const rightCss = {
 	flexDir: 'column',
-	flex: 2,
-
+	flex: 1,
 	paddingBottom: 6,
 
 	paddingTop: { base: 0, md: 6 },
 };
 
-const SubSection = ({ subHeading, theme, heading, children, btnText, href, to, F, ...props }) => {
-	const colorMode = theme;
-	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
-	const text = colorMode == 'dark' ? colors.text.dark : colors.text.light;
-	const secondary = colorMode == 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
-	const blue = colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue;
-	const card = colorMode == 'dark' ? colors.card.dark : colors.card.light;
+const UpdatedColumn = ({
+	subHeading,
+	heading,
+	children,
+	btnText,
+	href,
+	theme,
+	to,
+	F,
+	notText,
+	...props
+}) => {
+	const bg = theme == 'dark' ? colors.background.dark : colors.background.light;
+	const text = theme == 'dark' ? colors.text.dark : colors.text.light;
+	const secondary = theme == 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
+	const blue = theme == 'dark' ? colors.text.blue : colors.text.darkBlue;
 	const top = (
 		<Flex
-			{...leftCss}
 			w='100%'
-			flexDir={{ base: 'column', md: 'column' }}>
-			<Heading
-				{...titleCss}
-				lineHeight={1}
-				color={text}>
-				{heading}
-			</Heading>
+			flexDir={{ base: 'column', md: 'row' }}>
+			<Flex
+				{...leftCss}
+				borderRight={{ base: 'none', md: BORDER }}>
+				<Subtitle color={text}>{subHeading}</Subtitle>
+			</Flex>
 		</Flex>
 	);
 
@@ -104,65 +109,55 @@ const SubSection = ({ subHeading, theme, heading, children, btnText, href, to, F
 
 	const bottom = (
 		<>
-			<Flex
-				{...rightCss}
-				gap={6}
-				maxW={{
-					base: '100%',
-					md: '40%',
-				}}
-				justify='center'
-				pt='24px'>
-				<Subtitle
-					fontSize={{
-						base: '2rem',
-						md: '4rem',
-					}}
-					fontWeight={600}
-					color={blue}>
-					{subHeading}
-				</Subtitle>
-				<Text
-					pr='24px'
-					color={secondary}>
-					{children}
-				</Text>
+			<Flex {...leftCss}>
+				<ChakraText
+					{...titleCss}
+					color={text}>
+					{heading}
+				</ChakraText>
+			</Flex>
+			<Flex {...rightCss}>
+				{notText ? (
+					children
+				) : (
+					<ChakraText
+						pt={{ base: '24px', md: '0' }}
+						pr='32px'
+						color={text}
+						lineHeight={1}
+						fontSize={{ base: '1rem', md: '1.2rem' }}>
+						{children}
+					</ChakraText>
+				)}
 				{to ? cotactButtom : btn}
 			</Flex>
 		</>
 	);
 
 	return (
-		<Grid
+		<Flex
+			py='64px'
 			w='100%'
-			py='32px'
-			pb={8}
+			{...props}
+			px={{ base: padding?.baseBody, md: padding.lgBody }}
 			bg={bg}>
-			<Flex
-				px={{
-					base: padding?.baseBody,
-					md: padding?.lgBody,
-				}}
-				{...props}>
-				<Flex
-					w='full'
-					py='64px'
-					flexDir={{ base: 'column', md: 'row' }}>
+			<Flex>
+				<Flex flexDir='column'>
 					{top}
 					{bottom}
 				</Flex>
 			</Flex>
-		</Grid>
+		</Flex>
 	);
 };
 
 const titleCss = {
-	fontSize: { base: '2rem', md: '8rem' },
-	fontFamily: fonts?.title,
+	fontSize: { base: '2rem', md: '5rem' },
+	fontFamily: fonts.title,
 	lineHeight: 1,
-	letterSpacing: '1px',
-	marginTop: '0',
+	letterSpacing: '2px',
+	marginTop: '0.5rem',
 	fontWeight: 800,
 };
 
-export default SubSection;
+export default UpdatedColumn;

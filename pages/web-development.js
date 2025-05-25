@@ -7,6 +7,7 @@ import {
 	CMSFeatures,
 } from '../components';
 import WebsiteFeatures from '../components/services/website/WebsiteFeatures';
+import { useColorMode } from '@chakra-ui/react';
 
 const img =
 	'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
@@ -24,15 +25,17 @@ const hero = {
 };
 
 const WebDevelopment = () => {
+	const { colorMode } = useColorMode();
 	return (
 		<ServicePage
+			theme={colorMode}
 			meta={meta}
 			hero={hero}>
-			<WebsiteImportance />
-			<WebsiteFeatures />
-			<CMSFeatures />
-			<WebsiteUseCases />
-			<WebsiteAdvanceFeatures />
+			<WebsiteImportance colorMode={colorMode} />
+			<WebsiteFeatures colorMode={colorMode} />
+			<CMSFeatures colorMode={colorMode} />
+			<WebsiteUseCases colorMode={colorMode} />
+			<WebsiteAdvanceFeatures colorMode={colorMode} />
 		</ServicePage>
 	);
 };

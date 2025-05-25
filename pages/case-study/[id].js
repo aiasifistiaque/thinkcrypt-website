@@ -9,6 +9,7 @@ import {
 	Skeleton,
 	SkeletonText,
 	Stack,
+	useColorMode,
 	Wrap,
 } from '@chakra-ui/react';
 import SectionHeading from '../../components/home/sectionheading/SectionHeading';
@@ -16,60 +17,77 @@ import { useRouter } from 'next/router';
 import { useGetByIdQuery } from '../../store';
 import SubSection from '../../components/home/sectionheading/SubSection';
 import ColumnSection from '../../components/home/sectionheading/ColumnSection';
-import { styles } from '../../theme/styles';
+import { colors, styles } from '../../theme/styles';
 import { SectionText } from '../../components/home/sectionheading/styles';
+import TitleSection from '../../components/home/about-us/TitleSection';
+import UpdatedColumn from '../../components/home/sectionheading/UpdatedColumn';
+import { fonts } from '../../lib/constants';
 
 const CaseStudy = () => {
 	const router = useRouter();
 	const { id } = router.query;
 	const { data } = useGetByIdQuery({ path: 'portfolios', id });
+	const { colorMode } = useColorMode();
+
+	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
+	const text = colorMode == 'dark' ? colors.text.dark : colors.text.light;
+	const secondary = colorMode == 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
+	const blue = colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue;
+	const card = colorMode == 'dark' ? colors.card.dark : colors.card.light;
 	if (!data)
 		return (
-			<Page>
+			<Page theme={colorMode}>
 				<Stack
-					spacing={4}
-					pt='48px'
+					spacing={0}
 					w='full'>
-					<SectionHeading
-						heading='Processing... '
-						subHeading='Processing...'>
-						<SkeletonText
-							w='full'
-							noOfLines={4}
-							spacing='4'
-							skeletonHeight='2'
-						/>
-					</SectionHeading>
+					<TitleSection
+						colorMode={colorMode}
+						top
+						pb={0}
+						title={'Processing...'}
+						titleTop={`Project: Processing...`}>
+						Processing...
+					</TitleSection>
 				</Stack>
 			</Page>
 		);
 	return (
-		<Page>
+		<Page theme={colorMode}>
 			<Stack
-				spacing={2}
-				pt='48px'>
-				<ColumnSection
-					heading={data?.name}
-					subHeading={'Project Overview'}>
+				spacing={0}
+				pt='0'>
+				<TitleSection
+					colorMode={colorMode}
+					top
+					pb={0}
+					title='Case Study'
+					titleTop={`Project: ${data?.name}`}>
 					{data?.overview}
-				</ColumnSection>
+				</TitleSection>
+
 				<Image
 					src={data?.coverImage}
 					w='100%'
 					h='600px'
 					objectFit='cover'
 				/>
-				<SectionHeading
-					heading={data?.challengeTitle}
-					subHeading={'The Challenge'}>
+				<TitleSection
+					colorMode={colorMode}
+					py={0}
+					pb={0}
+					index='02'
+					title='The Challenge'
+					titleTop={data?.challengeTitle}>
 					{data?.challengeDescription}
-				</SectionHeading>
-				<ColumnSection
+				</TitleSection>
+
+				<UpdatedColumn
+					theme={colorMode}
 					heading={`The Client: ${data?.companyName}`}
 					subHeading={data?.companyCategory}
 					notText>
 					<Stack spacing={4}>
-						<SectionText>
+						<SectionText color={text}>
 							Company URL:{' '}
 							<Link
 								isExternal
@@ -77,42 +95,51 @@ const CaseStudy = () => {
 								{data?.companyUrl}
 							</Link>
 						</SectionText>
-						<SectionText>{data?.companyDescription}</SectionText>
+						<SectionText color={text}>{data?.companyDescription}</SectionText>
 					</Stack>
-				</ColumnSection>
+				</UpdatedColumn>
 				<SubSection
+					theme={colorMode}
 					heading={data?.approachTitle}
 					subHeading={'Our Approach'}>
 					{data?.approachDescription}
 				</SubSection>
-				<ColumnSection
-					heading={data?.solutionTitle}
-					subHeading={'Our Solution'}>
+
+				<TitleSection
+					colorMode={colorMode}
+					py={0}
+					pb={0}
+					index='04'
+					title={data?.solutionTitle}
+					titleTop={'The'}
+					titleBottom='Solution'>
 					{data?.solutionDescription}
-				</ColumnSection>
+				</TitleSection>
+
 				<Flex
+					py={8}
+					pb={16}
 					px={6}
-					borderTop={styles?.border.light}
-					borderBottom={styles?.border.light}>
+					bg={bg}>
 					<Grid
-						gridTemplateColumns={'1fr 1fr'}
-						borderLeft={styles?.border.light}>
+						gridTemplateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }}
+						gap={4}>
 						{data?.solutionFeatures?.map((item, index) => (
 							<Flex
+								borderRadius='12px'
+								bg={card}
 								gap={2}
 								p={{ base: 4, md: 8 }}
-								borderRight={styles?.border.light}
 								key={index}
-								flexDir='column'
-								borderBottom={styles?.border.light}>
+								flexDir='column'>
 								<Flex
 									fontWeight='800'
-									fontFamily='Michroma'
-									fontSize='1.5rem'>
+									fontFamily={fonts.title}
+									fontSize={{ base: '1.5rem', md: '2.5rem' }}>
 									{item?.title}
 								</Flex>
 								<Flex
-									fontFamily='Michroma'
+									fontFamily={fonts.primary}
 									fontSize='1rem'>
 									{item?.description}
 								</Flex>
@@ -121,7 +148,12 @@ const CaseStudy = () => {
 					</Grid>
 				</Flex>
 
-				<ColumnSection
+				<UpdatedColumn
+					borderTop='1px solid'
+					borderTopColor={card}
+					borderBottom='1px solid'
+					borderBottomColor={card}
+					theme={colorMode}
 					heading={'Project Images'}
 					subHeading={'Gallery'}
 					notText>
@@ -130,8 +162,7 @@ const CaseStudy = () => {
 							<GridItem
 								key={index}
 								p={2}
-								borderRight={index % 3 === 0 ? styles?.border.light : 'none'}
-								borderBottom={styles?.border.light}>
+								borderRight={index % 3 === 0 ? styles?.border.light : 'none'}>
 								<Image
 									src={item}
 									w='100%'
@@ -141,24 +172,30 @@ const CaseStudy = () => {
 							</GridItem>
 						))}
 					</Grid>
-				</ColumnSection>
+				</UpdatedColumn>
 
 				{data?.showLiveUrl && (
-					<SubSection
-						heading={data?.name}
-						subHeading={'View Project'}>
-						Visit Project Link <br /> <br />
+					<TitleSection
+						colorMode={colorMode}
+						py={0}
+						pb={0}
+						index='06'
+						title={'Visit Project Link'}
+						btn={'Visit Project'}
+						btnHref={data?.liveUrl}
+						titleTop={`URL: ${data?.name}`}>
 						<Link
 							href={data?.liveUrl}
 							mt={4}
 							pt={2}
 							isExternal>
-							{data?.liveUrl}
+							{'URL:' + ' ' + data?.liveUrl}
 						</Link>
-					</SubSection>
+					</TitleSection>
 				)}
 
 				<SubSection
+					theme={colorMode}
 					heading={data?.techStackTitle}
 					subHeading={'Tech Stack'}>
 					<Wrap
@@ -169,7 +206,9 @@ const CaseStudy = () => {
 							<Flex
 								key={index}
 								px={2}
-								border='1px solid black'
+								border='1px solid'
+								borderColor={text}
+								color={text}
 								py={1}>
 								{item?.toString()}
 							</Flex>

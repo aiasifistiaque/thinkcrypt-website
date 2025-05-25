@@ -27,11 +27,14 @@ const data = [
 	},
 ];
 
-const WebsiteImportance = () => {
+const WebsiteImportance = ({ colorMode }) => {
 	return (
-		<CardSection title='Your Website Is Your Digital Headquarters'>
+		<CardSection
+			colorMode={colorMode}
+			title='Your Website Is Your Digital Headquarters'>
 			{data?.map((item, i) => (
 				<LightIItemCard
+					colorMode={colorMode}
 					item={item}
 					key={i}
 				/>

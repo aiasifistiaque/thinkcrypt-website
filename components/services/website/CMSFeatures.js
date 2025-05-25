@@ -16,6 +16,8 @@ import LightIItemCard from '../card/LightIItemCard';
 import CardSection from './CardSection';
 import { SimpleGrid, Image as ChakraImage, Center, Flex, Heading } from '@chakra-ui/react';
 import ItemSection from './ItemSection';
+import { fonts } from '../../../lib/constants';
+import { colors } from '../../../theme/styles';
 
 const data = [
 	{
@@ -142,9 +144,11 @@ const frstImage =
 const permImage =
 	'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80';
 
-const CMSFeatures = () => {
+const CMSFeatures = ({ colorMode }) => {
+	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
 	return (
 		<ItemSection
+			colorMode={colorMode}
 			title='Enterprise-Grade CMS Built For Your Business'
 			subHeading='Our custom content management system gives you complete control over your website without needing technical knowledge.'>
 			<SimpleGrid
@@ -154,7 +158,11 @@ const CMSFeatures = () => {
 					flexDir='column'
 					gap={6}
 					pt={16}>
-					<Heading textTransform='uppercase'>Powerful Content Management</Heading>
+					<Heading
+						fontSize={{ base: '1.5rem', md: '3rem' }}
+						fontFamily={fonts?.title}>
+						Powerful Content Management
+					</Heading>
 					<Center display={{ base: 'flex', md: 'none' }}>
 						<ChakraImage src={frstImage} />
 					</Center>
@@ -163,7 +171,8 @@ const CMSFeatures = () => {
 						spacing={8}>
 						{data?.map((item, i) => (
 							<LightIItemCard
-								iconBg='black'
+								iconBg='#0d0d0d'
+								colorMode={colorMode}
 								heading='inline'
 								align='start'
 								item={item}
@@ -186,7 +195,12 @@ const CMSFeatures = () => {
 					flexDir='column'
 					gap={6}
 					pt={16}>
-					<Heading textTransform='uppercase'>Advanced Role-Based Permissions</Heading>
+					<Heading
+						textTransform='uppercase'
+						fontSize={{ base: '1.5rem', md: '3rem' }}
+						fontFamily={fonts?.title}>
+						Advanced Role-Based Permissions
+					</Heading>
 					<Center display={{ base: 'flex', md: 'none' }}>
 						<ChakraImage src={permImage} />
 					</Center>
@@ -195,7 +209,8 @@ const CMSFeatures = () => {
 						spacing={8}>
 						{permissionData?.map((item, i) => (
 							<LightIItemCard
-								iconBg='black'
+								iconBg='#0d0d0d'
+								colorMode={colorMode}
 								heading='inline'
 								align='start'
 								item={item}

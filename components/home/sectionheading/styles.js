@@ -73,31 +73,20 @@ const Title = styled(ChakraText)`
 `;
 
 const Subtitle = styled(ChakraText)`
-	font-size: 14px;
-	font-family: ${fonts?.primary}, sans-serif;
-	font-weight: 400;
-	color: white;
+	font-family: ${fonts?.title}, sans-serif;
 	line-height: 1.4;
 	text-transform: uppercase;
-	@media (min-width: ${breakpoints.desktop}) {
-		max-width: 200px;
-	}
 `;
 
 const Text = styled(ChakraText)`
-	font-family: ${fonts?.primary}, sans-serif;
-
-	line-height: 1.4;
+	line-height: 1.6;
 	font-size: 1rem;
-
-	@media (min-width: ${breakpoints.desktop}) {
-		font-size: 1rem;
-		line-height: 1.3;
-	}
+	font-family: ${fonts?.primary}, sans-serif;
+	text-transform: uppercase;
 `;
 
 export const SectionText = styled(ChakraText)`
-	font-family: 'Michroma', sans-serif;
+	font-family: ${fonts?.title}, sans-serif;
 	font-size: 1rem;
 	line-height: 1.4;
 

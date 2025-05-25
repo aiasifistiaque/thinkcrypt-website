@@ -14,6 +14,7 @@ const CaseItem = ({ item, colorMode }) => {
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const textColor = colorMode == 'dark' ? colors.text.dark : colors.text.light;
 	const cardBg = colorMode == 'dark' ? colors.card.dark : colors.card.light;
+	const blue = colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue;
 	return (
 		<Container
 			border={BORDER}
@@ -32,7 +33,11 @@ const CaseItem = ({ item, colorMode }) => {
 					color={textColor}>
 					{item?.name}
 				</Text>
-				<Text {...catText}>{item?.category}</Text>
+				<Text
+					{...catText}
+					color={blue}>
+					{item?.category}
+				</Text>
 				<Text
 					{...descCss}
 					color={textColor}>
