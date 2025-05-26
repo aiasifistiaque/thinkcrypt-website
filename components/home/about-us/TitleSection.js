@@ -4,10 +4,10 @@ import { colors, layout } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
 import RobotoText from '../../util/text/RobotoText';
 import Column from '../../util/Column';
-import { styles } from '../../../theme/styles';
+
 import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
-import SplitType from 'split-type';
+
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
@@ -33,7 +33,7 @@ const TitleSection = ({
 	const secondaryColor =
 		colorMode == 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
 
-	const container = useRef();
+	const lineRef = useRef();
 	const headingRef = useRef();
 
 	useGSAP(() => {
@@ -53,19 +53,21 @@ const TitleSection = ({
 		// 	transformOrigin: 'left center',
 		// 	ease: 'none',
 		// });
-		gsap.from('.line-zero', {
-			scrollTrigger: {
-				trigger: '.line-zero',
-				start: 'top bottom', // Triggers as soon as line enters viewport
-				end: 'top 80%', // Completes animation earlier
-				scrub: 0.5, // Reduced scrub time for faster response
-				markers: false,
-				toggleActions: 'restart pause resume reverse',
-			},
+		gsap.set(lineRef.current, {
 			scaleX: 0,
 			transformOrigin: 'left center',
-			duration: 0.5, // Faster duration
-			ease: 'power1.out', // Changed easing for quicker start
+		});
+
+		gsap.to(lineRef.current, {
+			scrollTrigger: {
+				trigger: lineRef.current,
+				start: 'top 90%',
+				end: 'top 90%',
+				toggleActions: 'play none none reverse',
+			},
+			scaleX: 1,
+			duration: 0.5,
+			ease: 'power2.inOut',
 		});
 
 		return () => {
@@ -81,8 +83,8 @@ const TitleSection = ({
 			{...props}>
 			<Flex
 				{...visionContainerCss}
-				borderTop={top ? 'none' : '1px solid'}
-				borderColor={textColor}>
+				borderColor={textColor}
+				borderTop={top ? 'none' : '1px solid'}>
 				<Text
 					color={textColor}
 					fontFamily={fonts.body}>
@@ -157,6 +159,7 @@ const TitleSection = ({
 				</Grid>
 			</Column>
 			<Flex
+				ref={lineRef}
 				mt='-64px'
 				h='1px'
 				className='line-zero'
