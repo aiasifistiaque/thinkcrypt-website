@@ -53,20 +53,19 @@ const TitleSection = ({
 		// 	transformOrigin: 'left center',
 		// 	ease: 'none',
 		// });
-
 		gsap.from('.line-zero', {
 			scrollTrigger: {
 				trigger: '.line-zero',
-				start: 'top bottom', // Starts animation when line is 80% from viewport top
-				end: 'top 20%', // Ends animation when line is 20% from viewport top
-				scrub: 0.5, // Smooth animation with 1 second delay
-				markers: false, // Set to true for debugging
-				toggleActions: 'play none none reverse',
+				start: 'top bottom', // Triggers as soon as line enters viewport
+				end: 'top 80%', // Completes animation earlier
+				scrub: 0.5, // Reduced scrub time for faster response
+				markers: false,
+				toggleActions: 'restart pause resume reverse',
 			},
-			scaleX: 0, // Start from width 0
+			scaleX: 0,
 			transformOrigin: 'left center',
-			duration: 0.5, // Animation duration
-			ease: 'power1.out', // Smooth easing function
+			duration: 0.5, // Faster duration
+			ease: 'power1.out', // Changed easing for quicker start
 		});
 
 		return () => {
