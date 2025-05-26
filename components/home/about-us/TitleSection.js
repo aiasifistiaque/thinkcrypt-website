@@ -25,6 +25,7 @@ const TitleSection = ({
 	href,
 	colorMode = 'dark',
 	children,
+	paragraph,
 	...props
 }) => {
 	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
@@ -56,16 +57,16 @@ const TitleSection = ({
 		gsap.from('.line-zero', {
 			scrollTrigger: {
 				trigger: '.line-zero',
-				start: 'top 80%', // Starts animation when line is 80% from viewport top
+				start: 'top bottom', // Starts animation when line is 80% from viewport top
 				end: 'top 20%', // Ends animation when line is 20% from viewport top
-				scrub: 1, // Smooth animation with 1 second delay
+				scrub: 0.5, // Smooth animation with 1 second delay
 				markers: false, // Set to true for debugging
 				toggleActions: 'play none none reverse',
 			},
 			scaleX: 0, // Start from width 0
 			transformOrigin: 'left center',
-			duration: 1.5, // Animation duration
-			ease: 'power2.out', // Smooth easing function
+			duration: 0.5, // Animation duration
+			ease: 'power1.out', // Smooth easing function
 		});
 
 		return () => {
@@ -81,7 +82,8 @@ const TitleSection = ({
 			{...props}>
 			<Flex
 				{...visionContainerCss}
-				borderTop={top ? 'none' : '1px solid'}>
+				borderTop={top ? 'none' : '1px solid'}
+				borderColor={textColor}>
 				<Text
 					color={textColor}
 					fontFamily={fonts.body}>
@@ -118,11 +120,18 @@ const TitleSection = ({
 							flexDir='column'
 							maxW={{ base: '100%', md: '70%' }}>
 							{!multiParagraph && (
-								<RobotoText
-									{...bodyTextCss}
-									color={secondaryColor}>
-									{children}
-								</RobotoText>
+								<>
+									<RobotoText
+										{...bodyTextCss}
+										color={secondaryColor}>
+										{children}
+									</RobotoText>
+									<RobotoText
+										{...bodyTextCss}
+										color={secondaryColor}>
+										{paragraph}
+									</RobotoText>
+								</>
 							)}
 							{multiParagraph && children}
 							{btn && (
