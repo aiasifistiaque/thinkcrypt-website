@@ -66,7 +66,7 @@ const TitleSection = ({
 				toggleActions: 'play none none reverse',
 			},
 			scaleX: 1,
-			duration: 0.5,
+			duration: 1,
 			ease: 'power2.inOut',
 		});
 
@@ -80,6 +80,7 @@ const TitleSection = ({
 			{...containerCss}
 			pt={top ? '0' : '92px'}
 			bg={bg}
+			pb={{ base: '32px', md: '92px' }}
 			{...props}>
 			<Flex
 				{...visionContainerCss}
@@ -139,16 +140,18 @@ const TitleSection = ({
 								<Link href={href || '#'}>
 									<Box>
 										<Button
+											borderColor={secondaryColor}
 											_hover={{
 												bg: 'transparent',
 												color: textColor,
 											}}
-											p={6}
-											borderColor={secondaryColor}
 											color={textColor}
 											textTransform='uppercase'
 											variant='outline'
-											borderRadius='none'>
+											fontWeight='300'
+											fontSize='14px'
+											size='md'
+											borderRadius='99px'>
 											{btn}
 										</Button>
 									</Box>
@@ -210,7 +213,7 @@ const bodyTextCss = {
 	color: colors?.text?.dark,
 	fontSize: { base: '14px', lg: '16px' },
 	letterSpacing: { base: '0px', md: '0px' },
-	lineHeight: { base: '1.5', md: '1.6' },
+	lineHeight: { base: '1.4', md: '1.4' },
 	fontFamily: fonts.primary,
 	textTransform: 'uppercase',
 };

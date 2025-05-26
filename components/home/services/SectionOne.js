@@ -32,11 +32,13 @@ const SectionOne = ({ title, subTitle, theme, children, ...props }) => {
 					color={textColor}>
 					{title}
 				</Text>
-				<Text
-					{...subHeadingCss}
-					color={subTextColor}>
-					{subTitle}
-				</Text>
+				{subTitle && (
+					<Text
+						{...subHeadingCss}
+						color={subTextColor}>
+						{subTitle}
+					</Text>
+				)}
 			</Flex>
 
 			{children}

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { size: '32px', invert: '0%', contrast: '100%', hue: '0' };
+const initialState = { size: '40px', invert: '0%', contrast: '100%', hue: '0' };
 
 const cursorSlice = createSlice({
 	name: 'cursor',

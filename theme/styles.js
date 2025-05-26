@@ -41,6 +41,7 @@ export const colors = {
 
 	textSecondary: {
 		blue: '#65c8cb',
+		// dark: '#c6c8cb',
 		dark: '#c6c8cb',
 		light: '#1d4f50',
 		darkBlue: '#216163',

@@ -81,7 +81,10 @@ const Clientpage = () => {
 					colorMode={colorMode}
 					columns={{ base: 2, md: 4, lg: 4 }}
 					title='Trusted by Innovators Worldwide'
-					pt='0px'>
+					pt={{
+						base: '64px',
+						md: '92px',
+					}}>
 					{data &&
 						data?.doc?.map((item, i) => (
 							<URLContainer

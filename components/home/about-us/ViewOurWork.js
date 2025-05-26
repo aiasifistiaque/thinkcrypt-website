@@ -10,6 +10,7 @@ import Column from '../../util/Column';
 import { AboutUs, padding } from '../../../lib/constants';
 import { colors, styles } from '../../../theme/styles';
 import Link from 'next/link';
+import TitleSection from './TitleSection';
 
 const BORDER = styles.border.light;
 const ViewOurWork = ({ theme }) => {
@@ -19,94 +20,24 @@ const ViewOurWork = ({ theme }) => {
 		theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
 	const borderColor = theme === 'dark' ? colors?.background?.light : colors?.background?.dark;
 	return (
-		<Flex
-			bg={bg}
-			w='full'>
-			<Flex {...containerCss}>
-				<Flex
-					{...visionContainerCss}
-					borderColor={borderColor}>
-					<Text
-						color={primaryColor}
-						fontFamily={fonts.body}>
-						01
-					</Text>
-					<RobotoText
-						color={primaryColor}
-						fontSize={'0.875rem'}>
-						OUR WORK
-					</RobotoText>
-				</Flex>
-
-				<Column
-					{...bodyCss}
-					borderColor={borderColor}>
-					<Grid
-						flex={1}
-						gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
-						gap={5}>
-						<Heading
-							{...headingCss}
-							color={primaryColor}>
-							Explore Our
-							<br />
-							Full Portfolio
-						</Heading>
-
-						<Flex
-							align='flex-end'
-							justify='flex-end'>
-							<Flex
-								gap={8}
-								flexDir='column'
-								maxW={{ base: '100%', md: '80%' }}>
-								<RobotoText
-									{...bodyTextCss}
-									color={secondaryColor}>
-									{`We’ve helped startups and businesses build websites, apps, and digital tools that solve real problems. Our focus is on making things fast, modern, and easy to use.`}
-								</RobotoText>
-								<RobotoText
-									{...bodyTextCss}
-									color={secondaryColor}>
-									Take a look at our past projects to see how we turn ideas into working products.
-									If you like what you see, we can build something great for you too.
-								</RobotoText>
-								<Link href='/portfolio'>
-									<Box>
-										<Button
-											_hover={{
-												bg: 'transparent',
-												color: primaryColor,
-											}}
-											p={6}
-											borderColor={secondaryColor}
-											color={primaryColor}
-											textTransform='uppercase'
-											variant='outline'
-											borderRadius='none'>
-											VIEW OUR WORK
-										</Button>
-									</Box>
-								</Link>
-							</Flex>
-						</Flex>
-					</Grid>
-				</Column>
-				{/* <Flex flex={2} justify='flex-end' align={'flex-end'}>
-                        <RobotoText
-                            fontSize='1rem'
-                            fontWeight='500'
-                            textDecor={'underline'}
-                            fontFamily={fonts.heading}
-                        >
-                            LEARN ABOUT US
-                        </RobotoText>
-                    </Flex> */}
-			</Flex>
-			{/* <Box maxH='550px' minW='fit-content' order={{ base: 1, lg: 2 }}>
-                <Image src='/home/phone.svg' h='100%' w='100%' objectFit='cover' />
-            </Box> */}
-		</Flex>
+		<>
+			<TitleSection
+				pb={{
+					base: '44px',
+					md: '92px',
+				}}
+				index='03'
+				btn='VIEW OUR WORK'
+				href='/portfolio'
+				colorMode={theme}
+				title='Our Work'
+				titleTop='Explore Our'
+				titleBottom='Full Portfolio'
+				paragraph='Take a look at our past projects to see how we turn ideas into working products. If you like what you see, we can build something great for you too.'>
+				{`We’ve helped startups and businesses build websites, apps, and digital tools that solve
+				real problems. Our focus is on making things fast, modern, and easy to use.`}
+			</TitleSection>
+		</>
 	);
 };
 

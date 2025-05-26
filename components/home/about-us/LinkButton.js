@@ -12,12 +12,13 @@ const LinkButton = ({ children, href }) => {
 						bg: 'transparent',
 						color: colors?.text?.dark,
 					}}
-					p={6}
+					size='md'
+					fontSize='14px'
 					borderColor={colors?.text?.dark}
 					color={colors?.textSecondary?.dark}
 					textTransform='uppercase'
 					variant='outline'
-					borderRadius='none'>
+					borderRadius='99px'>
 					{children}
 				</Button>
 			</Box>

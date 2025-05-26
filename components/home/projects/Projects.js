@@ -38,12 +38,13 @@ const Projects = ({ theme }) => {
 				<SectionOne
 					theme={theme}
 					title='Featured Projects'
-					subTitle='See what we’ve built — smart apps, powerful tools, real results. Dive into success stories that show how we turn bold ideas into better software. Let’s build the future, together.'>
+					// subTitle='See what we’ve built — smart apps, powerful tools, real results. Dive into success stories that show how we turn bold ideas into better software. Let’s build the future, together.'
+				>
 					<Grid {...itemContainer}>
 						{isFetching
 							? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
 							: data?.doc?.map((item, i) => (
-									<CaseItemUpdated
+									<CaseItem
 										colorMode={theme}
 										item={item}
 										key={i}
@@ -63,7 +64,7 @@ const itemContainer = {
 		md: 'repeat(3, 1fr)',
 	},
 	pb: '64px',
-	gap: 8,
+	gap: 6,
 };
 
 export default Projects;

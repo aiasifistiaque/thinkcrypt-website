@@ -58,7 +58,6 @@ const Title = styled(Heading)`
 const Text = styled(Heading)`
 	font-weight: 400;
 	max-width: 1000px;
-	line-height: 1.4;
 `;
 
 const Divider = styled(Box)`
@@ -99,11 +98,10 @@ const Hero = ({ theme }) => {
 							color={theme === 'dark' ? clr?.text?.blue : clr?.text?.darkBlue}
 							fontFamily={fonts?.primary}
 							textTransform='uppercase'
-							fontSize={{ base: '14px', md: '14px' }}
+							fontSize={{ base: '14px', md: '15px' }}
 							fontWeight='500'
-							lineHeight='1.5'
-							letterSpacing='0'
-							maxW={{ md: '35%' }}>
+							lineHeight='1.3'
+							maxW={{ md: '32%' }}>
 							{/* {`From initial concept to user-tested MVPs and final product launch using the MERN stack, we're your partner in creating exceptional value and transformative outcomes.`} */}
 							We build innovative, easy-to-use digital solutions that help startups and enterprises
 							grow faster, work better & thrive in the digital landscape.

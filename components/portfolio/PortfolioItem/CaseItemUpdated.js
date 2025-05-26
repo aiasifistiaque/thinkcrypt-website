@@ -28,9 +28,9 @@ const CaseItemUpdated = ({ item, colorMode }) => {
 			isExternal={item?.showCaseStudy ? false : true}
 			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
 			<Container
-				mb='32px'
+				mb='8px'
 				borderBottom='1px solid'
-				borderColor={textColor}
+				borderColor={cardBg}
 				flex={1}>
 				<Image
 					{...imgCss}
@@ -41,15 +41,22 @@ const CaseItemUpdated = ({ item, colorMode }) => {
 					{...cardCss}
 					flex={1}>
 					<Text
+						{...catText}
+						fontSize='12px'
+						fontFamily={fonts?.primary}
+						color={colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue}>
+						{item?.category}
+					</Text>
+					<Text
 						{...titleCss}
 						color={textColor}>
 						{item?.name}
 					</Text>
-					<Text
+					{/* <Text
 						{...catText}
 						color={colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue}>
 						{item?.category}
-					</Text>
+					</Text> */}
 					<Text
 						{...descCss}
 						color={secondaryColor}>
@@ -58,16 +65,27 @@ const CaseItemUpdated = ({ item, colorMode }) => {
 					<Flex
 						flex={1}
 						align='flex-end'
-						pb='24px'>
+						pb='16px'>
 						<Wrap spacing={1}>
-							{item?.tags?.map((tag, i) => (
-								<Text
-									{...badgeCss}
-									color={secondaryColor}
-									key={i}>
-									{tag},
-								</Text>
-							))}
+							{item?.tags?.map(
+								(tag, i) =>
+									i < 5 && (
+										<Flex
+											key={i}
+											p={0.5}
+											px={3.5}
+											bg={cardBg}
+											borderColor={cardBg}
+											borderRadius={'full'}
+											borderWidth='1px'>
+											<Text
+												{...badgeCss}
+												color={secondaryColor}>
+												{tag}
+											</Text>
+										</Flex>
+									)
+							)}
 						</Wrap>
 					</Flex>
 
@@ -114,13 +132,14 @@ const catText = {
 	letterSpacing: '1px',
 	textTransform: 'uppercase',
 	color: colors?.text?.blue,
+	mb: '-4px',
 };
 
 const imgCss = {
 	width: '100%',
 	height: { base: '300px', md: '320px' },
 	objectFit: 'cover',
-	borderRadius: 'inherit',
+	borderRadius: '8px',
 };
 
 const descCss = {
@@ -129,10 +148,8 @@ const descCss = {
 	textTransform: 'uppercase',
 	noOfLines: 3,
 	lineHeight: 1.4,
-	mt: '32px',
-
-	maxW: '300px',
-	mb: 0,
+	mt: '8px',
+	maxW: '340px',
 };
 
 const btnCss = {
@@ -159,18 +176,17 @@ const cardCss = {
 const titleCss = {
 	lineHeight: 1,
 	fontFamily: fonts?.title,
-	fontSize: { base: '20px', md: '64px' },
+	fontSize: { base: '20px', md: '44px' },
 	fontWeight: '600',
 	noOfLines: 2,
 	textTransform: 'uppercase',
 };
 
 const badgeCss = {
-	fontFamily: fonts?.title,
-	fontSize: '20px',
-	fontWeight: '500',
+	fontFamily: fonts?.primary,
+	fontSize: '13px',
+	fontWeight: '400',
 	textTransform: 'uppercase',
-	color: colors.textSecondary.dark,
 };
 
 export default CaseItemUpdated;

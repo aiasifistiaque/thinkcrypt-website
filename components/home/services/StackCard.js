@@ -121,7 +121,7 @@ const cardHeadingStyle = {
 };
 
 const cardTextStyle = {
-	fontSize: '14px',
+	fontSize: '15px',
 	fontWeight: '500',
 	fontFamily: fonts?.primary,
 	textTransform: 'uppercase',

@@ -9,7 +9,7 @@ import { colors, styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
 import CaseItem from './PortfolioItem/CaseItem';
 import TitleSection from '../home/about-us/TitleSection';
-import { fonts } from '../../lib/constants';
+import { fonts, padding } from '../../lib/constants';
 import SelectItem from './SelectItem';
 
 const colorMode = 'dark';
@@ -61,7 +61,7 @@ const CaseStudyPage = () => {
 				<TitleSection
 					colorMode={colorMode}
 					top
-					pb={0}
+					pb='64px'
 					title='Our Work'
 					titleTop='Real Prjects'
 					titleBottom='Real Impact'>
@@ -128,7 +128,7 @@ const CaseStudyPage = () => {
 
 const titleContainer = {
 	pt: 4,
-	px: { base: 4, md: 6 },
+	px: { base: padding?.baseBody, md: padding?.lgBody },
 };
 
 const itemGrid = {
@@ -146,7 +146,7 @@ const itemContainer = {
 		md: 'repeat(3, 1fr)',
 	},
 	pb: '64px',
-	gap: 4,
+	gap: 6,
 };
 
 export default CaseStudyPage;

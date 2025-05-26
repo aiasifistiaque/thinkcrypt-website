@@ -144,9 +144,8 @@ const titleCss = {
 const bodyTextCss = {
 	color: colors?.text?.dark,
 	fontFamily: fonts.primary,
-	fontSize: { base: '14px', lg: '16px' },
+	fontSize: { base: '14px', lg: '15px' },
 	lineHeight: 1.5,
-	fontWeight: '400',
 	textTransform: 'uppercase',
 };
 

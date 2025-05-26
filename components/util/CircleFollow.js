@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { useAppSelector } from '../../hooks';
 
-const CIRCLE_SIZE = '36px';
-const CIRCLE_COLOR = 'rgba(11, 197, 234, 0.3)';
+const CIRCLE_SIZE = '44px';
+const CIRCLE_COLOR = 'rgba(11, 197, 234, 0.4)';
 const CIRCLE_BLUR = '1.2px';
 const POINTER_DISTANCE = 21;
-const POINTER_SPEED = 0.1;
+const POINTER_SPEED = 0.2;
 
 const CircleFollow = () => {
 	const { size, invert, contrast, hue } = useAppSelector(state => state.cursor);
