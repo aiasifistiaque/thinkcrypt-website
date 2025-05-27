@@ -136,7 +136,7 @@ const itemGrid = {
 		base: '1fr',
 	},
 	mt: '24px',
-	px: { base: 4, md: 6 },
+	px: { base: padding?.baseBody, md: padding?.lgBody },
 	py: '24px',
 };
 

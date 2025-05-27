@@ -65,7 +65,7 @@ const CaseItem = ({ item, colorMode }) => {
 						onMouseLeave={handleMouseLeave}
 						borderTopRadius='inherit'>
 						<video
-							thumbnail={item?.thumbnail || undefined}
+							poster={item?.thumbnail || undefined}
 							ref={videoRef}
 							muted
 							playsInline
