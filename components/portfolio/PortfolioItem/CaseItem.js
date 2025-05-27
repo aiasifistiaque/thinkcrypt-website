@@ -34,6 +34,7 @@ const CaseItem = ({ item, colorMode }) => {
 	}, [videoRef, isMobile]);
 
 	const handleMouseEnter = () => {
+		if (!item?.isVideoEnabled || !item?.videoURL) return; // Skip if video is not enabled or URL is not provided
 		if (isMobile) return; // Skip video play on mobile
 		videoRef.current?.play();
 
@@ -41,6 +42,7 @@ const CaseItem = ({ item, colorMode }) => {
 	};
 
 	const handleMouseLeave = () => {
+		if (!item?.isVideoEnabled || !item?.videoURL) return;
 		if (isMobile) return; // Skip video pause on mobile
 		// Pause the video when mouse leaves
 		videoRef.current?.pause();
@@ -54,15 +56,16 @@ const CaseItem = ({ item, colorMode }) => {
 			}}
 			isExternal={item?.showCaseStudy ? false : true}
 			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
-			<Container bg={cardBg}>
+			<Container
+				bg={cardBg}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}>
 				{item?.isVideoEnabled && item?.videoURL ? (
 					<Box
 						w='full'
 						h={IMAGE_HEIGHT}
 						bg='#133AB9'
 						overflow='hidden'
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
 						borderTopRadius='inherit'>
 						<video
 							poster={item?.thumbnail || undefined}
