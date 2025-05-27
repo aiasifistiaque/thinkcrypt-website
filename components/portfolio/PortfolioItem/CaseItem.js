@@ -38,7 +38,7 @@ const CaseItem = ({ item, colorMode }) => {
 			isExternal={item?.showCaseStudy ? false : true}
 			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
 			<Container bg={cardBg}>
-				{item?.isVideoEnabled ? (
+				{item?.isVideoEnabled && item?.videoURL ? (
 					<Box
 						w='full'
 						h='260px'
@@ -54,7 +54,7 @@ const CaseItem = ({ item, colorMode }) => {
 							loop
 							style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
 							<source
-								src={'/videos/event_pro.mp4'}
+								src={item?.videoURL}
 								type='video/mp4'
 							/>
 							Your browser does not support the video tag.
