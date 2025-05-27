@@ -41,7 +41,7 @@ const CaseItem = ({ item, colorMode }) => {
 				{item?.isVideoEnabled && item?.videoURL ? (
 					<Box
 						w='full'
-						h='240px'
+						h={{ md: '240px', xl: '360px' }}
 						bg={cardBg}
 						overflow='hidden'
 						onMouseEnter={handleMouseEnter}
@@ -52,7 +52,7 @@ const CaseItem = ({ item, colorMode }) => {
 							muted
 							playsInline
 							loop
-							style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
+							style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
 							<source
 								src={item?.videoURL}
 								type='video/mp4'
@@ -112,7 +112,7 @@ const catText = {
 
 const imgCss = {
 	width: '100%',
-	height: { base: '300px', md: '260px' },
+	h: { md: '240px', xl: '360px' },
 	objectFit: 'cover',
 	borderRadius: '0',
 	borderTopRadius: '12px',
