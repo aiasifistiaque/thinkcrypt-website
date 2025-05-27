@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { Badge, Button, Flex, Image, Link, Text, Wrap, Box } from '@chakra-ui/react';
 import { colors, styles } from '../../../theme/styles';
@@ -26,11 +26,18 @@ const CaseItem = ({ item, colorMode }) => {
 
 	const videoRef = useRef(null);
 
+	useEffect(() => {
+		if (isMobile) {
+			// If on mobile, pause the video and reset it
+			videoRef.current?.play();
+		}
+	}, [videoRef, isMobile]);
+
 	const handleMouseEnter = () => {
 		if (isMobile) return; // Skip video play on mobile
-		videoRef.current.currentTime = 0; // Reset video to start
-		// Play the video when mouse enters
 		videoRef.current?.play();
+
+		// Play the video when mouse enters
 	};
 
 	const handleMouseLeave = () => {
@@ -58,6 +65,7 @@ const CaseItem = ({ item, colorMode }) => {
 						onMouseLeave={handleMouseLeave}
 						borderTopRadius='inherit'>
 						<video
+							thumbnail={item?.thumbnail || undefined}
 							ref={videoRef}
 							muted
 							playsInline
