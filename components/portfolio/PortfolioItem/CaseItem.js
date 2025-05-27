@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 import { Badge, Button, Flex, Image, Link, Text, Wrap, Box } from '@chakra-ui/react';
 import { colors, styles } from '../../../theme/styles';
@@ -18,6 +18,18 @@ const CaseItem = ({ item, colorMode }) => {
 	const cardBg = colorMode == 'dark' ? colors.card.dark : colors.card.light;
 	const blue = colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue;
 	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
+
+	const videoRef = useRef(null);
+
+	const handleMouseEnter = () => {
+		videoRef.current?.play();
+	};
+
+	const handleMouseLeave = () => {
+		videoRef.current?.pause();
+		videoRef.current.currentTime = 0;
+	};
+
 	return (
 		<Link
 			_hover={{
@@ -26,11 +38,35 @@ const CaseItem = ({ item, colorMode }) => {
 			isExternal={item?.showCaseStudy ? false : true}
 			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
 			<Container bg={cardBg}>
-				<Image
-					{...imgCss}
-					src={`${item?.image}`}
-					alt={item?.name}
-				/>
+				{item?.isVideoEnabled ? (
+					<Box
+						w='full'
+						h='260px'
+						bg={cardBg}
+						overflow='hidden'
+						onMouseEnter={handleMouseEnter}
+						onMouseLeave={handleMouseLeave}
+						borderTopRadius='inherit'>
+						<video
+							ref={videoRef}
+							muted
+							playsInline
+							loop
+							style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
+							<source
+								src={'/videos/event_pro.mp4'}
+								type='video/mp4'
+							/>
+							Your browser does not support the video tag.
+						</video>
+					</Box>
+				) : (
+					<Image
+						{...imgCss}
+						src={`${item?.image}`}
+						alt={item?.name}
+					/>
+				)}
 				<Flex
 					{...cardCss}
 					borderTop={BORDER}
@@ -51,45 +87,16 @@ const CaseItem = ({ item, colorMode }) => {
 						color={textColor}>
 						{item?.shortDescription}
 					</Text>
-					<Wrap
-						// mb={4}
-						spacing={1}>
+					<Wrap spacing={1}>
 						{item?.tags?.map((tag, i) => (
 							<Flex
 								{...badgeCss}
 								bg={bg}
-								px={3}
-								borderRadius='99px'
-								py={1}
-								fontSize='12px'
-								textTransform='uppercase'
 								key={i}>
 								{tag}
 							</Flex>
 						))}
 					</Wrap>
-
-					{/* <Flex
-					align='flex-end'
-					flex={1}>
-					<Link
-						_hover={{
-							textDecoration: 'none',
-						}}
-						isExternal
-						href={
-							item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'
-						}>
-						<Button
-							{...btnCss}
-							// bg={colorMode == 'dark' ? '#ebebeb' : 'black'}
-							color={textColor}
-							border='1px solid'
-							borderColor={textColor}>
-							{item?.showCaseStudy ? 'View case Study' : 'Visit Project'}
-						</Button>
-					</Link>
-				</Flex> */}
 				</Flex>
 			</Container>
 		</Link>
@@ -105,7 +112,7 @@ const catText = {
 
 const imgCss = {
 	width: '100%',
-	height: { base: '300px', md: '280px' },
+	height: { base: '300px', md: '260px' },
 	objectFit: 'cover',
 	borderRadius: '0',
 	borderTopRadius: '12px',
@@ -151,10 +158,13 @@ const badgeCss = {
 	fontFamily: fonts?.primary,
 	fontSize: '10px',
 	fontWeight: '500',
-	p: 1,
 	size: 'sm',
 	bg: '#f2f2f2',
 	textTransform: 'uppercase',
+	px: 3,
+	borderRadius: '99px',
+	py: 1,
+	fontSize: '12px',
 };
 
 export default CaseItem;

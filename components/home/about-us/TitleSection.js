@@ -34,25 +34,8 @@ const TitleSection = ({
 		colorMode == 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
 
 	const lineRef = useRef();
-	const headingRef = useRef();
 
 	useGSAP(() => {
-		// const split = new SplitType(headingRef.current, {
-		// 	types: 'lines, words',
-		// 	lineClass: 'line-zero',
-		// });
-
-		// gsap.from('.line-zero', {
-		// 	scrollTrigger: {
-		// 		trigger: '.line-zero',
-		// 		scrub: true,
-		// 		start: 'top bottom',
-		// 		end: 'top top',
-		// 	},
-		// 	scaleX: 0,
-		// 	transformOrigin: 'left center',
-		// 	ease: 'none',
-		// });
 		gsap.set(lineRef.current, {
 			scaleX: 0,
 			transformOrigin: 'left center',
@@ -80,7 +63,6 @@ const TitleSection = ({
 			{...containerCss}
 			pt={top ? '0' : '92px'}
 			bg={bg}
-			pb={{ base: '32px', md: '92px' }}
 			{...props}>
 			<Flex
 				{...visionContainerCss}
@@ -102,10 +84,7 @@ const TitleSection = ({
 				{...bodyCss}
 				border='none'
 				borderColor={colorMode == 'dark' ? colors.background.light : colors.border.light}>
-				<Grid
-					flex={1}
-					gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }}
-					gap={5}>
+				<Grid {...gridCss}>
 					<Heading
 						{...headingCss}
 						color={textColor}>
@@ -146,12 +125,7 @@ const TitleSection = ({
 												color: textColor,
 											}}
 											color={textColor}
-											textTransform='uppercase'
-											variant='outline'
-											fontWeight='300'
-											fontSize='14px'
-											size='md'
-											borderRadius='99px'>
+											{...btnCss}>
 											{btn}
 										</Button>
 									</Box>
@@ -163,24 +137,41 @@ const TitleSection = ({
 			</Column>
 			<Flex
 				ref={lineRef}
-				mt='-64px'
-				h='1px'
-				className='line-zero'
-				w='full'
+				{...bottomLineCss}
 				bg={textColor}></Flex>
 		</Flex>
 	);
 };
 
+const bottomLineCss = {
+	mt: '-64px',
+	h: '1px',
+
+	w: 'full',
+};
+
+const gridCss = {
+	flex: 1,
+	gridTemplateColumns: { base: '1fr', md: '1fr 1fr' },
+	gap: 5,
+};
+
+const btnCss = {
+	textTransform: 'uppercase',
+	variant: 'outline',
+	fontWeight: '300',
+	fontSize: '14px',
+	size: 'md',
+	borderRadius: '99px',
+};
+
 const containerCss = {
 	direction: 'column',
 	gap: { base: 8, md: 16 },
-	// pb: { base: '3rem', md: '8rem' },
 	pb: 0,
 	px: { base: padding.baseBody, lg: padding.lgBody },
 	mx: 'auto',
-
-	// maxW: layout.MAX_W,
+	pb: { base: '32px', md: '92px' },
 };
 
 const visionContainerCss = {
