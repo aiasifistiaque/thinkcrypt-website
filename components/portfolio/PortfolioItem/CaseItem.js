@@ -4,6 +4,7 @@ import { Badge, Button, Flex, Image, Link, Text, Wrap, Box } from '@chakra-ui/re
 import { colors, styles } from '../../../theme/styles';
 import { fonts } from '../../../lib/constants';
 import NextLink from 'next/link';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -19,13 +20,20 @@ const CaseItem = ({ item, colorMode }) => {
 	const blue = colorMode == 'dark' ? colors.text.blue : colors.text.darkBlue;
 	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
 
+	const isMobile = useIsMobile();
+
 	const videoRef = useRef(null);
 
 	const handleMouseEnter = () => {
+		if (isMobile) return; // Skip video play on mobile
+		videoRef.current.currentTime = 0; // Reset video to start
+		// Play the video when mouse enters
 		videoRef.current?.play();
 	};
 
 	const handleMouseLeave = () => {
+		if (isMobile) return; // Skip video pause on mobile
+		// Pause the video when mouse leaves
 		videoRef.current?.pause();
 		videoRef.current.currentTime = 0;
 	};
