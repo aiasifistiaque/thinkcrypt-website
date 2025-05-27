@@ -41,7 +41,7 @@ const CaseItem = ({ item, colorMode }) => {
 				{item?.isVideoEnabled && item?.videoURL ? (
 					<Box
 						w='full'
-						h='260px'
+						h='240px'
 						bg={cardBg}
 						overflow='hidden'
 						onMouseEnter={handleMouseEnter}
