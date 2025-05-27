@@ -9,6 +9,7 @@ import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lu
 // import SolutionCard from './SolutionCard';
 import SolutionCard, { Skeleton } from './SolutionCard';
 import { colors } from '../../../theme/styles';
+import ViewMoreButton from './ViewMoreButton';
 
 // Updated primary solution cards data for the 6 main business categories
 const doc = [
@@ -112,13 +113,18 @@ const RightBusinessSolution = ({ theme, colorMode }) => {
 					))}
 			</Grid>
 			<Center>
-				<Link href='/business-solution'>
+				<ViewMoreButton
+					theme={theme}
+					href='/business-solution'>
+					View all business solutions
+				</ViewMoreButton>
+				{/* <Link href='/business-solution'>
 					<Button
 						{...btnCss}
 						color={textColor}>
 						View all business solutions
 					</Button>
-				</Link>
+				</Link> */}
 			</Center>
 		</Column>
 	);

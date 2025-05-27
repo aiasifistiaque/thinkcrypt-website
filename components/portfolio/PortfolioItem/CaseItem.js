@@ -13,6 +13,8 @@ const Container = styled(Flex)`
 	border-radius: 12px;
 `;
 
+const IMAGE_HEIGHT = { md: '240px', '2xl': '360px' };
+
 const CaseItem = ({ item, colorMode }) => {
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const textColor = colorMode == 'dark' ? colors.text.dark : colors.text.light;
@@ -49,8 +51,8 @@ const CaseItem = ({ item, colorMode }) => {
 				{item?.isVideoEnabled && item?.videoURL ? (
 					<Box
 						w='full'
-						h={{ md: '240px', xl: '360px' }}
-						bg={cardBg}
+						h={IMAGE_HEIGHT}
+						bg='#133AB9'
 						overflow='hidden'
 						onMouseEnter={handleMouseEnter}
 						onMouseLeave={handleMouseLeave}
@@ -60,7 +62,7 @@ const CaseItem = ({ item, colorMode }) => {
 							muted
 							playsInline
 							loop
-							style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+							style={{ width: '100%', height: '100%', objectFit: 'contain' }}>
 							<source
 								src={item?.videoURL}
 								type='video/mp4'
@@ -120,7 +122,7 @@ const catText = {
 
 const imgCss = {
 	width: '100%',
-	h: { md: '240px', xl: '360px' },
+	h: IMAGE_HEIGHT,
 	objectFit: 'cover',
 	borderRadius: '0',
 	borderTopRadius: '12px',

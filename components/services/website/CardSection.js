@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import SplitType from 'split-type';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ViewMoreButton from '../../home/services/ViewMoreButton';
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -81,18 +82,24 @@ const CardSection = ({
 				{children}
 			</SimpleGrid>
 			{btnText && (
-				<Link href={href || '#'}>
-					<Box
-						mt='44px'
-						mb='-24px'
-						mx='auto'>
-						<Button
+				// <Link href={href || '#'}>
+				<Box
+					mt='44px'
+					mb='-92px'
+					mx='auto'>
+					<ViewMoreButton
+						theme={colorMode}
+						ink
+						href={href || '#'}>
+						{btnText || 'View More'}
+					</ViewMoreButton>
+					{/* <Button
 							{...btnStyle}
 							color={textColor}>
 							{btnText || 'Button Text'}
-						</Button>
-					</Box>
-				</Link>
+						</Button> */}
+				</Box>
+				// </Link>
 			)}
 		</Flex>
 	);

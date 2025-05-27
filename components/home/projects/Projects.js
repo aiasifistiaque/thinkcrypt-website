@@ -12,6 +12,7 @@ import PortfolioItemSkeleton from '../../portfolio/PortfolioItem/PortfolioSkelet
 import SectionOne from '../services/SectionOne.js';
 import { padding } from '../../../lib/constants.js';
 import CaseItemUpdated from '../../portfolio/PortfolioItem/CaseItemUpdated.js';
+import ViewMoreButton from '../services/ViewMoreButton.js';
 
 const Section = styled(Grid)`
 	grid-template-columns: 1fr;
@@ -53,6 +54,13 @@ const Projects = ({ theme }) => {
 					</Grid>
 				</SectionOne>
 			</Flex>
+
+			<ViewMoreButton
+				mt='-32px'
+				theme={theme}
+				href='/portfolio'>
+				View more projects
+			</ViewMoreButton>
 			{/* <Heading>View All Our Work</Heading> */}
 		</Flex>
 	);
