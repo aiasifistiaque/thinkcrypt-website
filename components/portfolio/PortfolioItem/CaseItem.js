@@ -5,6 +5,7 @@ import { colors, styles } from '../../../theme/styles';
 import { fonts } from '../../../lib/constants';
 import NextLink from 'next/link';
 import useIsMobile from '../../../hooks/useIsMobile';
+import CardBadge from './CardBadge';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -110,12 +111,7 @@ const CaseItem = ({ item, colorMode }) => {
 					</Text>
 					<Wrap spacing={1}>
 						{item?.tags?.map((tag, i) => (
-							<Flex
-								{...badgeCss}
-								bg={bg}
-								key={i}>
-								{tag}
-							</Flex>
+							<CardBadge key={i}>{tag}</CardBadge>
 						))}
 					</Wrap>
 				</Flex>

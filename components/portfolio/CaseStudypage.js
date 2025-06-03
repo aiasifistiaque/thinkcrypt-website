@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import SectionHeading from '../home/sectionheading/SectionHeading';
+import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Page from '../util/Page/Page';
-import PortfolioItem from './PortfolioItem/PortfolioItem';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid, Wrap, Text, useColorMode } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import { colors, styles } from '../../theme/styles';
 import { useGetAllQuery } from '../../store';
 import CaseItem from './PortfolioItem/CaseItem';
 import TitleSection from '../home/about-us/TitleSection';
 import { fonts, padding } from '../../lib/constants';
 import SelectItem from './SelectItem';
+import useScrollPreservation from '../../hooks/useScrollPreservation';
 
 const colorMode = 'dark';
 const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
@@ -19,19 +19,55 @@ const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const CaseStudyPage = () => {
+const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 	const { colorMode } = useColorMode();
-	const [cat, setCat] = useState('');
+	const router = useRouter();
+
+	// Use custom scroll preservation hook
+	useScrollPreservation();
+
+	// Get current category from URL parameters
+	const currentCategory = router.query.category || '';
+	const [cat, setCat] = useState(currentCategory);
+
+	// Update category state when URL changes
+	useEffect(() => {
+		setCat(router.query.category || '');
+	}, [router.query.category]);
 
 	const onCategoryChange = value => {
 		setCat(value);
+		// Update URL without page refresh for better UX
+		const newUrl = value ? `/portfolio?category=${value}` : '/portfolio';
+		router.push(newUrl, undefined, { shallow: true });
 	};
 
-	const { data, isFetching } = useGetAllQuery({
-		path: 'portfolios',
-		limit: 99,
-		sort: '-priority',
-		filters: { status: 'published', category: cat || '' },
+	// Use RTK Query only when a specific category is selected (not for "All projects")
+	// Skip if no category is selected (use SSR data for "All projects")
+	const shouldSkip = !cat || cat === '';
+
+	const { data: fetchedData, isFetching } = useGetAllQuery(
+		{
+			path: 'portfolios',
+			limit: 99,
+			sort: '-priority',
+			filters: { status: 'published', category: cat },
+		},
+		{
+			skip: shouldSkip,
+		}
+	);
+
+	// Use SSR data when no category is selected, otherwise use fetched data
+	const data = shouldSkip ? initialData : fetchedData;
+
+	console.log('Portfolio Debug:', {
+		currentCategory,
+		cat,
+		shouldSkip,
+		isFetching,
+		usingSSRData: shouldSkip,
+		dataCount: data?.doc?.length || 0,
 	});
 
 	const industries = [
@@ -96,7 +132,7 @@ const CaseStudyPage = () => {
 								<Wrap>
 									{industries?.map((item, i) => (
 										<SelectItem
-											selected={cat == item?.value}
+											selected={currentCategory === item?.value}
 											onClick={() => onCategoryChange(item?.value)}
 											border={BORDER}
 											key={i}>
@@ -110,7 +146,12 @@ const CaseStudyPage = () => {
 					<Grid {...itemGrid}>
 						<Grid {...itemContainer}>
 							{isFetching
-								? [...Array(6)].map((_, i) => <PortfolioItemSkeleton key={i} />)
+								? [...Array(6)].map((_, i) => (
+										<PortfolioItemSkeleton
+											colorMode={colorMode}
+											key={i}
+										/>
+								  ))
 								: data?.doc?.map((item, i) => (
 										<CaseItem
 											colorMode={colorMode}

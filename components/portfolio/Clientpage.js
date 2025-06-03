@@ -9,36 +9,42 @@ import { useGetAllQuery } from '../../store';
 import CardSection from '../services/website/CardSection';
 import StackCard from '../home/services/StackCard';
 import TitleSection from '../home/about-us/TitleSection';
+import ClientSkeleton from './ClientSkeleton';
 
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
 const BORDER = styles.border.light;
 
-const Clientpage = () => {
-	const [cat, setCat] = useState('');
+const Clientpage = ({ initialData }) => {
+	// Use RTK Query as fallback when no initial data
+	const shouldSkip = initialData && initialData.doc && initialData.doc.length > 0;
 
-	const onCategoryChange = value => {
-		setCat(value);
-	};
+	const { data: fetchedData, isFetching } = useGetAllQuery(
+		{
+			path: 'tcclients',
+			limit: 99,
+			sort: '-priority',
+			filters: { status: 'published' },
+		},
+		{
+			skip: shouldSkip,
+		}
+	);
 
-	const { data, isFetching } = useGetAllQuery({
-		path: 'tcclients',
-		limit: 99,
-		sort: '-priority',
-		filters: { status: 'published' },
+	// Use SSR data when available, otherwise use fetched data
+	const data = shouldSkip ? initialData : fetchedData;
+	const isLoading = !shouldSkip && isFetching && !data;
+
+	console.log('Clients Debug:', {
+		hasInitialData: !!initialData?.doc,
+		initialDataLength: initialData?.doc?.length || 0,
+		shouldSkip,
+		isFetching,
+		isLoading,
+		usingSSRData: shouldSkip,
+		finalDataCount: data?.doc?.length || 0,
 	});
-
-	const industries = [
-		{ title: 'All projects', value: '' },
-		{ title: 'E-commerce', value: 'e-commerce' },
-		{ title: 'Website', value: 'website' },
-		{ title: 'SAAS', value: 'saas' },
-		{ title: 'MVP', value: 'mvp' },
-		{ title: 'Travel', value: 'travel' },
-		{ title: 'Inventory', value: 'inventory' },
-		{ title: 'Healthcare', value: 'healthcare' },
-	];
 
 	const URLContainer = ({ item, children }) => {
 		return (
@@ -60,14 +66,6 @@ const Clientpage = () => {
 			title={`Trusted by Innovators Worldwide | Our Clients & Partners – Thinkcrypt`}
 			description={`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}>
 			<Stack spacing={0}>
-				{/* <SectionHeading
-					colorMode={colorMode}
-					containerProps={{ pb: '32px' }}
-					heading='Our Clients & Partners'
-					subHeading='Our Partners'>
-					{`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}
-				</SectionHeading> */}
-
 				<TitleSection
 					top
 					colorMode={colorMode}
@@ -85,57 +83,39 @@ const Clientpage = () => {
 						base: '64px',
 						md: '92px',
 					}}>
-					{data &&
-						data?.doc?.map((item, i) => (
-							<URLContainer
-								item={item}
-								key={i}>
-								<StackCard
-									align='center'
-									colorMode={'dark'}
-									headingStyle={{ fontSize: { base: '10px', md: '28px' }, lineHeight: 1 }}
-									icon={
-										<Image
-											src={item?.icon}
-											h='120px'
-											w='120px'
-											objectFit='contain'
-										/>
-									}
-									title={item?.name}
+					{isLoading
+						? // Show 8 skeleton loaders
+						  Array.from({ length: 8 }, (_, i) => (
+								<ClientSkeleton
+									key={i}
+									colorMode={colorMode}
 								/>
-							</URLContainer>
-						))}
+						  ))
+						: data &&
+						  data?.doc?.map((item, i) => (
+								<URLContainer
+									item={item}
+									key={i}>
+									<StackCard
+										align='center'
+										colorMode={'dark'}
+										headingStyle={{ fontSize: { base: '10px', md: '28px' }, lineHeight: 1 }}
+										icon={
+											<Image
+												src={item?.icon}
+												h='120px'
+												w='120px'
+												objectFit='contain'
+											/>
+										}
+										title={item?.name}
+									/>
+								</URLContainer>
+						  ))}
 				</CardSection>
 			</Stack>
 		</Page>
 	);
-};
-
-const titleContainer = {
-	pt: 4,
-	px: { base: 4, md: 6 },
-	borderLeft: BORDER,
-	borderRight: BORDER,
-};
-
-const itemGrid = {
-	templateColumns: {
-		base: '1fr',
-	},
-	mt: '24px',
-	px: { base: 4, md: 6 },
-	border: BORDER,
-	py: '24px',
-};
-
-const itemContainer = {
-	gridTemplateColumns: {
-		base: '1fr',
-		md: 'repeat(3, 1fr)',
-	},
-	pb: '64px',
-	gap: 4,
 };
 
 export default Clientpage;
