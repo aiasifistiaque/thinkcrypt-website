@@ -38,6 +38,7 @@ export async function getServerSideProps(context) {
 			},
 		};
 	} catch (error) {
+		console.log('Error fetching clients data:', error);
 		console.error('Error fetching clients data:', error);
 
 		// Return empty data on error to prevent page crash
