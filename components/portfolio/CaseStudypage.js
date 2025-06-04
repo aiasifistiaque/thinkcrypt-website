@@ -85,7 +85,7 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 					top
 					pb='64px'
 					title='Our Work'
-					titleTop='Real Prjects'
+					titleTop='Real Projects'
 					titleBottom='Real Impact'>
 					{`Explore Thinkcrypt’s portfolio of SaaS, eCommerce, and web solutions built with the MERN stack. Real-world impact, scalable systems, and startup-ready MVPs.`}
 				</TitleSection>
