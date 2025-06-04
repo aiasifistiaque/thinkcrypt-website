@@ -1,5 +1,4 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 import CaseStudyPage from '../components/portfolio/CaseStudyPage';
 
 const CaseStudies = () => {
