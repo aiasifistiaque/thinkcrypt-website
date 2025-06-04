@@ -1,10 +1,12 @@
-import { Box, Heading, Text, Image, HStack, VStack, Avatar, Tag } from '@chakra-ui/react';
-import { Divider, useColorMode, Grid } from '@chakra-ui/react';
+import { Box, Heading, Image, HStack, VStack, Avatar, Tag, Button, Icon } from '@chakra-ui/react';
+import { Divider, useColorMode, Grid, useToast } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
 import { blogData } from '../../data/blogData';
 import Page from '../../components/util/Page/Page';
 import { fonts, padding } from '../../lib/constants';
 import RelatedBlogCard from '../../components/blog/RelatedBlogCard';
+import { PrimaryHeading, PrimaryText, SecondaryText } from '../../components';
+import { FiShare2 } from 'react-icons/fi';
 
 export async function getServerSideProps(context) {
 	const { id } = context.params;
@@ -23,6 +25,8 @@ export async function getServerSideProps(context) {
 
 const BlogSingle = ({ blog, related }) => {
 	const { colorMode } = useColorMode();
+	const toast = useToast();
+
 	if (!blog)
 		return (
 			<Page
@@ -33,12 +37,47 @@ const BlogSingle = ({ blog, related }) => {
 				</Box>
 			</Page>
 		);
+
 	const cardBg = colorMode === 'dark' ? colors.background.dark : colors.background.light;
-	const textColor = colorMode === 'dark' ? 'white' : colors.text.light;
 	const secondaryColor =
 		colorMode === 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
 	const tagBg = colorMode == 'dark' ? colors.card.dark : colors.card.light;
-	// Styling constants
+
+	// Social sharing functionality
+	const handleShare = async () => {
+		const shareData = {
+			title: blog.title,
+			text: blog.excerpt,
+			url: window.location.href,
+		};
+
+		try {
+			// Try Web Share API first (mobile/modern browsers)
+			if (navigator.share) {
+				await navigator.share(shareData);
+			} else {
+				// Fallback: copy to clipboard
+				await navigator.clipboard.writeText(window.location.href);
+				toast({
+					title: 'Link copied!',
+					description: 'The article URL has been copied to your clipboard.',
+					status: 'success',
+					duration: 3000,
+					isClosable: true,
+				});
+			}
+		} catch (error) {
+			// Fallback if both Web Share API and clipboard fail
+			console.error('Error sharing:', error);
+			toast({
+				title: 'Sharing failed',
+				description: 'Unable to share this article. Please copy the URL manually.',
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+			});
+		}
+	};
 
 	return (
 		<Page
@@ -61,20 +100,14 @@ const BlogSingle = ({ blog, related }) => {
 						</Tag>
 
 						{/* Article Title */}
-						<Heading
-							{...headingStyles}
-							color={textColor}>
-							{blog.title}
-						</Heading>
-
-						{/* Subtitle */}
-						<Text
+						<PrimaryHeading {...headingStyles}>{blog?.title}</PrimaryHeading>
+						<SecondaryText
 							{...subtitleStyles}
 							color={secondaryColor}>
-							{blog.excerpt}
-						</Text>
+							{blog?.excerpt}
+						</SecondaryText>
 
-						{/* Author Section */}
+						{/* Author Section with Share Button */}
 						<Box {...authorSectionStyles}>
 							<HStack {...authorHStackStyles}>
 								<HStack {...authorInfoStyles}>
@@ -84,22 +117,30 @@ const BlogSingle = ({ blog, related }) => {
 										name={blog.author}
 									/>
 									<VStack {...authorVStackStyles}>
-										<Text
-											{...authorNameStyles}
-											color={textColor}>
-											{blog.author}
-										</Text>
+										<PrimaryText {...authorNameStyles}>{blog?.author}</PrimaryText>
 									</VStack>
 								</HStack>
-								<Text
-									{...authorDateStyles}
-									color={secondaryColor}>
-									{new Date(blog.publishedAt).toLocaleDateString('en-US', {
-										year: 'numeric',
-										month: 'long',
-										day: 'numeric',
-									})}
-								</Text>
+								<HStack spacing={3}>
+									<SecondaryText {...authorDateStyles}>
+										{new Date(blog.publishedAt).toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric',
+										})}
+									</SecondaryText>
+									<Button
+										{...shareButtonStyles}
+										bg={tagBg}
+										color={secondaryColor}
+										borderColor={secondaryColor}
+										_hover={{
+											bg: colorMode === 'dark' ? 'gray.600' : 'gray.100',
+											transform: 'translateY(-1px)',
+										}}
+										onClick={handleShare}>
+										<Icon as={FiShare2} />
+									</Button>
+								</HStack>
 							</HStack>
 							<Divider
 								my={4}
@@ -118,11 +159,7 @@ const BlogSingle = ({ blog, related }) => {
 						/>
 
 						{/* Article Content */}
-						<Text
-							{...bodyTextStyles}
-							color={textColor}>
-							{blog.content}
-						</Text>
+						<PrimaryText {...bodyTextStyles}>{blog.content}</PrimaryText>
 
 						{/* Tags */}
 						<HStack {...tagsHStackStyles}>
@@ -134,22 +171,16 @@ const BlogSingle = ({ blog, related }) => {
 								</Tag>
 							))}
 						</HStack>
-
 						{/* Divider */}
 						<Divider
 							{...dividerStyles}
 							borderColor={secondaryColor}
 						/>
-
 						{/* Related Posts */}
 						<Box
 							{...relatedSectionStyles}
 							borderTopColor={secondaryColor}>
-							<Heading
-								{...relatedHeadingStyles}
-								color={textColor}>
-								Related Articles
-							</Heading>
+							<PrimaryHeading {...relatedHeadingStyles}>Related Articles</PrimaryHeading>
 
 							<Grid {...relatedGridStyles}>
 								{related.map((item, i) => (
@@ -301,6 +332,17 @@ const dividerStyles = {
 	my: 12,
 
 	opacity: 0.3,
+};
+
+const shareButtonStyles = {
+	size: 'sm',
+	variant: 'outline',
+	borderRadius: 'full',
+	minW: '32px',
+	h: '32px',
+	p: 0,
+	transition: 'all 0.2s',
+	border: '1px solid',
 };
 
 export default BlogSingle;

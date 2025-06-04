@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Page from '../util/Page/Page';
 import BlogSkeleton from './BlogSkeleton';
-import { Stack, Flex, Grid, Wrap, Text, useColorMode } from '@chakra-ui/react';
-import { colors, styles } from '../../theme/styles';
+import { Stack, Grid, Text, useColorMode, Center } from '@chakra-ui/react';
+import { colors } from '../../theme/styles';
 import BlogCard from './BlogCard';
 import TitleSection from '../home/about-us/TitleSection';
-import { fonts, padding } from '../../lib/constants';
+import { padding } from '../../lib/constants';
 import useScrollPreservation from '../../hooks/useScrollPreservation';
 
 const img =
@@ -56,16 +56,6 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 			return () => clearTimeout(timer);
 		}
 	}, [cat]);
-
-	const categories = [
-		{ title: 'All Posts', value: '' },
-		{ title: 'Development', value: 'development' },
-		{ title: 'Technology', value: 'technology' },
-		{ title: 'Security', value: 'security' },
-		{ title: 'Mobile', value: 'mobile' },
-		{ title: 'Backend', value: 'backend' },
-		{ title: 'Architecture', value: 'architecture' },
-	];
 
 	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
 	const text = colorMode == 'dark' ? colors.text.dark : colors.text.light;
@@ -127,13 +117,7 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 					py={{ base: '32px', md: '48px' }}
 					spacing={{ base: '24px', md: '32px' }}>
 					{isLoading ? (
-						<Grid
-							templateColumns={{
-								base: 'repeat(1, 1fr)',
-								md: 'repeat(2, 1fr)',
-								lg: 'repeat(3, 1fr)',
-							}}
-							gap={{ base: '24px', md: '32px' }}>
+						<Grid {...blogGrid}>
 							{Array.from({ length: 6 }, (_, i) => (
 								<BlogSkeleton
 									key={i}
@@ -142,13 +126,7 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 							))}
 						</Grid>
 					) : filteredBlogs && filteredBlogs.length > 0 ? (
-						<Grid
-							templateColumns={{
-								base: 'repeat(1, 1fr)',
-								md: 'repeat(2, 1fr)',
-								lg: 'repeat(3, 1fr)',
-							}}
-							gap={{ base: '24px', md: '32px' }}>
+						<Grid {...blogGrid}>
 							{filteredBlogs?.map((blog, index) => (
 								<BlogCard
 									key={index}
@@ -158,22 +136,28 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 							))}
 						</Grid>
 					) : (
-						<Flex
-							justify='center'
-							align='center'
-							py='80px'>
+						<Center py='80px'>
 							<Text
 								fontSize='lg'
 								color={secondary}
 								textAlign='center'>
 								No blog posts found for the selected category.
 							</Text>
-						</Flex>
+						</Center>
 					)}
 				</Stack>
 			</Stack>
 		</Page>
 	);
+};
+
+const blogGrid = {
+	templateColumns: {
+		base: 'repeat(1, 1fr)',
+		md: 'repeat(2, 1fr)',
+		lg: 'repeat(3, 1fr)',
+	},
+	gap: { base: '24px', md: '32px' },
 };
 
 export default BlogPage;
