@@ -1,5 +1,5 @@
 import React from 'react';
-import CaseStudyPage from '../components/portfolio/CaseStudyPage';
+import CaseStudyPage from '../components/portfolio/CaseStudypage';
 
 const CaseStudies = () => {
 	// Add defensive checks for props
