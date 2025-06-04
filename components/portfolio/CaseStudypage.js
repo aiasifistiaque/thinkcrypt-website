@@ -58,15 +58,6 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 	// Use SSR data when no category is selected, otherwise use fetched data
 	const data = shouldSkip ? initialData : fetchedData;
 
-	console.log('Portfolio Debug:', {
-		currentCategory,
-		cat,
-		shouldSkip,
-		isFetching,
-		usingSSRData: shouldSkip,
-		dataCount: data?.doc?.length || 0,
-	});
-
 	const industries = [
 		{ title: 'All projects', value: '' },
 		{ title: 'E-commerce', value: 'e-commerce' },
