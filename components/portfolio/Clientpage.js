@@ -18,7 +18,8 @@ const BORDER = styles.border.light;
 
 const Clientpage = ({ initialData }) => {
 	// Use RTK Query as fallback when no initial data
-	const shouldSkip = initialData && initialData.doc && initialData.doc.length > 0;
+	//const shouldSkip = initialData && initialData.doc && initialData.doc.length > 0;
+	const shouldSkip = false;
 
 	const { data: fetchedData, isFetching } = useGetAllQuery(
 		{
