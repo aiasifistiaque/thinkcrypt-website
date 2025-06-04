@@ -7,7 +7,7 @@ export default function SitemapXml() {
 
 export async function getServerSideProps({ res }) {
 	// Get the current domain from environment or default
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thinkcrypt.io';
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thinkcrypt.dev';
 	const currentDate = new Date().toISOString();
 
 	// Define static pages with their priorities and change frequencies

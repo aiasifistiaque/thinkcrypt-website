@@ -5,7 +5,7 @@ export default function RobotsTxt() {
 
 export async function getServerSideProps({ res }) {
 	// Get the current domain from environment or default
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thinkcrypt.io';
+	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thinkcrypt.dev';
 
 	const robotsTxt = `# Robots.txt for ThinkCrypt - Software Development Company
 # Website: ${baseUrl}
