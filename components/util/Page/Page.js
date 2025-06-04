@@ -10,51 +10,206 @@ import { Flex } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import ScrollYProgtess from './ScrollProgress';
 import { colors } from '../../../theme/styles';
+import { defaultSEO, getAllKeywords } from '../../../lib/seoKeywords';
 // import ScrollContainer from '../../home/ScrollContainer';
 
 const Scroll = dynamic(() => import('../../scroll/Scroll'));
 const ScrollContainer = dynamic(() => import('../../home/ScrollContainer'));
 
 const Page = ({ children, title, description, colorMode, image, theme }) => {
+	// Use imported SEO data with fallbacks
+	const pageTitle = title || defaultSEO?.title;
+	const pageDescription = description || defaultSEO?.description;
+	const pageImage = image || defaultSEO?.image;
+	const pageKeywords = getAllKeywords();
+
 	return (
 		<>
 			<Head>
-				<title>{title || 'thinkcrypt.io'}</title>
+				<title>{pageTitle}</title>
 				<meta
 					property='title'
-					content={title || 'thinkcrypt.io'}
+					content={pageTitle}
+				/>
+				<meta
+					name='keywords'
+					content={pageKeywords}
+				/>
+				<meta
+					name='description'
+					content={pageDescription}
+				/>
+				<meta
+					name='author'
+					content={defaultSEO?.author}
+				/>
+				<meta
+					name='robots'
+					content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+				/>
+				<meta
+					name='googlebot'
+					content='index, follow'
+				/>
+				<meta
+					name='language'
+					content='English'
+				/>
+				<meta
+					name='geo.region'
+					content='BD-13'
+				/>
+				<meta
+					name='geo.placename'
+					content='Dhaka'
+				/>
+				<meta
+					name='geo.position'
+					content='23.8103;90.4125'
+				/>
+				<meta
+					name='ICBM'
+					content='23.8103, 90.4125'
 				/>
 				<link
 					rel='icon'
 					href='/favicon.ico'
 				/>
+				<link
+					rel='canonical'
+					href={`${defaultSEO?.siteUrl}${
+						typeof window !== 'undefined' ? window.location.pathname : ''
+					}`}
+				/>
 
-				<meta
-					name='description'
-					content='At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'></meta>
+				{/* Open Graph Tags */}
 				<meta
 					property='og:title'
-					content={title || 'thinkcrypt.io'}
+					content={pageTitle}
 					key='ogtitle'
 				/>
 				<meta
 					property='og:description'
-					content={
-						description ||
-						'At thinkcrypt.io, we offer a complete range of services that build up business value, from the initial idea and formulation of product strategy, through building a prototype and testing it with users, right to the creation of the product itself.'
-					}
+					content={pageDescription}
 					key='ogdesc'
 				/>
-
+				<meta
+					property='og:type'
+					content='website'
+				/>
+				<meta
+					property='og:url'
+					content={`${defaultSEO.siteUrl}${
+						typeof window !== 'undefined' ? window.location.pathname : ''
+					}`}
+				/>
 				<meta
 					property='og:image'
-					content={image || '/hero.jpeg'}
+					content={pageImage}
 					key='ogimage'
 				/>
 				<meta
+					property='og:image:width'
+					content='1200'
+				/>
+				<meta
+					property='og:image:height'
+					content='630'
+				/>
+				<meta
 					property='og:site_name'
-					content={'thinkcrypt.io'}
+					content={defaultSEO.siteName}
 					key='ogsitename'
+				/>
+				<meta
+					property='og:locale'
+					content='en_US'
+				/>
+
+				{/* Twitter Card Tags */}
+				<meta
+					name='twitter:card'
+					content='summary_large_image'
+				/>
+				<meta
+					name='twitter:title'
+					content={pageTitle}
+				/>
+				<meta
+					name='twitter:description'
+					content={pageDescription}
+				/>
+				<meta
+					name='twitter:image'
+					content={pageImage}
+				/>
+
+				{/* Business/Organization Schema */}
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							'@context': 'https://schema.org',
+							'@type': 'Organization',
+							name: defaultSEO.siteName,
+							url: defaultSEO.siteUrl,
+							logo: `${defaultSEO.siteUrl}/logo.png`,
+							description: defaultSEO.description,
+							address: {
+								'@type': 'PostalAddress',
+								addressCountry: 'BD',
+								addressRegion: 'Dhaka',
+								addressLocality: 'Dhaka',
+							},
+							contactPoint: {
+								'@type': 'ContactPoint',
+								contactType: 'customer service',
+								areaServed: 'BD',
+								availableLanguage: ['English', 'Bengali'],
+							},
+							foundingDate: '2020',
+							numberOfEmployees: '10-50',
+							slogan: 'Transform Your Ideas Into Digital Reality',
+							services: [
+								'Software Development',
+								'MVP Development',
+								'Ecommerce Development',
+								'Web Application Development',
+								'Mobile App Development',
+								'CMS Development',
+								'ERP Development',
+								'Inventory Management Systems',
+							],
+							technology: [
+								'Node.js',
+								'React',
+								'Next.js',
+								'MongoDB',
+								'Laravel',
+								'Express.js',
+								'JavaScript',
+								'TypeScript',
+							],
+						}),
+					}}
+				/>
+
+				{/* WebSite Schema */}
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							'@context': 'https://schema.org',
+							'@type': 'WebSite',
+							name: defaultSEO.siteName,
+							url: defaultSEO.siteUrl,
+							potentialAction: {
+								'@type': 'SearchAction',
+								target: `${defaultSEO.siteUrl}/search?q={search_term_string}`,
+								'query-input': 'required name=search_term_string',
+							},
+						}),
+					}}
 				/>
 			</Head>
 			<CircleFollow />
