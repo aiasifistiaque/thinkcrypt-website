@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
 		const headers = {
 			'Content-Type': 'application/json',
 		};
-		
+
 		if (authToken) {
 			headers.authorization = authToken;
 		}
@@ -88,7 +88,7 @@ export async function getServerSideProps(context) {
 			return {
 				props: {
 					initialData: data,
-					category: (category && typeof category === 'string') ? category : '',
+					category: category && typeof category === 'string' ? category : '',
 				},
 			};
 		} catch (fetchError) {
@@ -105,7 +105,10 @@ export async function getServerSideProps(context) {
 					doc: [],
 					totalCount: 0,
 				},
-				category: (context?.query?.category && typeof context.query.category === 'string') ? context.query.category : '',
+				category:
+					context?.query?.category && typeof context.query.category === 'string'
+						? context.query.category
+						: '',
 			},
 		};
 	}
