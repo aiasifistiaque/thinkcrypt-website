@@ -10,15 +10,15 @@ import TitleSection from '../home/about-us/TitleSection';
 import { fonts, padding } from '../../lib/constants';
 import SelectItem from './SelectItem';
 
-const colorMode = 'dark';
-const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
-const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
+// const colorMode = 'dark';
 
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
 const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 	const { colorMode } = useColorMode();
+	const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
+	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const router = useRouter();
 
 	// Get current category from URL parameters
