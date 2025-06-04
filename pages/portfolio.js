@@ -2,15 +2,15 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import CaseStudyPage from '../components/portfolio/CaseStudyPage';
 
-const CaseStudies = ({ initialData, category }) => {
+const CaseStudies = () => {
 	// Add defensive checks for props
 	// const safeInitialData = initialData || { doc: [], totalCount: 0 };
 	// const safeCategory = category || '';
 
 	return (
 		<CaseStudyPage
-		// initialData={safeInitialData}
-		// initialCategory={safeCategory}
+			// initialData={safeInitialData}
+			initialCategory={''}
 		/>
 	);
 };

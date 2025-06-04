@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import Page from '../util/Page/Page';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid, Wrap, Text, useColorMode } from '@chakra-ui/react';
@@ -10,7 +9,6 @@ import CaseItem from './PortfolioItem/CaseItem';
 import TitleSection from '../home/about-us/TitleSection';
 import { fonts, padding } from '../../lib/constants';
 import SelectItem from './SelectItem';
-import useScrollPreservation from '../../hooks/useScrollPreservation';
 
 const colorMode = 'dark';
 const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
@@ -36,7 +34,7 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 		setCat(value);
 		// Update URL without page refresh for better UX
 		const newUrl = value ? `/portfolio?category=${value}` : '/portfolio';
-		router.push(newUrl, undefined, { shallow: true });
+		// router.push(newUrl, undefined, { shallow: true });
 	};
 
 	// Use RTK Query only when a specific category is selected (not for "All projects")
@@ -56,7 +54,7 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 	);
 
 	// Use SSR data when no category is selected, otherwise use fetched data
-	const data = shouldSkip ? initialData : fetchedData;
+	// const data = fetchedData;
 
 	const industries = [
 		{ title: 'All projects', value: '' },
@@ -140,7 +138,7 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 											key={i}
 										/>
 								  ))
-								: data?.doc?.map((item, i) => (
+								: fetchedData?.doc?.map((item, i) => (
 										<CaseItem
 											colorMode={colorMode}
 											item={item}

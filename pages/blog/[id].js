@@ -11,7 +11,7 @@ export async function getServerSideProps(context) {
 	const { id } = context.params;
 	const blog = blogData.doc.find(b => b.id === id);
 	// Related blogs: same category, not this one
-	const related = blogData.doc
+	const related = blogData?.doc
 		.filter(b => b.category === blog?.category && b.id !== id)
 		.slice(0, 3);
 	return {
