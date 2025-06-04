@@ -7,7 +7,7 @@ const CaseStudies = ({ initialData }) => {
 export async function getServerSideProps(context) {
 	try {
 		// Construct the API URL for clients
-		const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND}/tcclients`;
+		const apiUrl = `${process.env.BACKEND_URL}/tcclients`;
 
 		// Set up query parameters to match RTK Query structure
 		const params = new URLSearchParams({
@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
 		// Fetch data from the API
 		const response = await fetch(finalUrl, {
 			headers: {
-				authorization: process.env.NEXT_PUBLIC_TOKEN,
+				authorization: process.env.API_TOKEN,
 				'Content-Type': 'application/json',
 			},
 		});
