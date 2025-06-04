@@ -104,8 +104,8 @@ const Clientpage = ({ initialData }) => {
 										icon={
 											<Image
 												src={item?.icon}
-												h='120px'
-												w='120px'
+												h={{ base: '120px', md: '150px' }}
+												w={{ base: '120px', md: '150px' }}
 												objectFit='contain'
 											/>
 										}
