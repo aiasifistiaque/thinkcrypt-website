@@ -23,9 +23,6 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 	const { colorMode } = useColorMode();
 	const router = useRouter();
 
-	// Use custom scroll preservation hook
-	useScrollPreservation();
-
 	// Get current category from URL parameters
 	const currentCategory = router.query.category || '';
 	const [cat, setCat] = useState(currentCategory);
@@ -52,10 +49,10 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 			limit: 99,
 			sort: '-priority',
 			filters: { status: 'published', category: cat },
-		},
-		{
-			skip: shouldSkip,
 		}
+		// {
+		// 	skip: shouldSkip,
+		// }
 	);
 
 	// Use SSR data when no category is selected, otherwise use fetched data
