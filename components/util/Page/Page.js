@@ -36,7 +36,7 @@ const Page = ({ children, title, description, colorMode, image, theme, slug }) =
 		slug || currentRoute === '/' ? 'home' : currentRoute.substring(1).replace(/\//g, '-');
 
 	// Build full URL (use current domain in production, fallback for development)
-	const baseUrl = 'https://thinkcrypt.dev';
+	const baseUrl = 'https://thinkcrypt.dev/';
 	const fullPageUrl = `${baseUrl}${currentPath}`;
 
 	const [trigger, result] = usePostMutation();
