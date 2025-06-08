@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -6,6 +6,8 @@ import styled from '@emotion/styled';
 import { CgMenuRound } from 'react-icons/cg';
 import CircleFollow from '../CircleFollow';
 import { Flex } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { usePostMutation } from '../../../store';
 
 import dynamic from 'next/dynamic';
 import ScrollYProgtess from './ScrollProgress';
@@ -16,12 +18,42 @@ import { defaultSEO, getAllKeywords } from '../../../lib/seoKeywords';
 const Scroll = dynamic(() => import('../../scroll/Scroll'));
 const ScrollContainer = dynamic(() => import('../../home/ScrollContainer'));
 
-const Page = ({ children, title, description, colorMode, image, theme }) => {
+const Page = ({ children, title, description, colorMode, image, theme, slug }) => {
+	const router = useRouter();
+
 	// Use imported SEO data with fallbacks
 	const pageTitle = title || defaultSEO?.title;
 	const pageDescription = description || defaultSEO?.description;
 	const pageImage = image || defaultSEO?.image;
 	const pageKeywords = getAllKeywords();
+
+	// Get current route information
+	const currentPath = router.asPath; // Full path with query params
+	const currentRoute = router.pathname; // Clean route without query params
+
+	// Create page slug from route (remove leading slash and replace slashes with dashes)
+	const pageSlug =
+		slug || currentRoute === '/' ? 'home' : currentRoute.substring(1).replace(/\//g, '-');
+
+	// Build full URL (use current domain in production, fallback for development)
+	const baseUrl = 'https://thinkcrypt.dev';
+	const fullPageUrl = `${baseUrl}${currentPath}`;
+
+	const [trigger, result] = usePostMutation();
+
+	useEffect(() => {
+		// Only track if we have a valid route
+		if (router.isReady) {
+			trigger({
+				path: '/views',
+				body: {
+					pageSlug: pageSlug,
+					pageTitle: pageTitle,
+					pageUrl: fullPageUrl,
+				},
+			});
+		}
+	}, [router.isReady, pageSlug, pageTitle, fullPageUrl]);
 
 	return (
 		<>

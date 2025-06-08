@@ -42,20 +42,21 @@ const img =
 const Homepage = () => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
-	const [trigger, result] = usePostMutation();
+	// const [trigger, result] = usePostMutation();
 
-	useEffect(() => {
-		trigger({
-			path: '/views',
-			body: {
-				pageSlug: 'thinkcrypt-home',
-				pageTitle: 'Home | Thinkcrypt',
-				pageUrl: 'https://thinkcrypt.dev/home',
-			},
-		});
-	}, []);
+	// useEffect(() => {
+	// 	trigger({
+	// 		path: '/views',
+	// 		body: {
+	// 			pageSlug: 'thinkcrypt-home',
+	// 			pageTitle: 'Home | Thinkcrypt',
+	// 			pageUrl: 'https://thinkcrypt.dev/home',
+	// 		},
+	// 	});
+	// }, []);
 	return (
 		<Page
+			slug='thinkcrypt-home'
 			theme={theme}
 			image={img}
 			title='Thinkcrypt – Your Tech Partner for Smarter, Scalable Growth'
