@@ -12,16 +12,32 @@ import {
 import SidebarLeftPart from './SidebarLeftPart';
 import SidebarRightPart from './SidebarRightPart';
 import { colors } from '../../theme/styles';
+import { usePostMutation } from '../../store';
 
 const SidebarDrawer = ({ button, ...props }) => {
 	// HOOKS
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [index, setIndex] = useState(1);
 
+	const [trigger, result] = usePostMutation();
+
+	const handleMenuClick = () => {
+		onOpen();
+		trigger({
+			elementType: 'nav',
+			elementName: 'Sidebar Menu',
+			elementId: '',
+			elementSlug: 'menu-sidebar',
+			elementText: 'Menu',
+			elementHref: '#',
+			clickType: 'click',
+		});
+	};
+
 	return (
 		<>
 			<Center
-				onClick={onOpen}
+				onClick={handleMenuClick}
 				{...props}>
 				{button}
 			</Center>

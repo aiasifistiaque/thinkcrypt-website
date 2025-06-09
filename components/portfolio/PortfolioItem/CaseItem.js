@@ -6,6 +6,7 @@ import { fonts } from '../../../lib/constants';
 import NextLink from 'next/link';
 import useIsMobile from '../../../hooks/useIsMobile';
 import CardBadge from './CardBadge';
+import { usePostMutation } from '../../../store';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -26,6 +27,24 @@ const CaseItem = ({ item, colorMode }) => {
 	const isMobile = useIsMobile();
 
 	const videoRef = useRef(null);
+
+	const [trigger, result] = usePostMutation();
+
+	const handleClick = () => {
+		trigger({
+			elementType: 'card',
+			elementName: 'Project Item Card',
+			elementId: item?.name,
+			elementSlug: `project-card-${item?._id}`,
+			elementText: 'View Project' + item?.name,
+			elementHref: item?.showCaseStudy
+				? `/case-study/${item?._id}`
+				: item?.liveUrl
+				? item?.liveUrl
+				: '#',
+			clickType: 'click',
+		});
+	};
 
 	useEffect(() => {
 		if (isMobile) {
@@ -55,6 +74,7 @@ const CaseItem = ({ item, colorMode }) => {
 			_hover={{
 				textDecoration: 'none',
 			}}
+			onClick={handleClick}
 			isExternal={item?.showCaseStudy ? false : true}
 			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
 			<Container
