@@ -43,6 +43,7 @@ const Page = ({ children, title, description, colorMode, image, theme, slug }) =
 
 	useEffect(() => {
 		// Only track if we have a valid route
+
 		if (router.isReady) {
 			const {
 				r, // Referrer parameter
@@ -56,6 +57,10 @@ const Page = ({ children, title, description, colorMode, image, theme, slug }) =
 				user_id,
 				email,
 			} = router.query;
+
+			// Get the actual document referrer
+			const documentReferrer = typeof document !== 'undefined' ? document.referrer : 'direct';
+
 			trigger({
 				path: '/views',
 				body: {
@@ -63,6 +68,17 @@ const Page = ({ children, title, description, colorMode, image, theme, slug }) =
 					pageTitle: pageTitle,
 					pageUrl: fullPageUrl,
 					customRef: r || '',
+					referrer: documentReferrer,
+					// Include UTM and tracking parameters
+					// utmSource: utm_source || '',
+					// utmMedium: utm_medium || '',
+					// utmCampaign: utm_campaign || '',
+					// utmTerm: utm_term || '',
+					// utmContent: utm_content || '',
+					// fbclid: fbclid || '',
+					// gclid: gclid || '',
+					// userId: user_id || '',
+					// email: email || '',
 				},
 			});
 		}
