@@ -38,7 +38,7 @@ const CaseItem = ({ item, colorMode }) => {
 				elementName: 'Project Item Card',
 				elementId: item?.name,
 				elementSlug: `project-card-${item?._id}`,
-				elementText: 'View Project' + item?.name,
+				elementText: 'View Project - ' + item?.name,
 				elementHref: item?.showCaseStudy
 					? `/case-study/${item?._id}`
 					: item?.liveUrl
