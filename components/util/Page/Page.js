@@ -62,7 +62,7 @@ const Page = ({ children, title, description, colorMode, image, theme, slug }) =
 					pageSlug: pageSlug,
 					pageTitle: pageTitle,
 					pageUrl: fullPageUrl,
-					ref: r || '',
+					r: r || '',
 				},
 			});
 		}
