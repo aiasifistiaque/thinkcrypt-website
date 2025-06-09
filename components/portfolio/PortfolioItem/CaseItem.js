@@ -32,17 +32,20 @@ const CaseItem = ({ item, colorMode }) => {
 
 	const handleClick = () => {
 		trigger({
-			elementType: 'card',
-			elementName: 'Project Item Card',
-			elementId: item?.name,
-			elementSlug: `project-card-${item?._id}`,
-			elementText: 'View Project' + item?.name,
-			elementHref: item?.showCaseStudy
-				? `/case-study/${item?._id}`
-				: item?.liveUrl
-				? item?.liveUrl
-				: '#',
-			clickType: 'click',
+			path: 'clickevents',
+			body: {
+				elementType: 'card',
+				elementName: 'Project Item Card',
+				elementId: item?.name,
+				elementSlug: `project-card-${item?._id}`,
+				elementText: 'View Project' + item?.name,
+				elementHref: item?.showCaseStudy
+					? `/case-study/${item?._id}`
+					: item?.liveUrl
+					? item?.liveUrl
+					: '#',
+				clickType: 'click',
+			},
 		});
 	};
 

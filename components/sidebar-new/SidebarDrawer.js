@@ -24,13 +24,16 @@ const SidebarDrawer = ({ button, ...props }) => {
 	const handleMenuClick = () => {
 		onOpen();
 		trigger({
-			elementType: 'nav',
-			elementName: 'Sidebar Menu',
-			elementId: '',
-			elementSlug: 'menu-sidebar',
-			elementText: 'Menu',
-			elementHref: '#',
-			clickType: 'click',
+			path: 'clickevents',
+			body: {
+				elementType: 'nav',
+				elementName: 'Sidebar Menu',
+				elementId: '',
+				elementSlug: 'menu-sidebar',
+				elementText: 'Menu',
+				elementHref: '#',
+				clickType: 'click',
+			},
 		});
 	};
 
