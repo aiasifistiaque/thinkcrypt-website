@@ -44,12 +44,25 @@ const Page = ({ children, title, description, colorMode, image, theme, slug }) =
 	useEffect(() => {
 		// Only track if we have a valid route
 		if (router.isReady) {
+			const {
+				r, // Referrer parameter
+				utm_source,
+				utm_medium,
+				utm_campaign,
+				utm_term,
+				utm_content,
+				fbclid,
+				gclid,
+				user_id,
+				email,
+			} = router.query;
 			trigger({
 				path: '/views',
 				body: {
 					pageSlug: pageSlug,
 					pageTitle: pageTitle,
 					pageUrl: fullPageUrl,
+					ref: r || '',
 				},
 			});
 		}
