@@ -4,14 +4,15 @@ const nextConfig = {
 	experimental: {
 		// Enable modern features while keeping Pages Router
 		scrollRestoration: false,
-		// Enable Turbopack for faster development builds
-		turbo: {
-			// Turbopack configuration
-			rules: {
-				'*.svg': {
-					loaders: ['@svgr/webpack'],
-					as: '*.js',
-				},
+		// Enable ES modules support
+		esmExternals: true,
+	},
+	// Turbopack configuration (moved out of experimental)
+	turbo: {
+		rules: {
+			'*.svg': {
+				loaders: ['@svgr/webpack'],
+				as: '*.js',
 			},
 		},
 	},
@@ -26,6 +27,23 @@ const nextConfig = {
 				hostname: '**',
 			},
 		],
+	},
+	// Webpack configuration for better module resolution
+	webpack: (config, { isServer }) => {
+		// Handle ES modules properly
+		config.resolve.extensionAlias = {
+			'.js': ['.ts', '.tsx', '.js', '.jsx'],
+		};
+
+		// Ensure proper module resolution
+		config.resolve.fallback = {
+			...config.resolve.fallback,
+			fs: false,
+			path: false,
+			os: false,
+		};
+
+		return config;
 	},
 	// Optimize for production
 	poweredByHeader: false,
