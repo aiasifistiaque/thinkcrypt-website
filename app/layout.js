@@ -5,10 +5,65 @@ import Script from 'next/script';
 import { FB_PIXEL_ID } from '../lib/fpixel';
 import { gtag } from '../lib/googleAnalytics.js';
 import ChakraProviderWrapper from './chakra-provider-wrapper';
+import { defaultSEO } from '../lib/seoKeywords';
 
 export const metadata = {
-	title: 'ThinkCrypt - Digital Solutions',
-	description: 'Digital solutions and web development services',
+	metadataBase: new URL(defaultSEO.siteUrl),
+	title: {
+		default: defaultSEO.title,
+		template: `%s | ${defaultSEO.siteName}`,
+	},
+	description: defaultSEO.description,
+	keywords: defaultSEO.keywords,
+	authors: [{ name: defaultSEO.author }],
+	creator: defaultSEO.author,
+	publisher: defaultSEO.siteName,
+	formatDetection: {
+		email: false,
+		address: false,
+		telephone: false,
+	},
+	openGraph: {
+		type: 'website',
+		locale: 'en_US',
+		url: defaultSEO.siteUrl,
+		siteName: defaultSEO.siteName,
+		title: defaultSEO.title,
+		description: defaultSEO.description,
+		images: [
+			{
+				url: 'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+				width: 1260,
+				height: 750,
+				alt: 'Thinkcrypt Software Development Team',
+			},
+		],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: defaultSEO.title,
+		description: defaultSEO.description,
+		creator: '@thinkcrypt',
+		images: [
+			'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+		],
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-video-preview': -1,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+		},
+	},
+	icons: {
+		icon: '/favicon.ico',
+		shortcut: '/favicon.ico',
+		apple: '/favicon.ico',
+	},
 };
 
 export default function RootLayout({ children }) {
@@ -56,6 +111,74 @@ export default function RootLayout({ children }) {
 						src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
 					/>
 				</noscript>
+
+				{/* Structured Data - Organization Schema */}
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							'@context': 'https://schema.org',
+							'@type': 'Organization',
+							name: defaultSEO.siteName,
+							url: defaultSEO.siteUrl,
+							logo: `${defaultSEO.siteUrl}/logo.png`,
+							description: defaultSEO.description,
+							address: {
+								'@type': 'PostalAddress',
+								addressCountry: 'BD',
+								addressRegion: 'Dhaka',
+								addressLocality: 'Dhaka',
+							},
+							contactPoint: {
+								'@type': 'ContactPoint',
+								contactType: 'customer service',
+								areaServed: 'BD',
+								availableLanguage: ['English', 'Bengali'],
+							},
+							foundingDate: '2017',
+							numberOfEmployees: '10-50',
+							slogan: 'Transform Your Ideas Into Digital Reality',
+							services: [
+								'Software Development',
+								'MVP Development',
+								'Ecommerce Development',
+								'Web Application Development',
+								'Mobile App Development',
+								'CMS Development',
+								'ERP Development',
+								'Inventory Management Systems',
+							],
+							technology: [
+								'Node.js',
+								'React',
+								'Next.js',
+								'MongoDB',
+								'Laravel',
+								'Express.js',
+								'JavaScript',
+								'TypeScript',
+							],
+						}),
+					}}
+				/>
+
+				{/* Structured Data - Website Schema */}
+				<script
+					type='application/ld+json'
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							'@context': 'https://schema.org',
+							'@type': 'WebSite',
+							name: defaultSEO.siteName,
+							url: defaultSEO.siteUrl,
+							potentialAction: {
+								'@type': 'SearchAction',
+								target: `${defaultSEO.siteUrl}/search?q={search_term_string}`,
+								'query-input': 'required name=search_term_string',
+							},
+						}),
+					}}
+				/>
 			</head>
 			<body>
 				<ChakraProviderWrapper>{children}</ChakraProviderWrapper>

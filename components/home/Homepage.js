@@ -1,3 +1,5 @@
+'use client';
+
 import Hero from './hero/Hero';
 import Page from '../util/Page/Page';
 import Projects from './projects/Projects';

@@ -84,7 +84,7 @@ const Hero = ({ theme }) => {
 						justify='flex-end'>
 						<Heading
 							color={headingColor}
-							fontFamily='Bebas Neue'
+							fontFamily={fonts?.title}
 							fontSize={{ base: '3rem', md: '8rem' }}
 							textTransform='uppercase'
 							lineHeight='1'
