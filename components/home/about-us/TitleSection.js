@@ -10,6 +10,8 @@ import { useGSAP } from '@gsap/react';
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
+import { FlexEnd } from '../../util';
+import { usePostMutation } from '../../../store';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +28,7 @@ const TitleSection = ({
 	colorMode = 'dark',
 	children,
 	paragraph,
+	clickEvent,
 	...props
 }) => {
 	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
@@ -57,6 +60,17 @@ const TitleSection = ({
 			ScrollTrigger?.getAll()?.forEach(trigger => trigger?.kill());
 		};
 	}, []);
+
+	const [trigger, result] = usePostMutation();
+
+	const handleClick = () => {
+		if (clickEvent) {
+			trigger({
+				path: 'clickevents',
+				body: clickEvent,
+			});
+		}
+	};
 
 	return (
 		<Flex
@@ -93,13 +107,8 @@ const TitleSection = ({
 						{titleBottom}
 					</Heading>
 
-					<Flex
-						align='flex-end'
-						justify='flex-end'>
-						<Flex
-							gap={8}
-							flexDir='column'
-							maxW={{ base: '100%', md: '70%' }}>
+					<FlexEnd>
+						<Flex {...textContainer}>
 							{!multiParagraph && (
 								<>
 									<RobotoText
@@ -119,6 +128,7 @@ const TitleSection = ({
 								<Link href={href || '#'}>
 									<Box>
 										<Button
+											onClick={handleClick}
 											borderColor={secondaryColor}
 											_hover={{
 												bg: 'transparent',
@@ -132,7 +142,7 @@ const TitleSection = ({
 								</Link>
 							)}
 						</Flex>
-					</Flex>
+					</FlexEnd>
 				</Grid>
 			</Column>
 			<Flex
@@ -141,6 +151,12 @@ const TitleSection = ({
 				bg={textColor}></Flex>
 		</Flex>
 	);
+};
+
+const textContainer = {
+	gap: 8,
+	flexDir: 'column',
+	maxW: { base: '100%', md: '70%' },
 };
 
 const bottomLineCss = {

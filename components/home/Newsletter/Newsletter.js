@@ -1,6 +1,7 @@
 import { border, Box, Button, Container, Flex, Heading, Input, Text } from '@chakra-ui/react';
 import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
+import { usePostMutation } from '../../../store';
 
 export default function NewsletterSection({ theme }) {
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
@@ -10,6 +11,24 @@ export default function NewsletterSection({ theme }) {
 	const borderColor = theme === 'dark' ? colors?.background?.light : colors?.background?.dark;
 	const blueColor =
 		theme === 'dark' ? colors?.textSecondary?.blue : colors?.textSecondary?.darkBlue;
+
+	const [trigger, result] = usePostMutation();
+
+	const handleClick = () => {
+		trigger({
+			path: 'clickevents',
+			body: {
+				elementType: 'cta',
+				elementName: 'Subscribe Newsletter',
+				elementId: item?.name,
+				elementSlug: `subscribe-newsletter`,
+				elementText: 'Susbcribe to our newsletter',
+				elementHref: '#',
+				clickType: 'subscribe',
+			},
+		});
+	};
+
 	return (
 		<Box
 			{...sectionStyle}
@@ -41,6 +60,7 @@ export default function NewsletterSection({ theme }) {
 						<Button
 							{...buttonStyle}
 							color={textColor}
+							onClick={handleClick}
 							borderColor={textColor}>
 							Subscribe
 						</Button>

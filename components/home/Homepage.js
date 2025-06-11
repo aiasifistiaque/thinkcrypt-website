@@ -1,19 +1,10 @@
-import React, { useEffect } from 'react';
 import Hero from './hero/Hero';
 import Page from '../util/Page/Page';
-import SectionHeading from './sectionheading/SectionHeading';
 import Projects from './projects/Projects';
-import Service from './services/Service';
-import Testimonial from './testimonial/Testimonial';
-
 import { Flex, useColorMode } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import ServicesNew from './services/ServicesNew';
 import Clients from './clients/Clients';
 import AboutUsSection from './about-us/AboutUsSection';
-import RegisterPlan from './plan/RegisterPlan';
-import PlanSection from './plan/PlanSection';
-import MintRegisterSection from './plan/MintRegisterSection';
 import Servicesv2 from './services/ServiceV2';
 import NewsletterSection from './Newsletter/Newsletter';
 import RightBusinessSolution from './services/RightBusinessSolution';
@@ -42,18 +33,9 @@ const img =
 const Homepage = () => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
-	// const [trigger, result] = usePostMutation();
 
-	// useEffect(() => {
-	// 	trigger({
-	// 		path: '/views',
-	// 		body: {
-	// 			pageSlug: 'thinkcrypt-home',
-	// 			pageTitle: 'Home | Thinkcrypt',
-	// 			pageUrl: 'https://thinkcrypt.dev/home',
-	// 		},
-	// 	});
-	// }, []);
+	const [trigger, result] = usePostMutation();
+
 	return (
 		<Page
 			slug='thinkcrypt-home'
@@ -64,49 +46,28 @@ const Homepage = () => {
 			<Container>
 				<Hero theme={theme} />
 				<AboutUsSection theme={theme} />
-				{/* <Service /> */}
+
 				<Servicesv2 theme={theme} />
 				<HomeStacks theme={theme} />
 
-				{/* <SectionHeading
-					colorMode='dark'
-					containerProps={{ pb: { base: '16px', md: '32px' } }}
-					heading='Featured Projects'
-					subHeading='Meticulously Designed Ideas'
-					btnText='View Our Portfolio'
-					href='/portfolio'>
-					{`See what we’ve built — smart apps, powerful tools, real results. Dive into success stories
-					that show how we turn bold ideas into better software. Let’s build the future, together.`}
-				</SectionHeading> */}
 				<ViewOurWork theme={theme} />
 				<Projects theme={theme} />
 				<RightBusinessSolution theme={theme} />
-				{/* <SectionHeading
-					heading='A symphony of look and function'
-					subHeading='Our Services'>
-					Our designs must not only look beautiful, but they must also function
-					beautifully. A great design not only entices you to touch, but it must
-					be intuitive and simple to understand.
-				</SectionHeading> */}
-				{/* <Services /> */}
-				{/* <RegisterPlan /> */}
-				{/* <MintRegisterSection
-					heading={'Inventory Management System'}
-					subHeading={''}
-					btnText='Learn More'
-					href='/mint'>
-					A simple and feature-rich inventory and e-commerce solution that integrates seamlessly
-					with your business operations. Built by our trusted partner, MINT is a cutting-edge
-					application designed to streamline inventory management, invoicing, billing, and customer
-					engagement—all in one platform
-				</MintRegisterSection> */}
-				{/* <PlanSection /> */}
 
 				<Clients />
 				{/* <Testimonial /> */}
 				<TitleSection
 					colorMode={theme}
 					top
+					clickEvent={{
+						elementType: 'contact',
+						elementName: 'Contact Us',
+						elementId: 'cta-contact-us-home',
+						elementSlug: `cta-contact-us-home`,
+						elementText: 'Contact Us',
+						elementHref: '/contact',
+						clickType: 'contact',
+					}}
 					btn='Contact Us'
 					title='Contact Us'
 					titleTop='Let’s design'
@@ -115,17 +76,7 @@ const Homepage = () => {
 					brings it all together in one beautiful experience. If you are too, call or send us an
 					email to get started.`}
 				</TitleSection>
-				{/* <SectionHeading
-					colorMode='dark'
-					heading='Let’s design your next project'
-					subHeading='Contact Us'
-					btnText='Contact Us Today'
-					to='/https://docs.google.com/forms/d/e/1FAIpQLSeu0GxkeIBfjuAXlPALET-5S1Dxs6JASbV2CSjv2Yv4YA1vZQ/viewform?usp=sf_link'
-					href='/contact'>
-					{`We're`} passionate about design, innovation, brilliant ideas and the execution that
-					brings it all together in one beautiful experience. If you are too, call or send us an
-					email to get started.
-				</SectionHeading> */}
+
 				<NewsletterSection theme={theme} />
 			</Container>
 		</Page>
