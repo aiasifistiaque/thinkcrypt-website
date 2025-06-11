@@ -66,7 +66,7 @@ const Homepage = () => {
 						elementSlug: `cta-contact-us-home`,
 						elementText: 'Contact Us',
 						elementHref: '/contact',
-						clickType: 'contact',
+						clickType: 'click',
 					}}
 					btn='Contact Us'
 					title='Contact Us'

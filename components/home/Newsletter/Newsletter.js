@@ -24,7 +24,7 @@ export default function NewsletterSection({ theme }) {
 				elementSlug: `subscribe-newsletter`,
 				elementText: 'Susbcribe to our newsletter',
 				elementHref: '#',
-				clickType: 'subscribe',
+				clickType: 'submit',
 			},
 		});
 	};
