@@ -11,9 +11,41 @@ import { processContentForDisplay } from '../../utils/textToHtml';
 // Server-Side Rendering
 export async function getServerSideProps(context) {
 	const { id } = context.params;
+	const isProduction = process.env.NODE_ENV === 'production';
+
 	console.log('Fetching blog with ID:', id);
 
 	try {
+		// Validate environment variables
+		if (!process.env.BACKEND_URL && !process.env.NEXT_PUBLIC_BACKEND) {
+			const error = {
+				type: 'MISSING_ENV_VAR',
+				message: 'Backend URL not configured',
+				details: {
+					BACKEND_URL: !!process.env.BACKEND_URL,
+					NEXT_PUBLIC_BACKEND: !!process.env.NEXT_PUBLIC_BACKEND,
+					NODE_ENV: process.env.NODE_ENV,
+				},
+				timestamp: new Date().toISOString(),
+			};
+
+			console.error('Environment error:', error);
+
+			return {
+				redirect: {
+					destination: `/500?error=${encodeURIComponent(JSON.stringify(error))}`,
+					permanent: false,
+				},
+			};
+
+			return {
+				props: {
+					blogData: null,
+					error: 'Backend URL not configured',
+				},
+			};
+		}
+
 		// Prepare headers with authentication token
 		const headers = {
 			'Content-Type': 'application/json',
@@ -21,15 +53,18 @@ export async function getServerSideProps(context) {
 		};
 
 		// Add authentication token if available
-		if (process.env.NEXT_PUBLIC_TOKEN) {
-			headers['Authorization'] = process.env.NEXT_PUBLIC_TOKEN;
+		if (process.env.API_TOKEN) {
+			headers['Authorization'] = process.env.API_TOKEN;
 		}
 
-		console.log('Making request to:', `${process.env.NEXT_PUBLIC_BACKEND}/blogs/g/slug/${id}`);
-		console.log('Headers:', headers);
+		const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND;
+		const apiUrl = `${backendUrl}/blogs/g/slug/${id}`;
+
+		console.log('Making request to:', apiUrl);
+		console.log('Headers:', Object.keys(headers));
 
 		// Make API request with authentication
-		const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/blogs/g/slug/${id}`, {
+		const response = await fetch(apiUrl, {
 			method: 'GET',
 			headers,
 		});
@@ -37,7 +72,22 @@ export async function getServerSideProps(context) {
 		console.log('Response status:', response.status);
 
 		if (!response.ok) {
-			console.log('Blog not found or error fetching data:', response.status);
+			const errorText = await response.text().catch(() => 'Unable to read error response');
+
+			const error = {
+				type: 'API_ERROR',
+				message: `API request failed`,
+				details: {
+					status: response.status,
+					statusText: response.statusText,
+					url: apiUrl,
+					headers: Object.keys(headers),
+					responseBody: errorText.substring(0, 1000), // Limit response body size
+				},
+				timestamp: new Date().toISOString(),
+			};
+
+			console.log('Blog not found or error fetching data:', error);
 
 			// Return 404 for not found
 			if (response.status === 404) {
@@ -46,11 +96,21 @@ export async function getServerSideProps(context) {
 				};
 			}
 
-			// Return error page for other errors
+			// For production, redirect to 500 page with error details
+			if (isProduction) {
+				return {
+					redirect: {
+						destination: `/500?error=${encodeURIComponent(JSON.stringify(error))}`,
+						permanent: false,
+					},
+				};
+			}
+
+			// Return error page for other errors in development
 			return {
 				props: {
 					blogData: null,
-					error: `HTTP ${response.status}: ${response.statusText}`,
+					error: `HTTP ${response.status}: ${response.statusText} - ${errorText}`,
 				},
 			};
 		}
@@ -60,7 +120,28 @@ export async function getServerSideProps(context) {
 
 		// Validate required data
 		if (!blogData || !blogData.name) {
-			console.error('Invalid blog data received:', blogData);
+			const error = {
+				type: 'INVALID_DATA',
+				message: 'Invalid blog data structure',
+				details: {
+					hasData: !!blogData,
+					dataKeys: blogData ? Object.keys(blogData) : [],
+					url: apiUrl,
+				},
+				timestamp: new Date().toISOString(),
+			};
+
+			console.error('Invalid blog data received:', error);
+
+			if (isProduction) {
+				return {
+					redirect: {
+						destination: `/500?error=${encodeURIComponent(JSON.stringify(error))}`,
+						permanent: false,
+					},
+				};
+			}
+
 			return {
 				props: {
 					blogData: null,
@@ -76,7 +157,29 @@ export async function getServerSideProps(context) {
 			},
 		};
 	} catch (error) {
-		console.error('Error fetching blog data:', error.message, error.stack);
+		const errorInfo = {
+			type: 'EXCEPTION',
+			message: error.message,
+			details: {
+				name: error.name,
+				stack: error.stack,
+				url: `${process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND}/blogs/g/slug/${id}`,
+				blogId: id,
+			},
+			timestamp: new Date().toISOString(),
+		};
+
+		console.error('Error fetching blog data:', errorInfo);
+
+		// For production, redirect to 500 page with error details
+		if (isProduction) {
+			return {
+				redirect: {
+					destination: `/500?error=${encodeURIComponent(JSON.stringify(errorInfo))}`,
+					permanent: false,
+				},
+			};
+		}
 
 		return {
 			props: {
