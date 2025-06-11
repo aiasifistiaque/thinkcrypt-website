@@ -24,7 +24,7 @@
 			"@/components/*": ["./components/*"],
 			"@/pages/*": ["./pages/*"],
 			"@/styles/*": ["./styles/*"],
-			"@/utils/*": ["./utils/*"],
+			"@/utils/*": ["components/utils/*"],
 			"@/lib/*": ["./lib/*"],
 			"@/data/*": ["./data/*"],
 			"@/hooks/*": ["./hooks/*"],

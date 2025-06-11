@@ -1,4 +1,4 @@
-import { colors } from '../theme/styles';
+import { colors } from '../../theme/styles';
 
 /**
  * Returns Chakra UI sx styles for blog content rendering
