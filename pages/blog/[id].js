@@ -155,8 +155,6 @@ export async function getServerSideProps(context) {
 }
 
 const BlogSingle = ({ blogData: data, error }) => {
-	const router = useRouter();
-	const { id } = router.query;
 	const isFetching = false;
 	const { colorMode } = useColorMode();
 
