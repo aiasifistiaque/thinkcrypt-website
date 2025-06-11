@@ -21,7 +21,7 @@ const BlogCard = ({ blog, colorMode }) => {
 	};
 
 	return (
-		<NextLink href={`/blog/${blog?.id}`}>
+		<NextLink href={`/blog/${blog?.slug}`}>
 			<Card cursor='pointer'>
 				{/* Featured Image */}
 				<Box
@@ -29,8 +29,8 @@ const BlogCard = ({ blog, colorMode }) => {
 					overflow='hidden'>
 					<Image
 						borderTopRadius='12px'
-						src={blog?.featuredImage}
-						alt={blog?.title}
+						src={blog?.image}
+						alt={blog?.name}
 						w='100%'
 						h={{ base: '200px', md: '240px' }}
 						objectFit='cover'
@@ -47,7 +47,7 @@ const BlogCard = ({ blog, colorMode }) => {
 					<VStack
 						align='stretch'
 						spacing='8px'>
-						<PrimaryHeading {...titleCss}>{blog?.title}</PrimaryHeading>
+						<PrimaryHeading {...titleCss}>{blog?.name}</PrimaryHeading>
 						<SecondaryText
 							{...descCss}
 							noOfLines={3}
@@ -73,18 +73,18 @@ const BlogCard = ({ blog, colorMode }) => {
 							<Avatar
 								fontFamily={fonts?.primary}
 								size='sm'
-								src={blog?.authorImage}
-								name={blog?.author}
+								src={blog?.author?.image}
+								name={blog?.author?.name}
 							/>
 							<VStack
 								align='start'
 								spacing='0'
 								flex='1'>
-								<PrimaryText {...authorText}>{blog?.author}</PrimaryText>
+								<PrimaryText {...authorText}>{blog?.author?.name}</PrimaryText>
 								<SecondaryText
 									fontSize='sm'
 									lineHeight='1.2'>
-									{blog?.authorBio}
+									{blog?.author?.bio}
 								</SecondaryText>
 							</VStack>
 						</HStack>

@@ -6,8 +6,9 @@ import { Stack, Grid, Text, useColorMode, Center } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
 import BlogCard from './BlogCard';
 import TitleSection from '../home/about-us/TitleSection';
-import { padding } from '../../lib/constants';
+import { fonts, padding } from '../../lib/constants';
 import useScrollPreservation from '../../hooks/useScrollPreservation';
+import { useGetAllQuery } from '../../store';
 
 const img =
 	'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
@@ -19,43 +20,7 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 	// Use custom scroll preservation hook
 	useScrollPreservation();
 
-	// Get current category from URL parameters
-	const currentCategory = router.query.category || '';
-	const [cat, setCat] = useState(currentCategory);
-
-	// Update category state when URL changes
-	useEffect(() => {
-		setCat(router.query.category || '');
-	}, [router.query.category]);
-
-	const onCategoryChange = value => {
-		setCat(value);
-		// Update URL without page refresh for better UX
-		const newUrl = value ? `/blog?category=${value}` : '/blog';
-		router.push(newUrl, undefined, { shallow: true });
-	};
-
-	// For demo purposes, we'll filter the initial data based on category
-	// In a real app, this would be handled by SSR or API calls
-	const data = initialData;
-	const filteredBlogs =
-		cat && cat !== ''
-			? data?.doc?.filter(blog => blog.category.toLowerCase() === cat.toLowerCase())
-			: data?.doc;
-
-	// Simulate loading state for category changes
-	const [isLoading, setIsLoading] = useState(false);
-
-	useEffect(() => {
-		if (cat && cat !== '') {
-			setIsLoading(true);
-			// Simulate API call delay
-			const timer = setTimeout(() => {
-				setIsLoading(false);
-			}, 500);
-			return () => clearTimeout(timer);
-		}
-	}, [cat]);
+	const { data, isFetching } = useGetAllQuery({ path: 'blogs' });
 
 	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
 	const text = colorMode == 'dark' ? colors.text.dark : colors.text.light;
@@ -113,10 +78,11 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 
 				{/* Blog Grid */}
 				<Stack
+					bg={bg}
 					px={{ base: padding?.baseBody, md: padding?.lgBody }}
 					py={{ base: '32px', md: '48px' }}
 					spacing={{ base: '24px', md: '32px' }}>
-					{isLoading ? (
+					{isFetching ? (
 						<Grid {...blogGrid}>
 							{Array.from({ length: 6 }, (_, i) => (
 								<BlogSkeleton
@@ -125,9 +91,9 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 								/>
 							))}
 						</Grid>
-					) : filteredBlogs && filteredBlogs.length > 0 ? (
+					) : (
 						<Grid {...blogGrid}>
-							{filteredBlogs?.map((blog, index) => (
+							{data?.doc?.map((blog, index) => (
 								<BlogCard
 									key={index}
 									blog={blog}
@@ -135,15 +101,6 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 								/>
 							))}
 						</Grid>
-					) : (
-						<Center py='80px'>
-							<Text
-								fontSize='lg'
-								color={secondary}
-								textAlign='center'>
-								No blog posts found for the selected category.
-							</Text>
-						</Center>
 					)}
 				</Stack>
 			</Stack>
@@ -158,6 +115,7 @@ const blogGrid = {
 		lg: 'repeat(3, 1fr)',
 	},
 	gap: { base: '24px', md: '32px' },
+	pb: '128px',
 };
 
 export default BlogPage;

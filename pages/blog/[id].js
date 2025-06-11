@@ -6,25 +6,18 @@ import Page from '../../components/util/Page/Page';
 import { fonts, padding } from '../../lib/constants';
 import RelatedBlogCard from '../../components/blog/RelatedBlogCard';
 import { PrimaryHeading, PrimaryText, SecondaryText } from '../../components';
+import { useGetByIdQuery } from '../../store';
+import { useRouter } from 'next/router';
+import { getBlogContentStyles } from '../../utils/blogStyles';
+import { processContentForDisplay } from '../../utils/textToHtml';
 
-export async function getServerSideProps(context) {
-	const { id } = context.params;
-	const blog = blogData.doc.find(b => b.id === id);
-	// Related blogs: same category, not this one
-	const related = blogData?.doc
-		.filter(b => b.category === blog?.category && b.id !== id)
-		.slice(0, 3);
-	return {
-		props: {
-			blog: blog || null,
-			related,
-		},
-	};
-}
-
-const BlogSingle = ({ blog, related }) => {
+const BlogSingle = () => {
+	const router = useRouter();
+	const { id } = router.query;
+	const { data, isFetching } = useGetByIdQuery({ path: 'blogs/g/slug', id: id }, { skip: !id });
 	const { colorMode } = useColorMode();
-	if (!blog)
+	if (isFetching) return <Page colorMode={colorMode}></Page>;
+	if (!data)
 		return (
 			<Page
 				colorMode={colorMode}
@@ -43,9 +36,9 @@ const BlogSingle = ({ blog, related }) => {
 	return (
 		<Page
 			colorMode={colorMode}
-			title={blog.title}
-			description={blog.excerpt}
-			image={blog.featuredImage}>
+			title={data?.title}
+			description={data?.excerpt}
+			image={data?.coverImage || data?.image}>
 			<Box
 				{...mainContainerStyles}
 				bg={cardBg}>
@@ -57,15 +50,15 @@ const BlogSingle = ({ blog, related }) => {
 							borderColor={colorMode === 'dark' ? 'gray.400' : 'gray.100'}
 							bg={tagBg}
 							color={secondaryColor}>
-							{blog.category}
+							{data?.category}
 						</Tag>
 
 						{/* Article Title */}
-						<PrimaryHeading {...headingStyles}>{blog?.title}</PrimaryHeading>
+						<PrimaryHeading {...headingStyles}>{data?.name}</PrimaryHeading>
 						<SecondaryText
 							{...subtitleStyles}
 							color={secondaryColor}>
-							{blog?.excerpt}
+							{data?.excerpt}
 						</SecondaryText>
 
 						{/* Author Section */}
@@ -74,15 +67,15 @@ const BlogSingle = ({ blog, related }) => {
 								<HStack {...authorInfoStyles}>
 									<Avatar
 										size='sm'
-										src={blog.authorImage}
-										name={blog.author}
+										src={data?.author?.image}
+										name={data?.author?.name}
 									/>
 									<VStack {...authorVStackStyles}>
-										<PrimaryText {...authorNameStyles}>{blog?.author}</PrimaryText>
+										<PrimaryText {...authorNameStyles}>{data?.author?.name}</PrimaryText>
 									</VStack>
 								</HStack>
 								<SecondaryText {...authorDateStyles}>
-									{new Date(blog.publishedAt).toLocaleDateString('en-US', {
+									{new Date(data?.publishedAt).toLocaleDateString('en-US', {
 										year: 'numeric',
 										month: 'long',
 										day: 'numeric',
@@ -99,18 +92,38 @@ const BlogSingle = ({ blog, related }) => {
 
 						{/* Featured Image */}
 						<Image
-							src={blog.featuredImage}
-							alt={blog.title}
+							src={data?.coverImage || data?.image}
+							alt={data?.name}
 							{...imageStyles}
 							mt={10}
 						/>
 
 						{/* Article Content */}
-						<PrimaryText {...bodyTextStyles}>{blog.content}</PrimaryText>
+						<Box
+							{...bodyTextStyles}
+							id='blog-content-main'
+							// className={`blog-content ${colorMode === 'dark' ? 'dark' : 'light'}`}
+							sx={{
+								...getBlogContentStyles(colorMode),
+								// Additional paragraph styling with higher specificity
+								'& p, & div p, & section p': {
+									// color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
+									margin: '1rem 0',
+									lineHeight: 1.3,
+									fontSize: { base: '1.1rem', md: '1.1rem' },
+									color: 'red !important', // This will override the default color
+								},
+							}}
+							style={{
+								// Inline styles as ultimate fallback
+								color: colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D',
+							}}
+							dangerouslySetInnerHTML={{ __html: processContentForDisplay(data?.content) }}
+						/>
 
 						{/* Tags */}
 						<HStack {...tagsHStackStyles}>
-							{blog.tags.map((tag, i) => (
+							{data?.tags.map((tag, i) => (
 								<Tag
 									key={i}
 									{...tagStyles}>
@@ -124,7 +137,7 @@ const BlogSingle = ({ blog, related }) => {
 							borderColor={secondaryColor}
 						/>
 						{/* Related Posts */}
-						<Box
+						{/* <Box
 							{...relatedSectionStyles}
 							borderTopColor={secondaryColor}>
 							<PrimaryHeading {...relatedHeadingStyles}>Related Articles</PrimaryHeading>
@@ -137,7 +150,7 @@ const BlogSingle = ({ blog, related }) => {
 									/>
 								))}
 							</Grid>
-						</Box>
+						</Box> */}
 					</Box>
 				</Box>
 			</Box>
@@ -147,13 +160,12 @@ const BlogSingle = ({ blog, related }) => {
 
 const mainContainerStyles = {
 	minH: '100vh',
-
 	w: 'full',
 };
 const innerContainerStyles = {
 	px: { base: padding?.baseBody, md: 8 },
 	py: { base: 12, md: 16 },
-	maxW: '800px', // Medium-style narrow content width
+	maxW: '900px', // Medium-style narrow content width
 	mx: 'auto',
 };
 const contentContainerStyles = {
