@@ -22,8 +22,11 @@ export async function getServerSideProps(context) {
 
 		// Add authentication token if available
 		if (process.env.NEXT_PUBLIC_TOKEN) {
-			headers['Authorization'] = `${process.env.NEXT_PUBLIC_TOKEN}`;
+			headers['Authorization'] = process.env.NEXT_PUBLIC_TOKEN;
 		}
+
+		console.log('Making request to:', `${process.env.NEXT_PUBLIC_BACKEND}/blogs/g/slug/${id}`);
+		console.log('Headers:', headers);
 
 		// Make API request with authentication
 		const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/blogs/g/slug/${id}`, {
@@ -31,17 +34,40 @@ export async function getServerSideProps(context) {
 			headers,
 		});
 
+		console.log('Response status:', response.status);
+
 		if (!response.ok) {
-			console.log('Blog not found or error fetching data:', response.status, error);
+			console.log('Blog not found or error fetching data:', response.status);
+
+			// Return 404 for not found
+			if (response.status === 404) {
+				return {
+					notFound: true,
+				};
+			}
+
+			// Return error page for other errors
 			return {
 				props: {
 					blogData: null,
-					error: 'Blog not found',
+					error: `HTTP ${response.status}: ${response.statusText}`,
 				},
 			};
 		}
 
 		const blogData = await response.json();
+		console.log('Successfully fetched blog data:', blogData?.name);
+
+		// Validate required data
+		if (!blogData || !blogData.name) {
+			console.error('Invalid blog data received:', blogData);
+			return {
+				props: {
+					blogData: null,
+					error: 'Invalid blog data',
+				},
+			};
+		}
 
 		return {
 			props: {
@@ -50,12 +76,12 @@ export async function getServerSideProps(context) {
 			},
 		};
 	} catch (error) {
-		console.error('Error fetching blog data:', error);
+		console.error('Error fetching blog data:', error.message, error.stack);
 
 		return {
 			props: {
 				blogData: null,
-				error: 'Failed to fetch blog data',
+				error: `Network error: ${error.message}`,
 			},
 		};
 	}
@@ -64,21 +90,42 @@ export async function getServerSideProps(context) {
 const BlogSingle = ({ blogData: data, error }) => {
 	const router = useRouter();
 	const { id } = router.query;
-	// const { data, isFetching } = useGetByIdQuery({ path: 'blogs/g/slug', id: id }, { skip: !id });
-	// const data = blogData;
 	const isFetching = false;
 	const { colorMode } = useColorMode();
+
+	// Handle loading state
 	if (isFetching) return <Page colorMode={colorMode}></Page>;
-	if (!data)
+
+	// Handle error state
+	if (error) {
+		return (
+			<Page
+				colorMode={colorMode}
+				title='Error loading blog'>
+				<Box p={10}>
+					<Heading>Error loading blog</Heading>
+					<SecondaryText mt={4}>{error}</SecondaryText>
+				</Box>
+			</Page>
+		);
+	}
+
+	// Handle no data state
+	if (!data) {
 		return (
 			<Page
 				colorMode={colorMode}
 				title='Blog not found'>
 				<Box p={10}>
 					<Heading>Blog not found</Heading>
+					<SecondaryText mt={4}>
+						The blog post you&apos;re looking for doesn&apos;t exist.
+					</SecondaryText>
 				</Box>
 			</Page>
 		);
+	}
+
 	const cardBg = colorMode === 'dark' ? colors.background.dark : colors.background.light;
 	const secondaryColor =
 		colorMode === 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
@@ -120,18 +167,22 @@ const BlogSingle = ({ blogData: data, error }) => {
 									<Avatar
 										size='sm'
 										src={data?.author?.image}
-										name={data?.author?.name}
+										name={data?.author?.name || 'Unknown Author'}
 									/>
 									<VStack {...authorVStackStyles}>
-										<PrimaryText {...authorNameStyles}>{data?.author?.name}</PrimaryText>
+										<PrimaryText {...authorNameStyles}>
+											{data?.author?.name || 'Unknown Author'}
+										</PrimaryText>
 									</VStack>
 								</HStack>
 								<SecondaryText {...authorDateStyles}>
-									{new Date(data?.publishedAt).toLocaleDateString('en-US', {
-										year: 'numeric',
-										month: 'long',
-										day: 'numeric',
-									})}
+									{data?.publishedAt
+										? new Date(data.publishedAt).toLocaleDateString('en-US', {
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
+										  })
+										: 'No date available'}
 								</SecondaryText>
 							</HStack>
 							<Divider
@@ -174,15 +225,17 @@ const BlogSingle = ({ blogData: data, error }) => {
 						/>
 
 						{/* Tags */}
-						<HStack {...tagsHStackStyles}>
-							{data?.tags.map((tag, i) => (
-								<Tag
-									key={i}
-									{...tagStyles}>
-									{tag}
-								</Tag>
-							))}
-						</HStack>
+						{data?.tags && data.tags.length > 0 && (
+							<HStack {...tagsHStackStyles}>
+								{data.tags.map((tag, i) => (
+									<Tag
+										key={i}
+										{...tagStyles}>
+										{tag}
+									</Tag>
+								))}
+							</HStack>
+						)}
 						{/* Divider */}
 						<Divider
 							{...dividerStyles}
