@@ -68,8 +68,8 @@ const CardSection = ({
 			ref={container}>
 			<VStack {...headingWrapperStyle}>
 				<Heading
-					ref={headingRef}
-					className='split'
+					// ref={headingRef}
+					// className='split'
 					{...headingStyle}
 					color={textColor}>
 					{title}

@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700,800,800i,900i&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700,800,800i,900i&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+/* Ensure Bebas Neue is properly loaded */
+.bebas-neue {
+  font-family: 'Bebas Neue', sans-serif;
+  font-display: swap;
+}
 
 
 @font-face {

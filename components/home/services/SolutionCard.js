@@ -33,7 +33,9 @@ const SolutionCard = ({ icon, title, description, btnText, href, colorMode }) =>
 				align='flex-end'
 				justify='flex-end'
 				flex={1}>
-				<Link href={href || '#'}>
+				<Link
+					href={href || '#'}
+					style={{ width: '100%' }}>
 					<Button
 						w='full'
 						{...learnMoreBtnCss}

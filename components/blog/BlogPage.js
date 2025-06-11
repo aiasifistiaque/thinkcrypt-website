@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Page from '../util/Page/Page';
 import BlogSkeleton from './BlogSkeleton';
 import { Stack, Grid, Text, useColorMode, Center } from '@chakra-ui/react';

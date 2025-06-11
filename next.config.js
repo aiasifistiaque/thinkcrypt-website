@@ -2,13 +2,13 @@
 const nextConfig = {
 	reactStrictMode: false,
 	experimental: {
-		// Enable modern features while keeping Pages Router
+		// Enable App Router
 		scrollRestoration: false,
 		// Enable ES modules support
 		esmExternals: true,
 	},
-	// Turbopack configuration (moved out of experimental)
-	turbo: {
+	// Turbopack configuration (stable in Next.js 15)
+	turbopack: {
 		rules: {
 			'*.svg': {
 				loaders: ['@svgr/webpack'],

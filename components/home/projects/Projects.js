@@ -56,6 +56,7 @@ const Projects = ({ theme }) => {
 			</Flex>
 
 			<ViewMoreButton
+				w='full'
 				mt='-32px'
 				theme={theme}
 				href='/portfolio'>

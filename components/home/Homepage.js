@@ -11,7 +11,6 @@ import RightBusinessSolution from './services/RightBusinessSolution';
 import HomeStacks from './services/HomeStacks';
 import ViewOurWork from './about-us/ViewOurWork';
 import TitleSection from './about-us/TitleSection';
-import { usePostMutation } from '../../store';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -33,8 +32,6 @@ const img =
 const Homepage = () => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
-
-	const [trigger, result] = usePostMutation();
 
 	return (
 		<Page

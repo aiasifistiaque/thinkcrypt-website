@@ -208,12 +208,13 @@ const bodyCss = {
 };
 
 const headingCss = {
-	fontFamily: 'Bebas Neue',
+	fontFamily: fonts?.title,
 	fontSize: { base: '4rem', md: '8rem' },
-	fontWeight: '600',
+	fontWeight: '800',
 	lineHeight: '1',
 	letterSpacing: '2px',
 	color: colors?.text?.dark,
+	textTransform: 'uppercase',
 };
 
 const bodyTextCss = {

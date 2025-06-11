@@ -5,6 +5,7 @@ import { Avatar, HStack, VStack, Divider, Image } from '@chakra-ui/react';
 import { Page } from '../util';
 import { padding, fonts } from '@/lib/constants';
 import { colors } from '@/theme/styles';
+import CardBadge from '../portfolio/PortfolioItem/CardBadge';
 
 const convertTextToHtml = text => {
 	if (!text) return '';
@@ -144,11 +145,16 @@ const BlogByIdPage = ({ data }) => {
 						{data?.tags && data.tags.length > 0 && (
 							<HStack {...tagsHStackStyles}>
 								{data.tags.map((tag, i) => (
-									<Tag
-										key={i}
-										{...tagStyles}>
+									<CardBadge
+										alt
+										key={i}>
 										{tag}
-									</Tag>
+									</CardBadge>
+									// <Tag
+									// 	key={i}
+									// 	{...tagStyles}>
+									// 	{tag}
+									// </Tag>
 								))}
 							</HStack>
 						)}

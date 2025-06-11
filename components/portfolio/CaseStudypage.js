@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Page from '../util/Page/Page';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid, Wrap, Text, useColorMode } from '@chakra-ui/react';
@@ -20,21 +20,22 @@ const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
 	const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const router = useRouter();
+	const searchParams = useSearchParams();
 
 	// Get current category from URL parameters
-	const currentCategory = router.query.category || '';
+	const currentCategory = searchParams.get('category') || '';
 	const [cat, setCat] = useState(currentCategory);
 
 	// Update category state when URL changes
 	useEffect(() => {
-		setCat(router.query.category || '');
-	}, [router.query.category]);
+		setCat(searchParams.get('category') || '');
+	}, [searchParams]);
 
 	const onCategoryChange = value => {
 		setCat(value);
 		// Update URL without page refresh for better UX
 		const newUrl = value ? `/portfolio?category=${value}` : '/portfolio';
-		// router.push(newUrl, undefined, { shallow: true });
+		router.push(newUrl);
 	};
 
 	// Use RTK Query only when a specific category is selected (not for "All projects")

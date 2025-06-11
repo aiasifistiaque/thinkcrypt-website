@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { colors } from '../../../theme/styles';
 import { fonts } from '../../../lib/constants';
 
-const ViewMoreButton = ({ theme, children, href, ...props }) => {
+const ViewMoreButton = ({ theme, children, href, ink, ...props }) => {
 	return (
-		<Link href={href || '#'}>
+		<Link href={typeof href === 'string' ? href : '#'}>
 			<Button
 				{...btnCss(theme)}
 				{...props}>

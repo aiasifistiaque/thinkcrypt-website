@@ -3,13 +3,15 @@ import { useColorMode } from '@chakra-ui/react';
 import { colors } from '../../../theme/styles';
 import { Flex } from '@chakra-ui/react';
 
-const CardBadge = ({ children }) => {
+const CardBadge = ({ children, alt }) => {
 	const { colorMode } = useColorMode();
 	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
+	const altClr = colorMode == 'dark' ? colors?.card?.dark : colors?.card?.light;
+
 	return (
 		<Flex
 			{...badgeCss}
-			bg={bg}>
+			bg={alt ? altClr : bg}>
 			{children}
 		</Flex>
 	);
