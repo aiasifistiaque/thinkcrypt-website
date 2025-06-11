@@ -6,6 +6,27 @@ import { Page } from '../util';
 import { padding, fonts } from '@/lib/constants';
 import { colors } from '@/theme/styles';
 
+const convertTextToHtml = text => {
+	if (!text) return '';
+
+	// Split text by double line breaks (paragraphs)
+	const paragraphs = text
+		.split(/\n\s*\n/)
+		.map(para => para.trim())
+		.filter(para => para.length > 0);
+
+	// Wrap each paragraph in <p> tags
+	const htmlContent = paragraphs
+		.map(paragraph => {
+			// Replace single line breaks with <br> tags
+			const formattedParagraph = paragraph.replace(/\n/g, '<br>');
+			return `<p>${formattedParagraph}</p>`;
+		})
+		.join('\n');
+
+	return htmlContent;
+};
+
 const processContentForDisplay = content => {
 	if (!content) return '';
 
