@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
 		});
 
 		if (!response.ok) {
+			console.log('Blog not found or error fetching data:', response.status, error);
 			return {
 				props: {
 					blogData: null,
