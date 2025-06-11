@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import SectionHeading from '../home/sectionheading/SectionHeading';
+'use client';
+
 import Page from '../util/Page/Page';
 
 import { Stack, Image, Link, useColorMode } from '@chakra-ui/react';
@@ -16,7 +16,7 @@ const img =
 
 const BORDER = styles.border.light;
 
-const Clientpage = ({ initialData }) => {
+const Clientpage = () => {
 	// Use RTK Query as fallback when no initial data
 	//const shouldSkip = initialData && initialData.doc && initialData.doc.length > 0;
 	const shouldSkip = false;
@@ -34,18 +34,9 @@ const Clientpage = ({ initialData }) => {
 	);
 
 	// Use SSR data when available, otherwise use fetched data
-	const data = shouldSkip ? initialData : fetchedData;
+	// const data = shouldSkip ? initialData : fetchedData;
+	const data = fetchedData;
 	const isLoading = !shouldSkip && isFetching && !data;
-
-	console.log('Clients Debug:', {
-		hasInitialData: !!initialData?.doc,
-		initialDataLength: initialData?.doc?.length || 0,
-		shouldSkip,
-		isFetching,
-		isLoading,
-		usingSSRData: shouldSkip,
-		finalDataCount: data?.doc?.length || 0,
-	});
 
 	const URLContainer = ({ item, children }) => {
 		return (

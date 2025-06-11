@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Page from '../util/Page/Page';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
@@ -15,9 +17,9 @@ import SelectItem from './SelectItem';
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const CaseStudyPage = ({ initialData, initialCategory = '' }) => {
+const CaseStudyPage = () => {
 	const { colorMode } = useColorMode();
-	const textColor = colorMode == 'dark' ? colors?.text?.dark : colors?.text?.light;
+
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const router = useRouter();
 	const searchParams = useSearchParams();
