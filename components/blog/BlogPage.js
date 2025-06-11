@@ -20,7 +20,7 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 	// Use custom scroll preservation hook
 	useScrollPreservation();
 
-	const { data, isFetching } = useGetAllQuery({ path: 'blogs' });
+	const { data, isFetching } = useGetAllQuery({ path: 'blogs', filters: { status: 'published' } });
 
 	const bg = colorMode == 'dark' ? colors.background.dark : colors.background.light;
 	const text = colorMode == 'dark' ? colors.text.dark : colors.text.light;

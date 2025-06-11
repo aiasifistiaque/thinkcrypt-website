@@ -1,20 +1,71 @@
 import { Box, Heading, Image, HStack, VStack, Avatar, Tag } from '@chakra-ui/react';
 import { Divider, useColorMode, Grid } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
-import { blogData } from '../../data/blogData';
 import Page from '../../components/util/Page/Page';
 import { fonts, padding } from '../../lib/constants';
-import RelatedBlogCard from '../../components/blog/RelatedBlogCard';
 import { PrimaryHeading, PrimaryText, SecondaryText } from '../../components';
-import { useGetByIdQuery } from '../../store';
 import { useRouter } from 'next/router';
 import { getBlogContentStyles } from '../../utils/blogStyles';
 import { processContentForDisplay } from '../../utils/textToHtml';
 
-const BlogSingle = () => {
+// Server-Side Rendering
+export async function getServerSideProps(context) {
+	const { id } = context.params;
+	console.log('Fetching blog with ID:', id);
+
+	try {
+		// Prepare headers with authentication token
+		const headers = {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		};
+
+		// Add authentication token if available
+		if (process.env.NEXT_PUBLIC_TOKEN) {
+			headers['Authorization'] = `${process.env.NEXT_PUBLIC_TOKEN}`;
+		}
+
+		// Make API request with authentication
+		const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/blogs/g/slug/${id}`, {
+			method: 'GET',
+			headers,
+		});
+
+		if (!response.ok) {
+			return {
+				props: {
+					blogData: null,
+					error: 'Blog not found',
+				},
+			};
+		}
+
+		const blogData = await response.json();
+
+		return {
+			props: {
+				blogData,
+				error: null,
+			},
+		};
+	} catch (error) {
+		console.error('Error fetching blog data:', error);
+
+		return {
+			props: {
+				blogData: null,
+				error: 'Failed to fetch blog data',
+			},
+		};
+	}
+}
+
+const BlogSingle = ({ blogData: data, error }) => {
 	const router = useRouter();
 	const { id } = router.query;
-	const { data, isFetching } = useGetByIdQuery({ path: 'blogs/g/slug', id: id }, { skip: !id });
+	// const { data, isFetching } = useGetByIdQuery({ path: 'blogs/g/slug', id: id }, { skip: !id });
+	// const data = blogData;
+	const isFetching = false;
 	const { colorMode } = useColorMode();
 	if (isFetching) return <Page colorMode={colorMode}></Page>;
 	if (!data)
@@ -36,9 +87,9 @@ const BlogSingle = () => {
 	return (
 		<Page
 			colorMode={colorMode}
-			title={data?.title}
+			title={data?.name}
 			description={data?.excerpt}
-			image={data?.coverImage || data?.image}>
+			image={data?.image || data?.coverImage}>
 			<Box
 				{...mainContainerStyles}
 				bg={cardBg}>
