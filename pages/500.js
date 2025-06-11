@@ -61,7 +61,7 @@ const Custom500 = () => {
 							fontFamily={fonts?.primary}
 							lineHeight={1.2}
 							color={secondaryColor}>
-							Something went wrong on our end. We're working to fix it.
+							{`Something went wrong on our end. We're working to fix it.`}
 						</SecondaryText>
 
 						{/* Development/Debug Information */}
@@ -138,8 +138,8 @@ const Custom500 = () => {
 										fontSize='sm'
 										color={secondaryColor}
 										fontStyle='italic'>
-										If you're seeing this error consistently, please copy the debug information
-										above and contact support.
+										{`	If you're seeing this error consistently, please copy the debug information
+										above and contact support.`}
 									</Text>
 								</Box>
 							</Box>
