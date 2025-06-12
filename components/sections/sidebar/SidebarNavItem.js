@@ -24,8 +24,8 @@ const SidebarNavItem = ({ id, name, href, ...props }) => {
 				gap={{ base: 2, lg: 3 }}
 				fontFamily={fonts?.title}
 				w='full'
+				pb={{ base: '6px', md: 0 }}
 				borderBottom={{ base: '1px solid', md: 'none' }}
-				pb='6px'
 				borderColor={styles.border.dark}
 				{...props}>
 				{idText}

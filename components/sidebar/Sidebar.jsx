@@ -16,26 +16,8 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { CloseButton } from '../sidebar-new/SidebarRightPart.js';
+import { sidebarNavigationItems } from '../../data/sidebarNavigation';
 
-const menu = [
-	{
-		title: 'Home',
-		href: '/',
-	},
-
-	{
-		title: 'Our Work',
-		href: '/portfolio',
-	},
-	{
-		title: 'Team',
-		href: '/team',
-	},
-	{
-		title: 'Clients',
-		href: '/clients',
-	},
-];
 const EachMenuItem = ({ href, children }) => {
 	return (
 		<Link href={href} cursor={'pointer'}>
@@ -60,9 +42,9 @@ const Sidebar = () => {
 
 					<DrawerBody>
 						<Stack w='full' py={12} spacing={6}>
-							{menu.map((item, index) => (
+							{sidebarNavigationItems.map((item, index) => (
 								<EachMenuItem key={index} href={item.href}>
-									{item.title}
+									{item.name}
 								</EachMenuItem>
 							))}
 						</Stack>
