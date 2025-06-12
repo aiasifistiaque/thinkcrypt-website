@@ -86,23 +86,9 @@ export default function RootLayout({ children }) {
 					href='https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Michroma&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap'
 					rel='stylesheet'
 				/>
-
-				<script
-					async
-					src={`https://www.googletagmanager.com/gtag/js?id=${gtag}`}
-				/>
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-							window.dataLayer = window.dataLayer || [];
-							function gtag(){dataLayer.push(arguments);}
-							gtag('js', new Date());
-							gtag('config', '${gtag}', {
-								page_path: window.location.pathname,
-							});
-						`,
-					}}
-				/>
+			</head>
+			<body>
+				{/* Facebook Pixel noscript fallback */}
 				<noscript>
 					<img
 						height='1'
@@ -112,8 +98,11 @@ export default function RootLayout({ children }) {
 					/>
 				</noscript>
 
+				<ChakraProviderWrapper>{children}</ChakraProviderWrapper>
+
 				{/* Structured Data - Organization Schema */}
-				<script
+				<Script
+					id='organization-schema'
 					type='application/ld+json'
 					dangerouslySetInnerHTML={{
 						__html: JSON.stringify({
@@ -163,7 +152,8 @@ export default function RootLayout({ children }) {
 				/>
 
 				{/* Structured Data - Website Schema */}
-				<script
+				<Script
+					id='website-schema'
 					type='application/ld+json'
 					dangerouslySetInnerHTML={{
 						__html: JSON.stringify({
@@ -179,9 +169,6 @@ export default function RootLayout({ children }) {
 						}),
 					}}
 				/>
-			</head>
-			<body>
-				<ChakraProviderWrapper>{children}</ChakraProviderWrapper>
 
 				{/* Google Analytics */}
 				<Script

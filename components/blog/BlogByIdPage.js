@@ -318,6 +318,8 @@ const getBlogContentStyles = colorMode => {
 const mainContainerStyles = {
 	minH: '100vh',
 	w: 'full',
+	bg: 'red',
+	pt: { base: '24px', md: '4px' },
 };
 const innerContainerStyles = {
 	px: { base: padding?.baseBody, md: 8 },

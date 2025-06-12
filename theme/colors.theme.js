@@ -5,6 +5,7 @@ export const colors = {
 		800: '#060508',
 		border: '#3d3c3d',
 	},
+	gray: { 800: '#0d0d0d' },
 	background: {
 		light: 'whitesmoke',
 		dark: 'whitesmoke',
