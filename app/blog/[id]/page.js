@@ -5,7 +5,7 @@ import { defaultSEO, getKeywordsByCategory } from '../../../lib/seoKeywords';
 
 // Generate metadata for the blog post
 export async function generateMetadata({ params }) {
-	const { id } = params;
+	const { id } = await params;
 
 	// Convert the context format for the server-side function
 	const context = {
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
 		}
 
 		const { blogData } = result.props;
-		const blogKeywords = getKeywordsByCategory('blog');
+		const blogKeywords = getKeywordsByCategory(['blog']);
 
 		// Extract blog data for metadata
 		const title = blogData?.name || 'Blog Post';
@@ -46,9 +46,9 @@ export async function generateMetadata({ params }) {
 		return {
 			title: title, // This will use the template from the root layout.js
 			description: metaDescription,
-			keywords: [...defaultSEO.keywords, ...blogKeywords, title.toLowerCase()],
-			authors: [{ name: blogData?.author || defaultSEO.author }],
-			creator: blogData?.author || defaultSEO.author,
+			keywords: `${defaultSEO.keywords}, ${blogKeywords}, ${title.toLowerCase()}`,
+			authors: [{ name: blogData?.author?.name || blogData?.author || defaultSEO.author }],
+			creator: blogData?.author?.name || blogData?.author || defaultSEO.author,
 
 			openGraph: {
 				type: 'article', // Override the default 'website' type
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }) {
 				],
 				publishedTime: blogData?.publishedAt || blogData?.createdAt,
 				modifiedTime: blogData?.updatedAt || blogData?.modifiedAt,
-				authors: [blogData?.author || defaultSEO.author],
+				authors: [blogData?.author?.name || blogData?.author || defaultSEO.author],
 				section: blogData?.category || 'Technology',
 				tags: blogData?.tags || ['software development', 'web development', 'technology'],
 			},
@@ -96,7 +96,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPost({ params }) {
-	const { id } = params;
+	const { id } = await params;
 
 	// Convert the context format for the server-side function
 	const context = {
