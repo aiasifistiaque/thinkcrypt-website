@@ -127,11 +127,10 @@ const BlogByIdPage = ({ data }) => {
 								...getBlogContentStyles(colorMode),
 								// Additional paragraph styling with higher specificity
 								'& p, & div p, & section p': {
-									// color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
+									color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 									margin: '1rem 0',
 									lineHeight: 1.3,
 									fontSize: { base: '1.1rem', md: '1.1rem' },
-									color: 'red !important', // This will override the default color
 								},
 							}}
 							style={{
@@ -318,7 +317,6 @@ const getBlogContentStyles = colorMode => {
 const mainContainerStyles = {
 	minH: '100vh',
 	w: 'full',
-	bg: 'red',
 	pt: { base: '24px', md: '4px' },
 };
 const innerContainerStyles = {
