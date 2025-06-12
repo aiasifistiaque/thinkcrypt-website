@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Projectpage from '../../components/project/Projectpage';
 import { defaultSEO } from '@/lib/seoKeywords';

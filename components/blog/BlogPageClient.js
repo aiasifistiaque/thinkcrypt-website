@@ -1,19 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Page from '../util/Page/Page';
-import BlogSkeleton from './BlogSkeleton';
 import { Stack, Grid, Text, useColorMode, Center } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
 import BlogCard from './BlogCard';
 import TitleSection from '../home/about-us/TitleSection';
 import { fonts, padding } from '../../lib/constants';
-// import useScrollPreservation from '../../hooks/useScrollPreservation';
 import { useGetAllQuery } from '../../store';
-
-const img =
-	'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
 const BlogPageClient = () => {
 	const router = useRouter();

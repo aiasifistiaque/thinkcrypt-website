@@ -1,16 +1,16 @@
-import React, { useRef } from 'react';
+'use client';
+
+import { useRef } from 'react';
 import { Flex, Grid, Text, Heading, Button, Box } from '@chakra-ui/react';
-import { colors, layout } from '../../../theme/styles';
+import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
 import RobotoText from '../../util/text/RobotoText';
-import Column from '../../util/Column';
 
 import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
-
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
-import { FlexEnd } from '../../util';
+import { FlexEnd, Column } from '../../util';
 import { usePostMutation } from '../../../store';
 
 gsap.registerPlugin(ScrollTrigger);

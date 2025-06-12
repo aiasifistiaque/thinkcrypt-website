@@ -1,23 +1,12 @@
-import React from 'react';
-import {
-	Clock,
-	Search,
-	FileText,
-	Calendar,
-	Image,
-	Grid,
-	Users,
-	Lock,
-	Key,
-	Settings,
-	UserCheck,
-} from 'lucide-react';
+'use client';
+
+import { Clock, Search, FileText, Calendar, Image as IMG, Grid } from 'lucide-react';
+import { Users, Lock, Key, Settings, UserCheck } from 'lucide-react';
 import LightIItemCard from '../card/LightIItemCard';
-import CardSection from './CardSection';
-import { SimpleGrid, Image as ChakraImage, Center, Flex, Heading } from '@chakra-ui/react';
+
+import { SimpleGrid, Image, Center, Flex, Heading, useColorMode } from '@chakra-ui/react';
 import ItemSection from './ItemSection';
 import { fonts } from '../../../lib/constants';
-import { colors } from '../../../theme/styles';
 
 const data = [
 	{
@@ -35,7 +24,7 @@ const data = [
 		title: 'Media Library',
 		description: 'Upload, organize, and reuse images, videos, and documents across your website',
 		icon: (
-			<Image
+			<IMG
 				size={22}
 				color='white'
 			/>
@@ -144,8 +133,9 @@ const frstImage =
 const permImage =
 	'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80';
 
-const CMSFeatures = ({ colorMode }) => {
-	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
+const CMSFeatures = () => {
+	const { colorMode } = useColorMode();
+
 	return (
 		<ItemSection
 			colorMode={colorMode}
@@ -164,7 +154,7 @@ const CMSFeatures = ({ colorMode }) => {
 						Powerful Content Management
 					</Heading>
 					<Center display={{ base: 'flex', md: 'none' }}>
-						<ChakraImage src={frstImage} />
+						<Image src={frstImage} />
 					</Center>
 					<SimpleGrid
 						columns={{ base: 1, md: 2 }}
@@ -182,14 +172,14 @@ const CMSFeatures = ({ colorMode }) => {
 					</SimpleGrid>
 				</Flex>
 				<Center display={{ base: 'none', md: 'flex' }}>
-					<ChakraImage src={frstImage} />
+					<Image src={frstImage} />
 				</Center>
 			</SimpleGrid>
 			<SimpleGrid
 				columns={{ base: 1, md: 2 }}
 				spacing={8}>
 				<Center display={{ base: 'none', md: 'flex' }}>
-					<ChakraImage src={permImage} />
+					<Image src={permImage} />
 				</Center>
 				<Flex
 					flexDir='column'
@@ -202,7 +192,7 @@ const CMSFeatures = ({ colorMode }) => {
 						Advanced Role-Based Permissions
 					</Heading>
 					<Center display={{ base: 'flex', md: 'none' }}>
-						<ChakraImage src={permImage} />
+						<Image src={permImage} />
 					</Center>
 					<SimpleGrid
 						columns={{ base: 1, md: 2 }}

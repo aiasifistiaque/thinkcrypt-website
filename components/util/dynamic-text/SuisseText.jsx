@@ -5,7 +5,7 @@ import React from 'react';
 import { fonts } from '../../../lib/constants';
 import useCustomColors from '../../../hooks/useCustomColors.jsx';
 
-const MichromaText = ({ children, ...props }) => {
+const SuisseText = ({ children, ...props }) => {
 	const { textColor } = useCustomColors();
 	return (
 		<Text
@@ -20,4 +20,4 @@ const MichromaText = ({ children, ...props }) => {
 	);
 };
 
-export default MichromaText;
+export default SuisseText;

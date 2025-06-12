@@ -1,13 +1,11 @@
 import {
 	Box,
 	Flex,
-	FlexProps,
 	Grid,
 	Image,
 	Text,
-	TextProps,
 } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import React from 'react';
 import Column from '../../util/Column';
 import { fonts, layout } from '../../../lib/constants';
 

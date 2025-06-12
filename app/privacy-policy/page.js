@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Page from '../../components/util/Page/Page';
-import { Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Flex, Heading } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { breakpoints } from '../../components/lib/constants';
 
@@ -10,7 +10,7 @@ const Container = styled(Flex)`
 	flex-direction: column;
 	margin: 24px;
 	letter-spacing: 0.5px;
-	@media screen and (max-width: ${breakpoints.lg}) {
+	@media screen and (max-width: ${breakpoints?.laptop}) {
 		margin: 16px;
 	}
 `;

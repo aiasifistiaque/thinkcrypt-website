@@ -1,10 +1,9 @@
+'use client';
+
 import { Clock, Shield, TrendingUp } from 'lucide-react';
 import CardSection from './CardSection';
 import LightIItemCard from '../card/LightIItemCard';
-import { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useColorMode } from '@chakra-ui/react';
 
 const data = [
 	{
@@ -31,7 +30,8 @@ const data = [
 	},
 ];
 
-const WebsiteImportance = ({ colorMode }) => {
+const WebsiteImportance = () => {
+	const { colorMode } = useColorMode();
 	return (
 		<CardSection
 			colorMode={colorMode}

@@ -1,3 +1,5 @@
+'use client';
+
 import { Heading, useColorMode } from '@chakra-ui/react';
 import { fonts } from '../../../lib/constants';
 import { colors } from '../../../theme/styles';

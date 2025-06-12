@@ -1,7 +1,9 @@
+'use client';
 import React from 'react';
 import { Database, Terminal, Code, Shield, TrendingUp } from 'lucide-react';
 import CardSection from './CardSection';
 import LightIItemCard from '../card/LightIItemCard';
+import { useColorMode } from '@chakra-ui/react';
 
 const data = [
 	{
@@ -51,7 +53,8 @@ const data = [
 	},
 ];
 
-const WebsiteFeatures = ({ colorMode }) => {
+const WebsiteFeatures = () => {
+	const { colorMode } = useColorMode();
 	return (
 		<CardSection
 			colorMode={colorMode}

@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import { Box, VStack, Heading, SimpleGrid, Flex, Button } from '@chakra-ui/react';
-import Link from 'next/link';
 import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
 
@@ -151,7 +152,7 @@ const subHeadingStyle = {
 	as: 'h4',
 	color: '#737373',
 	fontSize: '16px',
-	fontWight: '200',
+	fontWeight: '200',
 };
 
 const gridStyle = {

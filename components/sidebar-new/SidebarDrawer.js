@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import {
 	Drawer,
@@ -15,10 +17,7 @@ import { colors } from '../../theme/styles';
 import { usePostMutation } from '../../store';
 
 const SidebarDrawer = ({ button, ...props }) => {
-	// HOOKS
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [index, setIndex] = useState(1);
-
 	const [trigger, result] = usePostMutation();
 
 	const handleMenuClick = () => {

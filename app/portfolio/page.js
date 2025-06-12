@@ -1,6 +1,5 @@
 import CaseStudyPage from '@/components/portfolio/CaseStudypage';
 import { defaultSEO } from '@/lib/seoKeywords';
-import type { Metadata } from 'next';
 
 const title = `Our Work – Real Projects, Real Impact | Thinkcrypt`;
 const image =
@@ -8,7 +7,7 @@ const image =
 const desc =
 	'Explore Thinkcrypt’s portfolio of SaaS, eCommerce, and web solutions built with the MERN stack. Real-world impact, scalable systems, and startup-ready MVPs.';
 
-export const metadata: Metadata = {
+export const metadata = {
 	metadataBase: new URL(defaultSEO.siteUrl),
 	title: {
 		default: title,

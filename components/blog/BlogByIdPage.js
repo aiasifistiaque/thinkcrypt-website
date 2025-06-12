@@ -322,6 +322,7 @@ const mainContainerStyles = {
 const innerContainerStyles = {
 	px: { base: padding?.baseBody, md: 8 },
 	py: { base: 12, md: 16 },
+	pt: { base: 12, md: 20 },
 	maxW: '900px', // Medium-style narrow content width
 	mx: 'auto',
 };

@@ -1,12 +1,15 @@
+'use client';
+
 import React from 'react';
 import { Page, ServiceHero } from '../../';
-import { Box } from '@chakra-ui/react';
+import { Box, useColorMode } from '@chakra-ui/react';
 import TitleSection from '../../home/about-us/TitleSection';
 
 const ServicePage = ({ meta, hero, children, theme }) => {
+	const { colorMode } = useColorMode();
 	return (
 		<Page
-			theme={theme}
+			theme={colorMode}
 			image={meta?.image}
 			title={meta?.title}
 			description={meta?.desc}>
@@ -17,7 +20,7 @@ const ServicePage = ({ meta, hero, children, theme }) => {
 					<TitleSection
 						top
 						pb={0}
-						colorMode={theme}
+						colorMode={colorMode}
 						titleTop={hero?.titleTop || hero?.title}
 						titleBottom={hero?.titleBottom}
 						title={hero?.heading}>

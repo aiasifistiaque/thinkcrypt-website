@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Image, VStack, HStack, Avatar, Icon, Wrap } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
 import { FiClock } from 'react-icons/fi';
@@ -5,7 +7,10 @@ import NextLink from 'next/link';
 import ImageTag from './ImageTag';
 import { fonts } from '../../lib/constants';
 import CardBadge from '../portfolio/PortfolioItem/CardBadge';
-import { PrimaryHeading, PrimaryText, SecondaryText, Card } from '../../components';
+import PrimaryHeading from '../util/text/PrimaryHeading';
+import PrimaryText from '../util/text/PrimaryText';
+import SecondaryText from '../util/text/SecondaryText';
+import Card from '../util/card/Card';
 
 const BlogCard = ({ blog, colorMode }) => {
 	const secondaryColor =

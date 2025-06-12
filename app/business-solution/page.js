@@ -1,22 +1,15 @@
 'use client';
 
-import React from 'react';
-import {
-	WebsiteImportance,
-	ServicePage,
-	WebsiteUseCases,
-	WebsiteAdvanceFeatures,
-	CMSFeatures,
-} from '../../components';
+import WebsiteImportance from '../../components/services/website/WebsiteImportance';
+import WebsiteUseCases from '../../components/services/website/WebsiteUseCases';
+import WebsiteAdvanceFeatures from '../../components/services/website/WebsiteAdvancedFeatures';
+import CMSFeatures from '../../components/services/website/CMSFeatures';
 import WebsiteFeatures from '../../components/services/website/WebsiteFeatures';
 import RightSolutionPage from '../../components/home/services/RightSolutionPage';
-import { useColorMode } from '@chakra-ui/react';
 
-export default function BusinessSolution() {
-	const { colorMode } = useColorMode();
-
+const BusinessSolution = () => {
 	return (
-		<RightSolutionPage colorMode={colorMode}>
+		<RightSolutionPage>
 			<WebsiteImportance />
 			<WebsiteFeatures />
 			<WebsiteUseCases />
@@ -24,4 +17,6 @@ export default function BusinessSolution() {
 			<CMSFeatures />
 		</RightSolutionPage>
 	);
-}
+};
+
+export default BusinessSolution;

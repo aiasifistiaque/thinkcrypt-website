@@ -22,22 +22,22 @@ const CaseStudyPage = () => {
 
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
 	const router = useRouter();
-	const searchParams = useSearchParams();
+	// const searchParams = useSearchParams();
 
 	// Get current category from URL parameters
-	const currentCategory = searchParams.get('category') || '';
-	const [cat, setCat] = useState(currentCategory);
+	// const currentCategory = searchParams.get('category') || '';
+	const [cat, setCat] = useState('');
 
 	// Update category state when URL changes
-	useEffect(() => {
-		setCat(searchParams.get('category') || '');
-	}, [searchParams]);
+	// useEffect(() => {
+	// 	setCat(searchParams.get('category') || '');
+	// }, [searchParams]);
 
 	const onCategoryChange = value => {
 		setCat(value);
 		// Update URL without page refresh for better UX
-		const newUrl = value ? `/portfolio?category=${value}` : '/portfolio';
-		router.push(newUrl);
+		// const newUrl = value ? `/portfolio?category=${value}` : '/portfolio';
+		// router.push(newUrl);
 	};
 
 	// Use RTK Query only when a specific category is selected (not for "All projects")
@@ -92,14 +92,6 @@ const CaseStudyPage = () => {
 					titleBottom='Real Impact'>
 					{`Explore Thinkcrypt’s portfolio of SaaS, eCommerce, and web solutions built with the MERN stack. Real-world impact, scalable systems, and startup-ready MVPs.`}
 				</TitleSection>
-				{/* <SectionHeading
-					colorMode={colorMode}
-					containerProps={{ pb: '32px' }}
-					heading='All of Our Work'
-					subHeading='Our Projects'>
-					Explore our portfolio of successful projects and innovative solutions across various
-					industries and technologies.
-				</SectionHeading> */}
 
 				<Flex
 					flexDir='column'
@@ -121,7 +113,7 @@ const CaseStudyPage = () => {
 								<Wrap>
 									{industries?.map((item, i) => (
 										<SelectItem
-											selected={currentCategory === item?.value}
+											selected={cat === item?.value}
 											onClick={() => onCategoryChange(item?.value)}
 											border={BORDER}
 											key={i}>

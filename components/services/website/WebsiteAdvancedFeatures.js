@@ -1,7 +1,9 @@
-import React from 'react';
+'use client';
+
 import { Briefcase, FileText, Rocket } from 'lucide-react';
 import LightIItemCard from '../card/LightIItemCard';
 import CardSection from './CardSection';
+import { useColorMode } from '@chakra-ui/react';
 
 const data = [
 	{
@@ -36,7 +38,8 @@ const data = [
 	},
 ];
 
-const WebsiteUseCases = ({ colorMode }) => {
+const WebsiteUseCases = () => {
+	const { colorMode } = useColorMode();
 	return (
 		<CardSection
 			colorMode={colorMode}

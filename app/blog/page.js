@@ -1,7 +1,11 @@
+'use client';
+
 import BlogPageClient from '../../components/blog/BlogPageClient';
 
-function BlogPageContent() {
+// import BlogPageClient from '../../components/blog/BlogPageClient';
+
+const BlogPageContent = () => {
 	return <BlogPageClient />;
-}
+};
 
 export default BlogPageContent;
