@@ -34,21 +34,11 @@ export async function generateMetadata({ params }) {
 		const imageUrl = blogImage.startsWith('http') ? blogImage : `${defaultSEO.siteUrl}${blogImage}`;
 
 		return {
-			metadataBase: new URL(defaultSEO.siteUrl),
-			title: {
-				default: `${title} | ${defaultSEO.siteName}`,
-				template: `%s | ${defaultSEO.siteName}`,
-			},
+			title: title, // This will use the template from the root layout.js
 			description: metaDescription,
 			keywords: [...defaultSEO.keywords, ...blogKeywords, title.toLowerCase()],
-			authors: [{ name: blogData.author || defaultSEO.author }],
-			creator: blogData.author || defaultSEO.author,
-			publisher: defaultSEO.siteName,
-			formatDetection: {
-				email: false,
-				address: false,
-				telephone: false,
-			},
+			authors: [{ name: blogData?.author || defaultSEO.author }],
+
 			openGraph: {
 				type: 'article',
 				locale: 'en_US',
@@ -64,37 +54,20 @@ export async function generateMetadata({ params }) {
 						alt: title,
 					},
 				],
-				publishedTime: blogData.createdAt || blogData.publishedAt,
-				modifiedTime: blogData.updatedAt || blogData.modifiedAt,
-				authors: [blogData.author || defaultSEO.author],
-				section: blogData.category || 'Technology',
-				tags: blogData.tags || ['software development', 'web development', 'technology'],
+				publishedTime: blogData?.publishedAt,
+				modifiedTime: blogData?.updatedAt,
+				section: blogData?.category || 'Technology',
+				tags: blogData?.tags || ['software development', 'web development', 'technology'],
 			},
+
 			twitter: {
-				card: 'summary_large_image',
 				title: title,
 				description: metaDescription,
-				creator: '@thinkcrypt',
 				images: [imageUrl],
 			},
-			robots: {
-				index: true,
-				follow: true,
-				googleBot: {
-					index: true,
-					follow: true,
-					'max-video-preview': -1,
-					'max-image-preview': 'large',
-					'max-snippet': -1,
-				},
-			},
+
 			alternates: {
 				canonical: blogUrl,
-			},
-			icons: {
-				icon: '/favicon.ico',
-				shortcut: '/favicon.ico',
-				apple: '/favicon.ico',
 			},
 		};
 	} catch (error) {
