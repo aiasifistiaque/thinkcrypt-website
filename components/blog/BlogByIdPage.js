@@ -20,7 +20,7 @@ const convertTextToHtml = text => {
 	const htmlContent = paragraphs
 		.map(paragraph => {
 			// Replace single line breaks with <br> tags
-			const formattedParagraph = paragraph.replace(/\n/g, '<br>');
+			const formattedParagraph = paragraph.replace(/\n/g, '');
 			return `<p>${formattedParagraph}</p>`;
 		})
 		.join('\n');
@@ -128,8 +128,8 @@ const BlogByIdPage = ({ data }) => {
 								// Additional paragraph styling with higher specificity
 								'& p, & div p, & section p': {
 									color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
-									margin: '1rem 0',
-									lineHeight: 1.3,
+									margin: '0rem 0',
+									lineHeight: 1.5,
 									fontSize: { base: '1.1rem', md: '1.1rem' },
 								},
 							}}
@@ -191,39 +191,42 @@ const getBlogContentStyles = colorMode => {
 		'& h1': {
 			fontSize: { base: '1.8rem', md: '2rem' },
 			fontWeight: '800',
-			margin: '1.5rem 0 1rem 0',
+			margin: '1.2rem 0 0.6rem 0',
 			lineHeight: 1.2,
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 		},
 		'& h2': {
 			fontSize: { base: '1.6rem', md: '1.75rem' },
 			fontWeight: '800',
-			margin: '1.4rem 0 0.8rem 0',
+			margin: '1.2rem 0 0.6rem 0',
 			lineHeight: 1.3,
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 		},
 		'& h3': {
 			fontSize: { base: '1.4rem', md: '1.5rem' },
 			fontWeight: '800',
-			margin: '1.3rem 0 0.7rem 0',
+			margin: '1.2rem 0 0.6rem 0',
 			lineHeight: 1.4,
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 		},
 		'& h4, & h5, & h6': {
-			fontSize: { base: '1.2rem', md: '1.25rem' },
+			fontSize: { base: '0rem', md: '1.25rem' },
 			fontWeight: '800',
 			margin: '1.2rem 0 0.6rem 0',
 			lineHeight: 1.4,
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 		},
 		'& p': {
-			margin: '1rem 0',
+			margin: '0rem 0 !important',
 			lineHeight: 1.4,
 			fontSize: { base: '1.1rem', md: '1.14rem' },
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 		},
+		'& br': {
+			background: 'blue',
+		},
 		'& span': {
-			margin: '1rem 0',
+			margin: '0rem 0',
 			lineHeight: 1.3,
 			fontSize: { base: '1.1rem', md: '1.1rem' },
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
@@ -274,13 +277,13 @@ const getBlogContentStyles = colorMode => {
 			padding: 0,
 		},
 		'& ol, & ul': {
-			margin: '1rem 0',
+			margin: '0 0',
 			paddingLeft: '2rem',
 			color: `${colorMode === 'dark' ? '#FAF8F1' : '#0D0D0D'} !important`,
 			fontSize: '1rem',
 		},
 		'& ol li, & ul li': {
-			margin: '0.5rem 0',
+			margin: '0 0 .5rem 0',
 			lineHeight: 1.3,
 			fontSize: '1.1rem',
 		},
