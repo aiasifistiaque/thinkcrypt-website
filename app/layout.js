@@ -124,7 +124,7 @@ export default function RootLayout({ children }) {
 								areaServed: 'BD',
 								availableLanguage: ['English', 'Bengali'],
 							},
-							foundingDate: '2017',
+							foundingDate: '2023',
 							numberOfEmployees: '10-50',
 							slogan: 'Transform Your Ideas Into Digital Reality',
 							services: [
