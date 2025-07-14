@@ -150,7 +150,7 @@ const Footer = ({ theme }) => {
 
 						<Stack spacing={2}>
 							<Text {...footerText}>(+88) 01828398225, 01799399555</Text>
-							<Text {...footerText}>info@thinkcrypt.io</Text>
+							<Text {...footerText}>connect@thinkcrypt.dev</Text>
 						</Stack>
 					</Stack>
 				</Sections>
