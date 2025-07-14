@@ -68,6 +68,7 @@ const Homepage = () => {
 						clickType: 'click',
 					}}
 					btn='Contact Us'
+					href='https://docs.google.com/forms/d/e/1FAIpQLSeu0GxkeIBfjuAXlPALET-5S1Dxs6JASbV2CSjv2Yv4YA1vZQ/viewform'
 					title='Contact Us'
 					titleTop='Let’s design'
 					titleBottom='your project'>
