@@ -1,8 +1,9 @@
 import { getSite, mintText } from '@/lib/mint';
 import { backendList } from '@/lib/backend';
+import { getBlogs } from '@/lib/blog';
 
 // sitemap.xml from the Mint panel — every published page in Website → Pages —
-// plus the blog posts and case studies, which come from Thinkcrypt's own API
+// plus the blog posts (Mint panel → Blog posts) and the case studies (Thinkcrypt's own API)
 export const revalidate = 300;
 
 const entry = (loc, lastmod) =>
@@ -14,13 +15,13 @@ export async function GET() {
 
 	const [panel, blogs, portfolios] = await Promise.all([
 		mintText(`/site/sitemap.xml?origin=${encodeURIComponent(origin)}`),
-		backendList('blogs?status=published&limit=500&sort=-createdAt'),
+		getBlogs(),
 		backendList('portfolios?limit=500&sort=-createdAt'),
 	]);
 
 	const extra =
 		blogs
-			.filter(b => b?.slug)
+			.filter(b => b?.slug && b.seo?.sitemap?.include !== false && b.seo?.robots?.index !== false)
 			.map(b => entry(`${origin}/blog/${encodeURIComponent(b.slug)}`, b.updatedAt || b.publishedAt))
 			.join('') +
 		portfolios

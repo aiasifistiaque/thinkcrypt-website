@@ -2,7 +2,7 @@
 
 import { Box, Image, VStack, HStack, Avatar, Icon, Wrap } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
-import { FiClock } from 'react-icons/fi';
+import { FiClock, FiEye } from 'react-icons/fi';
 import NextLink from 'next/link';
 import ImageTag from './ImageTag';
 import { fonts } from '../../lib/constants';
@@ -109,6 +109,14 @@ const BlogCard = ({ blog, colorMode }) => {
 										boxSize='14px'
 									/>
 									<SecondaryText fontSize='sm'>{blog?.readTime}</SecondaryText>
+								</HStack>
+								<HStack spacing='4px'>
+									<Icon
+										as={FiEye}
+										color={secondaryColor}
+										boxSize='14px'
+									/>
+									<SecondaryText fontSize='sm'>{(blog?.views || 0).toLocaleString('en-US')}</SecondaryText>
 								</HStack>
 							</HStack>
 							<SecondaryText fontSize='sm'>{formatDate(blog?.publishedAt)}</SecondaryText>

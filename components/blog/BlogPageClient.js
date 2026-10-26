@@ -1,47 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React from 'react';
 import Page from '../util/Page/Page';
 import { Stack, Grid, Text, useColorMode, Center } from '@chakra-ui/react';
 import { colors } from '../../theme/styles';
 import BlogCard from './BlogCard';
 import TitleSection from '../home/about-us/TitleSection';
-import { fonts, padding } from '../../lib/constants';
-import { useGetAllQuery } from '../../store';
+import { padding } from '../../lib/constants';
 
-const BlogPageClient = () => {
-	const router = useRouter();
-
+// The blog index — posts come prerendered from the server (Mint panel, published only)
+const BlogPageClient = ({ blogs = [] }) => {
 	const { colorMode } = useColorMode();
-	const [selectedCategory, setSelectedCategory] = useState('');
-
-	// Get category from URL params
-	// useEffect(() => {
-	// 	const category = searchParams.get('category') || '';
-	// 	setSelectedCategory(category);
-	// }, [searchParams]);
-
-	const { data, isLoading } = useGetAllQuery({
-		path: 'blogs',
-		query: {
-			// category: selectedCategory,
-			limit: 50,
-		},
-	});
-
-	// useScrollPreservation('blog-page', [selectedCategory, searchQuery]);
 
 	const bg = colorMode === 'dark' ? colors.background.dark : colors.background.light;
-	const text = colorMode === 'dark' ? colors.text.dark : colors.text.light;
 	const secondary = colorMode === 'dark' ? colors.textSecondary.dark : colors.textSecondary.light;
-
-	const handleCategoryChange = category => {
-		setSelectedCategory(category);
-		const params = new URLSearchParams();
-		if (category) params.set('category', category);
-		router.push(`/blog?${params.toString()}`);
-	};
 
 	return (
 		<Page
@@ -64,7 +36,7 @@ const BlogPageClient = () => {
 					expert insights from Thinkcrypt's team on building scalable digital solutions.`}
 				</TitleSection>
 
-				{data?.doc && data?.doc?.length > 0 ? (
+				{blogs.length > 0 ? (
 					<Grid
 						templateColumns={{
 							base: '1fr',
@@ -74,7 +46,7 @@ const BlogPageClient = () => {
 						gap={6}
 						p={{ base: padding?.baseBody, md: padding?.lgBody }}
 						bg={bg}>
-						{data?.doc?.map((blog, index) => (
+						{blogs.map((blog, index) => (
 							<BlogCard
 								key={blog._id || index}
 								blog={blog}

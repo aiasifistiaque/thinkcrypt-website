@@ -6,6 +6,7 @@ import { Page } from '../util';
 import { padding, fonts } from '@/lib/constants';
 import { colors } from '@/theme/styles';
 import CardBadge from '../portfolio/PortfolioItem/CardBadge';
+import ViewCount from './ViewCount';
 
 const convertTextToHtml = text => {
 	if (!text) return '';
@@ -70,7 +71,11 @@ const BlogByIdPage = ({ data }) => {
 						</Tag>
 
 						{/* Article Title */}
-						<PrimaryHeading {...headingStyles}>{data?.name}</PrimaryHeading>
+						<PrimaryHeading
+							as='h1'
+							{...headingStyles}>
+							{data?.name}
+						</PrimaryHeading>
 						<SecondaryText
 							{...subtitleStyles}
 							color={secondaryColor}>
@@ -92,15 +97,24 @@ const BlogByIdPage = ({ data }) => {
 										</PrimaryText>
 									</VStack>
 								</HStack>
-								<SecondaryText {...authorDateStyles}>
-									{data?.publishedAt
-										? new Date(data.publishedAt).toLocaleDateString('en-US', {
-												year: 'numeric',
-												month: 'long',
-												day: 'numeric',
-										  })
-										: 'No date available'}
-								</SecondaryText>
+								<HStack spacing={3}>
+									<SecondaryText {...authorDateStyles}>
+										{data?.publishedAt
+											? new Date(data.publishedAt).toLocaleDateString('en-US', {
+													year: 'numeric',
+													month: 'long',
+													day: 'numeric',
+											  })
+											: 'No date available'}
+									</SecondaryText>
+									{data?.readTime && <SecondaryText {...authorDateStyles}>· {data.readTime}</SecondaryText>}
+									<SecondaryText {...authorDateStyles}>·</SecondaryText>
+									<ViewCount
+										id={data?._id}
+										views={data?.views}
+										{...authorDateStyles}
+									/>
+								</HStack>
 							</HStack>
 							<Divider
 								my={4}
@@ -113,7 +127,7 @@ const BlogByIdPage = ({ data }) => {
 						{/* Featured Image */}
 						<Image
 							src={data?.coverImage || data?.image}
-							alt={data?.name}
+							alt={data?.imageAlt || data?.name}
 							{...imageStyles}
 							mt={10}
 						/>
