@@ -104,6 +104,10 @@ const WebsiteTypePage = ({ type, others = [], custom, cta }) => {
 	const panelScreens = (type.panelScreens || []).filter(s => s.image);
 	const faq = (type.faq || []).filter(q => q.question && q.answer);
 
+	// Our own contact form opens with this kind of website already chosen
+	const ctaUrl = cta?.data?.buttonUrl || links.contact;
+	const contactHref = ctaUrl === links.contact ? `${ctaUrl}?type=${encodeURIComponent(type.slug)}` : ctaUrl;
+
 	// Numbered in the order they show, skipping the ones this type leaves empty
 	let n = 0;
 	const next = () => num(n++);
@@ -186,7 +190,7 @@ const WebsiteTypePage = ({ type, others = [], custom, cta }) => {
 								<PillButton
 									t={t}
 									solid
-									href={cta?.data?.buttonUrl || links.contact}>
+									href={contactHref}>
 									{cta?.data?.buttonLabel || 'Contact us'}
 								</PillButton>
 								{(panel.length > 0 || panelScreens.length > 0) && (

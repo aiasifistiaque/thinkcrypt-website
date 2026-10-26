@@ -84,9 +84,7 @@ const ColumnSection = ({
 	);
 
 	const cotactButtom = (
-		<CLink
-			isExternal
-			href={links.contact}>
+		<CLink href={links.contact}>
 			<ThinkButton>
 				<ButtonText>{btnText}</ButtonText>
 			</ThinkButton>

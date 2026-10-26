@@ -1,8 +1,8 @@
 //
 
 export const links = {
-	contact:
-		'https://docs.google.com/forms/d/e/1FAIpQLSeu0GxkeIBfjuAXlPALET-5S1Dxs6JASbV2CSjv2Yv4YA1vZQ/viewform?usp=sf_link',
+	// The contact form: its enquiries land in the Mint panel (Contact us)
+	contact: '/contact',
 };
 
 export const colors = {

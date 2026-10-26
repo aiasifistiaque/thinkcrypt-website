@@ -48,7 +48,7 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 							alignItems='flex-end'>
 							<Text {...indexCss}>{idx}</Text>
 							<Flex gap={8}>
-								<Link href='https://docs.google.com/forms/d/e/1FAIpQLSeu0GxkeIBfjuAXlPALET-5S1Dxs6JASbV2CSjv2Yv4YA1vZQ/viewform?usp=sf_link'>
+								<Link href='/contact'>
 									<LinkButton label='CONTACT US' />
 								</Link>
 							</Flex>

@@ -85,9 +85,7 @@ const SubSection = ({ subHeading, theme, heading, children, btnText, href, to, F
 	);
 
 	const cotactButtom = (
-		<CLink
-			isExternal
-			href={links.contact}>
+		<CLink href={links.contact}>
 			<ThinkButton>
 				<ButtonText>{btnText}</ButtonText>
 			</ThinkButton>
