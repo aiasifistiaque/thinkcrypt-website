@@ -18,6 +18,7 @@ const ServicePage = ({ meta, hero, children, theme }) => {
 					as='main'
 					flex='1'>
 					<TitleSection
+						headingAs='h1'
 						top
 						pb={0}
 						colorMode={colorMode}

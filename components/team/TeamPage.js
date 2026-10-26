@@ -111,6 +111,7 @@ function TeamPage() {
 				spacing={0}
 				w='full'>
 				<TitleSection
+					headingAs='h1'
 					colorMode={colorMode}
 					top
 					titleTop='Meet the Creators'

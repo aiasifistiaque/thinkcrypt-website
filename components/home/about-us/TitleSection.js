@@ -29,6 +29,7 @@ const TitleSection = ({
 	children,
 	paragraph,
 	clickEvent,
+	headingAs = 'h2',
 	...props
 }) => {
 	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
@@ -100,6 +101,7 @@ const TitleSection = ({
 				borderColor={colorMode == 'dark' ? colors.background.light : colors.border.light}>
 				<Grid {...gridCss}>
 					<Heading
+						as={headingAs}
 						{...headingCss}
 						color={textColor}>
 						{titleTop}

@@ -49,6 +49,7 @@ const Servicepage = () => {
 			description={`Explore Thinkcrypt’s full range of services including MERN stack development, MVPs, SaaS platforms, eCommerce, CRM systems, and cloud solutions tailored for startups and enterprises.`}>
 			<Stack spacing={0}>
 				<TitleSection
+					headingAs='h1'
 					top
 					pb={0}
 					colorMode={colorMode}

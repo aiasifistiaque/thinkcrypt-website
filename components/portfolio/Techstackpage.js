@@ -52,6 +52,7 @@ const TechstackPage = () => {
 			description={`Explore the powerful technology stacks used by Thinkcrypt, including the MERN stack, to deliver scalable web and mobile applications. From MVPs to enterprise solutions, we build future-ready software.`}>
 			<Stack spacing={0}>
 				<TitleSection
+					headingAs='h1'
 					top
 					title='Technology Stacks'
 					colorMode={theme}

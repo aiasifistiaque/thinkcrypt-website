@@ -61,6 +61,7 @@ const CaseStudy = () => {
 				spacing={0}
 				pt='0'>
 				<TitleSection
+					headingAs='h1'
 					colorMode={colorMode}
 					top
 					pb={0}

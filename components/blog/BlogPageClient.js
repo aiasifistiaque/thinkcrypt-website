@@ -52,6 +52,7 @@ const BlogPageClient = () => {
 				spacing={0}
 				w='full'>
 				<TitleSection
+					headingAs='h1'
 					colorMode={colorMode}
 					top
 					w='full'

@@ -35,6 +35,7 @@ const BlogPage = ({ initialData, initialCategory = '' }) => {
 			description={`Stay updated with the latest in web development, SaaS architecture, and tech trends. Read expert insights from Thinkcrypt's team on building scalable digital solutions.`}>
 			<Stack spacing={0}>
 				<TitleSection
+					headingAs='h1'
 					colorMode={colorMode}
 					top
 					pb='64px'

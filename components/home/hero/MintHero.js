@@ -79,6 +79,7 @@ const MintHero = () => {
 						flexDir='column'
 						justify='center'>
 						<Title
+							as='h1'
 							fontFamily='Michroma'
 							size='2xl'
 							fontWeight={800}>

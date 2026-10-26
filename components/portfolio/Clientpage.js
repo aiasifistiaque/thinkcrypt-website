@@ -59,6 +59,7 @@ const Clientpage = () => {
 			description={`Discover the startups, enterprises, and global brands that trust Thinkcrypt for custom software, SaaS, and web development. See how we’ve helped clients succeed with modern tech solutions.`}>
 			<Stack spacing={0}>
 				<TitleSection
+					headingAs='h1'
 					top
 					colorMode={colorMode}
 					title='Stakeholders'

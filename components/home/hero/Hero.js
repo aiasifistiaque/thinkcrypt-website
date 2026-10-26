@@ -83,6 +83,7 @@ const Hero = ({ theme }) => {
 						flexDir='column'
 						justify='flex-end'>
 						<Heading
+							as='h1'
 							color={headingColor}
 							fontFamily={fonts?.title}
 							fontSize={{ base: '3rem', md: '8rem' }}
@@ -103,8 +104,8 @@ const Hero = ({ theme }) => {
 							lineHeight='1.3'
 							maxW={{ md: '32%' }}>
 							{/* {`From initial concept to user-tested MVPs and final product launch using the MERN stack, we're your partner in creating exceptional value and transformative outcomes.`} */}
-							We build innovative, easy-to-use digital solutions that help startups and enterprises
-							grow faster, work better & thrive in the digital landscape.
+							An AI-first software development agency. We build custom software, AI tools &
+							automation that help startups and enterprises grow faster, work better & thrive.
 						</Text>
 						{/* <Link href='https://thinkcrypt-get-a-quote-deployed.vercel.app/'>
 							<ThinkButton>
