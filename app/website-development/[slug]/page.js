@@ -21,9 +21,10 @@ export async function generateMetadata({ params }) {
 
 export default async function WebsiteType({ params }) {
 	const { slug } = await params;
-	const [type, all, cta] = await Promise.all([
+	const [type, all, custom, cta] = await Promise.all([
 		getWebsiteType(slug),
 		getWebsiteTypes(),
+		pageSection('/website-development', 'custom'),
 		pageSection('/website-development', 'cta'),
 	]);
 	if (!type) notFound();
@@ -41,6 +42,7 @@ export default async function WebsiteType({ params }) {
 			<WebsiteTypePage
 				type={type}
 				others={others}
+				custom={custom}
 				cta={cta}
 			/>
 		</>

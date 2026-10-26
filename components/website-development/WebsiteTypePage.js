@@ -21,7 +21,7 @@ import {
 } from './sections';
 
 // /website-development/<slug>: one kind of website (Mint panel → Website types). Every word and
-// picture is the record's; the contact band is the /website-development page's "cta" content.
+// picture is the record's; the "you name it" and contact bands are /website-development's "custom" and "cta" contents.
 
 const Chip = ({ children, t }) => (
 	<Box
@@ -93,7 +93,7 @@ const Screens = ({ items, t }) => (
 	</Grid>
 );
 
-const WebsiteTypePage = ({ type, others = [], cta }) => {
+const WebsiteTypePage = ({ type, others = [], custom, cta }) => {
 	const { colorMode } = useColorMode();
 	const t = toneOf(colorMode);
 	const inv = { ...t, bg: t.text, text: t.bg, sub: t.bg, line: 'rgba(128,128,128,0.35)' };
@@ -404,6 +404,14 @@ const WebsiteTypePage = ({ type, others = [], cta }) => {
 								items: faq.map(q => ({ title: q.question, description: q.answer })),
 							},
 						}}
+						index={n++}
+						t={t}
+					/>
+				)}
+
+				{custom && (
+					<Band
+						section={custom}
 						index={n++}
 						t={t}
 					/>

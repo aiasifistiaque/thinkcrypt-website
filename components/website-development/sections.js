@@ -216,6 +216,23 @@ export const ScreenFrame = ({ src, alt, address, t, ratio = 16 / 10 }) =>
 		</Box>
 	) : null;
 
+// A drawn illustration (an .svg in the panel's picture field), shown as it is, without a window
+export const isIllustration = src => /\.svg($|\?)/i.test(src || '');
+export const Illustration = ({ src, alt, ratio = 16 / 10 }) =>
+	src ? (
+		<AspectRatio
+			ratio={ratio}
+			w='full'>
+			<Image
+				src={src}
+				alt={alt || ''}
+				objectFit='contain'
+				borderRadius='12px'
+				loading='lazy'
+			/>
+		</AspectRatio>
+	) : null;
+
 /* ----------------------------------------------------------------- hero */
 
 export const Hero = ({ section, index = 0, t }) => {
@@ -370,11 +387,18 @@ export const FeatureRows = ({ items, t }) => (
 				borderTop='1px solid'
 				borderColor={t.line}>
 				<Box order={{ md: i % 2 ? 2 : 1 }}>
-					<ScreenFrame
-						src={item.image}
-						alt={item.title}
-						t={t}
-					/>
+					{isIllustration(item.image) ? (
+						<Illustration
+							src={item.image}
+							alt={item.title}
+						/>
+					) : (
+						<ScreenFrame
+							src={item.image}
+							alt={item.title}
+							t={t}
+						/>
+					)}
 				</Box>
 				<Flex
 					direction='column'
@@ -635,10 +659,14 @@ export const Faq = ({ section, index, t }) => {
 
 /* ------------------------------------------------- section / cta / text */
 
-// A heading, text, buttons and a picture, on an inverted band
-export const Band = ({ section, index, t, inverted = true }) => {
+// Bands drawn on the card colour instead of inverted
+const LIGHT_BANDS = ['custom'];
+
+// A heading, text, examples, buttons and a picture, on an inverted (or card-coloured) band
+export const Band = ({ section, index, t, inverted = !LIGHT_BANDS.includes(section.slug) }) => {
 	const d = section.data;
-	const b = inverted ? { ...t, bg: t.text, text: t.bg, sub: t.bg, line: t.bg } : t;
+	const b = inverted ? { ...t, bg: t.text, text: t.bg, sub: t.bg, line: t.bg } : { ...t, bg: t.card };
+	const examples = (d.items || []).filter(item => item.title);
 	return (
 		<Frame
 			t={t}
@@ -686,6 +714,27 @@ export const Band = ({ section, index, t, inverted = true }) => {
 								opacity={inverted ? 0.8 : 1}>
 								{d.subheading || d.text}
 							</Text>
+						)}
+						{examples.length > 0 && (
+							<Flex
+								gap={2}
+								wrap='wrap'>
+								{examples.map(item => (
+									<Text
+										key={item.title}
+										px={4}
+										py={2}
+										border='1px solid'
+										borderColor={b.text}
+										borderRadius='99px'
+										fontFamily={fonts.primary}
+										fontSize='13px'
+										textTransform='uppercase'
+										color={b.text}>
+										{item.title}
+									</Text>
+								))}
+							</Flex>
 						)}
 						<Flex
 							gap={3}
