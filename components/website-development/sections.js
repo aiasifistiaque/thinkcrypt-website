@@ -34,7 +34,7 @@ export const toneOf = mode => {
 };
 
 const pad = { px: { base: padding.baseBody, lg: padding.lgBody } };
-const num = i => String(i + 1).padStart(2, '0');
+export const num = i => String(i + 1).padStart(2, '0');
 
 // "Websites you\nrun yourself" → two lines
 export const Lines = ({ children }) =>
@@ -129,7 +129,7 @@ export const SectionHead = ({ index, eyebrow, heading, text, t, as = 'h2', size 
 	</Flex>
 );
 
-const Frame = ({ t, id, children, ...props }) => (
+export const Frame = ({ t, id, children, ...props }) => (
 	<Box
 		as='section'
 		id={id}
@@ -142,7 +142,7 @@ const Frame = ({ t, id, children, ...props }) => (
 	</Box>
 );
 
-const Picture = ({ src, alt, ratio = 16 / 10, radius = '12px' }) =>
+export const Picture = ({ src, alt, ratio = 16 / 10, radius = '12px' }) =>
 	src ? (
 		<AspectRatio
 			ratio={ratio}
@@ -155,6 +155,65 @@ const Picture = ({ src, alt, ratio = 16 / 10, radius = '12px' }) =>
 				loading='lazy'
 			/>
 		</AspectRatio>
+	) : null;
+
+// A screenshot in a window: three dots and an address bar over the picture, for panel and demo-site screens
+export const ScreenFrame = ({ src, alt, address, t, ratio = 16 / 10 }) =>
+	src ? (
+		<Box
+			w='full'
+			borderRadius='12px'
+			overflow='hidden'
+			border='1px solid'
+			borderColor={t.line}
+			bg={t.card}
+			boxShadow='0 18px 40px -24px rgba(0,0,0,0.35)'>
+			<Flex
+				align='center'
+				gap='6px'
+				px={3}
+				h='30px'
+				borderBottom='1px solid'
+				borderColor={t.line}>
+				{['#ff5f57', '#febc2e', '#28c840'].map(c => (
+					<Box
+						key={c}
+						w='9px'
+						h='9px'
+						borderRadius='full'
+						bg={c}
+					/>
+				))}
+				{address && (
+					<Text
+						flex={1}
+						mx={3}
+						px={3}
+						h='18px'
+						lineHeight='18px'
+						borderRadius='99px'
+						bg={t.bg}
+						fontFamily={fonts.primary}
+						fontSize='10px'
+						color={t.sub}
+						noOfLines={1}
+						textAlign='center'>
+						{address}
+					</Text>
+				)}
+			</Flex>
+			<AspectRatio
+				ratio={ratio}
+				w='full'>
+				<Image
+					src={src}
+					alt={alt || ''}
+					objectFit='cover'
+					objectPosition='top'
+					loading='lazy'
+				/>
+			</AspectRatio>
+		</Box>
 	) : null;
 
 /* ----------------------------------------------------------------- hero */
@@ -298,22 +357,23 @@ const BigCards = ({ items, t }) => (
 	</Grid>
 );
 
-// Cards with pictures — one feature per row, picture on alternating sides
-const FeatureRows = ({ items, t }) => (
+// Cards with pictures (screenshots) — one feature per row, picture on alternating sides
+export const FeatureRows = ({ items, t }) => (
 	<Flex direction='column'>
 		{items.map((item, i) => (
 			<Grid
 				key={i}
-				templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+				templateColumns={{ base: '1fr', md: '1.25fr 1fr' }}
 				gap={{ base: 6, md: 16 }}
 				alignItems='center'
 				py={{ base: 8, md: 12 }}
 				borderTop='1px solid'
 				borderColor={t.line}>
 				<Box order={{ md: i % 2 ? 2 : 1 }}>
-					<Picture
+					<ScreenFrame
 						src={item.image}
 						alt={item.title}
+						t={t}
 					/>
 				</Box>
 				<Flex
@@ -325,7 +385,8 @@ const FeatureRows = ({ items, t }) => (
 						fontSize='13px'
 						textTransform='uppercase'
 						color={t.accent}>
-						{num(i)} — {item.subTitle}
+						{num(i)}
+						{item.subTitle ? ` — ${item.subTitle}` : ''}
 					</Text>
 					<Heading
 						as='h3'
@@ -361,7 +422,7 @@ const FeatureRows = ({ items, t }) => (
 );
 
 // Small cards in a grid — "everything else"
-const CardGrid = ({ items, t }) => (
+export const CardGrid = ({ items, t }) => (
 	<Grid
 		templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
 		gap={{ base: 3, md: 4 }}>
@@ -682,6 +743,129 @@ export const TextSection = ({ section, index, t }) => {
 	);
 };
 
+/* ----------------------------------------------------------------- list */
+
+// "/website-development/{slug}" → the record's own address
+const fill = (template, record) => String(template || '').replace(/\{(\w+)\}/g, (_, k) => record?.[k] ?? '');
+
+// One record of a List as a card: its picture in a browser window, its name and text
+export const RecordCard = ({ record, d, t }) => {
+	const title = record[d.cardTitle || 'name'] || record.title;
+	const text = record[d.cardText || 'summary'];
+	const image = record[d.cardImage || 'coverImage'];
+	const href = d.link ? fill(d.link, record) : null;
+	return (
+		<Flex
+			as={href ? Link : 'div'}
+			href={href || undefined}
+			direction='column'
+			gap={4}
+			role='group'>
+			<Box
+				transition='transform .25s'
+				_groupHover={{ transform: 'translateY(-4px)' }}>
+				{image ? (
+					<ScreenFrame
+						src={image}
+						alt={title}
+						t={t}
+						address={href ? `thinkcrypt.dev${href}` : undefined}
+					/>
+				) : (
+					<Box
+						borderRadius='12px'
+						bg={t.card}
+						h='200px'
+					/>
+				)}
+			</Box>
+			<Flex
+				justify='space-between'
+				align='flex-start'
+				gap={4}>
+				<Box>
+					<Heading
+						as='h3'
+						fontFamily={fonts.title}
+						fontSize={{ base: '2rem', md: '2.5rem' }}
+						fontWeight='400'
+						lineHeight='1'
+						textTransform='uppercase'
+						color={t.text}
+						mb={2}>
+						{title}
+					</Heading>
+					{text && (
+						<Text
+							fontFamily={fonts.primary}
+							fontSize='14px'
+							lineHeight='1.45'
+							textTransform='uppercase'
+							color={t.sub}>
+							{text}
+						</Text>
+					)}
+				</Box>
+				{href && (
+					<Text
+						fontFamily={fonts.title}
+						fontSize='2rem'
+						lineHeight='1'
+						color={t.text}
+						transition='transform .2s'
+						_groupHover={{ transform: 'translate(3px, -3px)' }}>
+						↗
+					</Text>
+				)}
+			</Flex>
+		</Flex>
+	);
+};
+
+// A List content: records of a panel model (e.g. website types), fetched by the page on the server
+export const RecordList = ({ section, index, t }) => {
+	const d = section.data;
+	const records = section.records || [];
+	if (!records.length) return null;
+	return (
+		<Frame
+			t={t}
+			id={section.slug}>
+			<SectionHead
+				index={num(index)}
+				eyebrow={d.eyebrow}
+				heading={d.heading}
+				text={d.text}
+				t={t}
+			/>
+			<Grid
+				templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
+				columnGap={{ base: 4, md: 6 }}
+				rowGap={{ base: 10, md: 14 }}>
+				{records.map(record => (
+					<RecordCard
+						key={record._id}
+						record={record}
+						d={d}
+						t={t}
+					/>
+				))}
+			</Grid>
+			{d.buttonLabel && (
+				<Flex
+					pt={12}
+					justify='center'>
+					<PillButton
+						t={t}
+						href={d.buttonUrl}>
+						{d.buttonLabel}
+					</PillButton>
+				</Flex>
+			)}
+		</Frame>
+	);
+};
+
 // A content type → how it renders; one the page doesn't know is skipped
 export const SECTIONS = {
 	hero: Hero,
@@ -691,4 +875,5 @@ export const SECTIONS = {
 	section: Band,
 	cta: Band,
 	text: TextSection,
+	list: RecordList,
 };
