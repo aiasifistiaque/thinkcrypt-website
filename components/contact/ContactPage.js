@@ -37,7 +37,7 @@ const Detail = ({ label, children, href, t }) =>
 		</Box>
 	) : null;
 
-const ContactPage = ({ sections = [], fields = [], types = [], settings = {}, api, apiKey }) => {
+const ContactPage = ({ sections = [], fields = [], types = [], settings = {} }) => {
 	const { colorMode } = useColorMode();
 	const t = toneOf(colorMode);
 	const [sent, setSent] = useState(null);
@@ -135,8 +135,6 @@ const ContactPage = ({ sections = [], fields = [], types = [], settings = {}, ap
 							<ContactForm
 								fields={fields}
 								types={types}
-								api={api}
-								apiKey={apiKey}
 								buttonLabel={form.buttonLabel}
 								t={t}
 								onSent={code => {

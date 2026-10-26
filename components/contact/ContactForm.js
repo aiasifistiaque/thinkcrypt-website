@@ -3,13 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Box, Button, Flex, Grid, Input, Select, Text, Textarea } from '@chakra-ui/react';
 import { fonts } from '../../lib/constants';
-import { CONTACT_ROUTE } from '../../lib/contact';
+import { MAX_FILES, MAX_TOTAL_MB } from '../../lib/contactLimits';
 
-// The contact form, drawn from the panel's "Contact us" fields. Attachments go to the public API's
-// uploads first (they come back as links), then the enquiry is created with those links.
+// The contact form, drawn from the panel's "Contact us" fields. It posts to the site's own /api/contact,
+// which sends the files and the enquiry to the panel with the server key.
 
-const MAX_FILES = 5;
-const MAX_MB = 10;
+const MAX_BYTES = MAX_TOTAL_MB * 1024 * 1024;
 const ACCEPT = '.png,.jpg,.jpeg,.webp,.gif,.heic,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip';
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -71,7 +70,7 @@ const inputStyle = t => ({
 	_focusVisible: { borderColor: t.text, boxShadow: `0 1px 0 0 ${t.text}` },
 });
 
-const ContactForm = ({ fields, types = [], api, apiKey, buttonLabel, t, onSent }) => {
+const ContactForm = ({ fields, types = [], buttonLabel, t, onSent }) => {
 	const [values, setValues] = useState({});
 	const [files, setFiles] = useState([]);
 	const [errors, setErrors] = useState({});
@@ -97,19 +96,18 @@ const ContactForm = ({ fields, types = [], api, apiKey, buttonLabel, t, onSent }
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// Adds files while they fit: MAX_FILES of them, MAX_TOTAL_MB together
 	const addFiles = list => {
-		const chosen = Array.from(list || []);
-		const tooBig = chosen.find(f => f.size > MAX_MB * 1024 * 1024);
-		const next = [...files, ...chosen.filter(f => f.size <= MAX_MB * 1024 * 1024)].slice(0, MAX_FILES);
+		const next = [...files];
+		let skipped = '';
+		for (const f of Array.from(list || [])) {
+			const used = next.reduce((n, x) => n + x.size, 0);
+			if (next.length >= MAX_FILES) skipped = `Up to ${MAX_FILES} files.`;
+			else if (used + f.size > MAX_BYTES) skipped = `“${f.name}” doesn’t fit — attachments are up to ${MAX_TOTAL_MB} MB in total. Email bigger files to us.`;
+			else next.push(f);
+		}
 		setFiles(next);
-		setErrors(e => ({
-			...e,
-			files: tooBig
-				? `“${tooBig.name}” is over ${MAX_MB} MB.`
-				: files.length + chosen.length > MAX_FILES
-					? `Up to ${MAX_FILES} files.`
-					: undefined,
-		}));
+		setErrors(e => ({ ...e, files: skipped || undefined }));
 	};
 
 	const check = () => {
@@ -131,29 +129,16 @@ const ContactForm = ({ fields, types = [], api, apiKey, buttonLabel, t, onSent }
 		if (!check()) return;
 		// A bot filled the hidden field: answer as if it went through
 		if (trap.current?.value) return onSent('');
-		if (!api || !apiKey) return setProblem('The form isn’t available right now — email us instead.');
 		setSending(true);
 		try {
-			let links = [];
-			if (files.length) {
-				const form = new FormData();
-				files.forEach(f => form.append('files', f));
-				const res = await fetch(`${api}/uploads?apiKey=${apiKey}`, { method: 'POST', body: form });
-				const out = await res.json().catch(() => null);
-				if (!res.ok) throw new Error(out?.message || 'Your files couldn’t be attached. Remove them and send again, or email them to us.');
-				links = (out.files || []).map(f => f.url);
+			const form = new FormData();
+			for (const [k, v] of Object.entries(values)) {
+				if (Array.isArray(v)) v.forEach(x => form.append(k, x));
+				else if (typeof v === 'string' && v.trim()) form.append(k, v.trim());
 			}
-			const body = Object.fromEntries(
-				Object.entries(values).map(([k, v]) => [k, typeof v === 'string' ? v.trim() : v]).filter(([, v]) => v !== '' && v !== undefined)
-			);
-			const fileField = fields.find(f => f.kind === 'files');
-			if (fileField && links.length) body[fileField.key] = links;
-			body.page = sentFrom();
-			const res = await fetch(`${api}/${CONTACT_ROUTE}?apiKey=${apiKey}`, {
-				method: 'POST',
-				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify(body),
-			});
+			files.forEach(f => form.append('files', f, f.name));
+			form.append('page', sentFrom());
+			const res = await fetch('/api/contact', { method: 'POST', body: form });
 			const out = await res.json().catch(() => null);
 			if (!res.ok) throw new Error(out?.message || 'Your message couldn’t be sent. Try again in a moment.');
 			onSent(out?.code || '');
@@ -256,7 +241,7 @@ const ContactForm = ({ fields, types = [], api, apiKey, buttonLabel, t, onSent }
 							fontSize='12px'
 							textTransform='uppercase'
 							color={t.sub}>
-							Photos, PDF, Word, Excel, PowerPoint, text or zip · up to {MAX_FILES} files, {MAX_MB} MB each
+							Photos, PDF, Word, Excel, PowerPoint, text or zip · up to {MAX_FILES} files, {MAX_TOTAL_MB} MB in total
 						</Text>
 						<input
 							ref={picker}

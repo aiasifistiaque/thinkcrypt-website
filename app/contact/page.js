@@ -1,6 +1,6 @@
 import ContactPage from '../../components/contact/ContactPage';
 import { pageMetadata } from '@/lib/mintSeo';
-import { MINT_KEY, MINT_ORIGIN, getSite } from '@/lib/mint';
+import { getSite } from '@/lib/mint';
 import { pageSections } from '@/lib/pageContents';
 import { getContactFields } from '@/lib/contact';
 import { getWebsiteTypes } from '@/lib/websiteTypes';
@@ -24,8 +24,6 @@ export default async function Contact() {
 			fields={fields}
 			types={types.map(t => ({ _id: t._id, name: t.name, slug: t.slug }))}
 			settings={site?.settings || {}}
-			api={MINT_ORIGIN ? `${MINT_ORIGIN}/public/api` : ''}
-			apiKey={MINT_KEY || ''}
 		/>
 	);
 }
