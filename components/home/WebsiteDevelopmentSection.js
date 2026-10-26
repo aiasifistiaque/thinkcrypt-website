@@ -69,6 +69,7 @@ const WebsiteDevelopmentSection = ({ section, theme }) => {
 									fontSize={{ base: '2rem', md: '3rem' }}
 									lineHeight='1'
 									textTransform='uppercase'
+									color={t.text}
 									transition='transform .2s'
 									_groupHover={{ transform: 'translateX(8px)' }}>
 									{item.title}
@@ -99,7 +100,8 @@ const WebsiteDevelopmentSection = ({ section, theme }) => {
 								fontFamily={fonts.title}
 								fontSize={{ base: '1.75rem', md: '3rem' }}
 								lineHeight='1'
-								textTransform='uppercase'>
+								textTransform='uppercase'
+								color={t.text}>
 								{d.buttonLabel}
 							</Text>
 							<Box

@@ -328,8 +328,8 @@ const BigCards = ({ items, t }) => (
 					fontSize='13px'
 					textTransform='uppercase'
 					color={t.accent}>
-					<Text>{item.subTitle}</Text>
-					<Text>{num(i)}</Text>
+					<Text color={t.accent}>{item.subTitle}</Text>
+					<Text color={t.accent}>{num(i)}</Text>
 				</Flex>
 				<Box>
 					<Heading
@@ -606,7 +606,8 @@ export const Faq = ({ section, index, t }) => {
 									fontFamily={fonts.title}
 									fontSize={{ base: '1.75rem', md: '2.75rem' }}
 									lineHeight='1'
-									textTransform='uppercase'>
+									textTransform='uppercase'
+									color={t.text}>
 									{item.title}
 								</Text>
 								<AccordionIcon boxSize={8} />

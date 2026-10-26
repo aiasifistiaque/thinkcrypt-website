@@ -19,7 +19,10 @@ const components = {
 	Checkbox: { baseStyle: { color: '#7A86A1' } },
 };
 
-const chakraTheme = extendTheme({ colors, components });
+// Dark unless the visitor picked light with the toggle
+const config = { initialColorMode: 'dark', useSystemColorMode: false };
+
+const chakraTheme = extendTheme({ config, colors, components });
 
 export default function ChakraProviderWrapper({ children }) {
 	return (
