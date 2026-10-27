@@ -216,20 +216,26 @@ export const ScreenFrame = ({ src, alt, address, t, ratio = 16 / 10 }) =>
 		</Box>
 	) : null;
 
-// A drawn illustration (an .svg in the panel's picture field), shown as it is, without a window
-export const isIllustration = src => /\.svg($|\?)/i.test(src || '');
+// A drawn illustration (an .svg, or a picture named "illustration-…" that has its own window drawn
+// in) in the panel's picture field, shown as it is, without a window
+export const isIllustration = src => /\.svg($|\?)|illustration-/i.test(src || '');
 export const Illustration = ({ src, alt, ratio = 16 / 10 }) =>
 	src ? (
 		<AspectRatio
 			ratio={ratio}
 			w='full'>
-			<Image
-				src={src}
-				alt={alt || ''}
-				objectFit='contain'
-				borderRadius='12px'
-				loading='lazy'
-			/>
+			{/* In a Box: AspectRatio crops an img that is its own child (object-fit: cover) */}
+			<Box>
+				<Image
+					src={src}
+					alt={alt || ''}
+					w='full'
+					h='full'
+					objectFit='contain'
+					borderRadius='12px'
+					loading='lazy'
+				/>
+			</Box>
 		</AspectRatio>
 	) : null;
 
@@ -313,11 +319,19 @@ export const Hero = ({ section, index = 0, t }) => {
 					</Flex>
 				</Flex>
 			</Grid>
-			<Picture
-				src={d.image}
-				alt={d.imageAlt}
-				ratio={{ base: 4 / 3, md: 21 / 9 }}
-			/>
+			{isIllustration(d.image) ? (
+				<Illustration
+					src={d.image}
+					alt={d.imageAlt}
+					ratio={{ base: 4 / 3, md: 21 / 9 }}
+				/>
+			) : (
+				<Picture
+					src={d.image}
+					alt={d.imageAlt}
+					ratio={{ base: 4 / 3, md: 21 / 9 }}
+				/>
+			)}
 		</Frame>
 	);
 };
@@ -897,13 +911,21 @@ const ProductRow = ({ record, i, t }) => (
 		borderColor={t.line}
 		scrollMarginTop='64px'>
 		<Box order={{ md: i % 2 ? 2 : 1 }}>
-			<ScreenFrame
-				src={record.image}
-				alt={record.imageAlt || record.name}
-				address={hostOf(record.productUrl)}
-				t={t}
-				ratio={1200 / 630}
-			/>
+			{isIllustration(record.image) ? (
+				<Illustration
+					src={record.image}
+					alt={record.imageAlt || record.name}
+					ratio={1200 / 630}
+				/>
+			) : (
+				<ScreenFrame
+					src={record.image}
+					alt={record.imageAlt || record.name}
+					address={hostOf(record.productUrl)}
+					t={t}
+					ratio={1200 / 630}
+				/>
+			)}
 		</Box>
 		<Flex
 			direction='column'
@@ -971,15 +993,25 @@ const ProductRow = ({ record, i, t }) => (
 						))}
 				</Box>
 			)}
-			{record.productUrl && (
-				<PillButton
-					t={t}
-					solid
-					href={record.productUrl}
-					alignSelf='flex-start'>
-					{record.buttonLabel || 'View product'}
-				</PillButton>
-			)}
+			<Flex
+				gap={3}
+				wrap='wrap'>
+				{record.productUrl && (
+					<PillButton
+						t={t}
+						solid
+						href={record.productUrl}>
+						{record.buttonLabel || 'View product'}
+					</PillButton>
+				)}
+				{record.pagePath && (
+					<PillButton
+						t={t}
+						href={record.pagePath}>
+						{record.pageLabel || 'Learn more'}
+					</PillButton>
+				)}
+			</Flex>
 		</Flex>
 	</Grid>
 );

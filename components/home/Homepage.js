@@ -33,7 +33,7 @@ const container = {
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const Homepage = ({ websiteSection, businessSection }) => {
+const Homepage = ({ aboutSection, websiteSection, businessSection }) => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
 
@@ -46,7 +46,10 @@ const Homepage = ({ websiteSection, businessSection }) => {
 			description='We help impact-driven startups and SMEs grow with custom software, business tools, and analytics. Cut costs, boost efficiency, and scale faster with Thinkcrypt.'>
 			<Container>
 				<Hero theme={theme} />
-				<AboutUsSection theme={theme} />
+				<AboutUsSection
+					theme={theme}
+					section={aboutSection}
+				/>
 
 				<Servicesv2 theme={theme} />
 				<HomeStacks theme={theme} />

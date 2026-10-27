@@ -3,6 +3,7 @@ const footerData = [
 		heading: 'Navigation',
 		items: [
 			{ name: 'Home', href: '/' },
+			{ name: 'About us', href: '/about' },
 			{ name: 'Portfolio', href: '/portfolio' },
 			{ name: 'Contact', href: '/contact' },
 		],

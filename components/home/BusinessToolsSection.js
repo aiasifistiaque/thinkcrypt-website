@@ -40,8 +40,6 @@ const BusinessToolsSection = ({ section, theme }) => {
 							alt={d.imageAlt || ''}
 							w='full'
 							borderRadius='12px'
-							border='1px solid'
-							borderColor={t.line}
 							loading='lazy'
 						/>
 					</Link>

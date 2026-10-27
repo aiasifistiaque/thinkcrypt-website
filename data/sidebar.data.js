@@ -7,26 +7,31 @@ const sidebarData = [
 	},
 	{
 		id: '02',
+		name: 'About us',
+		href: '/about',
+	},
+	{
+		id: '03',
 		name: 'Portfolio',
 		href: '/portfolio',
 	},
 	{
-		id: '03',
+		id: '04',
 		name: 'Team',
 		href: '/team',
 	},
 	{
-		id: '04',
+		id: '05',
 		name: 'Clients',
 		href: '/clients',
 	},
 	{
-		id: '05',
+		id: '06',
 		name: 'Services',
 		href: '/services',
 	},
 	{
-		id: '06',
+		id: '07',
 		name: 'Blog',
 		href: '/blog',
 	},
