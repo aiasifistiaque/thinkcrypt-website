@@ -8,8 +8,8 @@ import { useSiteInfo } from './SiteInfo';
 
 // The WhatsApp button on every page, drawn like the header's round buttons (thin white ring, thin icon) and,
 // like the header, blended with "difference" so it stays visible over light and dark sections alike. Its
-// Only the round button takes clicks, so the label (shown on hover) never covers the page beside it.
 // number, opening message and label are the panel's content "whatsapp" (lib/siteInfo); hidden there, it's gone.
+// Only the round button takes clicks, so the label (shown on hover) never covers the page beside it.
 const WhatsAppButton = () => {
 	const whatsapp = useSiteInfo()?.whatsapp;
 	const href = whatsapp && whatsappHref(whatsapp.number, whatsapp.message);
