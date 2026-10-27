@@ -6,12 +6,15 @@ import ChakraProviderWrapper from './chakra-provider-wrapper';
 import { siteMetadata } from '../lib/mintSeo';
 import { MINT_KEY, MINT_ORIGIN, getSite } from '../lib/mint';
 import { ldScript, siteJsonLd } from '../lib/jsonLd';
+import { getSiteInfo } from '../lib/siteInfo';
+import { SiteInfoProvider } from '../components/site/SiteInfo';
+import WhatsAppButton from '../components/site/WhatsAppButton';
 
 // Default SEO for every page comes from the Mint panel (Site setup → SEO)
 export const generateMetadata = siteMetadata;
 
 export default async function RootLayout({ children }) {
-	const site = await getSite();
+	const [site, info] = await Promise.all([getSite(), getSiteInfo()]);
 	return (
 		<html lang='en'>
 			<head>
@@ -33,7 +36,13 @@ export default async function RootLayout({ children }) {
 				/>
 			</head>
 			<body>
-				<ChakraProviderWrapper>{children}</ChakraProviderWrapper>
+				<ChakraProviderWrapper>
+					{/* The footer and the WhatsApp button read the panel's contact, social, product and WhatsApp details */}
+					<SiteInfoProvider value={info}>
+						{children}
+						<WhatsAppButton />
+					</SiteInfoProvider>
+				</ChakraProviderWrapper>
 
 				{/* Structured data: Thinkcrypt as an organization and its services, and the website */}
 				<script

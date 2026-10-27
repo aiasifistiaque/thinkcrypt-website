@@ -20,14 +20,19 @@ export default function ScrollContainer({ children }) {
 			// infinite: true,
 		});
 
+		let frame;
 		const raf = time => {
 			lenis.raf(time);
-			requestAnimationFrame(raf);
+			frame = requestAnimationFrame(raf);
 		};
 
-		requestAnimationFrame(raf);
+		frame = requestAnimationFrame(raf);
+		// For ScrollToTop: a new page opens at its top
+		window.__lenis = lenis;
 
 		return () => {
+			if (window.__lenis === lenis) window.__lenis = null;
+			cancelAnimationFrame(frame);
 			lenis.destroy();
 		};
 	}, []);

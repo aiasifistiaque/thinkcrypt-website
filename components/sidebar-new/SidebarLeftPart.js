@@ -27,7 +27,11 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 					<CloseButton onClick={onClose} />
 				</Show>
 			</Align>
-			<Flex {...mainCss}>
+			{/* data-lenis-prevent: the page's smooth scroll (Lenis) takes every wheel and touch move for the page
+			    itself, so without it this list can't be scrolled */}
+			<Flex
+				{...mainCss}
+				data-lenis-prevent>
 				{/* Centred with auto margins, not justify: a list taller than the screen then scrolls
 				    from its first item instead of being cut off at the top and bottom */}
 				<Column

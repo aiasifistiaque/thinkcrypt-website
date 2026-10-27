@@ -1,9 +1,11 @@
 'use client';
 
-import { Heading, Stack, Flex, Text, Center } from '@chakra-ui/react';
+import { Heading, Stack, Flex, Text, Center, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import footerData from '../../../data/footerData';
+import { navigation, services, legal } from '../../../data/footerData';
+import { useSiteInfo } from '../../site/SiteInfo';
+import { whatsappHref } from '../../../lib/whatsapp';
 import { breakpoints } from '../../lib/constants';
 import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
@@ -24,7 +26,20 @@ const Sections = styled(Flex)`
 	}
 `;
 
+// A link that leaves the site (a social profile, a product's own website, WhatsApp) opens in a new tab
+const isExternal = href => /^https?:\/\//i.test(href || '');
+
 const Footer = ({ theme }) => {
+	const info = useSiteInfo();
+	const products = { heading: 'Products', items: [{ name: 'All products', href: '/products' }, ...(info?.products || [])] };
+	const whatsapp = info?.whatsapp && whatsappHref(info.whatsapp.number);
+	const socials = {
+		heading: 'Socials',
+		items: [...(info?.socials || []), ...(whatsapp ? [{ name: 'WhatsApp', href: whatsapp }] : [])],
+	};
+	const columns = [navigation, services, products, socials, legal].filter(c => c.items.length);
+	const phones = (info?.phone || '').split(/\s*,\s*/).filter(Boolean);
+	const address = (info?.address || '').split(/,\s*(?=Road|Dhaka)/);
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
 	const text = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
 	const secondary = theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
@@ -54,13 +69,14 @@ const Footer = ({ theme }) => {
 		return (
 			<Stack
 				spacing={4}
-				minW='160px'>
+				minW={0}>
 				<Heading {...headingCss}>{data.heading}</Heading>
 				<Stack spacing={{ base: 2, md: 3 }}>
 					{data.items.map((item, i) => (
 						<Link
 							key={i}
-							href={item.href}>
+							href={item.href}
+							{...(isExternal(item.href) && { target: '_blank', rel: 'noopener noreferrer' })}>
 							<Text
 								_hover={{
 									color:
@@ -92,19 +108,22 @@ const Footer = ({ theme }) => {
 			color={text}>
 			<Flex py='64px'>
 				<Sections>
-					<Flex
-						wrap='wrap'
-						gap={{ base: '3rem', md: '5rem' }}>
-						{footerData.map((item, i) => (
+					<Grid
+						flex={1}
+						templateColumns={{ base: 'repeat(2, minmax(0, 1fr))', md: 'repeat(3, minmax(0, 1fr))', xl: 'repeat(5, minmax(0, 1fr))' }}
+						columnGap={{ base: '2rem', md: '3rem' }}
+						rowGap={{ base: '3rem', md: '4rem' }}>
+						{columns.map((item, i) => (
 							<Section
 								data={item}
 								key={i}
 							/>
 						))}
-					</Flex>
+					</Grid>
 					<Stack
 						spacing={4}
-						maxW='420px'>
+						maxW='420px'
+						flexShrink={0}>
 						<Heading {...headingCss}>CONTACT US</Heading>
 						{/* <svg
 							width='80'
@@ -142,23 +161,38 @@ const Footer = ({ theme }) => {
 									mb='8px'>
 									THINKCRYPT.IO
 								</Text>
-								<Text {...footerText}>Flat 5B, House 88</Text>
-								<Text {...footerText}>Road 17/A, Block E, Banani</Text>
-								<Text {...footerText}>Dhaka 1213, Bangladesh</Text>
+								{address.map(line => (
+									<Text
+										key={line}
+										{...footerText}>
+										{line}
+									</Text>
+								))}
 							</Stack>
 						</Stack>
 
 						<Stack spacing={1}>
-							<Text
-								{...footerText}
-								color={text}>
-								(+88) 01828398225, 01799399555
-							</Text>
-							<Text
-								{...footerText}
-								color={text}>
-								connect@thinkcrypt.dev
-							</Text>
+							{phones.map(phone => (
+								<Link
+									key={phone}
+									href={`tel:${phone.replace(/[^\d+]/g, '')}`}>
+									<Text
+										{...footerText}
+										color={text}>
+										{phone}
+									</Text>
+								</Link>
+							))}
+							{info?.email && (
+								<Link href={`mailto:${info.email}`}>
+									<Text
+										{...footerText}
+										textTransform='none'
+										color={text}>
+										{info.email}
+									</Text>
+								</Link>
+							)}
 						</Stack>
 					</Stack>
 				</Sections>
@@ -167,6 +201,7 @@ const Footer = ({ theme }) => {
 				<Flex
 					w='full'
 					py={4}
+					pr={{ base: '3.5rem', md: '4.5rem' }}
 					align='center'
 					borderTop='1px solid'
 					borderColor={theme === 'dark' ? colors?.border?.dark : colors?.border?.light}>

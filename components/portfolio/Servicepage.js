@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
