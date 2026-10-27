@@ -49,14 +49,14 @@ const WhatsAppButton = () => {
 				{whatsapp.label}
 			</Text>
 			<Center
-				boxSize={{ base: '2.75rem', md: '3rem' }}
+				boxSize={{ base: '2.25rem', md: '2.5rem' }}
 				borderRadius='full'
 				border='.5px solid #fefefe'
 				pointerEvents='auto'
 				transition='transform .25s'
 				_groupHover={{ transform: 'scale(1.06)' }}>
 				<PiWhatsappLogoThin
-					size='1.5rem'
+					size='1.2rem'
 					color='#fefefe'
 				/>
 			</Center>
