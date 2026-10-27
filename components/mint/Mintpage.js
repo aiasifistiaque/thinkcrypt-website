@@ -36,12 +36,11 @@ const Mintpage = () => {
 				<MintSections
 					text={'Marketing Made Easy: Email & SMS'}
 					subText={'Boost Your Sales & Engagement'}
-					image={'./e-mint/mint-section4.gif'}
+					image={'./e-mint/crosssale.png'}
 					paraText={
 						'Boost engagement with robust email and SMS marketing tools. Reach customers instantly through bulk messaging or targeted campaigns—all from a single platform, making it easy to connect and drive results effectively.'
 					}
 					reverse={true}
-					//video='./e-mint/mint-section2.gif'
 				/>
 				<MintSections
 					text={'Top Products & Customer Insights'}
@@ -49,9 +48,8 @@ const Mintpage = () => {
 					paraText={
 						'Make informed decisions with real-time analytics. Track best-selling products and identify top customers to refine and enhance your sales strategies. Our platform’s reporting tools provide the insights you need to optimize performance and boost results, helping you stay ahead in a competitive market.'
 					}
-					image='./e-mint/mint-section3.gif'
+					image='./e-mint/mint-section2.png'
 					reverse={false}
-					//video='./e-mint/mint-v4.mp4'
 				/>
 				<MintSections
 					text={'Role-Based Admin Panel'}
@@ -59,7 +57,7 @@ const Mintpage = () => {
 					paraText={
 						'Efficiently manage your team with a secure, role-based admin panel. Assign roles, control access levels, and maintain smooth operations across your business. This streamlined approach enhances team collaboration while safeguarding sensitive information, giving you complete control over permissions and workflow management.'
 					}
-					image={'./e-mint/mint-section2.gif'}
+					image={'./e-mint/emint.png'}
 					reverse={true}
 					//video='./e-mint/mint-v3.mp4'
 				/>
