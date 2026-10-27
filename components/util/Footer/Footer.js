@@ -3,7 +3,7 @@
 import { Heading, Stack, Flex, Text, Center, Grid } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import { navigation, services, legal } from '../../../data/footerData';
+import { navigation, services } from '../../../data/footerData';
 import { useSiteInfo } from '../../site/SiteInfo';
 import { whatsappHref } from '../../../lib/whatsapp';
 import { breakpoints } from '../../lib/constants';
@@ -37,7 +37,7 @@ const Footer = ({ theme }) => {
 		heading: 'Socials',
 		items: [...(info?.socials || []), ...(whatsapp ? [{ name: 'WhatsApp', href: whatsapp }] : [])],
 	};
-	const columns = [navigation, services, products, socials, legal].filter(c => c.items.length);
+	const columns = [navigation, services, products, socials].filter(c => c.items.length);
 	const phones = (info?.phone || '').split(/\s*,\s*/).filter(Boolean);
 	const address = (info?.address || '').split(/,\s*(?=Road|Dhaka)/);
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
@@ -110,7 +110,7 @@ const Footer = ({ theme }) => {
 				<Sections>
 					<Grid
 						flex={1}
-						templateColumns={{ base: 'repeat(2, minmax(0, 1fr))', md: 'repeat(3, minmax(0, 1fr))', xl: 'repeat(5, minmax(0, 1fr))' }}
+						templateColumns={{ base: 'repeat(2, minmax(0, 1fr))', md: 'repeat(4, minmax(0, 1fr))' }}
 						columnGap={{ base: '2rem', md: '3rem' }}
 						rowGap={{ base: '3rem', md: '4rem' }}>
 						{columns.map((item, i) => (

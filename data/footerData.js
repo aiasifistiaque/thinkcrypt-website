@@ -10,6 +10,7 @@ export const navigation = {
 		{ name: 'Clients', href: '/clients' },
 		{ name: 'Blog', href: '/blog' },
 		{ name: 'Contact', href: '/contact' },
+		{ name: 'Privacy Policy', href: '/privacy-policy' },
 	],
 };
 
@@ -22,9 +23,4 @@ export const services = {
 		{ name: 'MVPs for startups', href: '/startup' },
 		{ name: 'Tech stack', href: '/techstacks' },
 	],
-};
-
-export const legal = {
-	heading: 'Legal',
-	items: [{ name: 'Privacy Policy', href: '/privacy-policy' }],
 };
