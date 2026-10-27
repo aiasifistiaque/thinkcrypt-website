@@ -11,7 +11,7 @@ const footerData = [
 	{
 		heading: 'Legal',
 		items: [
-			{ name: 'Privacy Policy', href: '' },
+			{ name: 'Privacy Policy', href: '/privacy-policy' },
 			{ name: 'Terms of Service', href: '' },
 		],
 	},

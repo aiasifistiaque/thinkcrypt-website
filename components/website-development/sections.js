@@ -24,6 +24,7 @@ import { fonts, layout, padding } from '../../lib/constants';
 export const toneOf = mode => {
 	const dark = mode === 'dark';
 	return {
+		dark,
 		bg: dark ? colors.background.dark : colors.background.light,
 		text: dark ? colors.text.dark : colors.text.light,
 		sub: dark ? colors.textSecondary.dark : colors.textSecondary.light,
@@ -460,9 +461,22 @@ export const FeatureRows = ({ items, t }) => (
 );
 
 // Small cards in a grid — "everything else"
+// Columns that fill every row: 4 when the cards divide by 4, else 3 when they divide by 3 (so 6 or
+// 9 cards leave no gaps), else 4. Two up on tablets; an odd count that divides by 3 goes three up.
+const gridColumns = n => {
+	const lg = n % 4 === 0 ? 4 : n % 3 === 0 ? 3 : 4;
+	const odd3 = n % 2 === 1 && lg === 3;
+	return {
+		base: '1fr',
+		sm: odd3 ? '1fr' : 'repeat(2, 1fr)',
+		md: odd3 ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)',
+		lg: `repeat(${lg}, 1fr)`,
+	};
+};
+
 export const CardGrid = ({ items, t }) => (
 	<Grid
-		templateColumns={{ base: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
+		templateColumns={gridColumns(items.length)}
 		gap={{ base: 3, md: 4 }}>
 		{items.map((item, i) => (
 			<Flex
@@ -679,8 +693,9 @@ export const Faq = ({ section, index, t }) => {
 // Bands drawn on the card colour instead of inverted
 const LIGHT_BANDS = ['custom'];
 
-// A heading, text, examples, buttons and a picture, on an inverted (or card-coloured) band
-export const Band = ({ section, index, t, inverted = !LIGHT_BANDS.includes(section.slug) }) => {
+// A heading, text, examples, buttons and a picture, on an inverted band in light mode, or on the
+// card colour (and in dark mode always: a light band on black glares)
+export const Band = ({ section, index, t, inverted = !t.dark && !LIGHT_BANDS.includes(section.slug) }) => {
 	const d = section.data;
 	const b = inverted ? { ...t, bg: t.text, text: t.bg, sub: t.bg, line: t.bg } : { ...t, bg: t.card };
 	const examples = (d.items || []).filter(item => item.title);
@@ -691,6 +706,8 @@ export const Band = ({ section, index, t, inverted = !LIGHT_BANDS.includes(secti
 			<Grid
 				bg={b.bg}
 				borderRadius='12px'
+				border='1px solid'
+				borderColor={inverted ? 'transparent' : t.line}
 				overflow='hidden'
 				templateColumns={{ base: '1fr', md: d.image ? '1.2fr 1fr' : '1fr' }}>
 				<Flex
@@ -770,17 +787,32 @@ export const Band = ({ section, index, t, inverted = !LIGHT_BANDS.includes(secti
 						</Flex>
 					</Flex>
 				</Flex>
-				{d.image && (
-					<Image
-						src={d.image}
-						alt={d.imageAlt || ''}
-						objectFit='cover'
-						w='full'
-						h='full'
-						minH={{ base: '240px', md: '520px' }}
-						loading='lazy'
-					/>
-				)}
+				{d.image &&
+					(isIllustration(d.image) ? (
+						// An illustration is shown whole, padded, instead of filling (and cropping) the side
+						<Flex
+							align='center'
+							justify='center'
+							p={{ base: 4, md: 8 }}>
+							<Image
+								src={d.image}
+								alt={d.imageAlt || ''}
+								w='full'
+								objectFit='contain'
+								loading='lazy'
+							/>
+						</Flex>
+					) : (
+						<Image
+							src={d.image}
+							alt={d.imageAlt || ''}
+							objectFit='cover'
+							w='full'
+							h='full'
+							minH={{ base: '240px', md: '520px' }}
+							loading='lazy'
+						/>
+					))}
 			</Grid>
 		</Frame>
 	);

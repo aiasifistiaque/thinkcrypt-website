@@ -6,7 +6,8 @@ import { fonts } from '../../lib/constants';
 import { MAX_FILES, MAX_TOTAL_MB } from '../../lib/contactLimits';
 
 // The contact form, drawn from the panel's "Contact us" fields. It posts to the site's own /api/contact,
-// which sends the files and the enquiry to the panel with the server key.
+// which sends the files and the enquiry to the panel with the server key. The same form takes other panel
+// models' fields too (a product page's "Product interest"): `action` is where it posts, `extra` values it adds.
 
 const MAX_BYTES = MAX_TOTAL_MB * 1024 * 1024;
 const ACCEPT = '.png,.jpg,.jpeg,.webp,.gif,.heic,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip';
@@ -70,7 +71,16 @@ const inputStyle = t => ({
 	_focusVisible: { borderColor: t.text, boxShadow: `0 1px 0 0 ${t.text}` },
 });
 
-const ContactForm = ({ fields, types = [], buttonLabel, t, onSent }) => {
+const ContactForm = ({
+	fields,
+	types = [],
+	buttonLabel,
+	t,
+	onSent,
+	action = '/api/contact',
+	extra = {},
+	messageHint = 'What do you want built? Who is it for? Anything you’ve seen that you like?',
+}) => {
 	const [values, setValues] = useState({});
 	const [files, setFiles] = useState([]);
 	const [errors, setErrors] = useState({});
@@ -138,7 +148,8 @@ const ContactForm = ({ fields, types = [], buttonLabel, t, onSent }) => {
 			}
 			files.forEach(f => form.append('files', f, f.name));
 			form.append('page', sentFrom());
-			const res = await fetch('/api/contact', { method: 'POST', body: form });
+			for (const [k, v] of Object.entries(extra)) form.append(k, v);
+			const res = await fetch(action, { method: 'POST', body: form });
 			const out = await res.json().catch(() => null);
 			if (!res.ok) throw new Error(out?.message || 'Your message couldn’t be sent. Try again in a moment.');
 			onSent(out?.code || '');
@@ -162,7 +173,7 @@ const ContactForm = ({ fields, types = [], buttonLabel, t, onSent }) => {
 					resize='vertical'
 					value={v || ''}
 					onChange={e => set(f.key, e.target.value)}
-					placeholder='What do you want built? Who is it for? Anything you’ve seen that you like?'
+					placeholder={messageHint}
 					{...inputStyle(t)}
 				/>
 			);

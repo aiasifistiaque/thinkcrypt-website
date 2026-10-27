@@ -15,6 +15,8 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 	return (
 		<Column
 			flex={2}
+			h='full'
+			minH={0}
 			borderRight={BORDER}
 			{...props}>
 			<Align
@@ -26,8 +28,12 @@ const SidebarLeftPart = ({ onClose, ...props }) => {
 				</Show>
 			</Align>
 			<Flex {...mainCss}>
+				{/* Centred with auto margins, not justify: a list taller than the screen then scrolls
+				    from its first item instead of being cut off at the top and bottom */}
 				<Column
-					justify={{ base: 'space-between', md: 'center' }}
+					justify={{ base: 'space-between', md: 'flex-start' }}
+					minH={{ base: 'full', md: 'auto' }}
+					my={{ md: 'auto' }}
 					w='full'>
 					<Column
 						gap={4}
@@ -84,11 +90,14 @@ const bottomTextContainer = {
 	h: '4rem',
 };
 
+// The options: scroll when they don't fit between the top and bottom bars
 const mainCss = {
 	flex: 1,
+	minH: 0,
+	overflowY: 'auto',
+	direction: 'column',
 	px: { base: '1rem', md: '2.5rem' },
 	py: '.5rem',
-	alignItems: { md: 'center' },
 	w: 'full',
 };
 
