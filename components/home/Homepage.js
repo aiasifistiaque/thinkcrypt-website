@@ -14,6 +14,7 @@ import HomeStacks from './services/HomeStacks';
 import ViewOurWork from './about-us/ViewOurWork';
 import TitleSection from './about-us/TitleSection';
 import WebsiteDevelopmentSection from './WebsiteDevelopmentSection';
+import BusinessToolsSection from './BusinessToolsSection';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -32,7 +33,7 @@ const container = {
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const Homepage = ({ websiteSection }) => {
+const Homepage = ({ websiteSection, businessSection }) => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
 
@@ -57,6 +58,10 @@ const Homepage = ({ websiteSection }) => {
 				<ViewOurWork theme={theme} />
 				<Projects theme={theme} />
 				<RightBusinessSolution theme={theme} />
+				<BusinessToolsSection
+					theme={theme}
+					section={businessSection}
+				/>
 
 				<Clients />
 				{/* <Testimonial /> */}

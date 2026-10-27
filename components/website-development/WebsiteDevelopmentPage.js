@@ -4,7 +4,8 @@ import { Flex, useColorMode } from '@chakra-ui/react';
 import Page from '../util/Page/Page';
 import { SECTIONS, toneOf } from './sections';
 
-// /website-development: the panel's sections for the page, in the panel's order
+// A page drawn from its panel sections, in the panel's order: /website-development,
+// /business-software and /products
 const WebsiteDevelopmentPage = ({ sections }) => {
 	const { colorMode } = useColorMode();
 	const t = toneOf(colorMode);

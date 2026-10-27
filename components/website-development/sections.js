@@ -557,9 +557,12 @@ const Chips = ({ items, t }) => (
 
 // How a Cards content looks: by its slug, else by what its cards hold
 const CARD_LAYOUTS = { 'what-you-get': BigCards, features: FeatureRows, process: Steps, tech: Chips };
-const cardLayout = (slug, items) =>
-	CARD_LAYOUTS[slug] ||
-	(items.some(c => c.image) ? FeatureRows : items.every(c => !c.description) ? Chips : CardGrid);
+const cardLayout = (slug, items) => {
+	const layout = CARD_LAYOUTS[slug];
+	// Feature rows need pictures; without them a "features" content is a grid
+	if (layout && !(layout === FeatureRows && !items.some(c => c.image))) return layout;
+	return items.some(c => c.image) ? FeatureRows : items.every(c => !c.description) ? Chips : CardGrid;
+};
 
 export const Cards = ({ section, index, t }) => {
 	const d = section.data;
@@ -872,11 +875,155 @@ export const RecordCard = ({ record, d, t }) => {
 	);
 };
 
+const hostOf = url => {
+	try {
+		return new URL(url).host.replace(/^www\./, '');
+	} catch {
+		return undefined;
+	}
+};
+
+// One product (Mint panel → Products) as its own section: picture, name, summary, features and
+// a button to the product's website. Pictures alternate sides.
+const ProductRow = ({ record, i, t }) => (
+	<Grid
+		as='article'
+		id={record.slug}
+		templateColumns={{ base: '1fr', md: '1.2fr 1fr' }}
+		gap={{ base: 6, md: 16 }}
+		alignItems='center'
+		py={{ base: 10, md: 16 }}
+		borderTop='1px solid'
+		borderColor={t.line}
+		scrollMarginTop='64px'>
+		<Box order={{ md: i % 2 ? 2 : 1 }}>
+			<ScreenFrame
+				src={record.image}
+				alt={record.imageAlt || record.name}
+				address={hostOf(record.productUrl)}
+				t={t}
+				ratio={1200 / 630}
+			/>
+		</Box>
+		<Flex
+			direction='column'
+			gap={5}
+			order={{ md: i % 2 ? 1 : 2 }}>
+			<Text
+				fontFamily={fonts.primary}
+				fontSize='13px'
+				textTransform='uppercase'
+				color={t.accent}>
+				{num(i)}
+				{record.tagline ? ` — ${record.tagline}` : ''}
+			</Text>
+			<Heading
+				as='h3'
+				fontFamily={fonts.title}
+				fontSize={{ base: '2.75rem', md: '4.5rem' }}
+				fontWeight='400'
+				lineHeight='0.95'
+				textTransform='uppercase'
+				color={t.text}>
+				{record.name}
+			</Heading>
+			{record.summary && (
+				<Text
+					fontFamily={fonts.primary}
+					fontSize={{ base: '14px', md: '16px' }}
+					lineHeight='1.5'
+					textTransform='uppercase'
+					color={t.sub}
+					maxW='560px'>
+					{record.summary}
+				</Text>
+			)}
+			{record.features?.length > 0 && (
+				<Box as='ul' listStyleType='none'>
+					{record.features
+						.filter(f => f.title)
+						.map((f, j) => (
+							<Box
+								as='li'
+								key={j}
+								py={3}
+								borderTop='1px solid'
+								borderColor={t.line}>
+								<Text
+									fontFamily={fonts.primary}
+									fontSize='14px'
+									fontWeight='600'
+									textTransform='uppercase'
+									color={t.text}>
+									{f.title}
+								</Text>
+								{f.description && (
+									<Text
+										fontFamily={fonts.primary}
+										fontSize='13px'
+										lineHeight='1.45'
+										textTransform='uppercase'
+										color={t.sub}>
+										{f.description}
+									</Text>
+								)}
+							</Box>
+						))}
+				</Box>
+			)}
+			{record.productUrl && (
+				<PillButton
+					t={t}
+					solid
+					href={record.productUrl}
+					alignSelf='flex-start'>
+					{record.buttonLabel || 'View product'}
+				</PillButton>
+			)}
+		</Flex>
+	</Grid>
+);
+
+const ProductRows = ({ records, t }) => (
+	<Flex direction='column'>
+		{records.map((record, i) => (
+			<ProductRow
+				key={record._id}
+				record={record}
+				i={i}
+				t={t}
+			/>
+		))}
+	</Flex>
+);
+
+// How a List content shows its records, by the model it lists; others are cards
+const LIST_LAYOUTS = { products: ProductRows };
+
 // A List content: records of a panel model (e.g. website types), fetched by the page on the server
 export const RecordList = ({ section, index, t }) => {
 	const d = section.data;
 	const records = section.records || [];
 	if (!records.length) return null;
+	const Layout = LIST_LAYOUTS[d.source];
+	if (Layout)
+		return (
+			<Frame
+				t={t}
+				id={section.slug}>
+				<SectionHead
+					index={num(index)}
+					eyebrow={d.eyebrow}
+					heading={d.heading}
+					text={d.text}
+					t={t}
+				/>
+				<Layout
+					records={records}
+					t={t}
+				/>
+			</Frame>
+		);
 	return (
 		<Frame
 			t={t}
