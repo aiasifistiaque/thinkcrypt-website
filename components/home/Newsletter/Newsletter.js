@@ -1,4 +1,5 @@
-import { border, Box, Button, Container, Flex, Heading, Input, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Box, Button, Container, Flex, Heading, Input, Text } from '@chakra-ui/react';
 import { colors } from '../../../theme/styles';
 import { fonts, padding } from '../../../lib/constants';
 import { usePostMutation } from '../../../store';
@@ -12,21 +13,47 @@ export default function NewsletterSection({ theme }) {
 	const blueColor =
 		theme === 'dark' ? colors?.textSecondary?.blue : colors?.textSecondary?.darkBlue;
 
-	const [trigger, result] = usePostMutation();
+	const [trigger] = usePostMutation();
+	const [email, setEmail] = useState('');
+	const [sending, setSending] = useState(false);
+	const [problem, setProblem] = useState('');
+	const [subscribed, setSubscribed] = useState(false);
 
-	const handleClick = () => {
-		trigger({
-			path: 'clickevents',
-			body: {
-				elementType: 'cta',
-				elementName: 'Subscribe Newsletter',
-				elementId: item?.name,
-				elementSlug: `subscribe-newsletter`,
-				elementText: 'Susbcribe to our newsletter',
-				elementHref: '#',
-				clickType: 'submit',
-			},
-		});
+	// Subscribers land in the Mint panel (through the site's /api/newsletter), which emails them a welcome
+	// with an unsubscribe link. Once it goes through, the form gives way to a thank-you.
+	const handleSubmit = async e => {
+		e.preventDefault();
+		if (sending) return;
+		const value = email.trim();
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return setProblem('Enter a valid email address.');
+		setSending(true);
+		setProblem('');
+		try {
+			const res = await fetch('/api/newsletter', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email: value, page: window.location.pathname, website: e.target.website?.value }),
+			});
+			const out = await res.json().catch(() => null);
+			if (!res.ok) throw new Error(out?.message || 'You couldn’t be subscribed just now. Try again in a moment.');
+			setSubscribed(true);
+			trigger({
+				path: 'clickevents',
+				body: {
+					elementType: 'cta',
+					elementName: 'Subscribe Newsletter',
+					elementId: 'newsletter',
+					elementSlug: 'subscribe-newsletter',
+					elementText: 'Subscribe to our newsletter',
+					elementHref: '#',
+					clickType: 'submit',
+				},
+			});
+		} catch (error) {
+			setProblem(error.message);
+		} finally {
+			setSending(false);
+		}
 	};
 
 	return (
@@ -48,28 +75,75 @@ export default function NewsletterSection({ theme }) {
 						color={secondaryColor}>
 						Stay updated with the latest technology trends, industry insights, and company news.
 					</Text>
-					<Flex {...flexStyle}>
-						<Input
-							{...inputStyle}
-							bg={theme == 'dark' ? colors?.text?.dark : 'white'}
-							borderColor={theme == 'dark' ? colors?.text?.dark : colors?.text?.darkBlue}
-							color={colors?.text?.light}
-							placeholder='Enter your email'
-							_placeholder={{ color: colors?.text?.light }}
-						/>
-						<Button
-							{...buttonStyle}
-							color={textColor}
-							onClick={handleClick}
-							borderColor={textColor}>
-							Subscribe
-						</Button>
-					</Flex>
-					<Text
-						{...subTextStyle}
-						color={blueColor}>
-						By subscribing, you agree to our Privacy Policy.
-					</Text>
+					{subscribed ? (
+						<Box
+							{...thanksStyle}
+							borderColor={textColor}
+							role='status'>
+							<Text
+								{...thanksHeadingStyle}
+								color={textColor}>
+								Thank you for your subscription
+							</Text>
+							<Text
+								{...subTextStyle}
+								mt={2}
+								color={blueColor}>
+								We’ve sent a confirmation to your inbox.
+							</Text>
+						</Box>
+					) : (
+						<form
+							onSubmit={handleSubmit}
+							noValidate>
+							{/* Left empty by people; bots fill it */}
+							<input
+								name='website'
+								tabIndex={-1}
+								autoComplete='off'
+								aria-hidden='true'
+								style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+							/>
+							<Flex {...flexStyle}>
+								<Input
+									{...inputStyle}
+									name='email'
+									aria-label='Email address'
+									autoComplete='email'
+									value={email}
+									onChange={e => setEmail(e.target.value)}
+									isDisabled={sending}
+									bg={theme == 'dark' ? colors?.text?.dark : 'white'}
+									borderColor={theme == 'dark' ? colors?.text?.dark : colors?.text?.darkBlue}
+									color={colors?.text?.light}
+									placeholder='Enter your email'
+									_placeholder={{ color: colors?.text?.light }}
+								/>
+								<Button
+									{...buttonStyle}
+									type='submit'
+									isLoading={sending}
+									loadingText='Subscribing'
+									color={textColor}
+									borderColor={textColor}>
+									Subscribe
+								</Button>
+							</Flex>
+							{problem && (
+								<Text
+									{...subTextStyle}
+									color={theme === 'dark' ? '#ff8a80' : '#c62828'}
+									role='alert'>
+									{problem}
+								</Text>
+							)}
+							<Text
+								{...subTextStyle}
+								color={blueColor}>
+								By subscribing, you agree to our Privacy Policy.
+							</Text>
+						</form>
+					)}
 				</Box>
 			</Container>
 		</Box>
@@ -147,6 +221,20 @@ const buttonStyle = {
 		bg: 'transparent',
 		color: colors?.text?.dark,
 	},
+};
+
+const thanksStyle = {
+	border: '1px',
+	px: 6,
+	py: { base: 6, md: 8 },
+};
+
+const thanksHeadingStyle = {
+	fontSize: { base: '1.75rem', md: '2.5rem' },
+	fontFamily: fonts?.title,
+	textTransform: 'uppercase',
+	lineHeight: '1',
+	letterSpacing: '1px',
 };
 
 const subTextStyle = {
