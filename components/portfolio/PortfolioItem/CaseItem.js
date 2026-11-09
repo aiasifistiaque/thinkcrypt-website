@@ -30,6 +30,11 @@ const CaseItem = ({ item, colorMode }) => {
 
 	const [trigger, result] = usePostMutation();
 
+	// Its case study (by slug) when that's switched on, else its live site
+	const href = item?.showCaseStudy
+		? `/case-study/${item?.slug || item?._id}`
+		: item?.liveUrl || '#';
+
 	const handleClick = () => {
 		trigger({
 			path: 'clickevents',
@@ -39,11 +44,7 @@ const CaseItem = ({ item, colorMode }) => {
 				elementId: item?.name,
 				elementSlug: `project-card-${item?._id}`,
 				elementText: 'View Project - ' + item?.name,
-				elementHref: item?.showCaseStudy
-					? `/case-study/${item?._id}`
-					: item?.liveUrl
-					? item?.liveUrl
-					: '#',
+				elementHref: href,
 				clickType: 'click',
 			},
 		});
@@ -79,7 +80,7 @@ const CaseItem = ({ item, colorMode }) => {
 			}}
 			onClick={handleClick}
 			isExternal={item?.showCaseStudy ? false : true}
-			href={item?.showCaseStudy ? `/case-study/${item?._id}` : item?.liveUrl ? item?.liveUrl : '#'}>
+			href={href}>
 			<Container
 				bg={cardBg}
 				onMouseEnter={handleMouseEnter}

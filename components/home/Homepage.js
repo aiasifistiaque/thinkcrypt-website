@@ -33,7 +33,7 @@ const container = {
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const Homepage = ({ aboutSection, websiteSection, businessSection }) => {
+const Homepage = ({ aboutSection, websiteSection, businessSection, projects }) => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
 
@@ -59,7 +59,10 @@ const Homepage = ({ aboutSection, websiteSection, businessSection }) => {
 				/>
 
 				<ViewOurWork theme={theme} />
-				<Projects theme={theme} />
+				<Projects
+					theme={theme}
+					projects={projects}
+				/>
 				<RightBusinessSolution theme={theme} />
 				<BusinessToolsSection
 					theme={theme}

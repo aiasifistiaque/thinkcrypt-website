@@ -1,10 +1,11 @@
-import { backend } from '@/lib/backend';
+import { caseStudyPath, getPortfolio } from '@/lib/portfolios';
 
 // Each case study gets its own title and description from the portfolio record
 export async function generateMetadata({ params }) {
 	const { id } = await params;
-	const data = await backend(`portfolios/${id}`);
+	const data = await getPortfolio(id);
 	if (!data?.name) return { title: 'Case Study', alternates: { canonical: `/case-study/${id}` } };
+	const path = caseStudyPath(data);
 
 	const title = `${data.name} Case Study`;
 	const text = data.overview || data.companyDescription || data.solutionDescription || '';
@@ -21,8 +22,8 @@ export async function generateMetadata({ params }) {
 	return {
 		title,
 		description,
-		alternates: { canonical: `/case-study/${id}` },
-		openGraph: { type: 'article', url: `/case-study/${id}`, title, description, images },
+		alternates: { canonical: path },
+		openGraph: { type: 'article', url: path, title, description, images },
 		twitter: { card: 'summary_large_image', title, description, images: data.coverImage ? [data.coverImage] : undefined },
 	};
 }

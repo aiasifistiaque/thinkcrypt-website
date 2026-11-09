@@ -6,7 +6,6 @@ import { breakpoints } from '../../lib/constants';
 import Project from './Project.js';
 import { colors, styles } from '../../../theme/styles.js';
 import ProjectSmall from './ProjectSmall.js';
-import { useGetAllQuery } from '../../../store/index.js';
 import CaseItem from '../../portfolio/PortfolioItem/CaseItem.js';
 import PortfolioItemSkeleton from '../../portfolio/PortfolioItem/PortfolioSkeleton.js';
 import SectionOne from '../services/SectionOne.js';
@@ -20,13 +19,10 @@ const Section = styled(Grid)`
 
 const BORDER = styles.border.light;
 
-const Projects = ({ theme }) => {
-	const { data, isFetching } = useGetAllQuery({
-		path: 'portfolios',
-		limit: 6,
-		sort: '-priority',
-		filters: { status: 'published', isFeatured: true },
-	});
+// The featured projects come from the panel (Website → Portfolios), fetched on the server
+const Projects = ({ theme, projects = [] }) => {
+	const data = { doc: projects };
+	const isFetching = false;
 
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
 

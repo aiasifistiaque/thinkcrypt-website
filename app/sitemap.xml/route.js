@@ -1,10 +1,10 @@
 import { getSite, mintText } from '@/lib/mint';
-import { backendList } from '@/lib/backend';
+import { caseStudyPath, getPortfolios } from '@/lib/portfolios';
 import { getBlogs } from '@/lib/blog';
 import { getWebsiteTypes, typePath } from '@/lib/websiteTypes';
 
 // sitemap.xml from the Mint panel — every published page in Website → Pages —
-// plus the blog posts and website types (Mint panel) and the case studies (Thinkcrypt's own API)
+// plus the blog posts, website types and case studies (all from the Mint panel)
 export const revalidate = 300;
 
 const entry = (loc, lastmod) =>
@@ -18,7 +18,7 @@ export async function GET() {
 		mintText(`/site/sitemap.xml?origin=${encodeURIComponent(origin)}`),
 		getBlogs(),
 		getWebsiteTypes(),
-		backendList('portfolios?limit=500&sort=-createdAt'),
+		getPortfolios(),
 	]);
 
 	const extra =
@@ -31,8 +31,8 @@ export async function GET() {
 			.map(t => entry(`${origin}${typePath(encodeURIComponent(t.slug))}`, t.updatedAt))
 			.join('') +
 		portfolios
-			.filter(p => p?.showCaseStudy && p?._id)
-			.map(p => entry(`${origin}/case-study/${p._id}`, p.updatedAt))
+			.filter(p => p?.showCaseStudy && (p?.slug || p?._id))
+			.map(p => entry(`${origin}${caseStudyPath(p)}`, p.updatedAt))
 			.join('');
 
 	const base =

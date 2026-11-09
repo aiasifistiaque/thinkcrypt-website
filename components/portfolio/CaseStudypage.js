@@ -6,7 +6,6 @@ import Page from '../util/Page/Page';
 import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid, Wrap, Text, useColorMode } from '@chakra-ui/react';
 import { colors, styles } from '../../theme/styles';
-import { useGetAllQuery } from '../../store';
 import CaseItem from './PortfolioItem/CaseItem';
 import TitleSection from '../home/about-us/TitleSection';
 import { fonts, padding } from '../../lib/constants';
@@ -17,7 +16,7 @@ import SelectItem from './SelectItem';
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const CaseStudyPage = () => {
+const CaseStudyPage = ({ projects = [] }) => {
 	const { colorMode } = useColorMode();
 
 	const BORDER = colorMode == 'dark' ? styles.border.dark : styles.border.light;
@@ -40,24 +39,10 @@ const CaseStudyPage = () => {
 		// router.push(newUrl);
 	};
 
-	// Use RTK Query only when a specific category is selected (not for "All projects")
-	// Skip if no category is selected (use SSR data for "All projects")
-	const shouldSkip = !cat || cat === '';
-
-	const { data: fetchedData, isFetching } = useGetAllQuery(
-		{
-			path: 'portfolios',
-			limit: 99,
-			sort: '-priority',
-			filters: { status: 'published', category: cat },
-		}
-		// {
-		// 	skip: shouldSkip,
-		// }
-	);
-
-	// Use SSR data when no category is selected, otherwise use fetched data
-	// const data = fetchedData;
+	// Every published project comes from the panel (server side); the industry filter picks
+	// the ones whose category matches, as the old API's category filter did
+	const fetchedData = { doc: cat ? projects.filter(p => p?.category === cat) : projects };
+	const isFetching = false;
 
 	const industries = [
 		{ title: 'All projects', value: '' },
