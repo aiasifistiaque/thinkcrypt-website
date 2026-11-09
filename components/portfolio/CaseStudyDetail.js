@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
 	AspectRatio,
@@ -18,8 +18,8 @@ import {
 	useColorMode,
 } from '@chakra-ui/react';
 import Page from '../util/Page/Page';
-import { fonts, layout } from '../../lib/constants';
-import { Band, CardGrid, Frame, PillButton, Picture, SectionHead, num, toneOf } from '../website-development/sections';
+import { fonts, layout, padding } from '../../lib/constants';
+import { Band, CardGrid, Frame, PillButton, SectionHead, num, toneOf } from '../website-development/sections';
 
 // A project's case study — its record from the panel (Website → Portfolios), loaded on the server.
 // Every part shows only when its fields are filled, so a short record still makes a tidy page.
@@ -57,6 +57,23 @@ const Label = ({ t, children, color, ...props }) => (
 		{...props}>
 		{children}
 	</Text>
+);
+
+// A picture that fills its box without cropping its edges awkwardly: rounded, on the card colour
+const Shot = ({ src, alt, ratio = 16 / 10, t, eager }) => (
+	<Box
+		borderRadius='16px'
+		overflow='hidden'
+		bg={t.card}>
+		<AspectRatio ratio={ratio}>
+			<Image
+				src={src}
+				alt={alt || ''}
+				objectFit='cover'
+				loading={eager ? 'eager' : 'lazy'}
+			/>
+		</AspectRatio>
+	</Box>
 );
 
 /* ------------------------------------------------------------------ hero */
@@ -100,6 +117,42 @@ const Facts = ({ data, t }) => {
 	);
 };
 
+// The project's few big facts ("10,000+ / products"), in a band under the cover
+const Highlights = ({ items, t }) =>
+	has(items) ? (
+		<Grid
+			templateColumns={{ base: 'repeat(2, 1fr)', md: `repeat(${Math.min(items.length, 4)}, 1fr)` }}
+			gap={{ base: 3, md: 4 }}
+			pt={{ base: 4, md: 6 }}>
+			{items.map((item, i) => (
+				<Flex
+					key={i}
+					direction='column'
+					justify='space-between'
+					gap={6}
+					bg={t.card}
+					borderRadius='16px'
+					p={{ base: 5, md: 7 }}>
+					<Text
+						fontFamily={fonts.title}
+						fontSize={{ base: '2.75rem', md: '4.5rem' }}
+						lineHeight='0.9'
+						color={t.text}>
+						{item.value}
+					</Text>
+					<Text
+						fontFamily={fonts.primary}
+						fontSize={{ base: '13px', md: '15px' }}
+						lineHeight='1.4'
+						textTransform='uppercase'
+						color={t.sub}>
+						{item.label}
+					</Text>
+				</Flex>
+			))}
+		</Grid>
+	) : null;
+
 const Hero = ({ data, t }) => (
 	<Frame
 		t={t}
@@ -116,7 +169,7 @@ const Hero = ({ data, t }) => (
 		<Grid
 			templateColumns={{ base: '1fr', md: '1.4fr 1fr' }}
 			gap={{ base: 8, md: 10 }}
-			pb={{ base: 10, md: 16 }}>
+			pb={{ base: 10, md: 14 }}>
 			<Facts
 				data={data}
 				t={t}
@@ -153,33 +206,17 @@ const Hero = ({ data, t }) => (
 				</Flex>
 			</Flex>
 		</Grid>
-		<Picture
+		<Shot
 			src={data.coverImage || data.image}
 			alt={data.name}
 			ratio={{ base: 16 / 10, md: 24 / 11 }}
+			t={t}
+			eager
 		/>
-		{has(data.tags) && (
-			<Flex
-				gap={2}
-				wrap='wrap'
-				pt={6}>
-				{data.tags.map(tag => (
-					<Text
-						key={tag}
-						px={4}
-						py={2}
-						border='1px solid'
-						borderColor={t.line}
-						borderRadius='99px'
-						fontFamily={fonts.primary}
-						fontSize='12px'
-						textTransform='uppercase'
-						color={t.sub}>
-						{String(tag).replace(/-/g, ' ')}
-					</Text>
-				))}
-			</Flex>
-		)}
+		<Highlights
+			items={data.highlights}
+			t={t}
+		/>
 	</Frame>
 );
 
@@ -199,8 +236,8 @@ const Overview = ({ data, index, t }) => (
 			alignItems='start'>
 			<Body
 				t={t}
-				fontSize={{ base: '18px', md: '22px' }}
-				lineHeight='1.55'
+				fontSize={{ base: '19px', md: '24px' }}
+				lineHeight='1.5'
 				color={t.text}>
 				{data.overview || data.shortDescription}
 			</Body>
@@ -209,7 +246,7 @@ const Overview = ({ data, index, t }) => (
 					direction='column'
 					gap={4}
 					bg={t.card}
-					borderRadius='12px'
+					borderRadius='16px'
 					p={{ base: 6, md: 8 }}>
 					{data.logo && (
 						<Image
@@ -268,12 +305,12 @@ const Overview = ({ data, index, t }) => (
 
 /* ----------------------------------------------------------------- story */
 
-// Challenge → approach → solution, one row each: the step and its title, then the story
+// Problem → how we did it → result: three cards side by side
 const Story = ({ data, index, t }) => {
 	const steps = [
-		['The challenge', data.challengeTitle, data.challengeDescription],
-		['Our approach', data.approachTitle, data.approachDescription],
-		['The solution', data.solutionTitle, data.solutionDescription],
+		['The problem', data.challengeTitle, data.challengeDescription],
+		['How we did it', data.approachTitle, data.approachDescription],
+		['The result', data.solutionTitle, data.solutionDescription],
 	].filter(([, title, text]) => has(title) || has(text));
 	if (!steps.length) return null;
 	return (
@@ -284,44 +321,114 @@ const Story = ({ data, index, t }) => {
 				heading={'From problem\nto product'}
 				t={t}
 			/>
-			<Flex direction='column'>
+			<Grid
+				templateColumns={{ base: '1fr', lg: `repeat(${steps.length}, 1fr)` }}
+				gap={{ base: 3, md: 4 }}>
 				{steps.map(([label, title, text], i) => (
-					<Grid
+					<Flex
 						key={label}
-						templateColumns={{ base: '1fr', md: '1fr 1.2fr' }}
-						gap={{ base: 4, md: 16 }}
-						py={{ base: 8, md: 12 }}
-						borderTop='1px solid'
-						borderColor={t.line}>
+						direction='column'
+						gap={5}
+						bg={i === steps.length - 1 ? t.text : t.card}
+						borderRadius='16px'
+						p={{ base: 6, md: 8 }}>
 						<Flex
-							direction='column'
-							gap={3}>
-							<Label t={t}>
-								{num(i)} — {label}
+							justify='space-between'
+							align='center'>
+							<Label
+								t={t}
+								color={i === steps.length - 1 ? t.bg : t.accent}>
+								{label}
 							</Label>
-							<Heading
-								as='h3'
+							<Text
 								fontFamily={fonts.title}
-								fontSize={{ base: '2.5rem', md: '4rem' }}
-								fontWeight='400'
-								lineHeight='0.95'
-								textTransform='uppercase'
-								color={t.text}>
-								{title || label}
-							</Heading>
+								fontSize='2rem'
+								lineHeight='1'
+								color={i === steps.length - 1 ? t.bg : t.accent}>
+								{num(i)}
+							</Text>
 						</Flex>
-						<Body t={t}>{text}</Body>
-					</Grid>
+						<Heading
+							as='h3'
+							fontFamily={fonts.title}
+							fontSize={{ base: '2.25rem', md: '3rem' }}
+							fontWeight='400'
+							lineHeight='0.95'
+							textTransform='uppercase'
+							color={i === steps.length - 1 ? t.bg : t.text}>
+							{title || label}
+						</Heading>
+						<Body
+							t={t}
+							fontSize={{ base: '15px', md: '16px' }}
+							color={i === steps.length - 1 ? t.bg : t.sub}
+							opacity={i === steps.length - 1 ? 0.85 : 1}>
+							{text}
+						</Body>
+					</Flex>
 				))}
-			</Flex>
+			</Grid>
 		</Frame>
 	);
 };
 
 /* -------------------------------------------------------------- features */
 
-const Features = ({ data, index, t }) =>
-	has(data.solutionFeatures) ? (
+// A feature with a picture: the picture on one side, its words on the other, swapping sides each row
+const FeatureRow = ({ item, i, t, onOpen }) => (
+	<Grid
+		templateColumns={{ base: '1fr', md: '1.35fr 1fr' }}
+		gap={{ base: 6, md: 14 }}
+		alignItems='center'
+		py={{ base: 8, md: 12 }}
+		borderTop='1px solid'
+		borderColor={t.line}>
+		<Box
+			order={{ md: i % 2 ? 2 : 1 }}
+			as='button'
+			type='button'
+			onClick={onOpen}
+			cursor='zoom-in'
+			textAlign='left'
+			aria-label={`See ${item.title} full size`}
+			transition='transform .4s'
+			_hover={{ transform: 'translateY(-4px)' }}>
+			<Shot
+				src={item.image}
+				alt={item.title}
+				t={t}
+			/>
+		</Box>
+		<Flex
+			direction='column'
+			gap={4}
+			order={{ md: i % 2 ? 1 : 2 }}
+			maxW='520px'>
+			<Label t={t}>
+				{num(i)}
+				{item.label ? ` — ${item.label}` : ''}
+			</Label>
+			<Heading
+				as='h3'
+				fontFamily={fonts.title}
+				fontSize={{ base: '2.75rem', md: '4.25rem' }}
+				fontWeight='400'
+				lineHeight='0.95'
+				textTransform='uppercase'
+				color={t.text}>
+				{item.title}
+			</Heading>
+			<Body t={t}>{item.description}</Body>
+		</Flex>
+	</Grid>
+);
+
+const Features = ({ data, index, t, onOpen, pictures }) => {
+	const all = (data.solutionFeatures || []).filter(f => f?.title);
+	const rows = all.filter(f => f.image);
+	const rest = all.filter(f => !f.image);
+	if (!all.length) return null;
+	return (
 		<Frame t={t}>
 			<SectionHead
 				index={num(index)}
@@ -330,39 +437,127 @@ const Features = ({ data, index, t }) =>
 				text={data.productDescription}
 				t={t}
 			/>
-			<CardGrid
-				items={data.solutionFeatures.filter(f => f?.title)}
-				t={t}
-			/>
+			{rows.length > 0 && (
+				<Flex direction='column'>
+					{rows.map((item, i) => (
+						<FeatureRow
+							key={item.title}
+							item={item}
+							i={i}
+							t={t}
+							onOpen={() => onOpen(pictures.indexOf(item.image))}
+						/>
+					))}
+				</Flex>
+			)}
+			{rest.length > 0 && (
+				<Box pt={rows.length ? { base: 8, md: 12 } : 0}>
+					{rows.length > 0 && (
+						<Label
+							t={t}
+							pb={5}>
+							And also
+						</Label>
+					)}
+					<CardGrid
+						items={rest}
+						t={t}
+					/>
+				</Box>
+			)}
 		</Frame>
-	) : null;
+	);
+};
 
 /* --------------------------------------------------------------- gallery */
 
-const Gallery = ({ data, index, t }) => {
-	const [open, setOpen] = useState(null);
-	const images = (data.images || []).filter(Boolean);
+const ArrowButton = ({ t, onClick, label, children, disabled }) => (
+	<Box
+		as='button'
+		type='button'
+		aria-label={label}
+		onClick={onClick}
+		disabled={disabled}
+		w='52px'
+		h='52px'
+		borderRadius='full'
+		border='1px solid'
+		borderColor={t.text}
+		color={t.text}
+		fontSize='20px'
+		opacity={disabled ? 0.3 : 1}
+		transition='all .2s'
+		_hover={disabled ? {} : { bg: t.text, color: t.bg }}>
+		{children}
+	</Box>
+);
+
+// Every picture in one strip that scrolls sideways (swipe, trackpad or the arrows); tap one to see it big
+const Gallery = ({ data, index, t, pictures, onOpen }) => {
+	const strip = useRef(null);
+	const [pos, setPos] = useState({ start: true, end: false, progress: 0 });
 	const video = data.isVideoEnabled && data.videoURL;
-	if (!images.length && !video) return null;
+
+	const measure = useCallback(() => {
+		const el = strip.current;
+		if (!el) return;
+		const max = el.scrollWidth - el.clientWidth;
+		setPos({
+			start: el.scrollLeft <= 4,
+			end: el.scrollLeft >= max - 4,
+			progress: max > 0 ? el.scrollLeft / max : 1,
+		});
+	}, []);
+
+	useEffect(() => {
+		measure();
+		window.addEventListener('resize', measure);
+		return () => window.removeEventListener('resize', measure);
+	}, [measure]);
+
+	const step = dir => {
+		const el = strip.current;
+		if (!el) return;
+		const card = el.querySelector('[data-slide]');
+		el.scrollBy({ left: dir * ((card?.clientWidth || el.clientWidth * 0.8) + 16), behavior: 'smooth' });
+	};
+
+	if (!pictures.length && !video) return null;
 	return (
-		<Frame t={t}>
-			<SectionHead
-				index={num(index)}
-				eyebrow='Gallery'
-				heading={'A closer\nlook'}
-				text={images.length ? 'Tap a picture to see it full size.' : undefined}
-				t={t}
-			/>
-			<Grid
-				templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-				gap={{ base: 3, md: 4 }}>
+		<Box
+			as='section'
+			bg={t.bg}
+			py={{ base: 12, md: 20 }}>
+			<Box px={{ base: padding.baseBody, lg: padding.lgBody }}>
+				<SectionHead
+					index={num(index)}
+					eyebrow='Gallery'
+					heading={'A closer\nlook'}
+					text={`${pictures.length} pictures — swipe or use the arrows. Tap one to see it full size.`}
+					t={t}
+				/>
+			</Box>
+			<Flex
+				ref={strip}
+				onScroll={measure}
+				data-lenis-prevent-touch
+				gap={4}
+				overflowX='auto'
+				scrollSnapType='x mandatory'
+				px={{ base: padding.baseBody, lg: padding.lgBody }}
+				scrollPaddingX={{ base: padding.baseBody, lg: padding.lgBody }}
+				pb={2}
+				sx={{ scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
 				{video && (
 					<Box
-						gridColumn={{ md: '1 / -1' }}
-						borderRadius='12px'
+						data-slide
+						flex='0 0 auto'
+						w={{ base: '86vw', md: '62vw', xl: '880px' }}
+						scrollSnapAlign='start'
+						borderRadius='16px'
 						overflow='hidden'
 						bg={t.card}>
-						<AspectRatio ratio={16 / 9}>
+						<AspectRatio ratio={16 / 10}>
 							<video
 								src={data.videoURL}
 								controls
@@ -373,86 +568,137 @@ const Gallery = ({ data, index, t }) => {
 						</AspectRatio>
 					</Box>
 				)}
-				{images.map((src, i) => (
+				{pictures.map((src, i) => (
 					<Box
 						key={src + i}
+						data-slide
 						as='button'
 						type='button'
-						aria-label={`Open picture ${i + 1} of ${images.length}`}
-						onClick={() => setOpen(i)}
-						gridColumn={{ md: i === 0 && images.length % 2 === 1 ? '1 / -1' : 'auto' }}
-						borderRadius='12px'
-						overflow='hidden'
-						bg={t.card}
+						onClick={() => onOpen(i)}
+						aria-label={`Open picture ${i + 1} of ${pictures.length}`}
+						flex='0 0 auto'
+						w={{ base: '86vw', md: '62vw', xl: '880px' }}
+						scrollSnapAlign='start'
 						cursor='zoom-in'
-						transition='transform .3s'
-						_hover={{ transform: 'translateY(-4px)' }}>
-						<AspectRatio ratio={16 / 10}>
-							<Image
-								src={src}
-								alt={`${data.name} — picture ${i + 1}`}
-								objectFit='cover'
-								loading='lazy'
-							/>
-						</AspectRatio>
+						textAlign='left'>
+						<Shot
+							src={src}
+							alt={`${data.name} — picture ${i + 1}`}
+							t={t}
+						/>
 					</Box>
 				))}
-			</Grid>
-			<Modal
-				isOpen={open !== null}
-				onClose={() => setOpen(null)}
-				size='6xl'
-				isCentered>
-				<ModalOverlay bg='rgba(0,0,0,0.85)' />
-				<ModalContent
-					bg='transparent'
-					boxShadow='none'>
-					<ModalCloseButton
-						color='white'
-						top='-44px'
-						right={0}
+				<Box
+					flex='0 0 1px'
+					aria-hidden
+				/>
+			</Flex>
+			<Flex
+				px={{ base: padding.baseBody, lg: padding.lgBody }}
+				pt={6}
+				gap={6}
+				align='center'>
+				<Box
+					flex={1}
+					h='2px'
+					bg={t.line}
+					borderRadius='full'
+					overflow='hidden'>
+					<Box
+						h='full'
+						w={`${Math.max(8, pos.progress * 100)}%`}
+						bg={t.text}
+						transition='width .2s'
 					/>
-					<ModalBody p={0}>
-						{open !== null && (
-							<Flex
-								direction='column'
-								gap={3}>
-								<Image
-									src={images[open]}
-									alt={`${data.name} — picture ${open + 1}`}
-									w='full'
-									maxH='82vh'
-									objectFit='contain'
-									borderRadius='12px'
-								/>
-								{images.length > 1 && (
-									<Flex
-										justify='space-between'
-										align='center'
-										color='white'
-										fontFamily={fonts.primary}
-										fontSize='14px'>
-										<Box
-											as='button'
-											onClick={() => setOpen((open - 1 + images.length) % images.length)}>
-											← Previous
-										</Box>
-										<Text color='white'>
-											{open + 1} / {images.length}
-										</Text>
-										<Box
-											as='button'
-											onClick={() => setOpen((open + 1) % images.length)}>
-											Next →
-										</Box>
-									</Flex>
-								)}
-							</Flex>
-						)}
-					</ModalBody>
-				</ModalContent>
-			</Modal>
-		</Frame>
+				</Box>
+				<Flex gap={3}>
+					<ArrowButton
+						t={t}
+						label='Previous pictures'
+						disabled={pos.start}
+						onClick={() => step(-1)}>
+						←
+					</ArrowButton>
+					<ArrowButton
+						t={t}
+						label='Next pictures'
+						disabled={pos.end}
+						onClick={() => step(1)}>
+						→
+					</ArrowButton>
+				</Flex>
+			</Flex>
+		</Box>
+	);
+};
+
+// Full-size viewer for every picture on the page, with previous / next and the arrow keys
+const Viewer = ({ pictures, open, setOpen, name }) => {
+	useEffect(() => {
+		if (open === null) return;
+		const key = e => {
+			if (e.key === 'ArrowRight') setOpen(o => (o + 1) % pictures.length);
+			if (e.key === 'ArrowLeft') setOpen(o => (o - 1 + pictures.length) % pictures.length);
+		};
+		window.addEventListener('keydown', key);
+		return () => window.removeEventListener('keydown', key);
+	}, [open, pictures.length, setOpen]);
+
+	return (
+		<Modal
+			isOpen={open !== null && open >= 0}
+			onClose={() => setOpen(null)}
+			size='6xl'
+			isCentered>
+			<ModalOverlay bg='rgba(0,0,0,0.88)' />
+			<ModalContent
+				bg='transparent'
+				boxShadow='none'>
+				<ModalCloseButton
+					color='white'
+					top='-44px'
+					right={0}
+				/>
+				<ModalBody p={0}>
+					{open !== null && open >= 0 && (
+						<Flex
+							direction='column'
+							gap={3}>
+							<Image
+								src={pictures[open]}
+								alt={`${name} — picture ${open + 1}`}
+								w='full'
+								maxH='82vh'
+								objectFit='contain'
+								borderRadius='12px'
+							/>
+							{pictures.length > 1 && (
+								<Flex
+									justify='space-between'
+									align='center'
+									color='white'
+									fontFamily={fonts.primary}
+									fontSize='14px'>
+									<Box
+										as='button'
+										onClick={() => setOpen((open - 1 + pictures.length) % pictures.length)}>
+										← Previous
+									</Box>
+									<Text color='white'>
+										{open + 1} / {pictures.length}
+									</Text>
+									<Box
+										as='button'
+										onClick={() => setOpen((open + 1) % pictures.length)}>
+										Next →
+									</Box>
+								</Flex>
+							)}
+						</Flex>
+					)}
+				</ModalBody>
+			</ModalContent>
+		</Modal>
 	);
 };
 
@@ -479,7 +725,7 @@ const TechStack = ({ data, index, t }) =>
 						<Box
 							key={item}
 							px={{ base: 5, md: 6 }}
-							py={{ base: 2, md: 2 }}
+							py={2}
 							border='1px solid'
 							borderColor={t.text}
 							borderRadius='99px'
@@ -544,7 +790,7 @@ const More = ({ items, index, t }) =>
 			/>
 			<Grid
 				templateColumns={{ base: '1fr', md: `repeat(${Math.min(items.length, 3)}, 1fr)` }}
-				gap={{ base: 6, md: 6 }}>
+				gap={6}>
 				{items.map(item => (
 					<Flex
 						key={item.slug || item._id}
@@ -554,7 +800,7 @@ const More = ({ items, index, t }) =>
 						gap={4}
 						role='group'>
 						<Box
-							borderRadius='12px'
+							borderRadius='16px'
 							overflow='hidden'
 							bg={t.card}>
 							<AspectRatio ratio={16 / 10}>
@@ -603,13 +849,18 @@ const More = ({ items, index, t }) =>
 const CaseStudyDetail = ({ data, more = [] }) => {
 	const { colorMode } = useColorMode();
 	const t = toneOf(colorMode);
+	const [open, setOpen] = useState(null);
+
+	// Every picture on the page, in reading order, for the gallery strip and the full-size viewer
+	const featurePictures = (data.solutionFeatures || []).map(f => f?.image).filter(Boolean);
+	const pictures = [...new Set([...featurePictures, ...(data.images || []).filter(Boolean)])];
 
 	// Number the parts that are shown, in order
 	const parts = [
 		Overview,
 		(data.challengeDescription || data.approachDescription || data.solutionDescription) && Story,
 		has(data.solutionFeatures) && Features,
-		(has(data.images) || (data.isVideoEnabled && data.videoURL)) && Gallery,
+		(pictures.length || (data.isVideoEnabled && data.videoURL)) && Gallery,
 		has(data.techStack) && TechStack,
 	].filter(Boolean);
 
@@ -631,6 +882,8 @@ const CaseStudyDetail = ({ data, more = [] }) => {
 						data={data}
 						index={i}
 						t={t}
+						pictures={pictures}
+						onOpen={setOpen}
 					/>
 				))}
 				<Review
@@ -660,6 +913,12 @@ const CaseStudyDetail = ({ data, more = [] }) => {
 					t={t}
 				/>
 			</Flex>
+			<Viewer
+				pictures={pictures}
+				open={open}
+				setOpen={setOpen}
+				name={data.name}
+			/>
 		</Page>
 	);
 };
