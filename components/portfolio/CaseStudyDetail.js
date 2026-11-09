@@ -504,7 +504,7 @@ const Platform = ({ data, index, t, onOpen, pictures }) => {
 								as='button'
 								type='button'
 								onClick={() => setActive(i)}
-								onMouseEnter={() => setActive(i)}
+								aria-pressed={on}
 								textAlign='left'
 								p={6}
 								borderRadius='16px'
@@ -544,23 +544,36 @@ const Platform = ({ data, index, t, onOpen, pictures }) => {
 						);
 					})}
 				</Flex>
-				{cur.image && (
-					<Box
-						as='button'
-						type='button'
-						onClick={() => open(cur)}
-						cursor='zoom-in'
-						aria-label={`See ${cur.title} full size`}
-						position='sticky'
-						top='100px'>
-						<Shot
-							key={cur.image}
-							src={cur.image}
-							alt={cur.title}
-							t={t}
-						/>
-					</Box>
-				)}
+				{/* every picture is loaded and stacked in one cell; only the picked one shows */}
+				<Box
+					display='grid'
+					position='sticky'
+					top='100px'>
+					{items.map(item =>
+						item.image ? (
+							<Box
+								key={item.title}
+								as='button'
+								type='button'
+								gridArea='1 / 1'
+								onClick={() => open(item)}
+								cursor='zoom-in'
+								aria-label={`See ${item.title} full size`}
+								aria-hidden={item !== cur}
+								tabIndex={item === cur ? 0 : -1}
+								opacity={item === cur ? 1 : 0}
+								pointerEvents={item === cur ? 'auto' : 'none'}
+								transition='opacity .35s'>
+								<Shot
+									src={item.image}
+									alt={item.title}
+									t={t}
+									eager
+								/>
+							</Box>
+						) : null
+					)}
+				</Box>
 			</Grid>
 			{/* phones and tablets */}
 			<Flex
