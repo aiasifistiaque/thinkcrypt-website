@@ -59,20 +59,20 @@ const Label = ({ t, children, color, ...props }) => (
 	</Text>
 );
 
-// A picture that fills its box without cropping its edges awkwardly: rounded, on the card colour
-const Shot = ({ src, alt, ratio = 16 / 10, t, eager }) => (
+// A picture shown whole, at its own shape (never cropped): rounded, on the card colour
+const Shot = ({ src, alt, t, eager }) => (
 	<Box
 		borderRadius='16px'
 		overflow='hidden'
 		bg={t.card}>
-		<AspectRatio ratio={ratio}>
-			<Image
-				src={src}
-				alt={alt || ''}
-				objectFit='cover'
-				loading={eager ? 'eager' : 'lazy'}
-			/>
-		</AspectRatio>
+		<Image
+			src={src}
+			alt={alt || ''}
+			w='full'
+			h='auto'
+			display='block'
+			loading={eager ? 'eager' : 'lazy'}
+		/>
 	</Box>
 );
 
@@ -209,7 +209,6 @@ const Hero = ({ data, t }) => (
 		<Shot
 			src={data.coverImage || data.image}
 			alt={data.name}
-			ratio={{ base: 16 / 10, md: 24 / 11 }}
 			t={t}
 			eager
 		/>
@@ -469,6 +468,144 @@ const Features = ({ data, index, t, onOpen, pictures }) => {
 	);
 };
 
+/* ------------------------------------------------------- behind the site */
+
+// What runs the site: its admin panel, CMS, backend and SEO (the record's "Behind the site" list).
+// Wide screens: the list on the left, the picked one's picture on the right. Phones: one after another.
+const Platform = ({ data, index, t, onOpen, pictures }) => {
+	const items = (data.platform || []).filter(p => p?.title);
+	const [active, setActive] = useState(0);
+	if (!items.length) return null;
+	const cur = items[Math.min(active, items.length - 1)];
+	const open = item => item.image && onOpen(pictures.indexOf(item.image));
+	return (
+		<Frame t={t}>
+			<SectionHead
+				index={num(index)}
+				eyebrow='Behind the site'
+				heading={data.platformTitle || 'Run from its own\nadmin panel'}
+				text={data.platformDescription}
+				t={t}
+			/>
+			{/* wide screens */}
+			<Grid
+				display={{ base: 'none', lg: 'grid' }}
+				templateColumns='0.85fr 1.65fr'
+				gap={10}
+				alignItems='start'>
+				<Flex
+					direction='column'
+					gap={3}>
+					{items.map((item, i) => {
+						const on = item === cur;
+						return (
+							<Box
+								key={item.title}
+								as='button'
+								type='button'
+								onClick={() => setActive(i)}
+								onMouseEnter={() => setActive(i)}
+								textAlign='left'
+								p={6}
+								borderRadius='16px'
+								border='1px solid'
+								borderColor={on ? t.text : t.line}
+								bg={on ? t.card : 'transparent'}
+								transition='all .25s'>
+								<Label
+									t={t}
+									color={on ? t.accent : t.sub}>
+									{num(i)} — {item.label}
+								</Label>
+								<Heading
+									as='h3'
+									mt={2}
+									fontFamily={fonts.title}
+									fontSize='2.5rem'
+									fontWeight='400'
+									lineHeight='0.95'
+									textTransform='uppercase'
+									color={t.text}>
+									{item.title}
+								</Heading>
+								<Box
+									display='grid'
+									gridTemplateRows={on ? '1fr' : '0fr'}
+									transition='grid-template-rows .3s'>
+									<Box overflow='hidden'>
+										<Body
+											t={t}
+											pt={3}>
+											{item.description}
+										</Body>
+									</Box>
+								</Box>
+							</Box>
+						);
+					})}
+				</Flex>
+				{cur.image && (
+					<Box
+						as='button'
+						type='button'
+						onClick={() => open(cur)}
+						cursor='zoom-in'
+						aria-label={`See ${cur.title} full size`}
+						position='sticky'
+						top='100px'>
+						<Shot
+							key={cur.image}
+							src={cur.image}
+							alt={cur.title}
+							t={t}
+						/>
+					</Box>
+				)}
+			</Grid>
+			{/* phones and tablets */}
+			<Flex
+				display={{ base: 'flex', lg: 'none' }}
+				direction='column'
+				gap={10}>
+				{items.map((item, i) => (
+					<Flex
+						key={item.title}
+						direction='column'
+						gap={3}>
+						<Label t={t}>
+							{num(i)} — {item.label}
+						</Label>
+						<Heading
+							as='h3'
+							fontFamily={fonts.title}
+							fontSize='2.5rem'
+							fontWeight='400'
+							lineHeight='0.95'
+							textTransform='uppercase'
+							color={t.text}>
+							{item.title}
+						</Heading>
+						<Body t={t}>{item.description}</Body>
+						{item.image && (
+							<Box
+								as='button'
+								type='button'
+								onClick={() => open(item)}
+								pt={2}>
+								<Shot
+									src={item.image}
+									alt={item.title}
+									t={t}
+								/>
+							</Box>
+						)}
+					</Flex>
+				))}
+			</Flex>
+		</Frame>
+	);
+};
+
 /* --------------------------------------------------------------- gallery */
 
 const ArrowButton = ({ t, onClick, label, children, disabled }) => (
@@ -543,6 +680,7 @@ const Gallery = ({ data, index, t, pictures, onOpen }) => {
 				data-lenis-prevent-touch
 				gap={4}
 				overflowX='auto'
+				align='flex-start'
 				scrollSnapType='x mandatory'
 				px={{ base: padding.baseBody, lg: padding.lgBody }}
 				scrollPaddingX={{ base: padding.baseBody, lg: padding.lgBody }}
@@ -803,16 +941,16 @@ const More = ({ items, index, t }) =>
 							borderRadius='16px'
 							overflow='hidden'
 							bg={t.card}>
-							<AspectRatio ratio={16 / 10}>
-								<Image
-									src={item.image || item.coverImage}
-									alt={item.name}
-									objectFit='cover'
-									loading='lazy'
-									transition='transform .5s'
-									_groupHover={{ transform: 'scale(1.04)' }}
-								/>
-							</AspectRatio>
+							<Image
+								src={item.image || item.coverImage}
+								alt={item.name}
+								w='full'
+								h='auto'
+								display='block'
+								loading='lazy'
+								transition='transform .5s'
+								_groupHover={{ transform: 'scale(1.03)' }}
+							/>
 						</Box>
 						<Flex
 							justify='space-between'
@@ -853,13 +991,15 @@ const CaseStudyDetail = ({ data, more = [] }) => {
 
 	// Every picture on the page, in reading order, for the gallery strip and the full-size viewer
 	const featurePictures = (data.solutionFeatures || []).map(f => f?.image).filter(Boolean);
-	const pictures = [...new Set([...featurePictures, ...(data.images || []).filter(Boolean)])];
+	const platformPictures = (data.platform || []).map(p => p?.image).filter(Boolean);
+	const pictures = [...new Set([...featurePictures, ...platformPictures, ...(data.images || []).filter(Boolean)])];
 
 	// Number the parts that are shown, in order
 	const parts = [
 		Overview,
 		(data.challengeDescription || data.approachDescription || data.solutionDescription) && Story,
 		has(data.solutionFeatures) && Features,
+		has(data.platform) && Platform,
 		(pictures.length || (data.isVideoEnabled && data.videoURL)) && Gallery,
 		has(data.techStack) && TechStack,
 	].filter(Boolean);
