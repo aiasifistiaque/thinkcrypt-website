@@ -137,7 +137,8 @@ const catText = {
 
 const imgCss = {
 	width: '100%',
-	height: { base: '300px', md: '320px' },
+	height: 'auto',
+	aspectRatio: '16 / 10',
 	objectFit: 'cover',
 	borderRadius: '8px',
 };

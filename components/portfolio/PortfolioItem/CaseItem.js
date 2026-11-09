@@ -88,7 +88,7 @@ const CaseItem = ({ item, colorMode }) => {
 				{item?.isVideoEnabled && item?.videoURL ? (
 					<Box
 						w='full'
-						h={IMAGE_HEIGHT}
+						sx={{ aspectRatio: '16 / 10' }}
 						bg='#133AB9'
 						overflow='hidden'
 						borderTopRadius='inherit'>
@@ -153,7 +153,8 @@ const catText = {
 
 const imgCss = {
 	width: '100%',
-	h: IMAGE_HEIGHT,
+	h: 'auto',
+	aspectRatio: '16 / 10',
 	objectFit: 'cover',
 	borderRadius: '0',
 	borderTopRadius: '12px',
