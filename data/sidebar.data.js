@@ -32,6 +32,11 @@ const sidebarData = [
 	},
 	{
 		id: '07',
+		name: 'Products',
+		href: '/products',
+	},
+	{
+		id: '08',
 		name: 'Blog',
 		href: '/blog',
 	},

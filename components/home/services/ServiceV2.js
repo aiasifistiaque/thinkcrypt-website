@@ -1,25 +1,22 @@
 import React from 'react';
 import Column from '../../util/Home/Column';
-import { Center, Flex, Grid, Skeleton, SkeletonText, Text } from '@chakra-ui/react';
+import { Flex, Grid, Text } from '@chakra-ui/react';
 import { fonts } from '../../lib/constants';
 import { colors, styles } from '../../../theme/styles';
-import { useGetAllQuery } from '../../../store';
 import { padding } from '../../../lib/constants';
 
-const Servicesv2 = ({ theme }) => {
+// The home page's "Our Digital Expertise" section. Its heading, line under it and cards are the Mint
+// panel's content "expertise" on the home page (items: title = card name, description = its text);
+// the seed copy (lib/content/home.js) shows only when the panel can't be reached.
+const Servicesv2 = ({ theme, section }) => {
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
 	const primaryColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
 	const blue = theme === 'dark' ? colors?.text?.blue : colors?.text?.darkBlue;
 	const secondaryColor =
 		theme === 'dark' ? colors?.textSecondary?.dark : colors?.textSecondary?.light;
-	const { data, isFetching } = useGetAllQuery({
-		path: 'services',
-		limit: 6,
-		sort: '-priority',
-		filters: {
-			isActive: true,
-		},
-	});
+	if (!section) return null;
+	const d = section.data || {};
+	const items = (d.items || []).filter(i => i?.title);
 
 	return (
 		<Column
@@ -29,26 +26,23 @@ const Servicesv2 = ({ theme }) => {
 				<Text
 					{...headingCss}
 					color={primaryColor}>
-					Our Digital Expertise
+					{String(d.heading || 'Our Digital Expertise').replace(/\n/g, ' ')}
 				</Text>
 				<Text
 					{...subHeadingCss}
 					color={blue}>
-					We combine strategic thinking, design excellence, and technical mastery to create digital
-					experiences that exceed expectations.
+					{d.text}
 				</Text>
 			</Flex>
 
 			<Grid {...gridCss}>
-				{isFetching
-					? [...Array(6)].map((_, i) => <SeriveItemLgSkeleton key={i} />)
-					: data?.doc?.map((item, i) => (
-							<SeriveItemLg
-								theme={theme}
-								item={item}
-								key={i}
-							/>
-					  ))}
+				{items.map((item, i) => (
+					<SeriveItemLg
+						theme={theme}
+						item={item}
+						key={i}
+					/>
+				))}
 			</Grid>
 		</Column>
 	);
@@ -97,7 +91,7 @@ const SeriveItemLg = ({ item, theme }) => (
 		<Text
 			{...titleCss}
 			color={theme === 'dark' ? colors?.text?.dark : colors?.text?.light}>
-			{item?.name}
+			{item?.title}
 		</Text>
 		<Flex
 			flex={1}
@@ -108,19 +102,6 @@ const SeriveItemLg = ({ item, theme }) => (
 				{item?.description}
 			</Text>
 		</Flex>
-	</Column>
-);
-
-const SeriveItemLgSkeleton = () => (
-	<Column {...itemCss}>
-		<Skeleton>
-			<Text
-				{...titleCss}
-				fontFamily={fonts.heading}>
-				NAME OF ITEM
-			</Text>
-		</Skeleton>
-		<SkeletonText noOfLines={4} />
 	</Column>
 );
 
