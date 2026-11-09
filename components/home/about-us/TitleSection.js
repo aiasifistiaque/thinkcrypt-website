@@ -30,6 +30,7 @@ const TitleSection = ({
 	paragraph,
 	clickEvent,
 	headingAs = 'h2',
+	footer,
 	...props
 }) => {
 	const bg = colorMode == 'dark' ? colors?.background?.dark : colors?.background?.light;
@@ -146,6 +147,7 @@ const TitleSection = ({
 						</Flex>
 					</FlexEnd>
 				</Grid>
+				{footer}
 			</Column>
 			<Flex
 				ref={lineRef}

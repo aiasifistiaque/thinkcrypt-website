@@ -8,14 +8,13 @@ import { getFeaturedPortfolios } from '../lib/portfolios';
 // SEO for / comes from the Mint panel (Website → SEO)
 export const generateMetadata = () => pageMetadata('/');
 
-// The panel's contents for / (the about us, our expertise, website development and business tools sections)
+// The panel's contents for / (the about us, website development and business tools sections)
 // and the featured projects (Website → Portfolios) refresh within a minute
 export const revalidate = 60;
 
 export default async function Home() {
-	const [aboutSection, expertiseSection, websiteSection, businessSection, projects] = await Promise.all([
+	const [aboutSection, websiteSection, businessSection, projects] = await Promise.all([
 		pageSection('/', 'about-us', homeAboutSeed),
-		pageSection('/', 'expertise'),
 		pageSection('/', 'website-development', homeWebsiteSeed),
 		pageSection('/', 'business-tools'),
 		getFeaturedPortfolios(),
@@ -23,7 +22,6 @@ export default async function Home() {
 	return (
 		<Homepage
 			aboutSection={aboutSection}
-			expertiseSection={expertiseSection}
 			websiteSection={websiteSection}
 			businessSection={businessSection}
 			projects={projects}

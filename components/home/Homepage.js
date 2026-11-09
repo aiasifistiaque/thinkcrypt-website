@@ -15,7 +15,6 @@ import ViewOurWork from './about-us/ViewOurWork';
 import TitleSection from './about-us/TitleSection';
 import WebsiteDevelopmentSection from './WebsiteDevelopmentSection';
 import BusinessToolsSection from './BusinessToolsSection';
-import ExpertiseSection from './ExpertiseSection';
 
 const Container = styled(Flex)`
 	flex: 1;
@@ -34,7 +33,7 @@ const container = {
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSection, projects }) => {
+const Homepage = ({ aboutSection, websiteSection, businessSection, projects }) => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
 
@@ -52,15 +51,7 @@ const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSect
 					section={aboutSection}
 				/>
 
-				{/* Our expertise from the panel; the old content API's services list only when it's missing */}
-				{expertiseSection ? (
-					<ExpertiseSection
-						theme={theme}
-						section={expertiseSection}
-					/>
-				) : (
-					<Servicesv2 theme={theme} />
-				)}
+				<Servicesv2 theme={theme} />
 				<HomeStacks theme={theme} />
 				<WebsiteDevelopmentSection
 					theme={theme}
