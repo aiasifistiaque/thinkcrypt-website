@@ -34,7 +34,7 @@ const container = {
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSection, productsSection, products, projects }) => {
+const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSection, productsSection, products, projects, stackSection, solutionsSection, clientsSection }) => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
 
@@ -56,7 +56,10 @@ const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSect
 					theme={theme}
 					section={expertiseSection}
 				/>
-				<HomeStacks theme={theme} />
+				<HomeStacks
+					theme={theme}
+					section={stackSection}
+				/>
 				<WebsiteDevelopmentSection
 					theme={theme}
 					section={websiteSection}
@@ -67,7 +70,10 @@ const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSect
 					theme={theme}
 					projects={projects}
 				/>
-				<RightBusinessSolution theme={theme} />
+				<RightBusinessSolution
+					theme={theme}
+					section={solutionsSection}
+				/>
 				<BusinessToolsSection
 					theme={theme}
 					section={businessSection}
@@ -78,7 +84,7 @@ const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSect
 					products={products}
 				/>
 
-				<Clients />
+				<Clients section={clientsSection} />
 				{/* <Testimonial /> */}
 				<TitleSection
 					colorMode={theme}

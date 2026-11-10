@@ -5,38 +5,19 @@ import Page from '../util/Page/Page';
 import { Stack, Image, Link, useColorMode } from '@chakra-ui/react';
 
 import { styles } from '../../theme/styles';
-import { useGetAllQuery } from '../../store';
 import CardSection from '../services/website/CardSection';
 import StackCard from '../home/services/StackCard';
 import TitleSection from '../home/about-us/TitleSection';
-import ClientSkeleton from './ClientSkeleton';
 
 const img =
 	'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
 const BORDER = styles.border.light;
 
-const Clientpage = () => {
-	// Use RTK Query as fallback when no initial data
-	//const shouldSkip = initialData && initialData.doc && initialData.doc.length > 0;
-	const shouldSkip = false;
-
-	const { data: fetchedData, isFetching } = useGetAllQuery(
-		{
-			path: 'tcclients',
-			limit: 99,
-			sort: '-priority',
-			filters: { status: 'published' },
-		},
-		{
-			skip: shouldSkip,
-		}
-	);
-
-	// Use SSR data when available, otherwise use fetched data
-	// const data = shouldSkip ? initialData : fetchedData;
-	const data = fetchedData;
-	const isLoading = !shouldSkip && isFetching && !data;
+// /clients: every logo of the Mint panel's content "clients" on the home page (title = name,
+// image = logo, url = the client's site)
+const Clientpage = ({ section }) => {
+	const items = (section?.data?.items || []).filter(i => i?.image);
 
 	const URLContainer = ({ item, children }) => {
 		return (
@@ -76,16 +57,7 @@ const Clientpage = () => {
 						base: '64px',
 						md: '92px',
 					}}>
-					{isLoading
-						? // Show 8 skeleton loaders
-						  Array.from({ length: 8 }, (_, i) => (
-								<ClientSkeleton
-									key={i}
-									colorMode={colorMode}
-								/>
-						  ))
-						: data &&
-						  data?.doc?.map((item, i) => (
+					{items.map((item, i) => (
 								<URLContainer
 									item={item}
 									key={i}>
@@ -95,16 +67,17 @@ const Clientpage = () => {
 										headingStyle={{ fontSize: { base: '10px', md: '28px' }, lineHeight: 1 }}
 										icon={
 											<Image
-												src={item?.icon}
+												src={item.image}
+												alt={item.title}
 												h={{ base: '120px', md: '150px' }}
 												w={{ base: '120px', md: '150px' }}
 												objectFit='contain'
 											/>
 										}
-										title={item?.name}
+										title={item.title}
 									/>
 								</URLContainer>
-						  ))}
+							))}
 				</CardSection>
 			</Stack>
 		</Page>

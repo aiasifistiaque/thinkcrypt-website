@@ -3,21 +3,13 @@
 import React from 'react';
 import Column from '../../util/Home/Column';
 import { Grid, Image, useColorMode } from '@chakra-ui/react';
-import { useGetAllQuery } from '../../../store';
-import SolutionCard, { Skeleton } from './SolutionCard';
+import SolutionCard from './SolutionCard';
 import { colors } from '../../../theme/styles';
 
-const RightSolutionPage = () => {
+// /business-solution: every card of the Mint panel's content "solutions" on the home page
+const RightSolutionPage = ({ section }) => {
 	const { colorMode: theme } = useColorMode();
-	const { data, isFetching } = useGetAllQuery({
-		path: 'solutions',
-		limit: 99,
-		sort: '-priority',
-		filters: {
-			isFeatured: true,
-			status: 'published',
-		},
-	});
+	const items = (section?.data?.items || []).filter(i => i?.title);
 
 	const bg = theme == 'dark' ? colors?.background?.dark : colors?.background?.light;
 
@@ -26,26 +18,27 @@ const RightSolutionPage = () => {
 			{...containerCss}
 			bg={bg}>
 			<Grid {...gridCss}>
-				{isFetching && [...Array(3)].map((_, i) => <Skeleton key={i} />)}
-				{data &&
-					data?.doc?.map((item, i) => (
-						<SolutionCard
-							colorMode={theme}
-							href={item?.toStaticPage ? item?.staticPageUrl : `/businesses/${item?._id}`}
-							icon={
+				{items.map((item, i) => (
+					<SolutionCard
+						colorMode={theme}
+						href={item.url}
+						icon={
+							item.image && (
 								<Image
 									w='48px'
 									h='48px'
 									objectFit='contain'
-									src={item?.icon}
+									src={item.image}
+									alt={item.title}
 								/>
-							}
-							key={i}
-							title={item?.name}
-							description={item?.shortDescription}
-							btnText='Learn More'
-						/>
-					))}
+							)
+						}
+						key={i}
+						title={item.title}
+						description={item.description}
+						btnText='Learn More'
+					/>
+				))}
 			</Grid>
 		</Column>
 	);

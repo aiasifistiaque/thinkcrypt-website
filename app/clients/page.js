@@ -1,6 +1,5 @@
-'use client';
-
 import Clientpage from '../../components/portfolio/Clientpage';
+import { pageSection } from '../../lib/pageContents';
 import { defaultSEO } from '../../lib/seoKeywords';
 
 const title = `Trusted by Innovators Worldwide | Our Clients & Partners – Thinkcrypt`;
@@ -66,8 +65,10 @@ const desc =
 // 	},
 // };
 
-const Clients = () => {
-	return <Clientpage />;
-};
+// The logos are the Mint panel's content "clients" on the home page
+export const revalidate = 60;
 
-export default Clients;
+export default async function Clients() {
+	const section = await pageSection('/', 'clients');
+	return <Clientpage section={section} />;
+}

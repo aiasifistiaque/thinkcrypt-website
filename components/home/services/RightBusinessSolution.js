@@ -2,7 +2,6 @@ import React from 'react';
 import Column from '../../util/Home/Column';
 import { Button, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { fonts } from '../../lib/constants';
-import { useGetAllQuery } from '../../../store';
 import Link from 'next/link';
 
 import { Building, Building2, Factory, Hospital, Rocket, ShoppingCart } from 'lucide-react';
@@ -57,15 +56,13 @@ const doc = [
 	},
 ];
 
-const RightBusinessSolution = ({ theme, colorMode }) => {
-	const { data, isFetching } = useGetAllQuery({
-		path: 'solutions',
-		limit: 6,
-		sort: '-priority',
-		filters: {
-			status: 'published',
-		},
-	});
+// The home page's solutions by industry. Its heading, button and cards are the Mint panel's content
+// "solutions" on the home page (items: title, description, image = the icon, url = where Learn More
+// goes); the home page shows the first six, /business-solution shows them all.
+const RightBusinessSolution = ({ theme, section }) => {
+	if (!section) return null;
+	const d = section.data || {};
+	const items = (d.items || []).filter(i => i?.title).slice(0, 6);
 
 	const bg = theme === 'dark' ? colors?.background?.dark : colors?.background?.light;
 	const textColor = theme === 'dark' ? colors?.text?.dark : colors?.text?.light;
@@ -82,7 +79,7 @@ const RightBusinessSolution = ({ theme, colorMode }) => {
 				<Text
 					{...headingCss}
 					color={textColor}>
-					FIND THE RIGHT SOLUTION FOR YOUR BUSINESS - FILTERED BY INDUSTRY
+					{d.heading || 'FIND THE RIGHT SOLUTION FOR YOUR BUSINESS - FILTERED BY INDUSTRY'}
 				</Text>
 				{/* <Text {...subHeadingCss}>
 					Every business has unique challenges and goals. We provide tailored digital solutions to
@@ -91,32 +88,33 @@ const RightBusinessSolution = ({ theme, colorMode }) => {
 			</Center>
 
 			<Grid {...gridCss}>
-				{isFetching && [...Array(3)].map((_, i) => <Skeleton key={i} />)}
-				{data &&
-					data?.doc?.map((item, i) => (
-						<SolutionCard
-							colorMode={theme}
-							href={item?.toStaticPage ? item?.staticPageUrl : `/businesses/${item?._id}`}
-							icon={
+				{items.map((item, i) => (
+					<SolutionCard
+						colorMode={theme}
+						href={item.url}
+						icon={
+							item.image && (
 								<Image
 									w='32px'
 									h='32px'
 									objectFit='contain'
-									src={item?.icon}
+									src={item.image}
+									alt={item.title}
 								/>
-							}
-							key={i}
-							title={item?.name}
-							description={item?.shortDescription}
-							btnText='Learn More'
-						/>
-					))}
+							)
+						}
+						key={i}
+						title={item.title}
+						description={item.description}
+						btnText='Learn More'
+					/>
+				))}
 			</Grid>
 			<Center>
 				<ViewMoreButton
 					theme={theme}
-					href='/business-solution'>
-					View all business solutions
+					href={d.buttonUrl || '/business-solution'}>
+					{d.buttonLabel || 'View all business solutions'}
 				</ViewMoreButton>
 				{/* <Link href='/business-solution'>
 					<Button

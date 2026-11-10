@@ -1,22 +1,10 @@
-'use client';
-
-import WebsiteImportance from '../../components/services/website/WebsiteImportance';
-import WebsiteUseCases from '../../components/services/website/WebsiteUseCases';
-import WebsiteAdvanceFeatures from '../../components/services/website/WebsiteAdvancedFeatures';
-import CMSFeatures from '../../components/services/website/CMSFeatures';
-import WebsiteFeatures from '../../components/services/website/WebsiteFeatures';
 import RightSolutionPage from '../../components/home/services/RightSolutionPage';
+import { pageSection } from '../../lib/pageContents';
 
-const BusinessSolution = () => {
-	return (
-		<RightSolutionPage>
-			<WebsiteImportance />
-			<WebsiteFeatures />
-			<WebsiteUseCases />
-			<WebsiteAdvanceFeatures />
-			<CMSFeatures />
-		</RightSolutionPage>
-	);
-};
+// The solution cards are the Mint panel's content "solutions" on the home page
+export const revalidate = 60;
 
-export default BusinessSolution;
+export default async function BusinessSolution() {
+	const section = await pageSection('/', 'solutions');
+	return <RightSolutionPage section={section} />;
+}

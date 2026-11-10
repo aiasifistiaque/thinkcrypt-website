@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import SectionHeading from '../home/sectionheading/SectionHeading';
 import Page from '../util/Page/Page';
@@ -6,7 +8,7 @@ import PortfolioItemSkeleton from './PortfolioItem/PortfolioSkeleton';
 import { Heading, Stack, Flex, Grid, Wrap, Text, Image, useColorMode } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { styles } from '../../theme/styles';
-import { useGetAllQuery } from '../../store';
+import { tagsOf } from '../home/services/HomeStacks';
 import CaseItem from './PortfolioItem/CaseItem';
 import CardSection from '../services/website/CardSection';
 import StackCard from '../home/services/StackCard';
@@ -17,19 +19,15 @@ const img =
 
 const BORDER = styles.border.light;
 
-const TechstackPage = () => {
+const TechstackPage = ({ section }) => {
 	const [cat, setCat] = useState('');
 
 	const onCategoryChange = value => {
 		setCat(value);
 	};
 
-	const { data, isFetching } = useGetAllQuery({
-		path: 'techstacks',
-		limit: 99,
-		sort: '-priority',
-		filters: { status: 'published' },
-	});
+	// Every card of the Mint panel's content "tech-stack" on the home page
+	const items = (section?.data?.items || []).filter(i => i?.title);
 
 	const industries = [
 		{ title: 'All projects', value: '' },
@@ -68,24 +66,26 @@ const TechstackPage = () => {
 					pt={0}
 					colorMode={theme}
 					title='What we use for development'>
-					{data &&
-						data?.doc?.map((item, i) => (
-							<StackCard
-								colorMode={theme}
-								icon={
+					{items.map((item, i) => (
+						<StackCard
+							colorMode={theme}
+							icon={
+								item.image && (
 									<Image
-										src={item?.icon}
+										src={item.image}
+										alt={item.title}
 										h='44px'
 										w='44px'
 										objectFit='contain'
 									/>
-								}
-								tags={item?.tags}
-								title={item?.name}
-								description={item?.shortDescription}
-								key={i}
-							/>
-						))}
+								)
+							}
+							tags={tagsOf(item)}
+							title={item.title}
+							description={item.description}
+							key={i}
+						/>
+					))}
 				</CardSection>
 			</Stack>
 		</Page>

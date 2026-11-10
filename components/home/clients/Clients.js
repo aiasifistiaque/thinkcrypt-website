@@ -13,7 +13,6 @@ import React from 'react';
 import { fonts } from '../../lib/constants';
 import { partnerLogos } from '../../../data/data';
 import { colors, styles } from '../../../theme/styles';
-import { useGetAllQuery } from '../../../store';
 import { max } from 'moment-timezone';
 import { padding } from '../../../lib/constants';
 import LinkButton from '../about-us/LinkButton';
@@ -57,19 +56,20 @@ const EachItemLoading = () => {
 	);
 };
 
-const Clients = () => {
-	const { data } = useGetAllQuery({
-		path: 'tcclients',
-		sort: '-priority',
-		limit: 15,
-		filters: { isActive: true },
-	});
+// The home page's client logos. Its heading, text, button and logos are the Mint panel's content
+// "clients" on the home page (items: title = the client's name, image = its logo, url = its site);
+// the same list fills /clients. Without the panel it shows the logos kept in the repo.
+const Clients = ({ section }) => {
+	const d = section?.data || {};
+	const logos = section
+		? (d.items || []).filter(i => i?.image).map(i => i.image)
+		: partnerLogos;
 	return (
 		<Flex {...container}>
 			<Flex {...section}>
 				<Flex {...titleContainer}>
 					<Grid {...titleStack}>
-						<Text {...title}>Our Partners & Clients</Text>
+						<Text {...title}>{d.heading || 'Our Partners & Clients'}</Text>
 						<Flex justify='flex-end'>
 							<Flex
 								flexDir='column'
@@ -78,18 +78,17 @@ const Clients = () => {
 								justifySelf='flex-end'
 								w={{ base: '100%', md: '80%' }}>
 								<Text {...subTitle}>
-									{`We offer services to a diverse range of businesses, from startups and SMEs to large corporations. Our extensive partnerships across various industries allow us to deliver impactful, tailored solutions that drive businesses forward.`}
+									{d.text ||
+										`We offer services to a diverse range of businesses, from startups and SMEs to large corporations. Our extensive partnerships across various industries allow us to deliver impactful, tailored solutions that drive businesses forward.`}
 								</Text>
-								<LinkButton href='/clients'>View All Clients</LinkButton>
+								<LinkButton href={d.buttonUrl || '/clients'}>{d.buttonLabel || 'View All Clients'}</LinkButton>
 							</Flex>
 						</Flex>
 					</Grid>
 					<CustomMarquee>
-						{!data
-							? Array.from({ length: 12 }).map((_, index) => (
-									<EachItemLoading key={`loading-${index}`} />
-							  ))
-							: data?.doc?.map((logo, index) => <EachItem key={index}>{logo?.icon}</EachItem>)}
+						{logos.map((logo, index) => (
+							<EachItem key={index}>{logo}</EachItem>
+						))}
 					</CustomMarquee>
 				</Flex>
 
