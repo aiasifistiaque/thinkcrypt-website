@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Helvetica, Arial, sans-serif">
+<defs><clipPath id="c"><rect width="800" height="500" rx="24"/></clipPath></defs>
+<g clip-path="url(#c)"><rect width="800" height="500" fill="#141414"/>
+<g transform="translate(60 60)"><rect width="330" height="380" rx="16" fill="#1d1d1d" stroke="#333333" stroke-width="2"/>
+<text x="24" y="40" font-size="11" fill="#9d9a90">From: Your Store · orders@yourstore.com</text>
+<text x="24" y="72" font-size="18" font-weight="700" fill="#f2efe6">Your order #1043</text><text x="24" y="94" font-size="18" font-weight="700" fill="#f2efe6">is confirmed</text>
+<rect x="24" y="114" width="282" height="92" rx="10" fill="#272727"/><rect x="36" y="126" width="68" height="68" rx="8" fill="#2f7a7c"/>
+<text x="118" y="148" font-size="12" fill="#f2efe6">Cotton panjabi · M</text><text x="118" y="168" font-size="12" fill="#9d9a90">Qty 1</text><text x="118" y="188" font-size="13" font-weight="700" fill="#65c8cb">৳ 2,200</text>
+<text x="24" y="238" font-size="12" fill="#9d9a90">Delivery by Steadfast in 2–3 days.</text>
+<rect x="24" y="260" width="150" height="32" rx="16.0" fill="#2f7a7c"/><text x="99.0" y="280.0" font-size="11" font-weight="700" fill="#f2efe6" text-anchor="middle">Track your order</text>
+<rect x="24" y="320" width="282" height="8" rx="4" fill="#333333"/><rect x="24" y="338" width="200" height="8" rx="4" fill="#333333"/></g>
+<g transform="translate(430 80)" font-size="13">
+<rect width="300" height="64" rx="14" fill="#272727"/><text x="20" y="27" font-size="10" fill="#9d9a90">WHEN</text><text x="20" y="48" font-weight="700" fill="#f2efe6">A new order is placed</text>
+<line x1="150" y1="64" x2="150" y2="104" stroke="#65c8cb" stroke-width="2" stroke-dasharray="4 4"/>
+<rect y="104" width="300" height="64" rx="14" fill="#1f5556"/><text x="20" y="131" font-size="10" fill="#cfe9ea">THEN</text><text x="20" y="152" font-weight="700" fill="#f2efe6">Email the customer</text>
+<line x1="150" y1="168" x2="150" y2="208" stroke="#65c8cb" stroke-width="2" stroke-dasharray="4 4"/>
+<rect y="208" width="300" height="64" rx="14" fill="#1f5556"/><text x="20" y="235" font-size="10" fill="#cfe9ea">AND</text><text x="20" y="256" font-weight="700" fill="#f2efe6">Notify the team</text>
+<line x1="150" y1="272" x2="150" y2="312" stroke="#65c8cb" stroke-width="2" stroke-dasharray="4 4"/>
+<rect y="312" width="300" height="40" rx="14" fill="#272727"/><text x="20" y="337" fill="#3ecf8e" font-weight="700">✓ Ran 148 times this month</text></g></g>
+</svg>

@@ -142,20 +142,21 @@ const Pricing = ({ section, index, t }) => {
 								<Text
 									fontFamily={fonts.primary}
 									fontSize='13px'
-									opacity={0.7}>
+									color={i === 1 ? t.bg : t.sub}>
 									BDT
 								</Text>
 								<Text
 									fontFamily={fonts.title}
 									fontSize={{ base: '3rem', md: '4rem' }}
-									lineHeight='1'>
+									lineHeight='1'
+									color={i === 1 ? t.bg : t.text}>
 									{taka(p.price)}
 								</Text>
 								<Text
 									fontFamily={fonts.primary}
 									fontSize='13px'
 									textTransform='uppercase'
-									opacity={0.7}>
+									color={i === 1 ? t.bg : t.sub}>
 									/ month
 								</Text>
 							</Flex>

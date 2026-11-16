@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Helvetica, Arial, sans-serif">
+<defs><clipPath id="c"><rect width="800" height="500" rx="24"/></clipPath></defs>
+<g clip-path="url(#c)"><rect width="800" height="500" fill="#141414"/>
+<g transform="translate(50 50)"><rect width="700" height="400" rx="16" fill="#1d1d1d" stroke="#333333" stroke-width="2"/>
+<text x="24" y="50" font-size="22" font-weight="700" fill="#f2efe6">Deliveries</text><text x="24" y="74" font-size="12" fill="#9d9a90">Sent to your own courier accounts in one click</text>
+<rect x="510" y="30" width="166" height="32" rx="16.0" fill="#2f7a7c"/><text x="593.0" y="50.0" font-size="11" font-weight="700" fill="#f2efe6" text-anchor="middle">Send 3 to courier</text>
+<g font-size="10" fill="#9d9a90"><text x="40" y="108">ORDER</text><text x="114" y="108">CUSTOMER</text><text x="274" y="108">COURIER</text><text x="424" y="108">TRACKING</text></g>
+<g transform="translate(24 120)"><rect width="652" height="44" rx="10" fill="#272727"/>
+<text x="16" y="27" font-size="13" font-weight="700" fill="#f2efe6">#1043</text><text x="90" y="27" font-size="13" fill="#f2efe6">Nadia R.</text><text x="250" y="27" font-size="13" fill="#9d9a90">Steadfast</text>
+<rect x="400" y="19" width="140" height="6" rx="3" fill="#333333"/><rect x="400" y="19" width="140" height="6" rx="3" fill="#3ecf8e"/>
+<text x="636" y="27" font-size="12" font-weight="700" fill="#3ecf8e" text-anchor="end">Delivered</text></g><g transform="translate(24 174)"><rect width="652" height="44" rx="10" fill="#272727"/>
+<text x="16" y="27" font-size="13" font-weight="700" fill="#f2efe6">#1044</text><text x="90" y="27" font-size="13" fill="#f2efe6">Tanvir A.</text><text x="250" y="27" font-size="13" fill="#9d9a90">Pathao</text>
+<rect x="400" y="19" width="140" height="6" rx="3" fill="#333333"/><rect x="400" y="19" width="95" height="6" rx="3" fill="#65c8cb"/>
+<text x="636" y="27" font-size="12" font-weight="700" fill="#65c8cb" text-anchor="end">On the way</text></g><g transform="translate(24 228)"><rect width="652" height="44" rx="10" fill="#272727"/>
+<text x="16" y="27" font-size="13" font-weight="700" fill="#f2efe6">#1045</text><text x="90" y="27" font-size="13" fill="#f2efe6">Emily D.</text><text x="250" y="27" font-size="13" fill="#9d9a90">RedX</text>
+<rect x="400" y="19" width="140" height="6" rx="3" fill="#333333"/><rect x="400" y="19" width="50" height="6" rx="3" fill="#febc2e"/>
+<text x="636" y="27" font-size="12" font-weight="700" fill="#febc2e" text-anchor="end">Picked up</text></g><g transform="translate(24 282)"><rect width="652" height="44" rx="10" fill="#272727"/>
+<text x="16" y="27" font-size="13" font-weight="700" fill="#f2efe6">#1046</text><text x="90" y="27" font-size="13" fill="#f2efe6">Kamal H.</text><text x="250" y="27" font-size="13" fill="#9d9a90">Steadfast</text>
+<rect x="400" y="19" width="140" height="6" rx="3" fill="#333333"/><rect x="400" y="19" width="12" height="6" rx="3" fill="#9d9a90"/>
+<text x="636" y="27" font-size="12" font-weight="700" fill="#9d9a90" text-anchor="end">Ready</text></g><text x="24" y="376" font-size="11" fill="#9d9a90">Buyer check: 01711-000000 · 14 delivered · 1 returned</text><circle cx="676" cy="372" r="8" fill="#3ecf8e"/></g></g>
+</svg>
