@@ -40,42 +40,46 @@ const Copy = ({ value, t }) => {
 	);
 };
 
+// The label sits above its value: side by side, "Website" and "Password" wrapped in the narrow cards
 const Row = ({ label, value, href, copy, t }) => (
 	<Flex
-		align='center'
+		align='flex-end'
 		gap={3}
 		py={2.5}
 		borderTop='1px solid'
 		borderColor={t.line}
 		fontFamily={fonts.primary}
 		fontSize='13px'>
-		<Text
-			w='92px'
-			flexShrink={0}
-			textTransform='uppercase'
-			color={t.sub}>
-			{label}
-		</Text>
-		<Text
+		<Box
 			flex={1}
-			minW={0}
-			noOfLines={1}
-			color={t.text}
-			wordBreak='break-all'>
-			{href ? (
-				<Box
-					as='a'
-					href={href}
-					target='_blank'
-					rel='noopener'
-					textDecoration='underline'
-					textUnderlineOffset='3px'>
-					{value}
-				</Box>
-			) : (
-				value
-			)}
-		</Text>
+			minW={0}>
+			<Text
+				fontSize='11px'
+				textTransform='uppercase'
+				whiteSpace='nowrap'
+				color={t.sub}>
+				{label}
+			</Text>
+			<Text
+				mt={1}
+				noOfLines={1}
+				color={t.text}
+				wordBreak='break-all'>
+				{href ? (
+					<Box
+						as='a'
+						href={href}
+						target='_blank'
+						rel='noopener'
+						textDecoration='underline'
+						textUnderlineOffset='3px'>
+						{value}
+					</Box>
+				) : (
+					value
+				)}
+			</Text>
+		</Box>
 		{copy && (
 			<Copy
 				value={value}
