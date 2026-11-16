@@ -37,6 +37,11 @@ const sidebarData = [
 	},
 	{
 		id: '08',
+		name: 'Instant Commerce',
+		href: '/easy-instant-commerce',
+	},
+	{
+		id: '09',
 		name: 'Blog',
 		href: '/blog',
 	},
