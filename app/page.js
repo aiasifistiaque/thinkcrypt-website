@@ -2,14 +2,14 @@ import Homepage from '../components/home/Homepage';
 import { pageMetadata } from '../lib/mintSeo';
 import { pageSection } from '../lib/pageContents';
 import { homeWebsiteSeed } from '../lib/content/websiteDevelopment';
-import { homeAboutSeed, homeExpertiseSeed } from '../lib/content/home';
+import { homeAboutSeed, homeExpertiseSeed, homeInstantCommerceSeed } from '../lib/content/home';
 import { getFeaturedPortfolios } from '../lib/portfolios';
 import { mint } from '../lib/mint';
 
 // SEO for / comes from the Mint panel (Website → SEO)
 export const generateMetadata = () => pageMetadata('/');
 
-// The panel's contents for / (the about us, expertise, tech stack, website development, solutions, business tools,
+// The panel's contents for / (the about us, expertise, tech stack, website development, instant commerce, solutions, business tools,
 // products and clients sections),
 // the products (Website → Products) and the featured projects (Website → Portfolios) refresh within a minute
 export const revalidate = 60;
@@ -19,6 +19,7 @@ export default async function Home() {
 		aboutSection,
 		expertiseSection,
 		websiteSection,
+		commerceSection,
 		businessSection,
 		productsSection,
 		products,
@@ -30,6 +31,7 @@ export default async function Home() {
 		pageSection('/', 'about-us', homeAboutSeed),
 		pageSection('/', 'expertise', homeExpertiseSeed),
 		pageSection('/', 'website-development', homeWebsiteSeed),
+		pageSection('/', 'instant-commerce', homeInstantCommerceSeed),
 		pageSection('/', 'business-tools'),
 		pageSection('/', 'products'),
 		mint('/products?limit=12&sort=order').then(r => r?.doc || []),
@@ -43,6 +45,7 @@ export default async function Home() {
 			aboutSection={aboutSection}
 			expertiseSection={expertiseSection}
 			websiteSection={websiteSection}
+			commerceSection={commerceSection}
 			businessSection={businessSection}
 			productsSection={productsSection}
 			products={products}

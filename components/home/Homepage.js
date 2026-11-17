@@ -14,6 +14,7 @@ import HomeStacks from './services/HomeStacks';
 import ViewOurWork from './about-us/ViewOurWork';
 import TitleSection from './about-us/TitleSection';
 import WebsiteDevelopmentSection from './WebsiteDevelopmentSection';
+import InstantCommerceSection from './InstantCommerceSection';
 import BusinessToolsSection from './BusinessToolsSection';
 import ProductsSection from './ProductsSection';
 
@@ -34,7 +35,7 @@ const container = {
 const img =
 	'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
 
-const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSection, productsSection, products, projects, stackSection, solutionsSection, clientsSection }) => {
+const Homepage = ({ aboutSection, expertiseSection, websiteSection, commerceSection, businessSection, productsSection, products, projects, stackSection, solutionsSection, clientsSection }) => {
 	const { colorMode } = useColorMode();
 	const theme = colorMode;
 
@@ -63,6 +64,10 @@ const Homepage = ({ aboutSection, expertiseSection, websiteSection, businessSect
 				<WebsiteDevelopmentSection
 					theme={theme}
 					section={websiteSection}
+				/>
+				<InstantCommerceSection
+					theme={theme}
+					section={commerceSection}
 				/>
 
 				<ViewOurWork theme={theme} />
