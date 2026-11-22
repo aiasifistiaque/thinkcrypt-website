@@ -7,6 +7,8 @@ import { Frame, PillButton, ScreenFrame, SectionHead, num } from '../website-dev
 
 // The demo stores (the panel's "EC demos"): each store's website, its commerce panel and a demo login,
 // so a visitor can try both sides. The section's words are the page content "demos".
+// A store with a demoUrl (its panel's demo link) opens the panel signed in for an hour, so no email or
+// password is shown; the others still show the shared login.
 
 const hostOf = url => {
 	try {
@@ -160,15 +162,22 @@ export const DemoCard = ({ demo, t, i, startHref }) => (
 				href={demo.siteUrl}
 				t={t}
 			/>
-			{demo.panelUrl && (
+			{(demo.demoUrl || demo.panelUrl) && (
 				<Row
 					label='Panel'
-					value={hostOf(demo.panelUrl)}
-					href={demo.panelUrl}
+					value={hostOf(demo.demoUrl || demo.panelUrl)}
+					href={demo.demoUrl || demo.panelUrl}
 					t={t}
 				/>
 			)}
-			{demo.loginEmail && (
+			{demo.demoUrl && (
+				<Row
+					label='Login'
+					value='None needed — opens signed in for an hour'
+					t={t}
+				/>
+			)}
+			{!demo.demoUrl && demo.loginEmail && (
 				<Row
 					label='Email'
 					value={demo.loginEmail}
@@ -176,7 +185,7 @@ export const DemoCard = ({ demo, t, i, startHref }) => (
 					t={t}
 				/>
 			)}
-			{demo.demoPassword && (
+			{!demo.demoUrl && demo.demoPassword && (
 				<Row
 					label='Password'
 					value={demo.demoPassword}
@@ -195,11 +204,11 @@ export const DemoCard = ({ demo, t, i, startHref }) => (
 				href={demo.siteUrl}>
 				Visit store
 			</PillButton>
-			{demo.panelUrl && (
+			{(demo.demoUrl || demo.panelUrl) && (
 				<PillButton
 					t={t}
-					href={demo.panelUrl}>
-					Open panel
+					href={demo.demoUrl || demo.panelUrl}>
+					{demo.demoUrl ? 'Try the panel' : 'Open panel'}
 				</PillButton>
 			)}
 			{startHref && (
