@@ -173,7 +173,7 @@ export const DemoCard = ({ demo, t, i, startHref }) => (
 			{demo.demoUrl && (
 				<Row
 					label='Login'
-					value='None needed — opens signed in for an hour'
+					value='No password needed'
 					t={t}
 				/>
 			)}
