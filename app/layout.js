@@ -9,6 +9,7 @@ import { ldScript, siteJsonLd } from '../lib/jsonLd';
 import { getSiteInfo } from '../lib/siteInfo';
 import { SiteInfoProvider } from '../components/site/SiteInfo';
 import WhatsAppButton from '../components/site/WhatsAppButton';
+import ChatWidget from '../components/site/ChatWidget';
 
 // Default SEO for every page comes from the Mint panel (Site setup → SEO)
 export const generateMetadata = siteMetadata;
@@ -41,6 +42,8 @@ export default async function RootLayout({ children }) {
 					<SiteInfoProvider value={info}>
 						{children}
 						<WhatsAppButton />
+						{/* The Thinkcrypt assistant (lib/chatbot): chats land in the panel under Chatbot */}
+						<ChatWidget />
 					</SiteInfoProvider>
 				</ChakraProviderWrapper>
 
